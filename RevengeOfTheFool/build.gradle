@@ -77,6 +77,7 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         compile "com.badlogicgames.box2dlights:box2dlights:1.2"
+        compile files('libs/groovy-all-2.3.2.jar')
     }
 }
 
