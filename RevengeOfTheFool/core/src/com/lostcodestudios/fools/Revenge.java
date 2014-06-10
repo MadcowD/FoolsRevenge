@@ -1,13 +1,8 @@
 package com.lostcodestudios.fools;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.codehaus.groovy.control.CompilationFailedException;
 
 import groovy.lang.Binding;
-import groovy.lang.GroovyClassLoader;
-import groovy.lang.GroovyObject;
 import groovy.lang.GroovyShell;
 
 import com.badlogic.gdx.ApplicationAdapter;
