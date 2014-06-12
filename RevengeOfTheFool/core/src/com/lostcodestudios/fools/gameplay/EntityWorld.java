@@ -61,6 +61,12 @@ public class EntityWorld {
 	private void loadLights() {
 		MapLayer lightsLayer = tileMap.getLayers().get("Lights");
 		
+		String ambientColorStr = lightsLayer.getProperties().get("ambientColor", String.class);
+		
+		if (ambientColorStr != null) {
+			rayHandler.setAmbientLight(parseColor(ambientColorStr));
+		}
+		
 		MapObjects lightObjects = lightsLayer.getObjects();
 		
 		for (MapObject lightObject : lightObjects) {
@@ -70,19 +76,12 @@ public class EntityWorld {
 			
 			if (type == null) continue;
 			
-			float x = lightProperties.get("x", Float.class);
-			float y = lightProperties.get("y", Float.class);
+			float x = UNIT_SCALE * lightProperties.get("x", Float.class);
+			float y = UNIT_SCALE * lightProperties.get("y", Float.class);
 			
 			int rays = Integer.parseInt(lightProperties.get("rays", String.class));
 			
-			String colorStr = lightProperties.get("color", String.class);
-			String[] components = colorStr.split(", ");
-			int r = Integer.parseInt(components[0]);
-			int g = Integer.parseInt(components[1]);
-			int b = Integer.parseInt(components[2]);
-			int a = Integer.parseInt(components[3]);
-			
-			Color color = new Color(r, g, b, a);
+			Color color = parseColor(lightProperties.get("color", String.class));
 			
 			float distance = Float.parseFloat(lightProperties.get("distance", String.class));
 			
@@ -97,7 +96,17 @@ public class EntityWorld {
 			}
 		}
 	}
-
+	
+	private Color parseColor(String colorStr) {
+		String[] components = colorStr.split(", ");
+		float r = (float)Integer.parseInt(components[0]) / 255f;
+		float g = (float)Integer.parseInt(components[1]) / 255f;
+		float b = (float)Integer.parseInt(components[2]) / 255f;
+		float a = (float)Integer.parseInt(components[3]) / 255f;
+		
+		return new Color(r, g, b, a);
+	}
+	
 	public void dispose() {
 		mapRenderer.dispose();
 		tileMap.dispose();
