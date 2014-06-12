@@ -1,44 +1,33 @@
 package com.lostcodestudios.fools;
 
-import org.codehaus.groovy.control.CompilationFailedException;
-
-import groovy.lang.Binding;
-import groovy.lang.GroovyShell;
-
-import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.lostcodestudios.fools.gameplay.EntityWorld;
 
-public class Revenge extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
+public class Revenge extends Game {
+	public static final int SCREEN_WIDTH = 1280;
+	public static final int SCREEN_HEIGHT = 720;
 	
-	GroovyShell shell;
-	Binding binding;
+	SpriteBatch batch;
+	
+	EntityWorld world;
 	
 	@Override
 	public void create () {
+		Gdx.graphics.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
+		
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
 		
-		binding = new Binding();		
-		binding.setVariable("batch", batch);
-		binding.setVariable("img", img);
-		
-		shell = new GroovyShell(binding);
+		world = new EntityWorld();
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		try {
-			shell.evaluate(Gdx.files.internal("scripts/HelloWorld.groovy").reader());
-		} catch (CompilationFailedException e) {
-			e.printStackTrace();
-		}
+		world.render(Gdx.graphics.getDeltaTime());
 	}
 }
