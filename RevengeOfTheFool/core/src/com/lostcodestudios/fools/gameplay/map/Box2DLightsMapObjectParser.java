@@ -45,7 +45,7 @@ public class Box2DLightsMapObjectParser {
 			Color color = parseColor(lightProperties.get("color", String.class));
 			
 			//average the ellipse's dimensions to find a "radius"
-			float distance = (ellipse.width + ellipse.height) * unitScale / 2;
+			float distance = (ellipse.width + ellipse.height) * unitScale / 4;
 			
 			if (type.equals("Point")) {
 				new PointLight(rayHandler, rays, color, distance, x, y);
