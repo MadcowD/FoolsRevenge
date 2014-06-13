@@ -5,27 +5,33 @@
  </tileset>
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJztmVmO4zAMROVr5v4HmZ8xwCYYbZHEIlUGHpJueCHr2bKtfEopH0LIH57/eNdxO/SAAT1gQA840AMGJ6+JR+Hd+8mMV663qybtJ6unVk8e18TMNhncfOvBo8cVx4rsRdftfZ6tPG40J4/67l1/z5iZ2cmjPr3Z4QOpv1aNCNfEbhe6X+8+o9S22wcqiC5aea+uF6F/VA8ePrydoLuo5bOz7tOZoN2zd/tA7fetqQDWNuJjZs5kxuEJD5FcrPCh3229fWgPkVxYucxeGz3b7p4flmNTNA8nffTMm6547ywL9uPN7Hiza/vZfWRwoTNZcY6u2KZ3P1l/G1vVz8yzc2ss63Hhnd8uJ79uY+2jTPr4xXEGRs+1d8xu5fMuckwcec7Knnsr35Gxe9SHfDeQ/28d90Yno++zcv3WejJzvdDHGR9yHNL5W35m7yNZ0eduTz4y01p2eok8vxTRxzesZeR+5Z2Rt5PWujPzRfQx56SVw8z1oZ0gzAej0zt/Ia+Pj/jcke+tLmoZWPN+0kURf584R25E3xf0O7blo+Vk1Zzjzei5DZm7tazKNfN84Wo3rwvrndtyMuPCu9cIyDGr18dJF9/mK62xtwfvvH/p2XJS68lat/Z8XctsR36RnKz0aOWKcp5G9REt5+w+MkMnWNAHHnSCB53gQSd4RHk2vAn6wINOsEDykWEeLpuPUV/eNd/so+bIu3b6sL1Ev36Qat5RSzRPSLWdrAXNk/fxvX2MeDpxLO++UX30OPLez+0+Wrn24l13Vh+3QB9Y0AcW9IEFfeBBJ1jQBxb0gQV94NHjhN7O+uj5rdC7zpuo5U0X9HE7tTGLPvyc0AcO9BED+sCCPnCgCyyy+Zj9LR4lB5Q6CH2gQRdY0AcW9IEFfeBAF1jQBxb0gQNdYEEfWNAHDnSBBX3gQBdY0AcW9FHnHz7m7Fg=
+   eJztmVuu5CAMRJNt9j5mAXcxs8/5uZEYi4Bx27iAinTUD+Vh6gSSkM91XR9CyH/cv2TXcTr0gAE9YEAPONADBjP7xC3IbvvMjD3Xi6pJ+tnVU69NGX3Css0Obt7akNFGj2Ot7EXWnX2eeR53NSe3+J5dv2bM3NnJLT6zifCB1L5ejQh9ItqFbG92O1epLdoHKoguenl714vQflQPGT6ynaC7aOUTWffsTNCu2dE+UNv71HQB1jbiwzJnYnE4w8NKLjx8yGfbbB/Sw0ouarlY+4Zm2+j54XJsWs3DTB+aeVOP587LYT/ZWMebqO2t+9jBhczE4xz12Ea7n13fjXm1x3Lv3BvLNC6y84ty8u02tX1cRh/fON6B0XPtGbN7+TxLOSaO3Gftnnsv35Gxe9RH+WxQ/t877olORp9ny/V765WZy4U+5vgoxyGZf82P9TqyK/Lc1eRTZtrKTi4rzy+t6OON2jJyvcrOKNtJb13LfBF92Jz0crD0D+kEYT4YHe38Rdk/PsVnRL6numhlUJv3K11cxe8Z58iJyOuCfMau+eg58ZpzPBk5t1HmXlu8ct15vtDbzeOi9sxdc2Jxkd3WFSjHLK2PmS7e5itrY6+G7Ly/aXPNSatNtXVb99etzCLyW8mJp8darijn6ao+Vst5dx87QydY0AcedIIHneBBJ3iscm94EvSBB51ggeRjh3m43XyM+squ+WQfLUfZtdNH3cvq/Qep5ohaVvOEVNvMWtA8ZR8/28eIpxnHym43qg+No+z9nO6jl6uW7Lp39XEK9IEFfWBBH1jQBx50ggV9YEEfWNAHHhon9BbDn5esNe8Ks2s/iVbedOHP0y/+it/0MS/7Wu6tzN9yp485rrS500cO9BGPdryyeCI50AcOdIHFbj6s7+JRckCpg9AHEj90AQd9YEEfufyI73flf+KftQb2DSxP9BGf90jGHKPiePPAvoED3wdiYx3XiC1jLXQRS5lvz085j8nreT50MAftGNRaj65wvZ3KP7yr7kU=
   </data>
  </layer>
- <objectgroup name="Physics" width="100" height="100"/>
+ <objectgroup name="Physics" width="100" height="100">
+  <object name="light blocker" type="object" x="143" y="703">
+   <polyline points="0,0 152,91 -18,69 0,0"/>
+  </object>
+  <object name="box" type="object" x="200" y="719" width="9" height="10"/>
+  <object name="triangle" type="object" x="113" y="611">
+   <polygon points="0,0 26,25 31,-4"/>
+  </object>
+ </objectgroup>
  <objectgroup name="Lights" width="100" height="100">
   <properties>
    <property name="ambientColor" value="0, 125, 125, 30"/>
   </properties>
-  <object name="light1" type="Point" x="94" y="588" width="41" height="38">
+  <object name="light1" type="Point" x="153" y="583" width="40" height="40">
    <properties>
-    <property name="color" value="255, 0, 0, 255"/>
-    <property name="distance" value="256"/>
-    <property name="rays" value="5"/>
+    <property name="color" value="255, 0, 0, 128"/>
+    <property name="rays" value="50"/>
    </properties>
    <ellipse/>
   </object>
-  <object name="light2" type="Cone" x="228" y="682" width="60" height="59">
+  <object name="light2" type="Cone" x="222" y="678" width="60" height="60">
    <properties>
     <property name="color" value="0, 255, 0, 255"/>
     <property name="coneDegrees" value="60"/>
-    <property name="distance" value="512"/>
     <property name="rays" value="5"/>
     <property name="rotation" value="235"/>
    </properties>
