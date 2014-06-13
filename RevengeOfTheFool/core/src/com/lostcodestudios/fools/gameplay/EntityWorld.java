@@ -79,6 +79,18 @@ public class EntityWorld {
 		paused = false;
 	}
 	
+	/**
+	 * Sets the camera position to center on the given tile.
+	 * @param x
+	 * @param y
+	 */
+	public void setCameraPosition(float x, float y) {
+		float tileSize = Config.UNIT_SCALE * Config.UNIT_SCALE;
+		
+		camera.position.set(x * tileSize + tileSize / 2, y * tileSize - tileSize / 2, 0);
+		camera.update();
+	}
+	
 	public void render(SpriteBatch spriteBatch, float delta) {
 		if (!paused) {
 			update(delta);
@@ -94,7 +106,7 @@ public class EntityWorld {
 		
 		dialog.render(spriteBatch, delta);
 		
-		if (Config.DEBUG) { 
+		if (Config.DEBUG && !paused) { 
 			debugRenderer.render(world, camera.combined);
 		}
 	}
