@@ -28,11 +28,11 @@ public class ScriptManager {
 			binding.setVariable(arg.key, arg.value);
 		}
 		
-		GroovyShell shell = new GroovyShell();
+		GroovyShell shell = new GroovyShell(binding);
 		shell.evaluate(Gdx.files.internal(path).reader());
 	}
 	
-	public void runSCript(String path) {
+	public void runScript(String path) {
 		runScript(path, new ObjectMap<String, Object>());
 	}
 	

@@ -33,7 +33,7 @@ public class EntityWorld {
 	
 	public EventFlagManager flags = new EventFlagManager();
 	public ScriptManager scripts = new ScriptManager(this);
-	public DialogManager dialog = new DialogManager();
+	public DialogManager dialog = new DialogManager(this);
 	
 	private boolean paused;
 	
@@ -59,6 +59,8 @@ public class EntityWorld {
 		lightObjectParser.load(rayHandler, tileMap.getLayers().get("Lights"));
 		
 		paused = false;
+
+        scripts.runScript("scripts/start.groovy");
 	}
 	
 	public void dispose() {
