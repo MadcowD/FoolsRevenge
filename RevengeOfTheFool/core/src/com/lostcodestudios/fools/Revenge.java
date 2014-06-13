@@ -6,21 +6,20 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.lostcodestudios.fools.gameplay.EntityWorld;
 
-public class Revenge extends Game {
-	public static final int SCREEN_WIDTH = 1280;
-	public static final int SCREEN_HEIGHT = 720;
-	
+public class Revenge extends Game {	
 	SpriteBatch batch;
 	
 	EntityWorld world;
 	
 	@Override
 	public void create () {
-		Gdx.graphics.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
+		Gdx.graphics.setDisplayMode(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, false);
 		
 		batch = new SpriteBatch();
 		
 		world = new EntityWorld();
+		
+		Config.loadFonts();
 	}
 
 	@Override
@@ -28,6 +27,12 @@ public class Revenge extends Game {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		world.render(Gdx.graphics.getDeltaTime());
+		world.render(batch, Gdx.graphics.getDeltaTime());
+		
+		if (Config.DEBUG) {
+			batch.begin();
+			TextManager.draw(batch, "debug", "FPS: " + Gdx.graphics.getFramesPerSecond(), 0, 14);
+			batch.end();
+		}
 	}
 }

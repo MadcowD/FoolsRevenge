@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.ObjectMap;
 
 public final class TextManager {
 
-	private static ObjectMap<String, BitmapFont> fonts;
+	private static ObjectMap<String, BitmapFont> fonts = new ObjectMap<String, BitmapFont>();
 	
 	public static void addFont(String key, String ttfPath, int size, Color color) {
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(ttfPath));
@@ -28,18 +28,20 @@ public final class TextManager {
 		generator.dispose();
 	}
 	
+	public static BitmapFont getFont(String key) {
+		return fonts.get(key);
+	}
+	
 	public static TextBounds draw(SpriteBatch spriteBatch, String fontKey, String text, 
 			float x, float y) {
 		
 		return fonts.get(fontKey).draw(spriteBatch, text, x, y);
-		
 	}
 	
 	public static TextBounds drawMultiline(SpriteBatch spriteBatch, String fontKey, 
 			String text, float x, float y) {
 		
-		return fonts.get(fontKey).drawMultiLine(spriteBatch, text, x, y);
-		
+		return fonts.get(fontKey).drawMultiLine(spriteBatch, text, x, y);	
 	}
 	
 	public static TextBounds drawMultiline(
@@ -48,21 +50,18 @@ public final class TextManager {
 			float alignmentWidth, HAlignment alignment) {
 		
 		return fonts.get(fontKey).drawMultiLine(spriteBatch, text, x, y, alignmentWidth, alignment);
-		
 	}
 	
 	public static TextBounds drawWrapped(SpriteBatch spriteBatch, String fontKey, 
 			String text, float x, float y, float wrapWidth) {
 		
-		return fonts.get(fontKey).drawWrapped(spriteBatch, text, x, y, wrapWidth);
-		
+		return fonts.get(fontKey).drawWrapped(spriteBatch, text, x, y, wrapWidth);	
 	}
 	
 	public static TextBounds drawWrapped(SpriteBatch spriteBatch, String fontKey, 
 			String text, float x, float y, float wrapWidth, HAlignment alignment) {
 		
 		return fonts.get(fontKey).drawWrapped(spriteBatch, text, x, y, wrapWidth, alignment);
-		
 	}
 	
 }
