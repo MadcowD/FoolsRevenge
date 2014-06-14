@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 
 public final class Config {
 	
-	public static final boolean DEBUG = true;
+	public static boolean debug = true;
 	
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HEIGHT = 720;
@@ -30,6 +30,8 @@ public final class Config {
 		
 		TextManager.addFont("dialog-black", "fonts/Philosopher-BoldItalic.ttf", 24, Color.BLACK);
 		TextManager.addFont("dialog-white", "fonts/Philosopher-BoldItalic.ttf", 24, Color.WHITE);
+		
+		TextManager.addFont("voice", "fonts/Philosopher-Bold.ttf", 24, Color.BLACK);
 		
 		TextManager.addFont("ui-black", "fonts/Oswald-Regular.ttf", 24, Color.BLACK);
 		TextManager.addFont("ui-white", "fonts/Oswald-Regular.ttf", 24, Color.WHITE);

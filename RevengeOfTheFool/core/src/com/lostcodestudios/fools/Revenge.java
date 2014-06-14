@@ -2,6 +2,7 @@ package com.lostcodestudios.fools;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.lostcodestudios.fools.gameplay.GameWorld;
@@ -35,9 +36,13 @@ public class Revenge extends Game {
 		
 		world.render(batch, Gdx.graphics.getDeltaTime());
 		
+		if (input.wasKeyPressed(Keys.F1)) {
+			Config.debug = !Config.debug;
+		}
+		
 		input.beginNewFrame();
 		
-		if (Config.DEBUG) {
+		if (Config.debug) {
 			batch.begin();
 			TextManager.draw(batch, "debug", "FPS: " + Gdx.graphics.getFramesPerSecond(), 0, 14);
 			batch.end();

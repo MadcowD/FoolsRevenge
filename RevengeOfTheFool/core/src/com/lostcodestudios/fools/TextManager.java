@@ -45,7 +45,7 @@ public final class TextManager {
 	}
 	
 	public static TextBounds drawMultiline(
-			SpriteBatch spriteBatch, String fontKey, 
+			SpriteBatch spriteBatch, String fontKey,
 			String text, float x, float y, 
 			float alignmentWidth, HAlignment alignment) {
 		

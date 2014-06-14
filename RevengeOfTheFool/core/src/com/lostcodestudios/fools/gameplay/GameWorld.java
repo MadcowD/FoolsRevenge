@@ -22,11 +22,8 @@ import com.lostcodestudios.fools.gameplay.map.Box2DLightsMapObjectParser;
 import com.lostcodestudios.fools.gameplay.map.Box2DMapObjectParser;
 
 public class GameWorld {
-
-	//world will contain event flags, tile map, map bodies, Box2dlights, entities, items, etc.
-	//it will also load and run Groovy scripts, giving them access to its scope so they can access flags, manipulate entities, etc
 	
-	private OrthographicCamera camera;
+	public OrthographicCamera camera;
 	
 	private TiledMap tileMap;
 	private OrthogonalTiledMapRenderer mapRenderer;
@@ -34,6 +31,7 @@ public class GameWorld {
 	private World world;
 	private RayHandler rayHandler;
 	private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
+	private SpriteBatch spriteBatch = new SpriteBatch();
 	
 	public EventFlagManager flags = new EventFlagManager();
 	public ScriptManager scripts = new ScriptManager(this);
@@ -87,6 +85,8 @@ public class GameWorld {
 		
 		rayHandler.dispose();
 		world.dispose();
+		
+		spriteBatch.dispose();
 	}
 	
 	public void pause() {
@@ -95,6 +95,10 @@ public class GameWorld {
 	
 	public void resume() {
 		paused = false;
+	}
+	
+	public boolean isPaused() {
+		return paused;
 	}
 	
 	/**
@@ -126,9 +130,11 @@ public class GameWorld {
 		rayHandler.setCombinedMatrix(camera.combined);
 		rayHandler.updateAndRender();
 		
-		dialog.render(spriteBatch, delta);
+		this.spriteBatch.setProjectionMatrix(camera.combined);
 		
-		if (Config.DEBUG && !paused) { 
+		dialog.render(spriteBatch, this.spriteBatch, delta);
+		
+		if (Config.debug && !paused) { 
 			debugRenderer.render(world, camera.combined);
 		}
 	}
@@ -141,7 +147,7 @@ public class GameWorld {
 		float cameraBoundWidth = Config.SCREEN_WIDTH / 6;
 		float cameraBoundHeight = Config.SCREEN_HEIGHT / 6;
 		
-		Vector2 cameraAnchor = new Vector2(50 * 64, 82 * 64); //this will be the Fool's position eventually
+		Vector2 cameraAnchor = new Vector2(50 * 64, 94 * 64); //this will be the Fool's position eventually
 		
 		Rectangle cameraBounds = new Rectangle(
 				cameraAnchor.x - cameraBoundWidth / 2, cameraAnchor.y - cameraBoundHeight / 2, cameraBoundWidth, cameraBoundHeight);

@@ -20,19 +20,19 @@
  </tileset>
  <layer name="Floor" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1EsKgCAARVHBFVXjPvtfVTRrYGpQKXEOvJE4umgIwB+sMYQhse201Plxj+fleix6fM776MtVj9L0eIcefcn1mPX4nPfRFz36kuoxJaZHW+cWtKfH+8ZYXu6/qrlPvdoeV9PjWXoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMB9O1VrLcQ=
+   eJzt1EsKgzAUhtFAV1Q77mPpLq10UAg1xtTWeJFz4B+JEz+8KQFHcD+ldC7ska30/PUe/1frcdOjO/9HLHM9lqbHNvSIpdbjqkd3/o9Y9Iil1ONSmB77yluwPz22kd+YoWG1e9X6/ntMrekxNz1+p0csvb+PHnV6xPJxb8aWrb1V7tUyPWLR4xh811j0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvvEE3PhetA==
   </data>
  </layer>
  <layer name="Objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2W1qgzAYAGBH2Sn222D9t57Io/UoO9q0av0gsUqllfI8EMRGI0tMXvMuy46vPGV/eaQUid9T19btVO/+Wz5B3Z/X8+l2zEJ3zDee1/dfc+Oxi3yHvtyjDVpNXxY7jMezbdBaerd/vpbP17TBNk1fhif7MhiP3RTix6GYH8fi++pY9vq+Mh77MD9eK5YPmeVCmv151Z+Hrj5EciBl93v92Xs/NuU7u91bLTxDPqUzzocUkVxH2a5XkzxIPtRNlO08uNcXs2tjOZVCPmWiX0t+637py7Mu9fv+qIyfZz0b9N+z7xyPIJ9yZ34cS7//vozKOMaHhRhcjOpD4ppYO+XsecZjkMfHYxKXU//fSMX5vi4krmtiu/GIi61Xa9ab2Lpz2VCsV3GxeP7q8ZDfGpgfxzLff6di8DxW9/vzcb+WK+6JPefcHqt398URpGL3mphdzt7zR20ttT3f6wMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJ/pHweB9EE=
+   eJzt2X9ugjAUAGAWs1PsbxrkVBzNo+xoA8FfTUGNzfbivi8hBAu1tsBrn00TX79rvtvC1q18vnbuWM/w17/lHYz9edjvjvsmLfv2yePx+kNrPKpoK/RljTqYTX3ZVRiPV+tgtnVvf31sHz9SB8+Z+jK92JfJeFTTiR+heD5iMb+Kpdb8ynjU4fn4XaV8SJYLmdbnw+k4LeWpkAPpl8/Hae95P22fzfHaYeM75FMW1/mQrpDr6Of31U0epL2U3ejn5+Bc3mXnlnIqnXzKjQjvkghtiKLGfPZVST7lLMK9GaENUZTW39cxPm3E4O6qPK2cU6onj93G46LUF3lcXvt/Yy3On8rSynn5PMB4XEToiwhtiCJKPDceswj3ZoQ2RJGvv9dicB6rt9bnW9eUvmc/74dyC/+Xtdj9SMy+tz6/t+XrdwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4P39AFEToqg=
   </data>
  </layer>
  <objectgroup name="Lights" width="100" height="100">
   <properties>
    <property name="ambientColor" value="25, 25, 25, 125"/>
   </properties>
-  <object type="Torch" x="463" y="57" width="6" height="5">
+  <object type="Torch" x="461" y="57" width="6" height="5">
    <properties>
     <property name="rotation" value="180"/>
    </properties>
@@ -44,43 +44,43 @@
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="464" y="41" width="6" height="5">
+  <object type="Torch" x="461" y="42" width="6" height="5">
    <properties>
     <property name="rotation" value="180"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="338" y="40" width="7" height="7">
+  <object type="Torch" x="342" y="41" width="7" height="7">
    <properties>
     <property name="rotation" value="0"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="339" y="58" width="6" height="5">
+  <object type="Torch" x="343" y="58" width="6" height="5">
    <properties>
     <property name="rotation" value="0"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="377" y="88" width="6" height="5">
+  <object type="Torch" x="376" y="85" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="360" y="86" width="6" height="5">
+  <object type="Torch" x="360" y="85" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="441" y="87" width="6" height="5">
+  <object type="Torch" x="441" y="85" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="425" y="87" width="6" height="5">
+  <object type="Torch" x="425" y="85" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
@@ -141,7 +141,7 @@
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="488" y="99" width="6" height="5">
+  <object type="Torch" x="489" y="101" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
@@ -209,8 +209,15 @@
   </object>
  </objectgroup>
  <objectgroup name="Physics" width="100" height="100">
-  <object name="kingwall3" type="object" x="328" y="14" width="14" height="74"/>
+  <object name="kingwall3" type="object" x="328" y="-2" width="15" height="106"/>
   <object name="kingwall1" type="object" x="329" y="1" width="148" height="13"/>
-  <object name="kingwall2" type="object" x="465" y="16" width="14" height="70"/>
+  <object name="kingwall2" type="object" x="465" y="0" width="13" height="101"/>
+  <object name="hallwall1" type="object" x="264" y="88" width="127" height="15"/>
+  <object name="hallwall2" type="object" x="416" y="88" width="128" height="14"/>
+  <object name="hallwall3" type="object" x="528" y="89" width="15" height="94"/>
+  <object name="hallwall4" type="object" x="416" y="168" width="128" height="14"/>
+  <object name="hallwall5" type="object" x="304" y="128" width="199" height="13"/>
+  <object name="hallwall6" type="object" x="265" y="168" width="126" height="14"/>
+  <object name="hallwall7" type="object" x="265" y="86" width="15" height="99"/>
  </objectgroup>
 </map>

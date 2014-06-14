@@ -1,25 +1,52 @@
 package com.lostcodestudios.fools.gameplay;
 
+import java.util.Iterator;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont.HAlignment;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.lostcodestudios.fools.Config;
+import com.lostcodestudios.fools.gameplay.entities.Entity;
 
 public class DialogManager {
 		
-	private ShapeRenderer shapeRenderer = new ShapeRenderer();
+	private ShapeRenderer screenShapeRenderer = new ShapeRenderer();
+	private ShapeRenderer worldShapeRenderer = new ShapeRenderer();
 	
 	private Array<Dialog> dialogsToShow = new Array<Dialog>();
-    
+    private Array<VoiceBubble> voiceBubbles = new Array<VoiceBubble>();
+	
     private GameWorld world;
 
 	public DialogManager(GameWorld world) {
 		this.world = world;
 	}
 	
-	public void render(SpriteBatch spriteBatch, float delta) {
+	public void dispose() {
+		screenShapeRenderer.dispose();
+		worldShapeRenderer.dispose();
+	}
+	
+	public void render(SpriteBatch spriteBatch, SpriteBatch worldSpriteBatch, float delta) {
+		//render voice bubbles
+		worldShapeRenderer.setProjectionMatrix(world.camera.combined);
+		
+		Iterator<VoiceBubble> it = voiceBubbles.iterator();
+		
+		while (it.hasNext()) {
+			VoiceBubble bubble = it.next();
+			
+			bubble.render(worldSpriteBatch, worldShapeRenderer);
+			
+			if (!world.isPaused()) {
+				if (bubble.update(delta)) {
+					it.remove();
+				}
+			}
+		}
+		
 		if (world.input.wasKeyPressed(Config.ACCEPT_KEY)) {
 			//handle a new press of the accept key
 			if (dialogsToShow.size > 0) {
@@ -32,7 +59,7 @@ public class DialogManager {
 		}
 		
 		if (dialogsToShow.size > 0) {
-			dialogsToShow.get(0).render(spriteBatch, shapeRenderer);
+			dialogsToShow.get(0).render(spriteBatch, screenShapeRenderer);
 		}
 	}
 	
@@ -60,6 +87,10 @@ public class DialogManager {
 				text, //"The King's rage shook the castle like thunder.", 
 				Color.BLACK, Color.BLACK, true, false, 
 				HAlignment.CENTER));
+	}
+	
+	public void showVoiceBubble(String text, Entity speaker, float time) {
+		voiceBubbles.add(new VoiceBubble(text, speaker, time));
 	}
 	
 }
