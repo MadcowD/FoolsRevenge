@@ -40,12 +40,25 @@ public class Box2DLightsMapObjectParser {
 			float x = unitScale * (ellipse.x + ellipse.width / 2);
 			float y = unitScale * (ellipse.y + ellipse.height / 2);
 			
-			int rays = Integer.parseInt(lightProperties.get("rays", String.class));
+			//lights defined by preset
+			if (type.equals("Torch")) {
+				float rotation = Float.parseFloat(lightProperties.get("rotation", String.class));
+				
+				new ConeLight(rayHandler, 10, 
+						new Color(255f / 255, 123f / 255, 0f / 255, 200f / 255), 64 * 5, x, y, rotation, 90f);
+				
+				continue;
+			}
 			
-			Color color = parseColor(lightProperties.get("color", String.class));
+			
+			//lights fully defined from map
 			
 			//average the ellipse's dimensions to find a "radius"
 			float distance = (ellipse.width + ellipse.height) * unitScale / 4;
+			
+			int rays = Integer.parseInt(lightProperties.get("rays", String.class));
+			
+			Color color = parseColor(lightProperties.get("color", String.class));
 			
 			if (type.equals("Point")) {
 				new PointLight(rayHandler, rays, color, distance, x, y);

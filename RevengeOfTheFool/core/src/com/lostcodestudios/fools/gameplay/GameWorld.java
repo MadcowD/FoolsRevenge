@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -42,16 +43,21 @@ public class GameWorld {
 	
 	private boolean paused;
 	
+	private Rectangle bounds;
+	
 	public GameWorld(InputManager input) {
 		this.input = input;
 		
 		camera = new OrthographicCamera(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		
 		TmxMapLoader loader = new TmxMapLoader();
-		tileMap = loader.load("testmap.tmx");
+		tileMap = loader.load("castle.tmx");
 		
-		//SET THE BOUNDS
-		//TODO
+		MapProperties mapProp = tileMap.getProperties();
+		int width = (Integer) mapProp.get("width");
+		int height = (Integer) mapProp.get("height");
+		
+		bounds = new Rectangle(0, 0, width, height);
 		
 		mapRenderer = new OrthogonalTiledMapRenderer(tileMap, Config.UNIT_SCALE);
 		
@@ -99,8 +105,12 @@ public class GameWorld {
 	public void setCameraPosition(float x, float y) {
 		float tileSize = Config.UNIT_SCALE * Config.UNIT_SCALE;
 		
-		camera.position.set(x * tileSize + tileSize / 2, y * tileSize - tileSize / 2, 0);
+		camera.position.set(x * tileSize + tileSize / 2, (bounds.height - y) * tileSize - tileSize / 2, 0);
 		camera.update();
+	}
+	
+	public Rectangle getBounds() {
+		return bounds;
 	}
 	
 	public void render(SpriteBatch spriteBatch, float delta) {
@@ -131,7 +141,7 @@ public class GameWorld {
 		float cameraBoundWidth = Config.SCREEN_WIDTH / 6;
 		float cameraBoundHeight = Config.SCREEN_HEIGHT / 6;
 		
-		Vector2 cameraAnchor = new Vector2(31 * 64, 12 * 64); //this will be the Fool's position eventually
+		Vector2 cameraAnchor = new Vector2(50 * 64, 94 * 64); //this will be the Fool's position eventually
 		
 		Rectangle cameraBounds = new Rectangle(
 				cameraAnchor.x - cameraBoundWidth / 2, cameraAnchor.y - cameraBoundHeight / 2, cameraBoundWidth, cameraBoundHeight);
