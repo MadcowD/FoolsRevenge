@@ -1,9 +1,11 @@
 package com.lostcodestudios.fools.gameplay.entities;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * The entity region class essentially is a node on the world bounded volume hierachry. 
@@ -16,15 +18,20 @@ public class EntityRegion {
 	private EntityRegion superRegion;
 	private Rectangle region;
 	
-	private ArrayList<Entity> entities;
+	private Array<Entity> entities;
+	private Stack<Entity> flagged;
+	private int depth;
 	
 	//-----------------------------------
 	//-------------
 	//-----------------------------------
 	
-	public EntityRegion(Rectangle region, EntityRegion superRegion){
-		entities = new ArrayList<Entity>();
+	public EntityRegion(int depth, Rectangle region, EntityRegion superRegion){
+		entities = new Array<Entity>();
+		flagged = new Stack<Entity>();
 		
+		
+		this.depth = depth;
 		this.region = region;
 		this.superRegion = superRegion;
 	}
@@ -34,8 +41,114 @@ public class EntityRegion {
 	//-------------
 	//-----------------------------------
 	
+	/**
+	 * Rebalances the entity tree.
+	 */
+	public void rebalance(){
+		if(this.superRegion != null)
+			while(flagged.size() > 0)
+			{
+				Entity e = flagged.pop();
+				this.remove(e);
+				superRegion.add(e);
+				
+			}
+	}
 	
-	//TODO: CREATE SELECTS FUNCTIONS FOR ENTITIES AND REGIONS.
+	/**
+	 * Excutes an entity process on all entities.
+	 * @param p The process to execute.
+	 */
+	public void executeAll(EntityProcess p){
+		for(Entity e : entities)
+			p.run(e);
+		
+		if(this.subRegions != null)
+			for(EntityRegion sub : this.subRegions)
+				sub.executeAll(p);
+	}
+	
+	/**
+	 * Executes an entity process on a given rectangle bounds
+	 * @param r The rectangle within which to execute the entity process.
+	 * @param p The process to execute.
+	 */
+	public void execute(Rectangle r, EntityProcess p){
+		if(this.overlaps(r)){
+			for(Entity e : entities)
+				p.run(e);
+			
+			if(this.subRegions != null)
+				for(EntityRegion sub : this.subRegions)
+					sub.execute(r, p);
+		}
+	}
+	
+	
+	/**
+	 * CAUTION COSTLY OPERATION (NLOGN)
+	 * Selects entities in a given rectangle.
+	 * @param r The rectangle
+	 * @returns An array of entity. DO NOT MODIFY.
+	 */
+	public Array<Entity> select(Rectangle r){
+		Array<Entity> result = new Array<Entity>();
+		select(r, result);
+		
+		return result;
+	}
+	
+	/**
+	 * Recursive selection function
+	 * @param r
+	 * @param temp
+	 */
+	protected void select(Rectangle r, Array<Entity> temp){
+		if(this.overlaps(r)){
+			//Gets all the entities at this level.
+			temp.addAll(this.entities);
+			
+			//Gathers the proper enttiies from the sub regions.
+			if(this.subRegions != null)
+				for(EntityRegion sub : this.subRegions)
+					sub.select(r, temp);
+		
+		}		
+	}
+	
+	public void add(Entity e){
+		EntityRegion emRegion = this;
+		while(emRegion.depth != e.getDepth())
+			//Go further down untill the depth is reached.
+			if (this.subRegions != null)
+				for(EntityRegion sub : subRegions)
+					//If the subregion contains the position break and recurr further.
+					if(sub.contains(e.getPosition())){
+						emRegion = sub;
+						break;
+					}
+		e.setRegion(emRegion);
+		emRegion.add(e);
+	}
+	
+	/**
+	 * Removes and entity.
+	 * @param e The entity to remove
+	 * @return 
+	 */
+	public boolean remove(Entity e){
+		if(this.contains(e.getPosition())){
+			if(this.entities.removeValue(e, false))
+					return true;
+			else if (this.subRegions != null)
+				for(EntityRegion sub : subRegions)
+					if(sub.remove(e))
+						return true;
+		}
+
+		return false;
+	}
+	
 
 	/**
 	 * CAUTION COSTLY OPERATION O(N)+O(NLOGN)
@@ -44,8 +157,9 @@ public class EntityRegion {
 	 * @return Whether or not the entity is contained within the region or any following sub-regions.
 	 */
 	public boolean contains(Entity e){
-		if(this.entities.contains(e))
+		if(this.entities.contains(e, false))
 			return true;
+		//Checks the sub regions.
 		else if (this.subRegions != null)
 			for(EntityRegion sub : subRegions)
 				if(sub.contains(e))
@@ -53,6 +167,8 @@ public class EntityRegion {
 		
 		return false;
 	}
+	
+	
 	
 	/**
 	 * Checks whether or a given coordinate resides within the region.
