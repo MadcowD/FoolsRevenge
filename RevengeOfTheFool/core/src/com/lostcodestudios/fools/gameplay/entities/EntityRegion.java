@@ -6,6 +6,7 @@ import java.util.Stack;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.lostcodestudios.fools.gameplay.GameWorld;
 
 /**
  * The entity region class essentially is a node on the world bounded volume hierachry. 
@@ -36,7 +37,7 @@ public class EntityRegion {
 	public EntityRegion(int height, Rectangle region){
 		this(height, 0, region, null);
 	}
-	
+
 	private EntityRegion(int height, int depth, Rectangle region, EntityRegion superRegion){
 		entities = new Array<Entity>();
 		changed = new Stack<Entity>();
@@ -47,12 +48,12 @@ public class EntityRegion {
 		this.depth =depth;
 		this.region = region;
 		this.superRegion = superRegion;
-		
+
 		//Recursively generate the tree.
 		this.setSubRegions(generateRegionTree(height, depth+1, this));
 	}
 
-	
+
 	/**
 	 * Generates the subRegions of the root node.
 	 * @param depth
@@ -62,10 +63,10 @@ public class EntityRegion {
 	private EntityRegion[] generateRegionTree(int height, int depth, EntityRegion root){
 		if(depth < height){
 			EntityRegion[] regions = new EntityRegion[4];
-			
+
 			for(int i =0; i< 4; i++)
 			{
-				
+
 				//Partition the rectangles
 				Rectangle supRect = root.getRegion();
 				Rectangle subRect = new Rectangle(
@@ -73,17 +74,86 @@ public class EntityRegion {
 						supRect.y+ (i/(int)2)*(supRect.height/2f),
 						supRect.width/2f,
 						supRect.height/2f);
-				
+
 				//Establish new rectangle.
 				regions[i] = new EntityRegion(height, depth, subRect, root);
 			}
-			
+
 			return regions;
 		}
 		else
 			return null;
 
 	}
+
+
+	//-----------------------------------
+	//------------- PROCESSING
+	//-----------------------------------
+
+
+	/**
+	 * Recursivley updates the tree.
+	 * @param deltaTime The deltaTime since last update.
+	 * @param gameWorld The game world.
+	 */
+	public void update(float deltaTime, GameWorld gameWorld){
+		this.rebalance();
+		for(Entity e : this.entities )
+			e.update(deltaTime, gameWorld);
+		
+		if(this.subRegions != null)
+			for(EntityRegion sub : this.subRegions)
+				sub.update(deltaTime, gameWorld);
+	}
+	
+	/**
+	 * Excutes an entity process on all entities.
+	 * @param p The process to execute.
+	 */
+	public void executeAll(EntityProcess p){
+		for(Entity e : entities)
+			p.run(e);
+
+		if(this.subRegions != null)
+			for(EntityRegion sub : this.subRegions)
+				sub.executeAll(p);
+	}
+
+	/**
+	 * Executes an entity process on a given rectangle bounds
+	 * @param r The rectangle by which to execute the entity process.
+	 * @param p The process to execute.
+	 */
+	public void executeBy(Rectangle r, EntityProcess p){
+		if(this.overlaps(r)){
+			for(Entity e : entities)
+				p.run(e);
+
+			if(this.subRegions != null)
+				for(EntityRegion sub : this.subRegions)
+					sub.executeBy(r, p);
+		}
+	}
+
+	/**
+	 * Executes strictly within a given rectangle.
+	 * @param r the rectangle to execute in.
+	 * @param p The process to run.
+	 */
+	public void executeStrict(Rectangle r, EntityProcess p){
+		if(this.overlaps(r)){
+			for(Entity e : entities)
+				if(r.contains(e.getPosition()))
+					p.run(e);
+
+			if(this.subRegions != null)
+				for(EntityRegion sub : this.subRegions)
+					sub.executeStrict(r, p);
+		}
+	}
+
+
 
 	//-----------------------------------
 	//------------- MODIFICATION FUNCTIONS
@@ -103,7 +173,7 @@ public class EntityRegion {
 			toAdd.setRegion(this);
 			this.entities.add(toAdd);
 		}
-		
+
 		while(changed.size() > 0)
 			change(changed.pop());
 
@@ -148,7 +218,7 @@ public class EntityRegion {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Removes an entity given that it is known to be contained.
 	 * @param e The entity to remove.
@@ -162,35 +232,6 @@ public class EntityRegion {
 	//-----------------------------------
 	//------------- HELPER FUNCTIONS
 	//-----------------------------------
-
-	/**
-	 * Excutes an entity process on all entities.
-	 * @param p The process to execute.
-	 */
-	public void executeAll(EntityProcess p){
-		for(Entity e : entities)
-			p.run(e);
-
-		if(this.subRegions != null)
-			for(EntityRegion sub : this.subRegions)
-				sub.executeAll(p);
-	}
-
-	/**
-	 * Executes an entity process on a given rectangle bounds
-	 * @param r The rectangle within which to execute the entity process.
-	 * @param p The process to execute.
-	 */
-	public void execute(Rectangle r, EntityProcess p){
-		if(this.overlaps(r)){
-			for(Entity e : entities)
-				p.run(e);
-
-			if(this.subRegions != null)
-				for(EntityRegion sub : this.subRegions)
-					sub.execute(r, p);
-		}
-	}
 
 
 	/**
@@ -263,7 +304,7 @@ public class EntityRegion {
 	public boolean contains(Rectangle r){
 		return this.region.contains(r);
 	}
-	
+
 	/**
 	 * Tests for region overlap.
 	 * @param r The region r to which this entity region will be compared.

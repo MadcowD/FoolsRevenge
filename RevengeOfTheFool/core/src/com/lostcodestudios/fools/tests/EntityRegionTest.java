@@ -10,14 +10,17 @@ import com.lostcodestudios.fools.gameplay.entities.EntityRegion;
 
 public class EntityRegionTest {
 
-	EntityRegion root;
-	@Before
-	public void setUp() throws Exception {
-	}
 
 	@Test
 	public void testEntityRegion() {
-		fail("Not yet implemented"); // TODO
+		EntityRegion test = new EntityRegion(4, new Rectangle(0,0, 1024,1024));
+		assertEquals(test.getRegion().getHeight(), 1024, 0);
+		assertEquals(test.getSubRegions()[0].getRegion().getHeight(), 512, 0);
+		assertEquals(test.getSubRegions()[3].getRegion().getY(), 512, 0);
+		assertEquals(test.getSubRegions()[3].getRegion().getX(), 512, 0);
+		assertTrue(test.getSuperRegion() == null);
+		
+		
 	}
 
 	@Test
@@ -27,7 +30,7 @@ public class EntityRegionTest {
 
 	@Test
 	public void testAdd() {
-		fail("Not yet implemented"); // TODO
+		EntityRegion root = new EntityRegion(4, new Rectangle(0,0, 1024,1024));
 	}
 
 	@Test

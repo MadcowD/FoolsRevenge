@@ -26,6 +26,22 @@ public class EntityManager {
 	}
 	
 	//-----------------------------------
+	//------------- PROCESSING
+	//-----------------------------------
+	
+	public void update(final float deltaTime){
+		root.update(deltaTime, gameWorld);
+	}
+	
+	public void render(final float deltaTime, Rectangle cameraBounds){
+		root.executeBy(cameraBounds, new EntityProcess(){
+			public void run(Entity e) {
+				e.render(deltaTime, gameWorld);
+			}
+		});
+	}
+	
+	//-----------------------------------
 	//------------- MODIFICATION FUNCTIONS
 	//-----------------------------------
 	
@@ -36,4 +52,6 @@ public class EntityManager {
 	public void remove(Entity e){
 		e.delete();
 	}
+	
+
 }
