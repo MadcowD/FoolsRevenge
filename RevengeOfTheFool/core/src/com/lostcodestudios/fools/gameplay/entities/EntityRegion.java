@@ -28,17 +28,62 @@ public class EntityRegion {
 	//------------- CONSTRUCTOR
 	//-----------------------------------
 
-	public EntityRegion(int depth, Rectangle region, EntityRegion superRegion){
+	/**
+	 * Constructs and entity region tree of height H.
+	 * @param height The height of the tree
+	 * @param region The region in which the entity region resides.
+	 */
+	public EntityRegion(int height, Rectangle region){
+		this(height, 0, region, null);
+	}
+	
+	private EntityRegion(int height, int depth, Rectangle region, EntityRegion superRegion){
 		entities = new Array<Entity>();
 		changed = new Stack<Entity>();
+		added = new Stack<Entity>();
+		removed = new Array<Entity>();
 
 
-
-		this.depth = depth;
+		this.depth =depth;
 		this.region = region;
 		this.superRegion = superRegion;
+		
+		//Recursively generate the tree.
+		this.setSubRegions(generateRegionTree(height, depth+1, this));
 	}
 
+	
+	/**
+	 * Generates the subRegions of the root node.
+	 * @param depth
+	 * @param root
+	 * @return
+	 */
+	private EntityRegion[] generateRegionTree(int height, int depth, EntityRegion root){
+		if(depth < height){
+			EntityRegion[] regions = new EntityRegion[4];
+			
+			for(int i =0; i< 4; i++)
+			{
+				
+				//Partition the rectangles
+				Rectangle supRect = root.getRegion();
+				Rectangle subRect = new Rectangle(
+						supRect.x+ (i%2)*(supRect.width/2f),
+						supRect.y+ (i/(int)2)*(supRect.height/2f),
+						supRect.width/2f,
+						supRect.height/2f);
+				
+				//Establish new rectangle.
+				regions[i] = new EntityRegion(height, depth, subRect, root);
+			}
+			
+			return regions;
+		}
+		else
+			return null;
+
+	}
 
 	//-----------------------------------
 	//------------- MODIFICATION FUNCTIONS
@@ -245,7 +290,7 @@ public class EntityRegion {
 	 * Only accesible by the entities package.
 	 * @param subRegions the subRegions to set
 	 */
-	void setSubRegions(EntityRegion[] subRegions) {
+	private void setSubRegions(EntityRegion[] subRegions) {
 		this.subRegions = subRegions;
 	}
 

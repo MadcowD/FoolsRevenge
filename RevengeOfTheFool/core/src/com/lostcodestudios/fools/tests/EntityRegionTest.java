@@ -13,7 +13,6 @@ public class EntityRegionTest {
 	EntityRegion root;
 	@Before
 	public void setUp() throws Exception {
-		root = new EntityRegion(0, new Rectangle(100,100))
 	}
 
 	@Test
