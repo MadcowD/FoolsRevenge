@@ -42,10 +42,8 @@ public class Box2DLightsMapObjectParser {
 			
 			//lights defined by preset
 			if (type.equals("Torch")) {
-				float rotation = Float.parseFloat(lightProperties.get("rotation", String.class));
-				
-				new ConeLight(rayHandler, 10, 
-						new Color(255f / 255, 123f / 255, 0f / 255, 200f / 255), 64 * 5, x, y, rotation, 90f);
+				new PointLight(rayHandler, 10, 
+						new Color(255f / 255, 123f / 255, 0f / 255, 200f / 255), 64 * 5, x, y);
 				
 				continue;
 			}

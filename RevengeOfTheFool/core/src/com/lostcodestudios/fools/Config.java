@@ -1,8 +1,5 @@
 package com.lostcodestudios.fools;
 
-import box2dLight.ConeLight;
-import box2dLight.PointLight;
-
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 

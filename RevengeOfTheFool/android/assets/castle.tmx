@@ -25,7 +25,7 @@
  </layer>
  <layer name="Objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2X8KgjAUAOBFdIr+VshTeTSP0tGaPwqT0qSBU74PHmPmBnsvtWYI+avO4V4kiDhPvfVajiDmsrmduzaUQ1us7MfxTaEeSRQJcpliDnrqkZe5XF5P8/1f5mCdNpfln7ks1SMZ96u8uD7y4vrIi3rkRT22N9nraP+f189+OWqneyDVcDz+7H21bVxCN6Yez7vNyvZpvOdR9d/t8CniZ2+Wzh33ATieFO87lmLrNe7Jt2dyygAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9ukBKFNe4Q==
+   eJzt2W1qgzAYAGBH2Sn222D9t57Io/UoO9q0av0gsUqllfI8EMRGI0tMXvMuy46vPGV/eaQUid9T19btVO/+Wz5B3Z/X8+l2zEJ3zDee1/dfc+Oxi3yHvtyjDVpNXxY7jMezbdBaerd/vpbP17TBNk1fhif7MhiP3RTix6GYH8fi++pY9vq+Mh77MD9eK5YPmeVCmv151Z+Hrj5EciBl93v92Xs/NuU7u91bLTxDPqUzzocUkVxH2a5XkzxIPtRNlO08uNcXs2tjOZVCPmWiX0t+637py7Mu9fv+qIyfZz0b9N+z7xyPIJ9yZ34cS7//vozKOMaHhRhcjOpD4ppYO+XsecZjkMfHYxKXU//fSMX5vi4krmtiu/GIi61Xa9ab2Lpz2VCsV3GxeP7q8ZDfGpgfxzLff6di8DxW9/vzcb+WK+6JPefcHqt398URpGL3mphdzt7zR20ttT3f6wMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJ/pHweB9EE=
   </data>
  </layer>
  <objectgroup name="Lights" width="100" height="100">
@@ -111,6 +111,106 @@
    </properties>
    <ellipse/>
   </object>
+  <object type="Torch" x="377" y="168" width="6" height="5">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="Torch" x="425" y="168" width="6" height="5">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="Torch" x="481" y="167" width="6" height="5">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="Torch" x="526" y="155" width="6" height="5">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="Torch" x="527" y="114" width="6" height="5">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="Torch" x="488" y="99" width="6" height="5">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="Torch" x="473" y="127" width="6" height="5">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="Torch" x="449" y="140" width="6" height="5">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="Torch" x="409" y="127" width="6" height="5">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="Torch" x="393" y="127" width="6" height="5">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="Torch" x="353" y="140" width="6" height="5">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="Torch" x="329" y="127" width="6" height="5">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="Torch" x="314" y="100" width="6" height="5">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="Torch" x="276" y="114" width="6" height="5">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="Torch" x="276" y="154" width="6" height="5">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object type="Torch" x="321" y="168" width="6" height="5">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+   <ellipse/>
+  </object>
  </objectgroup>
- <objectgroup name="Physics" width="100" height="100"/>
+ <objectgroup name="Physics" width="100" height="100">
+  <object name="kingwall3" type="object" x="328" y="14" width="14" height="74"/>
+  <object name="kingwall1" type="object" x="329" y="1" width="148" height="13"/>
+  <object name="kingwall2" type="object" x="465" y="16" width="14" height="70"/>
+ </objectgroup>
 </map>

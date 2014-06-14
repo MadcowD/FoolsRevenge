@@ -141,7 +141,7 @@ public class GameWorld {
 		float cameraBoundWidth = Config.SCREEN_WIDTH / 6;
 		float cameraBoundHeight = Config.SCREEN_HEIGHT / 6;
 		
-		Vector2 cameraAnchor = new Vector2(50 * 64, 94 * 64); //this will be the Fool's position eventually
+		Vector2 cameraAnchor = new Vector2(50 * 64, 82 * 64); //this will be the Fool's position eventually
 		
 		Rectangle cameraBounds = new Rectangle(
 				cameraAnchor.x - cameraBoundWidth / 2, cameraAnchor.y - cameraBoundHeight / 2, cameraBoundWidth, cameraBoundHeight);
