@@ -112,5 +112,9 @@
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup name="Physics" width="100" height="100"/>
+ <objectgroup name="Physics" width="100" height="100">
+  <object name="kingwall3" type="object" x="328" y="14" width="14" height="74"/>
+  <object name="kingwall1" type="object" x="329" y="1" width="148" height="13"/>
+  <object name="kingwall2" type="object" x="465" y="16" width="14" height="70"/>
+ </objectgroup>
 </map>
