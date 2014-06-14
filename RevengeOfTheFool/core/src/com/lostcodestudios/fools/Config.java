@@ -1,5 +1,8 @@
 package com.lostcodestudios.fools;
 
+import box2dLight.ConeLight;
+import box2dLight.PointLight;
+
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 
@@ -17,13 +20,13 @@ public final class Config {
 	
 	public static final String UI_FONT_KEY = "ui-black";
 	
-        public static final float DIALOG_WINDOW_ALPHA = 0.75f;
+    public static final float DIALOG_WINDOW_ALPHA = 0.75f;
 	public static final Color DIALOG_WINDOW_COLOR_1 = new Color(0.55f, 0.55f, 0.55f, DIALOG_WINDOW_ALPHA);
-        public static final Color DIALOG_WINDOW_COLOR_2 = new Color(0.71f, 0.71f, 0.71f, DIALOG_WINDOW_ALPHA);
-        public static final Color DIALOG_WINDOW_COLOR_3 = new Color(0.77f, 0.77f, 0.77f, DIALOG_WINDOW_ALPHA);
-        public static final Color DIALOG_WINDOW_COLOR_4 = new Color(0.61f, 0.61f, 0.61f, DIALOG_WINDOW_ALPHA);
+    public static final Color DIALOG_WINDOW_COLOR_2 = new Color(0.71f, 0.71f, 0.71f, DIALOG_WINDOW_ALPHA);
+    public static final Color DIALOG_WINDOW_COLOR_3 = new Color(0.77f, 0.77f, 0.77f, DIALOG_WINDOW_ALPHA);
+    public static final Color DIALOG_WINDOW_COLOR_4 = new Color(0.61f, 0.61f, 0.61f, DIALOG_WINDOW_ALPHA);
 
-        public static final Color DIALOG_BORDER_COLOR = Color.BLACK;
+    public static final Color DIALOG_BORDER_COLOR = Color.BLACK;
 	
 	public static void loadFonts() {
 		TextManager.addFont("debug", "fonts/Oswald-Regular.ttf", 14, Color.WHITE);
