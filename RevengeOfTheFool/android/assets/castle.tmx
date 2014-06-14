@@ -15,14 +15,17 @@
  <tileset firstgid="733" name="Object Pack B" tilewidth="8" tileheight="8">
   <image source="lofi_obj_packB.png" width="72" height="64"/>
  </tileset>
+ <tileset firstgid="805" name="Tiles" tilewidth="8" tileheight="8" spacing="2" margin="1">
+  <image source="tiles.png" width="128" height="128"/>
+ </tileset>
  <layer name="Floor" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1DEKgCAAhlHHbtTeESK6dleq0cHMIFPqPfgnCYIPDQH4gvXYltgSLXW+tvjZH8j1GIMeb3M/+nLW42p61KFHX3I9psyZHnW4H33Roy+pHnNierQVt6A9PeobCpZ7r0q+p1xpj7Pp8Sw9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgvh0PSW9g
+   eJzt1EsKgCAARVHBFVXjPvtfVTRrYGpQKXEOvJE4umgIwB+sMYQhse201Plxj+fleix6fM776MtVj9L0eIcefcn1mPX4nPfRFz36kuoxJaZHW+cWtKfH+8ZYXu6/qrlPvdoeV9PjWXoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMB9O1VrLcQ=
   </data>
  </layer>
  <layer name="Objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2X8KgyAUAGAl+tsD7HIdraPsaCtaILLVYkIW3wciUj7wvX6QhdC+FMIzVmhTnOHstdzBlMuxX/rQvft4cDzNH6N6VBEr5LJGDBbq0ZatXD7i9viXGBwz57L7M5edelTjedUW90db3B9tUY+2qMf5ir2O+ft8WMdd1pd7IKk4vs7pl37I456zsmvK9zzScm2HTy0V8/bOzccA3E+N/x177ew1Xsm3d3LNBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABc0wsKl0Y5
+   eJzt2X8KgjAUAOBFdIr+VshTeTSP0tGaPwqT0qSBU74PHmPmBnsvtWYI+avO4V4kiDhPvfVajiDmsrmduzaUQ1us7MfxTaEeSRQJcpliDnrqkZe5XF5P8/1f5mCdNpfln7ks1SMZ96u8uD7y4vrIi3rkRT22N9nraP+f189+OWqneyDVcDz+7H21bVxCN6Yez7vNyvZpvOdR9d/t8CniZ2+Wzh33ATieFO87lmLrNe7Jt2dyygAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9ukBKFNe4Q==
   </data>
  </layer>
  <objectgroup name="Lights" width="100" height="100">
@@ -101,9 +104,9 @@
    </properties>
    <ellipse/>
   </object>
-  <object type="Point" x="356" y="8" width="94" height="93">
+  <object type="Point" x="334" y="-15" width="143" height="138">
    <properties>
-    <property name="color" value="155, 155, 155, 200"/>
+    <property name="color" value="100, 100, 100, 200"/>
     <property name="rays" value="5"/>
    </properties>
    <ellipse/>
