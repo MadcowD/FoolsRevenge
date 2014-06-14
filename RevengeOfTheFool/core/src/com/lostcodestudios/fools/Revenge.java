@@ -7,9 +7,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.lostcodestudios.fools.gameplay.GameWorld;
 
 public class Revenge extends Game {	
-	SpriteBatch batch;
+	private SpriteBatch batch;
 	
-	GameWorld world;
+	private GameWorld world;
+	
+	private InputManager input;
 	
 	@Override
 	public void create () {
@@ -17,7 +19,10 @@ public class Revenge extends Game {
 		
 		batch = new SpriteBatch();
 		
-		world = new GameWorld();
+		input = new InputManager();
+		Gdx.input.setInputProcessor(input);
+		
+		world = new GameWorld(input);
 		
 		Config.loadFonts();
 	}
@@ -28,6 +33,8 @@ public class Revenge extends Game {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		world.render(batch, Gdx.graphics.getDeltaTime());
+		
+		input.beginNewFrame();
 		
 		if (Config.DEBUG) {
 			batch.begin();
