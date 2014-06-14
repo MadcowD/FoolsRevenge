@@ -107,9 +107,8 @@ public class EntityRegion {
 	/**
 	 * Removes an entity given that it is known to be contained.
 	 * @param e The entity to remove.
-	 * @return
 	 */
-	boolean unsafeRemove(Entity e){
+	void unsafeRemove(Entity e){
 		removed.add(e);
 	}
 
