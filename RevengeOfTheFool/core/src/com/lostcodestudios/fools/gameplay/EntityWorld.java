@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
@@ -112,11 +113,16 @@ public class EntityWorld {
 	}
 
 	private void update(float delta) {
+		float cameraBoundWidth = Config.SCREEN_WIDTH / 6;
+		float cameraBoundHeight = Config.SCREEN_HEIGHT / 6;
+		
 		Vector2 cameraAnchor = new Vector2(31 * 64, 12 * 64); //this will be the Fool's position eventually
+		
+		Rectangle cameraBounds = new Rectangle(
+				cameraAnchor.x - cameraBoundWidth / 2, cameraAnchor.y - cameraBoundHeight / 2, cameraBoundWidth, cameraBoundHeight);
 		
 		float maxCameraSpeed = 512f;
 		float maxCenterDistance = 180f;
-		float maxAnchorDistance = 3 * 64;
 		
 		Vector2 cameraMovement = new Vector2();
 		
@@ -128,14 +134,21 @@ public class EntityWorld {
 		
 		cameraMovement = mouseCenterOffset.cpy().nor().scl(cameraSpeed * delta);
 		
-		float anchorDistance = new Vector2(camera.position.x, camera.position.y).add(cameraMovement).sub(cameraAnchor).len();
-		if (anchorDistance < maxAnchorDistance) {
-			camera.translate(cameraMovement);
+		camera.translate(cameraMovement);
+		
+		if (camera.position.x < cameraBounds.x) {
+			camera.position.x = cameraBounds.x;
+		} else if (camera.position.x > cameraBounds.x + cameraBounds.width) {
+			camera.position.x = cameraBounds.x + cameraBounds.width;
+		}
+		
+		if (camera.position.y < cameraBounds.y) {
+			camera.position.y = cameraBounds.y;
+		} else if (camera.position.y > cameraBounds.y + cameraBounds.height) {
+			camera.position.y = cameraBounds.y + cameraBounds.height;
 		}
 		
 		camera.update();
-		
-		//TODO unfortunately this code is the best I could do but it creates some jerky, non-smooth behavior. At least it demonstrates the concept
 	}
 	
 }
