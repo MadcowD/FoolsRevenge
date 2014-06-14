@@ -37,7 +37,7 @@ public class GameWorld {
 	public EventFlagManager flags = new EventFlagManager();
 	public ScriptManager scripts = new ScriptManager(this);
 	public DialogManager dialog = new DialogManager(this);
-	public EntityManager entities = new EntityManager(this, 4);
+	public EntityManager entities = new EntityManager(this, 3);
 	public InputManager input;
 	
 	private boolean paused;
