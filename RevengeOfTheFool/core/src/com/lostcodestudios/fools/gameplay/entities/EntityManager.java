@@ -7,7 +7,6 @@ public class EntityManager {
 
 	private GameWorld gameWorld;
 	EntityRegion root;
-	private int height;
 
 	
 	//-----------------------------------
@@ -22,10 +21,8 @@ public class EntityManager {
 	public EntityManager(GameWorld gameWorld, int height) {
 		this.gameWorld = gameWorld;
 		
-		Rectangle bounds = gameWorld.getBounds();
 		//Build the EntityRegion.
-		root = new EntityRegion(0,bounds, null);
-		root.generateSubRegions(height);
+		root = new EntityRegion(height, gameWorld.getBounds());
 	}
 	
 	//-----------------------------------
