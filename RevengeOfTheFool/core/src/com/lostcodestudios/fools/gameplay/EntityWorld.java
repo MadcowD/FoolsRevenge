@@ -110,29 +110,32 @@ public class EntityWorld {
 			debugRenderer.render(world, camera.combined);
 		}
 	}
-	
+
 	private void update(float delta) {
-		float cameraSpeed = 512f;
+		Vector2 cameraAnchor = new Vector2(31 * 64, 12 * 64); //this will be the Fool's position eventually
+		
+		float maxCameraSpeed = 512f;
+		float maxCenterDistance = 180f;
+		float maxAnchorDistance = 3 * 64;
 		
 		Vector2 cameraMovement = new Vector2();
 		
-		if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-			cameraMovement.x = -1;
-		} else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			cameraMovement.x = 1;
-		}
+		Vector2 centerScreen = new Vector2(Config.SCREEN_WIDTH / 2, Config.SCREEN_HEIGHT / 2);
+		Vector2 mousePos = new Vector2(Gdx.input.getX(), Config.SCREEN_HEIGHT - Gdx.input.getY());
+		Vector2 mouseCenterOffset = mousePos.cpy().sub(centerScreen);
 		
-		if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-			cameraMovement.y = -1;
-		} else if (Gdx.input.isKeyPressed(Keys.UP)) {
-			cameraMovement.y = 1;
-		}
+		float cameraSpeed = (mouseCenterOffset.len() / maxCenterDistance) * maxCameraSpeed;
 		
-		cameraMovement.nor();
-		cameraMovement.scl(cameraSpeed * delta);
-		camera.translate(cameraMovement);
+		cameraMovement = mouseCenterOffset.cpy().nor().scl(cameraSpeed * delta);
+		
+		float anchorDistance = new Vector2(camera.position.x, camera.position.y).add(cameraMovement).sub(cameraAnchor).len();
+		if (anchorDistance < maxAnchorDistance) {
+			camera.translate(cameraMovement);
+		}
 		
 		camera.update();
+		
+		//TODO unfortunately this code is the best I could do but it creates some jerky, non-smooth behavior. At least it demonstrates the concept
 	}
 	
 }
