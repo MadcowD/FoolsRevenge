@@ -33,6 +33,7 @@ public class EntityRegion {
 		changed = new Stack<Entity>();
 		
 		
+		
 		this.depth = depth;
 		this.region = region;
 		this.superRegion = superRegion;
@@ -48,22 +49,18 @@ public class EntityRegion {
 	 */
 	
 	public void rebalance(){
-		while(removedsize() > 0)
-		{
-			Entity e = changed.pop();
-			//TODO: CHANGE FROM O(N) TO O(1)
-			this.entities.removeAll(changed, false);
-			change(e);
-			
-		}
-		
+		//Remove entities.
+		this.entities.removeAll(removed, false);
+		removed.clear();
+
+		//Add entities
 		while(added.size() > 0)
-		{
 			this.entities.add(added.pop());
-		}
 		
-		while(removed.size() > 0)
-			th
+		
+		while(changed.size() > 0)
+			change(changed.pop());
+		
 	}
 	
 	/**
