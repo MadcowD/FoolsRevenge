@@ -19,7 +19,9 @@ public class EntityRegion {
 	private Rectangle region;
 	
 	private Array<Entity> entities;
-	private Stack<Entity> flagged;
+	Stack<Entity> changed;
+	Stack<Entity> added;
+	Array<Entity> removed;
 	private int depth;
 	
 	//-----------------------------------
@@ -28,7 +30,8 @@ public class EntityRegion {
 	
 	public EntityRegion(int depth, Rectangle region, EntityRegion superRegion){
 		entities = new Array<Entity>();
-		flagged = new Stack<Entity>();
+		changed = new Stack<Entity>();
+		
 		
 		
 		this.depth = depth;
@@ -44,15 +47,31 @@ public class EntityRegion {
 	/**
 	 * Rebalances the entity tree.
 	 */
+	
 	public void rebalance(){
-		if(this.superRegion != null)
-			while(flagged.size() > 0)
-			{
-				Entity e = flagged.pop();
-				this.remove(e);
-				superRegion.add(e);
-				
-			}
+		//Remove entities.
+		this.entities.removeAll(removed, false);
+		removed.clear();
+
+		//Add entities
+		while(added.size() > 0)
+			this.entities.add(added.pop());
+		
+		
+		while(changed.size() > 0)
+			change(changed.pop());
+		
+	}
+	
+	/**
+	 * Recursive rebalance of a given entity.
+	 * @param e The entity to rebalance.
+	 */
+	private void change(Entity e){
+		if(superRegion == null || this.contains(e.getPosition()))
+			this.add(e);
+		else
+			superRegion.change(e);
 	}
 	
 	/**
@@ -119,7 +138,7 @@ public class EntityRegion {
 	public void add(Entity e){
 		EntityRegion emRegion = this;
 		while(emRegion.depth != e.getDepth())
-			//Go further down untill the depth is reached.
+			//Go further down until the depth is reached.
 			if (this.subRegions != null)
 				for(EntityRegion sub : subRegions)
 					//If the subregion contains the position break and recurr further.
@@ -127,6 +146,7 @@ public class EntityRegion {
 						emRegion = sub;
 						break;
 					}
+		
 		e.setRegion(emRegion);
 		emRegion.add(e);
 	}
