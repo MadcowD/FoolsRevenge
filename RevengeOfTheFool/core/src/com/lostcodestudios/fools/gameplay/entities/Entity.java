@@ -32,6 +32,8 @@ public abstract class Entity {
 	public void setDepth(int depth) {
 		this.depth = depth;
 	}
-	
 
+	public void delete() {
+		this.region.remove(this);
+	}
 }

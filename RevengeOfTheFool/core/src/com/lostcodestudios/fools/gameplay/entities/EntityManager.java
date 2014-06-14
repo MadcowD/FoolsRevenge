@@ -9,6 +9,16 @@ public class EntityManager {
 	EntityRegion root;
 	private int height;
 
+	
+	//-----------------------------------
+	//-------------
+	//-----------------------------------
+	
+	/**
+	 * Creates a ENtityManager sotring and EntityRegion tree of depth height.
+	 * @param gameWorld The game world singleton to reference.
+	 * @param height The height of the tree.
+	 */
 	public EntityManager(GameWorld gameWorld, int height) {
 		this.gameWorld = gameWorld;
 		
@@ -51,7 +61,15 @@ public class EntityManager {
 
 	}
 	
-
+	//-----------------------------------
+	//-------------
+	//-----------------------------------
 	
+	public void add(Entity e){
+		root.add(e);
+	}
 	
+	public void remove(Entity e){
+		e.delete();
+	}
 }
