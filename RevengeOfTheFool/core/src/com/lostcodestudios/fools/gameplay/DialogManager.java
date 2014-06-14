@@ -9,9 +9,7 @@ import com.badlogic.gdx.utils.Array;
 import com.lostcodestudios.fools.Config;
 
 public class DialogManager {
-	
-	private boolean wasAcceptKeyPressed = false;
-	
+		
 	private ShapeRenderer shapeRenderer = new ShapeRenderer();
 	
 	private Array<Dialog> dialogsToShow = new Array<Dialog>();
@@ -23,9 +21,7 @@ public class DialogManager {
 	}
 	
 	public void render(SpriteBatch spriteBatch, float delta) {
-		boolean acceptKeyPressed = Gdx.input.isKeyPressed(Config.ACCEPT_KEY);
-		
-		if (acceptKeyPressed && !wasAcceptKeyPressed) {
+		if (world.input.wasKeyPressed(Config.ACCEPT_KEY)) {
 			//handle a new press of the accept key
 			if (dialogsToShow.size > 0) {
 				dialogsToShow.removeIndex(0);
@@ -35,8 +31,6 @@ public class DialogManager {
                 world.resume();
             }
 		}
-		
-		wasAcceptKeyPressed = acceptKeyPressed;
 		
 		if (dialogsToShow.size > 0) {
 			dialogsToShow.get(0).render(spriteBatch, shapeRenderer);

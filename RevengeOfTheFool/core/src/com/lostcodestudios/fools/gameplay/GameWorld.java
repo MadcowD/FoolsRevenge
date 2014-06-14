@@ -15,6 +15,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import box2dLight.RayHandler;
 
 import com.lostcodestudios.fools.Config;
+import com.lostcodestudios.fools.InputManager;
 import com.lostcodestudios.fools.gameplay.entities.EntityManager;
 import com.lostcodestudios.fools.gameplay.map.Box2DLightsMapObjectParser;
 import com.lostcodestudios.fools.gameplay.map.Box2DMapObjectParser;
@@ -37,10 +38,13 @@ public class GameWorld {
 	public ScriptManager scripts = new ScriptManager(this);
 	public DialogManager dialog = new DialogManager(this);
 	public EntityManager entities = new EntityManager(this, 4);
+	public InputManager input;
 	
 	private boolean paused;
 	
-	public GameWorld() {
+	public GameWorld(InputManager input) {
+		this.input = input;
+		
 		camera = new OrthographicCamera(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		
 		TmxMapLoader loader = new TmxMapLoader();
@@ -120,6 +124,10 @@ public class GameWorld {
 	}
 
 	private void update(float delta) {
+		if (input.wasKeyPressed(Keys.ESCAPE)) {
+			dialog.showDialogWindow("Paused");
+		}
+		
 		float cameraBoundWidth = Config.SCREEN_WIDTH / 6;
 		float cameraBoundHeight = Config.SCREEN_HEIGHT / 6;
 		
