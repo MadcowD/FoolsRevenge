@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 import com.lostcodestudios.fools.Config;
-import com.lostcodestudios.fools.gameplay.EntityWorld;
 
 public class DialogManager {
 	
@@ -17,9 +16,9 @@ public class DialogManager {
 	
 	private Array<Dialog> dialogsToShow = new Array<Dialog>();
     
-    private EntityWorld world;
+    private GameWorld world;
 
-	public DialogManager(EntityWorld world) {
+	public DialogManager(GameWorld world) {
 		this.world = world;
 	}
 	

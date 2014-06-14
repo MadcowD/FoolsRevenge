@@ -4,12 +4,12 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.lostcodestudios.fools.gameplay.EntityWorld;
+import com.lostcodestudios.fools.gameplay.GameWorld;
 
 public class Revenge extends Game {	
 	SpriteBatch batch;
 	
-	EntityWorld world;
+	GameWorld world;
 	
 	@Override
 	public void create () {
@@ -17,7 +17,7 @@ public class Revenge extends Game {
 		
 		batch = new SpriteBatch();
 		
-		world = new EntityWorld();
+		world = new GameWorld();
 		
 		Config.loadFonts();
 	}

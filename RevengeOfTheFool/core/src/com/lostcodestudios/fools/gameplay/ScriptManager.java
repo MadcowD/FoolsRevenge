@@ -11,9 +11,9 @@ import groovy.lang.GroovyShell;
 
 public class ScriptManager {
 	
-	private EntityWorld world;
+	private GameWorld world;
 	
-	public ScriptManager(EntityWorld world) {
+	public ScriptManager(GameWorld world) {
 		this.world = world;
 	}
 	

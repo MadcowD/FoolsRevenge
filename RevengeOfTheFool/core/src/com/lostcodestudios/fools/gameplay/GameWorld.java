@@ -15,10 +15,11 @@ import com.badlogic.gdx.physics.box2d.World;
 import box2dLight.RayHandler;
 
 import com.lostcodestudios.fools.Config;
+import com.lostcodestudios.fools.gameplay.entities.EntityManager;
 import com.lostcodestudios.fools.gameplay.map.Box2DLightsMapObjectParser;
 import com.lostcodestudios.fools.gameplay.map.Box2DMapObjectParser;
 
-public class EntityWorld {
+public class GameWorld {
 
 	//world will contain event flags, tile map, map bodies, Box2dlights, entities, items, etc.
 	//it will also load and run Groovy scripts, giving them access to its scope so they can access flags, manipulate entities, etc
@@ -35,14 +36,18 @@ public class EntityWorld {
 	public EventFlagManager flags = new EventFlagManager();
 	public ScriptManager scripts = new ScriptManager(this);
 	public DialogManager dialog = new DialogManager(this);
+	public EntityManager entities = new EntityManager(this, 4);
 	
 	private boolean paused;
 	
-	public EntityWorld() {
+	public GameWorld() {
 		camera = new OrthographicCamera(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
 		
 		TmxMapLoader loader = new TmxMapLoader();
 		tileMap = loader.load("testmap.tmx");
+		
+		//SET THE BOUNDS
+		//TODO
 		
 		mapRenderer = new OrthogonalTiledMapRenderer(tileMap, Config.UNIT_SCALE);
 		
@@ -60,6 +65,8 @@ public class EntityWorld {
 		lightObjectParser.load(rayHandler, tileMap.getLayers().get("Lights"));
 		
 		paused = false;
+		
+		
 
         scripts.runScript("scripts/start.groovy");
 	}
