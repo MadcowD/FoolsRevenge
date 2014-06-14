@@ -38,7 +38,7 @@ public class GameWorld {
 	public EventFlagManager flags = new EventFlagManager();
 	public ScriptManager scripts = new ScriptManager(this);
 	public DialogManager dialog = new DialogManager(this);
-	public EntityManager entities = new EntityManager(this, 3);
+	public EntityManager entities;
 	public InputManager input;
 	
 	private boolean paused;
@@ -75,6 +75,8 @@ public class GameWorld {
 		lightObjectParser.load(rayHandler, tileMap.getLayers().get("Lights"));
 		
 		paused = false;
+		
+	 entities = new EntityManager(this, 3);
 		
 		
 
