@@ -1,8 +1,9 @@
 package com.lostcodestudios.fools.gameplay.entities;
 
 import com.badlogic.gdx.math.Vector2;
+import com.lostcodestudios.fools.gameplay.GameWorld;
 
-public abstract class Entity {
+public class Entity {
 
 	private int depth;
 	private EntityRegion region;
@@ -26,14 +27,18 @@ public abstract class Entity {
 		return depth;
 	}
 
-	/**
-	 * @param depth the depth to set
-	 */
-	public void setDepth(int depth) {
-		this.depth = depth;
-	}
 
 	public void delete() {
 		this.region.remove(this);
+	}
+
+	public void render(float deltaTime, GameWorld gameWorld) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void update(float deltaTime, GameWorld gameWorld) {
+		// TODO Auto-generated method stub
+		
 	}
 }
