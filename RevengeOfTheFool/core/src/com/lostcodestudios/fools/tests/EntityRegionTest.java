@@ -5,10 +5,15 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.badlogic.gdx.math.Rectangle;
+import com.lostcodestudios.fools.gameplay.entities.EntityRegion;
+
 public class EntityRegionTest {
 
+	EntityRegion root;
 	@Before
 	public void setUp() throws Exception {
+		root = new EntityRegion(0, new Rectangle(100,100))
 	}
 
 	@Test
