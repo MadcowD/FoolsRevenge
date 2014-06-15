@@ -36,11 +36,15 @@ public class EntityManager {
 	}
 	
 	public void render(final float deltaTime, Rectangle cameraBounds){
+		gameWorld.spriteBatch.begin();
+		
 		root.executeBy(cameraBounds, new EntityProcess(){
 			public void run(Entity e) {
 				e.render(deltaTime, gameWorld);
 			}
 		});
+		
+		gameWorld.spriteBatch.end();
 	}
 	
 	//-----------------------------------
