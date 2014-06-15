@@ -86,7 +86,7 @@ public class GameWorld {
         
         spriteSheet = new Texture("Characters.png");
         
-        player = new Human(this, "Fool", new Vector2(50, 94), "fool.groovy", new ObjectMap<String, Object>());
+        player = new Human(this, "Fool", new Vector2(50, 94), "scripts/entities/fool.groovy", new ObjectMap<String, Object>());
         entities.add(player);
         
         
