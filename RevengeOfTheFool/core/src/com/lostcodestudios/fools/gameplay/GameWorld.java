@@ -151,6 +151,7 @@ public class GameWorld {
 		
 		entities.render(delta, cameraBounds);
 		
+		this.spriteBatch.setProjectionMatrix(camera.combined);
 		dialog.render(spriteBatch, this.spriteBatch, delta);
 		
 		if (Config.debug && !paused) {
