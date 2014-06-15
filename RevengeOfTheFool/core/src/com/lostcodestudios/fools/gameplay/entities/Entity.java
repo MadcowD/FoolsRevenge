@@ -11,14 +11,11 @@ public abstract class Entity {
 	
 
 
-	public void render(float deltaTime, GameWorld gameWorld) {
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void render(float deltaTime, GameWorld gameWorld);
 
 	public void update(float deltaTime, GameWorld gameWorld) {
 		if(!region.getRegion().contains(this.getPosition()))
-			region.changed(e);
+			region.changed(this);
 		
 	}
 	

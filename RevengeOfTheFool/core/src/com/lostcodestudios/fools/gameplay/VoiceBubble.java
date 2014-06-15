@@ -39,7 +39,9 @@ public class VoiceBubble {
 	}
 	
 	public void render(SpriteBatch worldSpriteBatch, ShapeRenderer shapeRenderer) {
-		Vector2 position = new Vector2(50 * 64, 94 * 64); //this will be offset from speaker every time eventually
+		Vector2 position = speaker.getPosition().scl(GameWorld.PIXELS_PER_METER);
+		
+		position.y += 64;
 		
 		TextBounds bounds = TextManager.getFont("voice").getBounds(text);
 		

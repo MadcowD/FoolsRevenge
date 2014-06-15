@@ -2,9 +2,21 @@ package com.lostcodestudios.fools;
 
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.utils.ObjectMap;
 
 public final class Config {
 	
+    public static class AnimatedSpriteInfo {
+        public int frameX, frameY, frameWidth, frameHeight;
+
+        public AnimatedSpriteInfo(int frameX, int frameY, int frameWidth, int frameHeight) {
+            this.frameX = frameX;
+            this.frameY = frameY;
+            this.frameWidth = frameWidth;
+            this.frameHeight = frameHeight;
+        }
+    }
+
 	public static boolean debug = true;
 	
 	public static final int SCREEN_WIDTH = 1280;
@@ -36,5 +48,10 @@ public final class Config {
 		TextManager.addFont("ui-black", "fonts/Oswald-Regular.ttf", 24, Color.BLACK);
 		TextManager.addFont("ui-white", "fonts/Oswald-Regular.ttf", 24, Color.WHITE);
 	}
-	
+
+    public static ObjectMap<String, AnimatedSpriteInfo> spriteInfo = new ObjectMap<String, AnimatedSpriteInfo>();
+
+    public static void loadSpriteInfo() {
+        spriteInfo.put("Fool", new AnimatedSpriteInfo(1, 1, 9, 11));
+    }
 }

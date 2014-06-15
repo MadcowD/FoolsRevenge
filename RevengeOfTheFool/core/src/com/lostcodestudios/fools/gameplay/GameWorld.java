@@ -13,27 +13,30 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.ObjectMap;
 
 import box2dLight.RayHandler;
 
 import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.InputManager;
 import com.lostcodestudios.fools.gameplay.entities.EntityManager;
-import com.lostcodestudios.fools.gameplay.graphics.AnimatedSprite;
+import com.lostcodestudios.fools.gameplay.entities.Human;
 import com.lostcodestudios.fools.gameplay.map.Box2DLightsMapObjectParser;
 import com.lostcodestudios.fools.gameplay.map.Box2DMapObjectParser;
 
 public class GameWorld {
+	
+	public static final float PIXELS_PER_METER = 64f;
 	
 	public OrthographicCamera camera;
 	
 	private TiledMap tileMap;
 	private OrthogonalTiledMapRenderer mapRenderer;
 	
-	private World world;
+	public World world;
 	private RayHandler rayHandler;
 	private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
-	private SpriteBatch spriteBatch = new SpriteBatch();
+	public SpriteBatch spriteBatch = new SpriteBatch();
 	
 	public EventFlagManager flags = new EventFlagManager();
 	public ScriptManager scripts = new ScriptManager(this);
@@ -42,11 +45,11 @@ public class GameWorld {
 	public InputManager input;
 	public Texture spriteSheet;
 	
-	private AnimatedSprite testSprite;
-	
 	private boolean paused;
 	
 	private Rectangle bounds;
+	
+	public Human player;
 	
 	public GameWorld(InputManager input) {
 		this.input = input;
@@ -80,11 +83,14 @@ public class GameWorld {
 		paused = false;
 		
 		entities = new EntityManager(this, 3);
-
-        scripts.runScript("scripts/start.groovy");
         
         spriteSheet = new Texture("Characters.png");
-        testSprite = new AnimatedSprite(spriteSheet, 1, 1, 9, 11);
+        
+        player = new Human(this, "Fool", new Vector2(50, 94), "fool.groovy", new ObjectMap<String, Object>());
+        entities.add(player);
+        
+        
+        scripts.runScript("scripts/start.groovy");
 	}
 	
 	public void dispose() {
@@ -141,19 +147,26 @@ public class GameWorld {
 		rayHandler.setCombinedMatrix(camera.combined);
 		rayHandler.updateAndRender();
 		
-		this.spriteBatch.setProjectionMatrix(camera.combined);
+		Rectangle cameraBounds = getCameraBounds();
 		
-		this.spriteBatch.begin();
-		
-		testSprite.render(this.spriteBatch, new Vector2(50 * 64, 92 * 64));
-		
-		this.spriteBatch.end();
+		entities.render(delta, cameraBounds);
 		
 		dialog.render(spriteBatch, this.spriteBatch, delta);
 		
 		if (Config.debug && !paused) { 
 			debugRenderer.render(world, camera.combined);
 		}
+	}
+
+	public Rectangle getCameraBounds() {
+		Rectangle cameraBounds = new Rectangle(camera.position.x - camera.viewportWidth / 2, camera.position.y - camera.viewportHeight / 2,
+				camera.viewportWidth, camera.viewportHeight);
+		
+		cameraBounds.x /= PIXELS_PER_METER;
+		cameraBounds.y /= PIXELS_PER_METER;
+		cameraBounds.width /= PIXELS_PER_METER;
+		cameraBounds.height /= PIXELS_PER_METER;
+		return cameraBounds;
 	}
 
 	private void update(float delta) {
@@ -164,7 +177,7 @@ public class GameWorld {
 		float cameraBoundWidth = Config.SCREEN_WIDTH / 6;
 		float cameraBoundHeight = Config.SCREEN_HEIGHT / 6;
 		
-		Vector2 cameraAnchor = new Vector2(50 * 64, 94 * 64); //this will be the Fool's position eventually
+		Vector2 cameraAnchor = player.getPosition().scl(PIXELS_PER_METER); //this will be the Fool's position eventually
 		
 		Rectangle cameraBounds = new Rectangle(
 				cameraAnchor.x - cameraBoundWidth / 2, cameraAnchor.y - cameraBoundHeight / 2, cameraBoundWidth, cameraBoundHeight);
@@ -197,34 +210,6 @@ public class GameWorld {
 		}
 		
 		camera.update();
-		
-		{
-			if (input.wasKeyPressed(Keys.LEFT)) {
-				testSprite.setDirection(AnimatedSprite.Direction.Left);
-				testSprite.setMovementSpeed(5f);
-			} else if (input.wasKeyPressed(Keys.RIGHT)) {
-				testSprite.setDirection(AnimatedSprite.Direction.Right);
-				testSprite.setMovementSpeed(5f);
-			} else if (input.wasKeyPressed(Keys.UP)) {
-				testSprite.setDirection(AnimatedSprite.Direction.Up);
-				testSprite.setMovementSpeed(5f);
-			} else if (input.wasKeyPressed(Keys.DOWN)) {
-				testSprite.setDirection(AnimatedSprite.Direction.Down);
-				testSprite.setMovementSpeed(5f);
-			}
-			
-			if (input.wasKeyReleased(Keys.LEFT)) {
-				testSprite.setMovementSpeed(0f);
-			} else if (input.wasKeyReleased(Keys.RIGHT)) {
-				testSprite.setMovementSpeed(0f);
-			} else if (input.wasKeyReleased(Keys.UP)) {
-				testSprite.setMovementSpeed(0f);
-			} else if (input.wasKeyReleased(Keys.DOWN)) {
-				testSprite.setMovementSpeed(0f);
-			}
-			
-			this.testSprite.update(delta);
-		}
 	}
 	
 }
