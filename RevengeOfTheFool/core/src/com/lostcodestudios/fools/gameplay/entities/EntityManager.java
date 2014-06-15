@@ -30,16 +30,14 @@ public class EntityManager {
 	//-----------------------------------
 	
 	public void update(final float deltaTime){
-		root.update(deltaTime, gameWorld);
+		if (!gameWorld.isPaused()) {
+			root.update(deltaTime, gameWorld);
+		}
 	}
 	
 	public void render(final float deltaTime, Rectangle cameraBounds){
 		root.executeBy(cameraBounds, new EntityProcess(){
 			public void run(Entity e) {
-				if (!gameWorld.isPaused()) {
-					e.update(deltaTime, gameWorld);
-				}
-				
 				e.render(deltaTime, gameWorld);
 			}
 		});
