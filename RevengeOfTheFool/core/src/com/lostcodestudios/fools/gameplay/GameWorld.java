@@ -3,6 +3,7 @@ package com.lostcodestudios.fools.gameplay;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -18,6 +19,7 @@ import box2dLight.RayHandler;
 import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.InputManager;
 import com.lostcodestudios.fools.gameplay.entities.EntityManager;
+import com.lostcodestudios.fools.gameplay.graphics.AnimatedSprite;
 import com.lostcodestudios.fools.gameplay.map.Box2DLightsMapObjectParser;
 import com.lostcodestudios.fools.gameplay.map.Box2DMapObjectParser;
 
@@ -38,6 +40,9 @@ public class GameWorld {
 	public DialogManager dialog = new DialogManager(this);
 	public EntityManager entities;
 	public InputManager input;
+	public Texture spriteSheet;
+	
+	private AnimatedSprite testSprite;
 	
 	private boolean paused;
 	
@@ -74,11 +79,12 @@ public class GameWorld {
 		
 		paused = false;
 		
-	 entities = new EntityManager(this, 3);
-		
-		
+		entities = new EntityManager(this, 3);
 
         scripts.runScript("scripts/start.groovy");
+        
+        spriteSheet = new Texture("Characters.png");
+        testSprite = new AnimatedSprite(spriteSheet, 1, 1, 9, 11);
 	}
 	
 	public void dispose() {
@@ -88,7 +94,10 @@ public class GameWorld {
 		rayHandler.dispose();
 		world.dispose();
 		
+		dialog.dispose();
+		
 		spriteBatch.dispose();
+		spriteSheet.dispose();
 	}
 	
 	public void pause() {
@@ -133,6 +142,12 @@ public class GameWorld {
 		rayHandler.updateAndRender();
 		
 		this.spriteBatch.setProjectionMatrix(camera.combined);
+		
+		this.spriteBatch.begin();
+		
+		testSprite.render(this.spriteBatch, new Vector2(50 * 64, 92 * 64));
+		
+		this.spriteBatch.end();
 		
 		dialog.render(spriteBatch, this.spriteBatch, delta);
 		
@@ -182,6 +197,34 @@ public class GameWorld {
 		}
 		
 		camera.update();
+		
+		{
+			if (input.wasKeyPressed(Keys.LEFT)) {
+				testSprite.setDirection(AnimatedSprite.Direction.Left);
+				testSprite.setMovementSpeed(5f);
+			} else if (input.wasKeyPressed(Keys.RIGHT)) {
+				testSprite.setDirection(AnimatedSprite.Direction.Right);
+				testSprite.setMovementSpeed(5f);
+			} else if (input.wasKeyPressed(Keys.UP)) {
+				testSprite.setDirection(AnimatedSprite.Direction.Up);
+				testSprite.setMovementSpeed(5f);
+			} else if (input.wasKeyPressed(Keys.DOWN)) {
+				testSprite.setDirection(AnimatedSprite.Direction.Down);
+				testSprite.setMovementSpeed(5f);
+			}
+			
+			if (input.wasKeyReleased(Keys.LEFT)) {
+				testSprite.setMovementSpeed(0f);
+			} else if (input.wasKeyReleased(Keys.RIGHT)) {
+				testSprite.setMovementSpeed(0f);
+			} else if (input.wasKeyReleased(Keys.UP)) {
+				testSprite.setMovementSpeed(0f);
+			} else if (input.wasKeyReleased(Keys.DOWN)) {
+				testSprite.setMovementSpeed(0f);
+			}
+			
+			this.testSprite.update(delta);
+		}
 	}
 	
 }

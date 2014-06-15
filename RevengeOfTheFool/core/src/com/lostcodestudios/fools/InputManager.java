@@ -6,14 +6,20 @@ import com.badlogic.gdx.utils.Array;
 public class InputManager implements InputProcessor {
 
 	private Array<Integer> pressedKeys = new Array<Integer>();
+	private Array<Integer> releasedKeys = new Array<Integer>();
 	private Array<Integer> heldKeys = new Array<Integer>();
 	
 	public void beginNewFrame() {
 		pressedKeys.clear();
+		releasedKeys.clear();
 	}
 	
 	public boolean wasKeyPressed(int keycode) {
 		return pressedKeys.contains(keycode, false);
+	}
+	
+	public boolean wasKeyReleased(int keycode) {
+		return releasedKeys.contains(keycode, false);
 	}
 	
 	public boolean isKeyHeld(int keycode) {
@@ -30,6 +36,7 @@ public class InputManager implements InputProcessor {
 
 	@Override
 	public boolean keyUp(int keycode) {
+		releasedKeys.add(keycode);
 		heldKeys.removeValue(keycode, false);
 		
 		return true;
