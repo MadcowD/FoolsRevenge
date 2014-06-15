@@ -57,7 +57,7 @@ public class Human extends Entity {
 	
 	@Override
 	public void render(float deltaTime, GameWorld gameWorld) {
-		sprite.render(gameWorld.spriteBatch, getPosition().scl(GameWorld.PIXELS_PER_METER));
+		sprite.render(gameWorld.spriteBatch, getPosition().cpy().scl(GameWorld.PIXELS_PER_METER));
 	}
 
 	@Override
