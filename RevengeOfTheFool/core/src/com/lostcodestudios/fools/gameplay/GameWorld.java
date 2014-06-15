@@ -21,6 +21,7 @@ import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.InputManager;
 import com.lostcodestudios.fools.gameplay.entities.EntityManager;
 import com.lostcodestudios.fools.gameplay.entities.Human;
+import com.lostcodestudios.fools.gameplay.entities.Player;
 import com.lostcodestudios.fools.gameplay.map.Box2DLightsMapObjectParser;
 import com.lostcodestudios.fools.gameplay.map.Box2DMapObjectParser;
 
@@ -92,7 +93,7 @@ public class GameWorld {
         
         spriteSheet = new Texture("Characters.png");
         
-        player = new Human(this, "Fool", new Vector2(50, 94), "scripts/entities/fool.groovy", new ObjectMap<String, Object>());
+        player = new Player(this, new Vector2(50, 94));
         entities.add(player);
         
         
