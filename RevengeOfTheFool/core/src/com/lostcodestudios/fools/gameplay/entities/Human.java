@@ -16,7 +16,7 @@ import com.lostcodestudios.fools.gameplay.graphics.AnimatedSprite;
 public class Human extends Entity {
 
 	private AnimatedSprite sprite;
-	private String updateScriptPath;
+	private String updateScriptBody;
 	private ObjectMap<String, Object> updateScriptArgs = new ObjectMap<String, Object>();
 	
 	public Body body;
@@ -40,19 +40,16 @@ public class Human extends Entity {
 		
 		body.createFixture(fixtureDef);
 		
-		this.updateScriptPath = updateScriptPath;
+		this.updateScriptBody = gameWorld.scripts.getScriptBody(updateScriptPath);
 		
-		for (Entry<String, Object> arg : updateScriptArgs) {
-			this.updateScriptArgs.put(arg.key, arg.value);
-		}
-		
+		this.updateScriptArgs.putAll(updateScriptArgs);
 		this.updateScriptArgs.put("e", this);
 	}
 	
 	public void update(float deltaTime, GameWorld gameWorld) {
 		super.update(deltaTime, gameWorld);
 		
-		gameWorld.scripts.runScript(updateScriptPath, updateScriptArgs);
+		gameWorld.scripts.runScript(updateScriptBody, updateScriptArgs);
 	}
 	
 	@Override
