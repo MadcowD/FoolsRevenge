@@ -11,7 +11,7 @@ import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.gameplay.entities.Entity;
 
 public class DialogManager {
-		
+		//comment
 	private ShapeRenderer screenShapeRenderer = new ShapeRenderer();
 	private ShapeRenderer worldShapeRenderer = new ShapeRenderer();
 	
