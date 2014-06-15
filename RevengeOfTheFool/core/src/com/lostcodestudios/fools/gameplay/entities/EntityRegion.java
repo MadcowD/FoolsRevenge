@@ -24,6 +24,7 @@ public class EntityRegion {
 	private Stack<Entity> added;
 	private Array<Entity> removed;
 	private int depth;
+	private boolean balanced;
 
 	//-----------------------------------
 	//------------- CONSTRUCTOR
@@ -98,7 +99,8 @@ public class EntityRegion {
 	 * @param gameWorld The game world.
 	 */
 	public void update(float deltaTime, GameWorld gameWorld){
-		this.rebalance();
+		if(!balanced)
+			this.rebalance();
 		for(Entity e : this.entities )
 			e.update(deltaTime, gameWorld);
 		
@@ -177,7 +179,7 @@ public class EntityRegion {
 		while(changed.size() > 0)
 			change(changed.pop());
 
-		//TODO: SHOULD THIS BE RECURSIVE?
+		this.balanced = true;
 	}
 
 	/**
@@ -196,6 +198,7 @@ public class EntityRegion {
 	 * @param e
 	 */
 	public void changed(Entity e){
+		balanced = false;
 		this.changed.push(e);
 	}
 
@@ -204,6 +207,7 @@ public class EntityRegion {
 	 * @param e
 	 */
 	public void add(Entity e){
+		balanced = false;
 		if(this.depth == e.getDepth() && this.contains(e.getPosition()))
 			this.added.push(e);
 		else if(this.subRegions != null)
@@ -217,6 +221,7 @@ public class EntityRegion {
 	 * @return 
 	 */
 	public boolean remove(Entity e){
+		balanced = false;
 		if(this.contains(e.getPosition())){
 			if(this.entities.contains(e, false))
 				removed.add(e);

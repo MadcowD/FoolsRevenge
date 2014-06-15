@@ -149,14 +149,14 @@ public class GameWorld {
 		
 		Rectangle cameraBounds = getCameraBounds();
 		
-		entities.render(delta, cameraBounds);
-		
 		this.spriteBatch.setProjectionMatrix(camera.combined);
 		dialog.render(spriteBatch, this.spriteBatch, delta);
 		
 		if (Config.debug && !paused) {
 			debugRenderer.render(world, camera.combined);
 		}
+		
+		entities.render(delta, cameraBounds);
 	}
 
 	public Rectangle getCameraBounds() {
