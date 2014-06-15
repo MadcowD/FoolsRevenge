@@ -22,7 +22,7 @@ public class Human extends Entity {
 	public Body body;
 	
 	public Human(GameWorld gameWorld, String animatedSpriteKey, Vector2 position, String updateScriptPath, ObjectMap<String, Object> updateScriptArgs) {
-		super();
+		super(1);
 		AnimatedSpriteInfo info = Config.spriteInfo.get(animatedSpriteKey);
 		
 		sprite = new AnimatedSprite(gameWorld.spriteSheet, info.frameX, info.frameY, info.frameWidth, info.frameHeight);

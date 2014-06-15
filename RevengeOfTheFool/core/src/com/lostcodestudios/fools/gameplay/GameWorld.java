@@ -210,6 +210,8 @@ public class GameWorld {
 		}
 		
 		camera.update();
+		
+		entities.update(delta);
 	}
 	
 }
