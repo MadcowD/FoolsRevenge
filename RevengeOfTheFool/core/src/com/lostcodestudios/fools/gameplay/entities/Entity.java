@@ -10,7 +10,11 @@ public abstract class Entity {
 	
 	
 
+	public Entity(int depth){
+		this.depth = depth;
+	}
 
+	
 	public abstract void render(float deltaTime, GameWorld gameWorld);
 
 	public void update(float deltaTime, GameWorld gameWorld) {
