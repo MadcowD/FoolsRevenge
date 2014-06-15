@@ -153,7 +153,7 @@ public class GameWorld {
 		
 		dialog.render(spriteBatch, this.spriteBatch, delta);
 		
-		if (Config.debug && !paused) { 
+		if (Config.debug && !paused) {
 			debugRenderer.render(world, camera.combined);
 		}
 	}
