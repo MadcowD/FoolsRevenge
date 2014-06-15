@@ -190,6 +190,14 @@ public class EntityRegion {
 		else
 			superRegion.change(e);
 	}
+	
+	/**
+	 * Gives the entity as changed for a region.
+	 * @param e
+	 */
+	public void changed(Entity e){
+		this.changed.push(e);
+	}
 
 	/**
 	 * Adds an entity to the given node at the entities correct depth.
