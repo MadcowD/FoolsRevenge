@@ -144,14 +144,15 @@ public class GameWorld {
 		mapRenderer.setView(camera);
 		mapRenderer.render();
 		
-		rayHandler.setCombinedMatrix(camera.combined);
-		rayHandler.updateAndRender();
+		this.spriteBatch.setProjectionMatrix(camera.combined);
 		
 		Rectangle cameraBounds = getCameraBounds();
 		
 		entities.render(delta, cameraBounds);
 		
-		this.spriteBatch.setProjectionMatrix(camera.combined);
+		rayHandler.setCombinedMatrix(camera.combined);
+		rayHandler.updateAndRender();
+		
 		dialog.render(spriteBatch, this.spriteBatch, delta);
 		
 		if (Config.debug && !paused) {
