@@ -3,14 +3,35 @@ package com.lostcodestudios.fools.gameplay.entities;
 import com.badlogic.gdx.math.Vector2;
 import com.lostcodestudios.fools.gameplay.GameWorld;
 
-public class Entity {
+public abstract class Entity {
 
-	private int depth;
-	private EntityRegion region;
+	protected int depth;
+	protected EntityRegion region;
+	
+	
 
-	public Vector2 getPosition() {
-		return null;
+
+	public void render(float deltaTime, GameWorld gameWorld) {
+		// TODO Auto-generated method stub
+		
 	}
+
+	public void update(float deltaTime, GameWorld gameWorld) {
+		if(!region.getRegion().contains(this.getPosition()))
+			region.changed(e);
+		
+	}
+	
+	public void delete() {
+		this.region.remove(this);
+	}
+	
+
+	/**
+	 * Gets the position of a given entity.
+	 * @return
+	 */
+	public abstract Vector2 getPosition();
 
 	public EntityRegion getRegion() {
 		return region;
@@ -28,17 +49,5 @@ public class Entity {
 	}
 
 
-	public void delete() {
-		this.region.remove(this);
-	}
 
-	public void render(float deltaTime, GameWorld gameWorld) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void update(float deltaTime, GameWorld gameWorld) {
-		// TODO Auto-generated method stub
-		
-	}
 }

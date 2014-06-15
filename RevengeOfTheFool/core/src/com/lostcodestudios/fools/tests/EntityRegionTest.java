@@ -19,8 +19,6 @@ public class EntityRegionTest {
 		assertEquals(test.getSubRegions()[3].getRegion().getY(), 512, 0);
 		assertEquals(test.getSubRegions()[3].getRegion().getX(), 512, 0);
 		assertTrue(test.getSuperRegion() == null);
-		
-		
 	}
 
 	@Test
