@@ -9,27 +9,11 @@ import com.lostcodestudios.fools.gameplay.GameWorld;
 public class Start extends Script {
 
 	@Override
-	public void run(GameWorld gameWorld, ObjectMap<String, Object> args) {
-		Vector2 velocity = new Vector2();
-		Body body = (Body)args.get("body");
+	public void run(GameWorld world, ObjectMap<String, Object> args) {
+		//world.dialog.showDialogFull("The King's rage shook the castle like thunder.");
+		//world.dialog.showDialogWindow("His booming voice sent tremors down the Fool's spine.");
 
-		if (gameWorld.input.isKeyHeld(Keys.A)) {
-			velocity.x = -1;
-		} else if (gameWorld.input.isKeyHeld(Keys.D)) {
-			velocity.x = 1;
-		}
-
-		if (gameWorld.input.isKeyHeld(Keys.W)) {
-			velocity.y = 1;
-		} else if (gameWorld.input.isKeyHeld(Keys.S)) {
-			velocity.y = -1;
-		}
-
-		velocity.nor();
-
-		velocity.scl(5);
-
-		body.setLinearVelocity(velocity);
+		world.dialog.showVoiceBubble("This is treasonous! Take this Fool to the dungeon!", world.fool, 5);
 	}
 	
 	static{

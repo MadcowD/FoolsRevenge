@@ -8,6 +8,10 @@ import com.lostcodestudios.fools.scripts.Script;
 
 public class ScriptManager {
 	private GameWorld world;
+	/**
+	 * Initializes a script manager.
+	 * @param world The world in which the script manager resides.
+	 */
 	public ScriptManager(GameWorld world) {
 		this.world = world;
 	}
@@ -21,12 +25,13 @@ public class ScriptManager {
 		if(Scripts.containsKey(name))
 			Scripts.get(name).run(world, args);
 		else{
+			
 			try {
 				Class.forName(name);
 			} catch (ClassNotFoundException e) {
 				throw new NoSuchElementException();
-				
 			}
+			
 			runScript(name, args);
 		}
 	}

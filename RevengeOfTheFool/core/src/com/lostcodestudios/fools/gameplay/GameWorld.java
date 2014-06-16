@@ -96,7 +96,7 @@ public class GameWorld {
         entities.add(fool);
         
         //TODO: MAKE A START SCRIPT
-        //scripts.runScript("Start");
+        scripts.runScript("com.lostcodestudios.fools.scripts.Start");
 	}
 	
 	public void dispose() {
