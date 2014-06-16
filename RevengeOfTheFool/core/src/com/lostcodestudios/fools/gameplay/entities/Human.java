@@ -32,6 +32,7 @@ public class Human extends Entity {
 
 		sprite = new AnimatedSprite(gameWorld.spriteSheet, info.frameX, info.frameY, info.frameWidth, info.frameHeight);
 		
+		position.scl(64);
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.DynamicBody;
 		bodyDef.position.set(position);
@@ -40,7 +41,7 @@ public class Human extends Entity {
 		
 		FixtureDef fixtureDef = new FixtureDef();
 		CircleShape shape = new CircleShape();
-		shape.setRadius(0.25f);
+		shape.setRadius(0.25f*64);
 		fixtureDef.shape = shape;
 		
 		body.createFixture(fixtureDef);
@@ -93,7 +94,7 @@ public class Human extends Entity {
 		
 		sprite.setMovementSpeed(speed);
 		
-		sprite.render(gameWorld.spriteBatch, getPosition().cpy().scl(GameWorld.PIXELS_PER_METER));
+		sprite.render(gameWorld.spriteBatch, getPosition().cpy());
 	}
 
 	

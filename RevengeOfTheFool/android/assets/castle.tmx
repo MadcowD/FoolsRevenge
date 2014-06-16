@@ -104,13 +104,6 @@
    </properties>
    <ellipse/>
   </object>
-  <object type="Point" x="334" y="-15" width="143" height="138">
-   <properties>
-    <property name="color" value="100, 100, 100, 200"/>
-    <property name="rays" value="5"/>
-   </properties>
-   <ellipse/>
-  </object>
   <object type="Torch" x="377" y="168" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>

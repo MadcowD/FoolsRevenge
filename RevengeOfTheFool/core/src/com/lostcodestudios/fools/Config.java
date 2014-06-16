@@ -17,7 +17,7 @@ public final class Config {
         }
     }
 
-	public static boolean debug = false;
+	public static boolean debug = true;
 	
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HEIGHT = 720;

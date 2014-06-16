@@ -69,7 +69,7 @@ public class GameWorld {
 		int width = (Integer) mapProp.get("width");
 		int height = (Integer) mapProp.get("height");
 		
-		bounds = new Rectangle(0, 0, width, height);
+		bounds = new Rectangle(0, 0, width*64, height*64);
 		
 		mapRenderer = new OrthogonalTiledMapRenderer(tileMap, Config.UNIT_SCALE);
 		
@@ -170,10 +170,10 @@ public class GameWorld {
 		Rectangle cameraBounds = new Rectangle(camera.position.x - camera.viewportWidth / 2, camera.position.y - camera.viewportHeight / 2,
 				camera.viewportWidth, camera.viewportHeight);
 		
-		cameraBounds.x /= PIXELS_PER_METER;
-		cameraBounds.y /= PIXELS_PER_METER;
-		cameraBounds.width /= PIXELS_PER_METER;
-		cameraBounds.height /= PIXELS_PER_METER;
+//		cameraBounds.x /= PIXELS_PER_METER;
+//		cameraBounds.y /= PIXELS_PER_METER;
+//		cameraBounds.width /= PIXELS_PER_METER;
+//		cameraBounds.height /= PIXELS_PER_METER;
 		return cameraBounds;
 	}
 
@@ -205,7 +205,7 @@ public class GameWorld {
 		float cameraBoundWidth = Config.SCREEN_WIDTH / 6;
 		float cameraBoundHeight = Config.SCREEN_HEIGHT / 6;
 		
-		Vector2 cameraAnchor = fool.getPosition().scl(PIXELS_PER_METER); //this will be the Fool's position eventually
+		Vector2 cameraAnchor = fool.getPosition(); //this will be the Fool's position eventually
 		
 		Rectangle cameraBounds = new Rectangle(
 				cameraAnchor.x - cameraBoundWidth / 2, cameraAnchor.y - cameraBoundHeight / 2, cameraBoundWidth, cameraBoundHeight);

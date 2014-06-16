@@ -27,7 +27,7 @@ public class Fool extends Script {
 
 		velocity.nor();
 
-		velocity.scl(5);
+		velocity.scl(5*64);
 
 		body.setLinearVelocity(velocity);
 	}
