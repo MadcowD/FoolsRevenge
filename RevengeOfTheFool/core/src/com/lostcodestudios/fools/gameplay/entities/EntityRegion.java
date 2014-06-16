@@ -176,8 +176,11 @@ public class EntityRegion {
 			this.entities.add(toAdd);
 		}
 
-		while(changed.size() > 0)
-			change(changed.pop());
+		while(changed.size() > 0){
+			Entity e = changed.pop();
+			this.entities.removeValue(e, false);
+			change(e);
+		}
 
 		this.balanced = true;
 	}
@@ -208,11 +211,13 @@ public class EntityRegion {
 	 */
 	public void add(Entity e){
 		balanced = false;
-		if(this.depth == e.getDepth() && this.contains(e.getPosition()))
-			this.added.push(e);
-		else if(this.subRegions != null)
-			for(EntityRegion sub : subRegions)
-				sub.add(e);
+		if(this.contains(e.getPosition())){
+			if(this.depth == e.getDepth())
+				this.added.push(e);
+			else if(this.subRegions != null)
+				for(EntityRegion sub : subRegions)
+					sub.add(e);
+		}
 	}
 
 	/**

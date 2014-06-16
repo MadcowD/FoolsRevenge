@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.Config.AnimatedSpriteInfo;
@@ -19,13 +20,14 @@ public class Human extends Entity {
 	private String updateScriptBody;
 	private ObjectMap<String, Object> updateScriptArgs = new ObjectMap<String, Object>();
 	private boolean runUpdateScript = false;
+	private World world;
 	
 	public Body body;
-	
+
 	
 	public Human(GameWorld gameWorld, String animatedSpriteKey, Vector2 position) {
 		super(2);
-		
+		this.world = gameWorld.world;
 		AnimatedSpriteInfo info = Config.spriteInfo.get(animatedSpriteKey);
 
 		sprite = new AnimatedSprite(gameWorld.spriteSheet, info.frameX, info.frameY, info.frameWidth, info.frameHeight);
@@ -94,6 +96,15 @@ public class Human extends Entity {
 		sprite.render(gameWorld.spriteBatch, getPosition().cpy().scl(GameWorld.PIXELS_PER_METER));
 	}
 
+	
+	@Override
+	public void delete()
+	{
+		super.delete();
+		world.destroyBody(body);
+		
+	};
+	
 	@Override
 	public Vector2 getPosition() {
 		return body.getPosition();
