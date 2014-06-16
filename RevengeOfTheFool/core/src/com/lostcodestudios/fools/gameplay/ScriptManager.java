@@ -20,8 +20,15 @@ public class ScriptManager {
 	public void runScript(String name, ObjectMap<String, Object> args) {
 		if(Scripts.containsKey(name))
 			Scripts.get(name).run(world, args);
-		else
-			throw new NoSuchElementException();
+		else{
+			try {
+				Class.forName(name);
+			} catch (ClassNotFoundException e) {
+				throw new NoSuchElementException();
+				
+			}
+			runScript(name, args);
+		}
 	}
 	
 	/**
@@ -36,5 +43,7 @@ public class ScriptManager {
 	/**
 	 * The collection of cached scripts.
 	 */
-	public static ObjectMap<String, Script> Scripts = new ObjectMap<String, Script>();
+	public final static ObjectMap<String, Script> Scripts = new ObjectMap<String, Script>();
+	
+	
 }

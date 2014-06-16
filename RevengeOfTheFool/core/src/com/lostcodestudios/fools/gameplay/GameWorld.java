@@ -21,7 +21,6 @@ import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.InputManager;
 import com.lostcodestudios.fools.gameplay.entities.EntityManager;
 import com.lostcodestudios.fools.gameplay.entities.Human;
-import com.lostcodestudios.fools.gameplay.entities.Player;
 import com.lostcodestudios.fools.gameplay.map.Box2DLightsMapObjectParser;
 import com.lostcodestudios.fools.gameplay.map.Box2DMapObjectParser;
 
@@ -56,7 +55,7 @@ public class GameWorld {
 	
 	private Rectangle bounds;
 	
-	public Human player;
+	public Human fool;
 	
 	public GameWorld(InputManager input) {
 		this.input = input;
@@ -93,8 +92,8 @@ public class GameWorld {
         
         spriteSheet = new Texture("Characters.png");
         
-        player = new Player(this, new Vector2(50, 94));
-        entities.add(player);
+        fool = new Human(this, "Fool", new Vector2(50, 94), "com.lostcodestudios.fools.scripts.Fool", null);
+        entities.add(fool);
         
         //TODO: MAKE A START SCRIPT
         //scripts.runScript("Start");
@@ -206,7 +205,7 @@ public class GameWorld {
 		float cameraBoundWidth = Config.SCREEN_WIDTH / 6;
 		float cameraBoundHeight = Config.SCREEN_HEIGHT / 6;
 		
-		Vector2 cameraAnchor = player.getPosition().scl(PIXELS_PER_METER); //this will be the Fool's position eventually
+		Vector2 cameraAnchor = fool.getPosition().scl(PIXELS_PER_METER); //this will be the Fool's position eventually
 		
 		Rectangle cameraBounds = new Rectangle(
 				cameraAnchor.x - cameraBoundWidth / 2, cameraAnchor.y - cameraBoundHeight / 2, cameraBoundWidth, cameraBoundHeight);
