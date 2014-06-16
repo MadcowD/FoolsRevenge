@@ -96,8 +96,8 @@ public class GameWorld {
         player = new Player(this, new Vector2(50, 94));
         entities.add(player);
         
-        
-        scripts.runScript(scripts.getScriptBody("scripts/start.groovy"));
+        //TODO: MAKE A START SCRIPT
+        //scripts.runScript("Start");
 	}
 	
 	public void dispose() {

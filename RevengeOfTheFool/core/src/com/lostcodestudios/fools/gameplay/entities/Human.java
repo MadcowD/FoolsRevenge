@@ -41,7 +41,6 @@ public class Human extends Entity {
 		
 		body.createFixture(fixtureDef);
 		
-		this.updateScriptBody = gameWorld.scripts.getScriptBody(updateScriptPath);
 		
 		this.updateScriptArgs.putAll(updateScriptArgs);
 		this.updateScriptArgs.put("e", this);
