@@ -2,7 +2,7 @@ package com.lostcodestudios.fools.gameplay.graphics;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -62,6 +62,7 @@ public class AnimatedSprite {
 			TextureRegion frame2 = new TextureRegion(sheetTexture, frameX, frameY, frameWidth, frameHeight);
 			
 			Animation walkingAnimation = new Animation(BASE_FRAME_TIME, frame1, frame2);
+			walkingAnimation.setPlayMode(PlayMode.LOOP);
 			walkingAnimations.put(direction, walkingAnimation);
 			
 			frameX = x;
@@ -74,7 +75,7 @@ public class AnimatedSprite {
 	public void setMovementSpeed (float movementSpeed) {
 		this.movementSpeed = Math.max(movementSpeed, 0f);
 		
-		if (movementSpeed == 0) {
+		if (this.movementSpeed == 0) {
 			elapsedAnimation = 0f; //reset the walk animation if stopping
 		}
 	}
@@ -91,7 +92,7 @@ public class AnimatedSprite {
 		if (movementSpeed > 0) {
 			Animation currentAnimation = walkingAnimations.get(direction);
 			
-			TextureRegion currentFrame = currentAnimation.getKeyFrame(elapsedAnimation, true);
+			TextureRegion currentFrame = currentAnimation.getKeyFrame(elapsedAnimation);
 			
 			spriteBatch.draw(currentFrame, position.x, position.y, origin.x, origin.y, width, height, 1f, 1f, 0f);
 		} else {

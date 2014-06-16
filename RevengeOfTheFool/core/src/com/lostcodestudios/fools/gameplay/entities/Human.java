@@ -7,17 +7,18 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.ObjectMap;
-import com.badlogic.gdx.utils.ObjectMap.Entry;
 import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.Config.AnimatedSpriteInfo;
 import com.lostcodestudios.fools.gameplay.GameWorld;
 import com.lostcodestudios.fools.gameplay.graphics.AnimatedSprite;
+import com.lostcodestudios.fools.gameplay.graphics.AnimatedSprite.Direction;
 
 public class Human extends Entity {
 
 	private AnimatedSprite sprite;
-	private String updateScriptPath;
+	private String updateScriptBody;
 	private ObjectMap<String, Object> updateScriptArgs = new ObjectMap<String, Object>();
+	private boolean runUpdateScript;
 	
 	public Body body;
 	
@@ -40,23 +41,69 @@ public class Human extends Entity {
 		
 		body.createFixture(fixtureDef);
 		
-		this.updateScriptPath = updateScriptPath;
+		this.updateScriptBody = gameWorld.scripts.getScriptBody(updateScriptPath);
 		
-		for (Entry<String, Object> arg : updateScriptArgs) {
-			this.updateScriptArgs.put(arg.key, arg.value);
-		}
-		
+		this.updateScriptArgs.putAll(updateScriptArgs);
 		this.updateScriptArgs.put("e", this);
+		
+		runUpdateScript = true;
+	}
+	
+	public Human(GameWorld gameWorld, String animatedSpriteKey, Vector2 position) {
+		super(1);
+		
+		AnimatedSpriteInfo info = Config.spriteInfo.get(animatedSpriteKey);
+
+		sprite = new AnimatedSprite(gameWorld.spriteSheet, info.frameX, info.frameY, info.frameWidth, info.frameHeight);
+		
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.type = BodyType.DynamicBody;
+		bodyDef.position.set(position);
+		
+		body = gameWorld.world.createBody(bodyDef);
+		
+		FixtureDef fixtureDef = new FixtureDef();
+		CircleShape shape = new CircleShape();
+		shape.setRadius(0.25f);
+		fixtureDef.shape = shape;
+		
+		body.createFixture(fixtureDef);
+				
+		runUpdateScript = false;
 	}
 	
 	public void update(float deltaTime, GameWorld gameWorld) {
 		super.update(deltaTime, gameWorld);
 		
-		gameWorld.scripts.runScript(updateScriptPath, updateScriptArgs);
+		sprite.update(deltaTime);
+		
+		if (runUpdateScript) {
+			gameWorld.scripts.runScript(updateScriptBody, updateScriptArgs);
+		}
 	}
 	
 	@Override
 	public void render(float deltaTime, GameWorld gameWorld) {
+		Vector2 velocity = body.getLinearVelocity();
+		
+		float speed = velocity.len();
+		
+		if (speed > 0) {
+			float angle = velocity.angle();
+			
+			if (angle < 45 || angle > 315) {
+				sprite.setDirection(Direction.Right);
+			} else if (angle >= 45 && angle < 135) {
+				sprite.setDirection(Direction.Up);
+			} else if (angle >= 135 && angle < 225) {
+				sprite.setDirection(Direction.Left);
+			} else {
+				sprite.setDirection(Direction.Down);
+			}
+		}
+		
+		sprite.setMovementSpeed(speed);
+		
 		sprite.render(gameWorld.spriteBatch, getPosition().cpy().scl(GameWorld.PIXELS_PER_METER));
 	}
 

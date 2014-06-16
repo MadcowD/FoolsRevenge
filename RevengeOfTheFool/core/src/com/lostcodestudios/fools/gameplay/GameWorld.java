@@ -21,12 +21,17 @@ import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.InputManager;
 import com.lostcodestudios.fools.gameplay.entities.EntityManager;
 import com.lostcodestudios.fools.gameplay.entities.Human;
+import com.lostcodestudios.fools.gameplay.entities.Player;
 import com.lostcodestudios.fools.gameplay.map.Box2DLightsMapObjectParser;
 import com.lostcodestudios.fools.gameplay.map.Box2DMapObjectParser;
 
 public class GameWorld {
 	
 	public static final float PIXELS_PER_METER = 64f;
+	
+	private static final float TIME_STEP = 1f / 60;
+	private static final int VELOCITY_ITERATIONS = 6;
+	private static final int POSITION_ITERATIONS = 2;
 	
 	public OrthographicCamera camera;
 	
@@ -44,6 +49,8 @@ public class GameWorld {
 	public EntityManager entities;
 	public InputManager input;
 	public Texture spriteSheet;
+	
+	private float elapsedTime = 0f;
 	
 	private boolean paused;
 	
@@ -86,11 +93,11 @@ public class GameWorld {
         
         spriteSheet = new Texture("Characters.png");
         
-        player = new Human(this, "Fool", new Vector2(50, 94), "scripts/entities/fool.groovy", new ObjectMap<String, Object>());
+        player = new Player(this, new Vector2(50, 94));
         entities.add(player);
         
         
-        scripts.runScript("scripts/start.groovy");
+        scripts.runScript(scripts.getScriptBody("scripts/start.groovy"));
 	}
 	
 	public void dispose() {
@@ -176,6 +183,26 @@ public class GameWorld {
 			dialog.showDialogWindow("Paused");
 		}
 		
+		updatePhysics(delta);
+		
+		updateCamera(delta);
+		
+		entities.update(delta);
+	}
+
+	public void updatePhysics(float delta) {
+		elapsedTime += delta;
+		
+		while (elapsedTime >= TIME_STEP) {
+			world.step(TIME_STEP, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
+			elapsedTime -= TIME_STEP;
+		}
+		
+		world.step(elapsedTime, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
+		elapsedTime = 0f;
+	}
+
+	public void updateCamera(float delta) {
 		float cameraBoundWidth = Config.SCREEN_WIDTH / 6;
 		float cameraBoundHeight = Config.SCREEN_HEIGHT / 6;
 		
@@ -212,8 +239,6 @@ public class GameWorld {
 		}
 		
 		camera.update();
-		
-		entities.update(delta);
 	}
 	
 }
