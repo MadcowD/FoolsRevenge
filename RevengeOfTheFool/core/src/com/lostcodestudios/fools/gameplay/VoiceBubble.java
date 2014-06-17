@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.TextManager;
 import com.lostcodestudios.fools.gameplay.entities.Entity;
 
@@ -39,10 +40,10 @@ public class VoiceBubble {
 	}
 	
 	public void render(SpriteBatch worldSpriteBatch, ShapeRenderer shapeRenderer) {
-		Vector2 position = speaker.getPosition().scl(GameWorld.PIXELS_PER_METER);
+		Vector2 position = speaker.getPosition().scl(Config.PIXELS_PER_METER);
 		
 		position.x += 16;
-		position.y += 48;
+		position.y += 128;
 		
 		TextBounds bounds = TextManager.getFont("voice").getBounds(text);
 		

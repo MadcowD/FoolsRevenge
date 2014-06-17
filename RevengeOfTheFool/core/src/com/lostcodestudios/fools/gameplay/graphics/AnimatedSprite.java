@@ -7,10 +7,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ObjectMap;
+import com.lostcodestudios.fools.Config;
+import com.lostcodestudios.fools.gameplay.entities.Human;
 
 public class AnimatedSprite {
 	
-	private static final float SPRITE_SCALE = 8f;
 	private static final float FRAME_SPACING = 1;
 	
 	private static final float BASE_FRAME_TIME = 3f; // movement animations will speed up when entities move faster, so this isn't the real frame time
@@ -41,9 +42,9 @@ public class AnimatedSprite {
 	public AnimatedSprite(Texture sheetTexture, int x, int y, int frameWidth, int frameHeight) {
 		// set rendering values
 		
-		this.origin = new Vector2(frameWidth * SPRITE_SCALE / 2, frameHeight * SPRITE_SCALE / 2);
-		this.width = frameWidth * SPRITE_SCALE;
-		this.height = frameHeight * SPRITE_SCALE;
+		this.origin = new Vector2(frameWidth * Config.SPRITE_SCALE / 2, Human.RADIUS * Config.PIXELS_PER_METER);
+		this.width = frameWidth * Config.SPRITE_SCALE;
+		this.height = frameHeight * Config.SPRITE_SCALE;
 		
 		// iterate through rows of the sprite's frames, creating stationary sprite and walking animation for each direction
 		
@@ -88,17 +89,20 @@ public class AnimatedSprite {
 		elapsedAnimation += delta * movementSpeed; // animate faster when moving faster
 	}
 	
-	public void render(SpriteBatch spriteBatch, Vector2 position) {	
+	public void render(SpriteBatch spriteBatch, Vector2 position) {
+		Vector2 pixelPos = position.cpy().scl(Config.PIXELS_PER_METER);
+		pixelPos.sub(origin);
+		
 		if (movementSpeed > 0) {
 			Animation currentAnimation = walkingAnimations.get(direction);
 			
 			TextureRegion currentFrame = currentAnimation.getKeyFrame(elapsedAnimation);
 			
-			spriteBatch.draw(currentFrame, position.x, position.y, origin.x, origin.y, width, height, 1f, 1f, 0f);
+			spriteBatch.draw(currentFrame, pixelPos.x, pixelPos.y, origin.x, origin.y, width, height, 1f, 1f, 0f);
 		} else {
 			TextureRegion currentSprite = standingSprites.get(direction);
 			
-			spriteBatch.draw(currentSprite, position.x, position.y, origin.x, origin.y, width, height, 1f, 1f, 0f);
+			spriteBatch.draw(currentSprite, pixelPos.x, pixelPos.y, origin.x, origin.y, width, height, 1f, 1f, 0f);
 		}
 	}
 	

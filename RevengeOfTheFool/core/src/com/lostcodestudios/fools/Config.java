@@ -22,7 +22,8 @@ public final class Config {
 	public static final int SCREEN_WIDTH = 1280;
 	public static final int SCREEN_HEIGHT = 720;
 	
-	public static final float UNIT_SCALE = 8f;
+	public static final float SPRITE_SCALE = 8f;
+	public static final float PIXELS_PER_METER = 64f;
 	
 	public static final int ACCEPT_KEY = Keys.E;
 	public static final String ACCEPT_TEXT = "[E]";

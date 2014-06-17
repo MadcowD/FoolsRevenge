@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -19,14 +20,14 @@ import box2dLight.RayHandler;
 
 import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.InputManager;
+import com.lostcodestudios.fools.gameplay.entities.Entity;
 import com.lostcodestudios.fools.gameplay.entities.EntityManager;
 import com.lostcodestudios.fools.gameplay.entities.Human;
 import com.lostcodestudios.fools.gameplay.map.Box2DLightsMapObjectParser;
 import com.lostcodestudios.fools.gameplay.map.Box2DMapObjectParser;
+import com.lostcodestudios.fools.gameplay.map.EntityMapObjectParser;
 
 public class GameWorld {
-	
-	public static final float PIXELS_PER_METER = 64f;
 	
 	private static final float TIME_STEP = 1f / 60;
 	private static final int VELOCITY_ITERATIONS = 6;
@@ -55,8 +56,7 @@ public class GameWorld {
 	
 	private Rectangle bounds;
 	
-	public Human fool;
-	
+	public ObjectMap<String, Entity> specialEntities = new ObjectMap<String, Entity>();
 	public GameWorld(InputManager input) {
 		this.input = input;
 		
@@ -69,31 +69,33 @@ public class GameWorld {
 		int width = (Integer) mapProp.get("width");
 		int height = (Integer) mapProp.get("height");
 		
-		bounds = new Rectangle(0, 0, width*64, height*64);
+		bounds = new Rectangle(0, 0, width, height);
 		
-		mapRenderer = new OrthogonalTiledMapRenderer(tileMap, Config.UNIT_SCALE);
+		mapRenderer = new OrthogonalTiledMapRenderer(tileMap, Config.SPRITE_SCALE);
 		
 		world = new World(new Vector2(), true);
 		rayHandler = new RayHandler(world);
 		
 		//load physics bodies from the tile map
 		Box2DMapObjectParser mapObjectParser = new Box2DMapObjectParser();
-		mapObjectParser.setUnitScale(Config.UNIT_SCALE);
+		mapObjectParser.setUnitScale(1f / Config.SPRITE_SCALE);
 		mapObjectParser.load(world, tileMap.getLayers().get("Physics")); //NOTE: this won't load circle objects!
 		
 		//load lighting effects from the tile map
 		Box2DLightsMapObjectParser lightObjectParser = new Box2DLightsMapObjectParser();
-		lightObjectParser.setUnitScale(Config.UNIT_SCALE);
+		lightObjectParser.setUnitScale(1f / Config.SPRITE_SCALE);
 		lightObjectParser.load(rayHandler, tileMap.getLayers().get("Lights"));
 		
 		paused = false;
 		
 		entities = new EntityManager(this, 3);
         
-        spriteSheet = new Texture("Characters.png");
+        spriteSheet = new Texture("characters.png");
         
-        fool = new Human(this, "Fool", new Vector2(50, 94), "com.lostcodestudios.fools.scripts.Fool", null);
-        entities.add(fool);
+        // load entities from the tile map
+        EntityMapObjectParser entityParser = new EntityMapObjectParser();
+        entityParser.setUnitScale(1f / Config.SPRITE_SCALE);
+        entityParser.load(this, tileMap.getLayers().get("Entities"));
         
         //TODO: MAKE A START SCRIPT
         scripts.runScript("com.lostcodestudios.fools.scripts.Start");
@@ -130,8 +132,7 @@ public class GameWorld {
 	 * @param y
 	 */
 	public void setCameraPosition(float x, float y) {
-		float tileSize = Config.UNIT_SCALE * Config.UNIT_SCALE;
-		
+		float tileSize = Config.PIXELS_PER_METER;
 		camera.position.set(x * tileSize + tileSize / 2, (bounds.height - y) * tileSize - tileSize / 2, 0);
 		camera.update();
 	}
@@ -145,7 +146,9 @@ public class GameWorld {
 			update(delta);
 		}
 		
-		//NOTE: spriteBatch must not use the camera's view. It keeps its own, with pure screen coordinates
+		//NOTE: the passed spriteBatch must not use the camera's view. It keeps its own, with pure screen coordinates
+		
+		Matrix4 meterView = camera.combined.cpy().scl(Config.PIXELS_PER_METER);
 		
 		mapRenderer.setView(camera);
 		mapRenderer.render();
@@ -156,13 +159,13 @@ public class GameWorld {
 		
 		entities.render(delta, cameraBounds);
 		
-		rayHandler.setCombinedMatrix(camera.combined);
+		rayHandler.setCombinedMatrix(meterView);
 		rayHandler.updateAndRender();
 		
 		dialog.render(spriteBatch, this.spriteBatch, delta);
 		
-		if (Config.debug && !paused) {
-			debugRenderer.render(world, camera.combined);
+		if (Config.debug) {
+			debugRenderer.render(world, meterView);
 		}
 	}
 
@@ -170,10 +173,11 @@ public class GameWorld {
 		Rectangle cameraBounds = new Rectangle(camera.position.x - camera.viewportWidth / 2, camera.position.y - camera.viewportHeight / 2,
 				camera.viewportWidth, camera.viewportHeight);
 		
-//		cameraBounds.x /= PIXELS_PER_METER;
-//		cameraBounds.y /= PIXELS_PER_METER;
-//		cameraBounds.width /= PIXELS_PER_METER;
-//		cameraBounds.height /= PIXELS_PER_METER;
+		cameraBounds.x /= Config.PIXELS_PER_METER;
+		cameraBounds.y /= Config.PIXELS_PER_METER;
+		cameraBounds.width /= Config.PIXELS_PER_METER;
+		cameraBounds.height /= Config.PIXELS_PER_METER;
+		
 		return cameraBounds;
 	}
 
@@ -205,7 +209,7 @@ public class GameWorld {
 		float cameraBoundWidth = Config.SCREEN_WIDTH / 6;
 		float cameraBoundHeight = Config.SCREEN_HEIGHT / 6;
 		
-		Vector2 cameraAnchor = fool.getPosition(); //this will be the Fool's position eventually
+		Vector2 cameraAnchor = specialEntities.get("Fool").getPosition().cpy().scl(Config.PIXELS_PER_METER); //this will be the Fool's position eventually
 		
 		Rectangle cameraBounds = new Rectangle(
 				cameraAnchor.x - cameraBoundWidth / 2, cameraAnchor.y - cameraBoundHeight / 2, cameraBoundWidth, cameraBoundHeight);

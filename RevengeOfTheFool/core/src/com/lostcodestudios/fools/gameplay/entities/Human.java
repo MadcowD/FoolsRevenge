@@ -16,6 +16,8 @@ import com.lostcodestudios.fools.gameplay.graphics.AnimatedSprite.Direction;
 
 public class Human extends Entity {
 
+	public static final float RADIUS = 0.25f;
+	
 	private AnimatedSprite sprite;
 	private String updateScriptBody;
 	private ObjectMap<String, Object> updateScriptArgs = new ObjectMap<String, Object>();
@@ -32,7 +34,6 @@ public class Human extends Entity {
 
 		sprite = new AnimatedSprite(gameWorld.spriteSheet, info.frameX, info.frameY, info.frameWidth, info.frameHeight);
 		
-		position.scl(64);
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.DynamicBody;
 		bodyDef.position.set(position);
@@ -41,7 +42,7 @@ public class Human extends Entity {
 		
 		FixtureDef fixtureDef = new FixtureDef();
 		CircleShape shape = new CircleShape();
-		shape.setRadius(0.25f*64);
+		shape.setRadius(RADIUS);
 		fixtureDef.shape = shape;
 		
 		body.createFixture(fixtureDef);
@@ -81,11 +82,11 @@ public class Human extends Entity {
 		if (speed > 0) {
 			float angle = velocity.angle();
 			
-			if (angle < 45 || angle > 315) {
+			if (angle <= 45 || angle >= 315) {
 				sprite.setDirection(Direction.Right);
-			} else if (angle >= 45 && angle < 135) {
+			} else if (angle > 45 && angle < 135) {
 				sprite.setDirection(Direction.Up);
-			} else if (angle >= 135 && angle < 225) {
+			} else if (angle >= 135 && angle <= 225) {
 				sprite.setDirection(Direction.Left);
 			} else {
 				sprite.setDirection(Direction.Down);
@@ -94,7 +95,7 @@ public class Human extends Entity {
 		
 		sprite.setMovementSpeed(speed);
 		
-		sprite.render(gameWorld.spriteBatch, getPosition().cpy());
+		sprite.render(gameWorld.spriteBatch, getPosition());
 	}
 
 	

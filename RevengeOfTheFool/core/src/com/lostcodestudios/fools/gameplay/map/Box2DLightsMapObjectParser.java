@@ -42,8 +42,10 @@ public class Box2DLightsMapObjectParser {
 			
 			//lights defined by preset
 			if (type.equals("Torch")) {
-				new PointLight(rayHandler, 180, 
-						new Color(255f / 255, 123f / 255, 0f / 255, 200f / 255), 64 * 5, x, y);
+				PointLight light = new PointLight(rayHandler, 180, 
+						new Color(255f / 255, 123f / 255, 0f / 255, 200f / 255), 5, x, y);
+				
+				light.setStaticLight(true);
 				
 				continue;
 			}
@@ -56,17 +58,21 @@ public class Box2DLightsMapObjectParser {
 			
 			int rays = Integer.parseInt(lightProperties.get("rays", String.class));
 			
+			boolean xray = lightProperties.get("xray", String.class) != null;
+			
 			Color color = parseColor(lightProperties.get("color", String.class));
 			
 			if (type.equals("Point")) {
-				new PointLight(rayHandler, rays, color, distance, x, y);
+				PointLight light = new PointLight(rayHandler, rays, color, distance, x, y);
+				light.setXray(xray);
 			}
 			
 			if (type.equals("Cone")) {
 				float rotation = Float.parseFloat(lightProperties.get("rotation", String.class));
 				float coneDegrees = Float.parseFloat(lightProperties.get("coneDegrees", String.class));
 				
-				new ConeLight(rayHandler, rays, color, distance, x, y, rotation, coneDegrees);
+				ConeLight light = new ConeLight(rayHandler, rays, color, distance, x, y, rotation, coneDegrees);
+				light.setXray(xray);
 			}
 		}
 	}

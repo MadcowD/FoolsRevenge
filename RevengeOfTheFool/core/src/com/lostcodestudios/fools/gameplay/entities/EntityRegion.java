@@ -46,7 +46,7 @@ public class EntityRegion {
 		removed = new Array<Entity>();
 
 
-		this.depth =depth;
+		this.depth = depth;
 		this.region = region;
 		this.superRegion = superRegion;
 

@@ -1,8 +1,5 @@
 package com.lostcodestudios.fools.scripts;
 
-import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.gameplay.GameWorld;
 
@@ -13,7 +10,7 @@ public class Start extends Script {
 		//world.dialog.showDialogFull("The King's rage shook the castle like thunder.");
 		//world.dialog.showDialogWindow("His booming voice sent tremors down the Fool's spine.");
 
-		world.dialog.showVoiceBubble("This is treasonous! Take this Fool to the dungeon!", world.fool, 5);
+		world.dialog.showVoiceBubble("This is treasonous! Take this Fool to the dungeon!", world.specialEntities.get("Fool"), 5);
 	}
 	
 	static{
