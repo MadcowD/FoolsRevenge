@@ -55,7 +55,7 @@ public class Box2DLightsMapObjectParser {
 			//lights fully defined from map
 			
 			//average the ellipse's dimensions to find a "radius"
-			float distance = (ellipse.width + ellipse.height) * unitScale / 4;
+			float distance = (ellipse.width + ellipse.height) * unitScale / 2;
 			
 			int rays = Integer.parseInt(lightProperties.get("rays", String.class));
 			
