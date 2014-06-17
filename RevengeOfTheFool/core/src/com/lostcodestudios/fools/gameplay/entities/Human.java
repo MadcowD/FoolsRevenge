@@ -69,6 +69,7 @@ public class Human extends Entity {
 		sprite.update(deltaTime);
 		
 		if (runUpdateScript) {
+			updateScriptArgs.put("deltaTime", deltaTime);
 			gameWorld.scripts.runScript(updateScriptBody, updateScriptArgs);
 		}
 	}

@@ -188,8 +188,6 @@ public class GameWorld {
 		
 		updatePhysics(delta);
 		
-		updateCamera(delta);
-		
 		entities.update(delta);
 	}
 
@@ -203,45 +201,6 @@ public class GameWorld {
 		
 		world.step(elapsedTime, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
 		elapsedTime = 0f;
-	}
-
-	public void updateCamera(float delta) {
-		float cameraBoundWidth = Config.SCREEN_WIDTH / 6;
-		float cameraBoundHeight = Config.SCREEN_HEIGHT / 6;
-		
-		Vector2 cameraAnchor = specialEntities.get("Fool").getPosition().cpy().scl(Config.PIXELS_PER_METER); //this will be the Fool's position eventually
-		
-		Rectangle cameraBounds = new Rectangle(
-				cameraAnchor.x - cameraBoundWidth / 2, cameraAnchor.y - cameraBoundHeight / 2, cameraBoundWidth, cameraBoundHeight);
-		
-		float maxCameraSpeed = 512f;
-		float maxCenterDistance = 180f;
-		
-		Vector2 cameraMovement = new Vector2();
-		
-		Vector2 centerScreen = new Vector2(Config.SCREEN_WIDTH / 2, Config.SCREEN_HEIGHT / 2);
-		Vector2 mousePos = new Vector2(Gdx.input.getX(), Config.SCREEN_HEIGHT - Gdx.input.getY());
-		Vector2 mouseCenterOffset = mousePos.cpy().sub(centerScreen);
-		
-		float cameraSpeed = (mouseCenterOffset.len() / maxCenterDistance) * maxCameraSpeed;
-		
-		cameraMovement = mouseCenterOffset.cpy().nor().scl(cameraSpeed * delta);
-		
-		camera.translate(cameraMovement);
-		
-		if (camera.position.x < cameraBounds.x) {
-			camera.position.x = cameraBounds.x;
-		} else if (camera.position.x > cameraBounds.x + cameraBounds.width) {
-			camera.position.x = cameraBounds.x + cameraBounds.width;
-		}
-		
-		if (camera.position.y < cameraBounds.y) {
-			camera.position.y = cameraBounds.y;
-		} else if (camera.position.y > cameraBounds.y + cameraBounds.height) {
-			camera.position.y = cameraBounds.y + cameraBounds.height;
-		}
-		
-		camera.update();
 	}
 	
 }
