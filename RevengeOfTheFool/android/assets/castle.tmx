@@ -25,12 +25,12 @@
  </layer>
  <layer name="Objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2X9ugjAUAGAWs1PsbxrkVBzNo+xoA8FfTUGNzfbivi8hBAu1tsBrn00TX79rvtvC1q18vnbuWM/w17/lHYz9edjvjvsmLfv2yePx+kNrPKpoK/RljTqYTX3ZVRiPV+tgtnVvf31sHz9SB8+Z+jK92JfJeFTTiR+heD5iMb+Kpdb8ynjU4fn4XaV8SJYLmdbnw+k4LeWpkAPpl8/Hae95P22fzfHaYeM75FMW1/mQrpDr6Of31U0epL2U3ejn5+Bc3mXnlnIqnXzKjQjvkghtiKLGfPZVST7lLMK9GaENUZTW39cxPm3E4O6qPK2cU6onj93G46LUF3lcXvt/Yy3On8rSynn5PMB4XEToiwhtiCJKPDceswj3ZoQ2RJGvv9dicB6rt9bnW9eUvmc/74dyC/+Xtdj9SMy+tz6/t+XrdwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4P39AFEToqg=
+   eJzt2FGOgjAQAFA2HmOPgLh+8ulROIpH8SgezbJdAlZADUSazXvJxIBAYscy7RRF/n52RbPfFcXSCM9hBWEsm0OIMoxnFaIcxKvHh5iTy9a/5T/Yx1w0S54R7r/IxzrkIy9z+fj+mj/uyMd62nxUC+dHJR+r8b7Ki/mRF/MjL/KRF/n4rGf9kGPcX1/LGKdQC07dZ530QOpYa36vrfp7ruH+yzHmRD/liUE/5DyMv17HOYm7fkid/OfrOP7FXKQ9Ff2Ue2u8j5byPuutsZ5dynq4Z37kZSwfdTz3UJfHYqx+z13XRroOkI/eRD6uI7W8rfEP5+Zi6vp0HSAfPe+rvKjneTE/8pLsvydr8Nh3c/vzd57X7d83GYDMvFOfn9XlqXXAq7HNCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJ90AxxsrBY=
   </data>
  </layer>
- <objectgroup name="Physics" width="100" height="100">
+ <objectgroup name="Physics" width="100" height="100" visible="0">
   <object name="kingwall3" type="object" x="328" y="-2" width="15" height="106"/>
-  <object name="kingwall1" type="object" x="329" y="1" width="148" height="13"/>
+  <object name="kingwall1" type="object" x="329" y="0" width="148" height="16"/>
   <object name="kingwall2" type="object" x="465" y="0" width="13" height="101"/>
   <object name="hallwall1" type="object" x="264" y="88" width="127" height="15"/>
   <object name="hallwall2" type="object" x="416" y="88" width="128" height="14"/>
@@ -44,7 +44,7 @@
  </objectgroup>
  <objectgroup name="Lights" width="100" height="100">
   <properties>
-   <property name="ambientColor" value="25, 25, 25, 125"/>
+   <property name="ambientColor" value="25, 25, 25, 62"/>
   </properties>
   <object type="Torch" x="461" y="57" width="6" height="5">
    <properties>
@@ -52,7 +52,7 @@
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="449" y="12" width="6" height="5">
+  <object type="Torch" x="449" y="8" width="6" height="5">
    <properties>
     <property name="rotation" value="270"/>
    </properties>
@@ -100,19 +100,19 @@
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="417" y="12" width="6" height="5">
+  <object type="Torch" x="417" y="9" width="6" height="5">
    <properties>
     <property name="rotation" value="270"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="385" y="12" width="6" height="5">
+  <object type="Torch" x="385" y="9" width="6" height="5">
    <properties>
     <property name="rotation" value="270"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="353" y="12" width="6" height="5">
+  <object type="Torch" x="353" y="8" width="6" height="5">
    <properties>
     <property name="rotation" value="270"/>
    </properties>
@@ -223,7 +223,7 @@
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup name="Entities" width="100" height="100">
+ <objectgroup name="Entities" width="100" height="100" visible="0">
   <object name="Fool" type="Fool" x="400" y="56" width="8" height="8"/>
  </objectgroup>
 </map>

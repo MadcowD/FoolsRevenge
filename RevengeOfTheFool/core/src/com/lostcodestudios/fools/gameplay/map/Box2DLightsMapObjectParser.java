@@ -46,6 +46,7 @@ public class Box2DLightsMapObjectParser {
 						new Color(255f / 255, 123f / 255, 0f / 255, 200f / 255), 5, x, y);
 				
 				light.setStaticLight(true);
+				light.setSoftnessLength(4);
 				
 				continue;
 			}
