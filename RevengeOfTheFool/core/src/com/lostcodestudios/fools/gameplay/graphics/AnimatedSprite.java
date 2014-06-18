@@ -90,19 +90,18 @@ public class AnimatedSprite {
 	}
 	
 	public void render(SpriteBatch spriteBatch, Vector2 position) {
-		Vector2 pixelPos = position.cpy().scl(Config.PIXELS_PER_METER);
-		pixelPos.sub(origin);
+		position.sub(origin);
 		
 		if (movementSpeed > 0) {
 			Animation currentAnimation = walkingAnimations.get(direction);
 			
 			TextureRegion currentFrame = currentAnimation.getKeyFrame(elapsedAnimation);
 			
-			spriteBatch.draw(currentFrame, pixelPos.x, pixelPos.y, origin.x, origin.y, width, height, 1f, 1f, 0f);
+			spriteBatch.draw(currentFrame, position.x, position.y, origin.x, origin.y, width, height, 1f, 1f, 0f);
 		} else {
 			TextureRegion currentSprite = standingSprites.get(direction);
 			
-			spriteBatch.draw(currentSprite, pixelPos.x, pixelPos.y, origin.x, origin.y, width, height, 1f, 1f, 0f);
+			spriteBatch.draw(currentSprite, position.x, position.y, origin.x, origin.y, width, height, 1f, 1f, 0f);
 		}
 	}
 	

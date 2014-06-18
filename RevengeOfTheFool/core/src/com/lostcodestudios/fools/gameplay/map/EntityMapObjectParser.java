@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.lostcodestudios.fools.gameplay.GameWorld;
 import com.lostcodestudios.fools.gameplay.entities.Entity;
 import com.lostcodestudios.fools.gameplay.entities.Human;
+import com.lostcodestudios.fools.gameplay.entities.Item;
 import com.lostcodestudios.fools.gameplay.entities.Weapon;
 
 public class EntityMapObjectParser {
@@ -51,10 +52,15 @@ public class EntityMapObjectParser {
 			if (type.equals("Guard")) {
 				e = new Human(world, "Guard", position, "com.lostcodestudios.fools.scripts.Guard", null);
 				
-				Weapon sword = new Weapon(1);
+				Weapon sword = new Weapon(world, e, "Sword");
 				sword.meleeDamage = 2.5f;
 				
+				Item key = new Item(world, e, "GoldKey");
+				
 				((Human) e).weapon = sword;
+				
+				world.entities.add(sword);
+				world.entities.add(key);
 			}
 			
 			// TODO load other types of entities

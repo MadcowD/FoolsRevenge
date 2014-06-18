@@ -12,14 +12,17 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 
 import box2dLight.RayHandler;
 
 import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.InputManager;
+import com.lostcodestudios.fools.TextManager;
 import com.lostcodestudios.fools.gameplay.entities.Entity;
 import com.lostcodestudios.fools.gameplay.entities.EntityManager;
 import com.lostcodestudios.fools.gameplay.entities.Human;
@@ -40,6 +43,7 @@ public class GameWorld {
 	
 	public World world;
 	private CollisionManager collisionManager;
+	private Array<Body> bodiesToDestroy = new Array<Body>();
 	
 	private RayHandler rayHandler;
 	private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
@@ -51,6 +55,7 @@ public class GameWorld {
 	public EntityManager entities;
 	public InputManager input;
 	public Texture spriteSheet;
+	public Texture itemSheet;
 	
 	private float elapsedTime = 0f;
 	
@@ -94,6 +99,7 @@ public class GameWorld {
 		entities = new EntityManager(this, 3);
         
         spriteSheet = new Texture("characters.png");
+        itemSheet = new Texture("items.png");
         
         // load entities from the tile map
         EntityMapObjectParser entityParser = new EntityMapObjectParser();
@@ -115,6 +121,7 @@ public class GameWorld {
 		
 		spriteBatch.dispose();
 		spriteSheet.dispose();
+		itemSheet.dispose();
 	}
 	
 	public void pause() {
@@ -169,6 +176,12 @@ public class GameWorld {
 		
 		if (Config.debug) {
 			debugRenderer.render(world, meterView);
+			
+			int n = entities.entitiesAtCursor(cameraBounds).size;
+			
+			spriteBatch.begin();
+			TextManager.draw(spriteBatch, "debug", "Entities at cursor: " + n, 0, 50);
+			spriteBatch.end();
 		}
 	}
 
@@ -206,6 +219,16 @@ public class GameWorld {
 		
 		world.step(elapsedTime, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
 		elapsedTime = 0f;
+		
+		// destroy all bodies queued
+		for (Body body : bodiesToDestroy) {
+			world.destroyBody(body);
+		}
+		bodiesToDestroy.clear();
+	}
+	
+	public void destroyBody(Body body) {
+		bodiesToDestroy.add(body);
 	}
 	
 }

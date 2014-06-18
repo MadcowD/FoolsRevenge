@@ -91,6 +91,7 @@ public class Human extends Entity {
 		
 		if (this.health <= 0) {
 			//TODO die
+			this.delete();
 			
 			if (this.deathScript != null && !this.deathScript.isEmpty()) {
 				gameWorld.scripts.runScript(deathScript, updateScriptArgs);
@@ -141,7 +142,7 @@ public class Human extends Entity {
 			sprite.setMovementSpeed(0); // don't walk while being knocked back
 		}
 		
-		sprite.render(gameWorld.spriteBatch, getPosition());
+		sprite.render(gameWorld.spriteBatch, getPosition().cpy().scl(Config.PIXELS_PER_METER));
 	}
 
 	
@@ -149,8 +150,7 @@ public class Human extends Entity {
 	public void delete()
 	{
 		super.delete();
-		world.destroyBody(body);
-		
+		gameWorld.destroyBody(body);
 	};
 	
 	@Override

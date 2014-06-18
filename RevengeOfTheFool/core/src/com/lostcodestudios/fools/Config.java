@@ -2,6 +2,7 @@ package com.lostcodestudios.fools;
 
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ObjectMap;
 
 public final class Config {
@@ -16,7 +17,7 @@ public final class Config {
             this.frameHeight = frameHeight;
         }
     }
-
+    
 	public static boolean debug = true;
 	
 	public static final int SCREEN_WIDTH = 1280;
@@ -56,5 +57,14 @@ public final class Config {
         spriteInfo.put("Fool", new AnimatedSpriteInfo(1, 1, 9, 11));
         spriteInfo.put("King", new AnimatedSpriteInfo(31, 1, 7, 8));
         spriteInfo.put("Guard", new AnimatedSpriteInfo(55, 1, 8, 8));
+    }
+    
+    public static ObjectMap<String, Rectangle> itemSpriteInfo = new ObjectMap<String, Rectangle>();
+    
+    public static void loadItemSpriteInfo() {
+    	itemSpriteInfo.put("GoldKey", new Rectangle(1, 1, 4, 8));
+    	itemSpriteInfo.put("SilverKey", new Rectangle(6, 1, 4, 8));
+    	itemSpriteInfo.put("BrassKey", new Rectangle(11, 1, 4, 8));
+    	itemSpriteInfo.put("Sword", new Rectangle(16, 1, 8, 8));
     }
 }

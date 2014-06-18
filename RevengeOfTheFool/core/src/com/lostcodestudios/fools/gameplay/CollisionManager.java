@@ -62,8 +62,8 @@ public class CollisionManager implements ContactListener {
 			humanA.damage(damageB);
 			humanB.damage(damageA);
 			
-			float knockbackA = Math.max(damageB - damageA, 0) * 3;
-			float knockbackB = Math.max(damageA - damageB, 0) * 3;
+			float knockbackA = Math.max(damageB - damageA, 0) * 2;
+			float knockbackB = Math.max(damageA - damageB, 0) * 2;
 			
 			humanA.body.setLinearVelocity(humanB.getVelocity().cpy().nor().scl(knockbackA));
 			humanB.body.setLinearVelocity(humanA.getVelocity().cpy().nor().scl(knockbackB));

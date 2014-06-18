@@ -26,6 +26,7 @@ public class Revenge extends Game {
 		
 		Config.loadFonts();
 		Config.loadSpriteInfo();
+		Config.loadItemSpriteInfo();
 		
 		world = new GameWorld(input);
 	}
