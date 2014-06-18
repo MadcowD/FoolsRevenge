@@ -18,17 +18,28 @@ public class Human extends Entity {
 
 	public static final float RADIUS = 0.25f;
 	
+	private static final float DEFAULT_HEALTH = 5f;
+	
 	private AnimatedSprite sprite;
 	private String updateScriptBody;
 	private ObjectMap<String, Object> updateScriptArgs = new ObjectMap<String, Object>();
 	private boolean runUpdateScript = false;
+	private GameWorld gameWorld;
 	private World world;
 	
 	public Body body;
-
+	
+	private float health = DEFAULT_HEALTH;
+	private float maxHealth = DEFAULT_HEALTH;
+	private String deathScript;
+	
+	public float knockbackTime = 0f; // humans don't control velocity while being knocked back
+	
+	public Weapon weapon;
 	
 	public Human(GameWorld gameWorld, String animatedSpriteKey, Vector2 position) {
 		super(2);
+		this.gameWorld = gameWorld;
 		this.world = gameWorld.world;
 		AnimatedSpriteInfo info = Config.spriteInfo.get(animatedSpriteKey);
 
@@ -37,6 +48,7 @@ public class Human extends Entity {
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.DynamicBody;
 		bodyDef.position.set(position);
+		bodyDef.fixedRotation = true;
 		
 		body = gameWorld.world.createBody(bodyDef);
 		
@@ -46,7 +58,7 @@ public class Human extends Entity {
 		fixtureDef.shape = shape;
 		
 		body.createFixture(fixtureDef);
-
+		body.setUserData(this);
 	}
 	
 	public Human(GameWorld gameWorld, String animatedSpriteKey, Vector2 position, String updateScriptPath, ObjectMap<String, Object> updateScriptArgs) {
@@ -57,9 +69,33 @@ public class Human extends Entity {
 			this.updateScriptArgs.putAll(updateScriptArgs);
 		
 		this.updateScriptArgs.put("e", this);
-		this.updateScriptArgs.put("body", this.body);
 		
 		runUpdateScript = true;
+	}
+	
+	public void setHealth(float health) {
+		this.health = health;
+		this.maxHealth = health;
+	}
+	
+	public void setDeathScript(String script) {
+		this.deathScript = script;
+	}
+	
+	public float healthFraction() {
+		return health / maxHealth;
+	}
+	
+	public void damage(float amount) {
+		this.health -= amount;
+		
+		if (this.health <= 0) {
+			//TODO die
+			
+			if (this.deathScript != null && !this.deathScript.isEmpty()) {
+				gameWorld.scripts.runScript(deathScript, updateScriptArgs);
+			}
+		}
 	}
 	
 	
@@ -67,6 +103,11 @@ public class Human extends Entity {
 		super.update(deltaTime, gameWorld);
 		
 		sprite.update(deltaTime);
+		
+		if (knockbackTime > 0) {
+			knockbackTime -= deltaTime;
+			if (knockbackTime < 0) knockbackTime = 0;
+		}
 		
 		if (runUpdateScript) {
 			updateScriptArgs.put("deltaTime", deltaTime);
@@ -76,12 +117,8 @@ public class Human extends Entity {
 	
 	@Override
 	public void render(float deltaTime, GameWorld gameWorld) {
-		Vector2 velocity = body.getLinearVelocity();
-		
-		float speed = velocity.len();
-		
-		if (speed > 0) {
-			float angle = velocity.angle();
+		if (knockbackTime == 0) {
+			float angle = (float) Math.toDegrees(body.getAngle());
 			
 			if (angle <= 45 || angle >= 315) {
 				sprite.setDirection(Direction.Right);
@@ -92,9 +129,17 @@ public class Human extends Entity {
 			} else {
 				sprite.setDirection(Direction.Down);
 			}
-		}
 		
-		sprite.setMovementSpeed(speed);
+			Vector2 velocity = body.getLinearVelocity();
+			float speed = velocity.len();
+			sprite.setMovementSpeed(speed);
+			
+			if (speed > 0) {
+				body.setTransform(body.getPosition(), (float) Math.toRadians(velocity.angle()));
+			}
+		} else {
+			sprite.setMovementSpeed(0); // don't walk while being knocked back
+		}
 		
 		sprite.render(gameWorld.spriteBatch, getPosition());
 	}
@@ -111,6 +156,16 @@ public class Human extends Entity {
 	@Override
 	public Vector2 getPosition() {
 		return body.getPosition();
+	}
+	
+	public void setVelocity(Vector2 velocity) {
+		if (knockbackTime == 0) {
+			body.setLinearVelocity(velocity);
+		}
+	}
+	
+	public Vector2 getVelocity() {
+		return body.getLinearVelocity();
 	}
 
 }

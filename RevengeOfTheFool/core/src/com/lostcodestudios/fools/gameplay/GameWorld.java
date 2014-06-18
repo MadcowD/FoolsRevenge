@@ -39,6 +39,8 @@ public class GameWorld {
 	private OrthogonalTiledMapRenderer mapRenderer;
 	
 	public World world;
+	private CollisionManager collisionManager;
+	
 	private RayHandler rayHandler;
 	private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
 	public SpriteBatch spriteBatch = new SpriteBatch();
@@ -74,6 +76,7 @@ public class GameWorld {
 		mapRenderer = new OrthogonalTiledMapRenderer(tileMap, Config.SPRITE_SCALE);
 		
 		world = new World(new Vector2(), true);
+		collisionManager = new CollisionManager(this, world);
 		rayHandler = new RayHandler(world);
 		
 		//load physics bodies from the tile map
@@ -185,6 +188,8 @@ public class GameWorld {
 		if (input.wasKeyPressed(Keys.ESCAPE)) {
 			dialog.showDialogWindow("Paused");
 		}
+		
+		scripts.update(delta);
 		
 		updatePhysics(delta);
 		

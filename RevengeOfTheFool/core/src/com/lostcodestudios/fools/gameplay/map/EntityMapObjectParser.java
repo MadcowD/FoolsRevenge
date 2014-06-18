@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.lostcodestudios.fools.gameplay.GameWorld;
 import com.lostcodestudios.fools.gameplay.entities.Entity;
 import com.lostcodestudios.fools.gameplay.entities.Human;
+import com.lostcodestudios.fools.gameplay.entities.Weapon;
 
 public class EntityMapObjectParser {
 
@@ -43,7 +44,30 @@ public class EntityMapObjectParser {
 				e = new Human(world, "Fool", position, "com.lostcodestudios.fools.scripts.Fool", null);
 			}
 			
+			if (type.equals("King")) {
+				e = new Human(world, "King", position, "com.lostcodestudios.fools.scripts.King", null);
+			}
+			
+			if (type.equals("Guard")) {
+				e = new Human(world, "Guard", position, "com.lostcodestudios.fools.scripts.Guard", null);
+				
+				Weapon sword = new Weapon(1);
+				sword.meleeDamage = 2.5f;
+				
+				((Human) e).weapon = sword;
+			}
+			
 			// TODO load other types of entities
+			
+			// rotate the body for a human
+			if (e instanceof Human) {
+				float radians = 0f;
+				String rotation = entityProperties.get("rotation", String.class);
+				if (rotation != null) {
+					radians = (float) Math.toRadians(Float.parseFloat(rotation));
+				}
+				((Human) e).body.setTransform(((Human) e).body.getPosition(), radians);
+			}
 			
 			world.entities.add(e);
 			

@@ -42,8 +42,7 @@ public class VoiceBubble {
 	public void render(SpriteBatch worldSpriteBatch, ShapeRenderer shapeRenderer) {
 		Vector2 position = speaker.getPosition().scl(Config.PIXELS_PER_METER);
 		
-		position.x += 16;
-		position.y += 128;
+		position.y += 96;
 		
 		TextBounds bounds = TextManager.getFont("voice").getBounds(text);
 		

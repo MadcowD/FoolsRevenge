@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.gameplay.GameWorld;
 import com.lostcodestudios.fools.gameplay.entities.Entity;
+import com.lostcodestudios.fools.gameplay.entities.Human;
 
 public class Fool extends Script {
 
@@ -26,8 +27,7 @@ public class Fool extends Script {
 	public void run(GameWorld gameWorld, ObjectMap<String, Object> args) {
 		// move the Fool with WASD
 		
-		Entity e = (Entity)args.get("e");
-		Body body = (Body)args.get("body");
+		Human e = (Human)args.get("e");
 		float delta = (Float)args.get("deltaTime");
 		OrthographicCamera camera = gameWorld.camera;
 		
@@ -49,7 +49,7 @@ public class Fool extends Script {
 
 		velocity.scl(FOOL_SPEED);
 
-		body.setLinearVelocity(velocity);
+		e.setVelocity(velocity);
 		
 		// control the camera with the mouse
 		

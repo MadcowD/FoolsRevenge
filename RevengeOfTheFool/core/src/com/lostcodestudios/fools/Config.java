@@ -54,5 +54,7 @@ public final class Config {
 
     public static void loadSpriteInfo() {
         spriteInfo.put("Fool", new AnimatedSpriteInfo(1, 1, 9, 11));
+        spriteInfo.put("King", new AnimatedSpriteInfo(31, 1, 7, 8));
+        spriteInfo.put("Guard", new AnimatedSpriteInfo(55, 1, 8, 8));
     }
 }

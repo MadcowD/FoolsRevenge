@@ -28,7 +28,7 @@
    eJzt2FGOgjAQAFA2HmOPgLh+8ulROIpH8SgezbJdAlZADUSazXvJxIBAYscy7RRF/n52RbPfFcXSCM9hBWEsm0OIMoxnFaIcxKvHh5iTy9a/5T/Yx1w0S54R7r/IxzrkIy9z+fj+mj/uyMd62nxUC+dHJR+r8b7Ki/mRF/MjL/KRF/n4rGf9kGPcX1/LGKdQC07dZ530QOpYa36vrfp7ruH+yzHmRD/liUE/5DyMv17HOYm7fkid/OfrOP7FXKQ9Ff2Ue2u8j5byPuutsZ5dynq4Z37kZSwfdTz3UJfHYqx+z13XRroOkI/eRD6uI7W8rfEP5+Zi6vp0HSAfPe+rvKjneTE/8pLsvydr8Nh3c/vzd57X7d83GYDMvFOfn9XlqXXAq7HNCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJ90AxxsrBY=
   </data>
  </layer>
- <objectgroup name="Physics" width="100" height="100" visible="0">
+ <objectgroup name="Physics" width="100" height="100">
   <object name="kingwall3" type="object" x="328" y="-2" width="15" height="106"/>
   <object name="kingwall1" type="object" x="329" y="0" width="148" height="16"/>
   <object name="kingwall2" type="object" x="465" y="0" width="13" height="101"/>
@@ -46,7 +46,7 @@
   <properties>
    <property name="ambientColor" value="25, 25, 25, 62"/>
   </properties>
-  <object type="Torch" x="461" y="57" width="6" height="5">
+  <object type="Torch" x="467" y="57" width="6" height="5">
    <properties>
     <property name="rotation" value="180"/>
    </properties>
@@ -58,43 +58,43 @@
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="461" y="42" width="6" height="5">
+  <object type="Torch" x="467" y="40" width="6" height="5">
    <properties>
     <property name="rotation" value="180"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="342" y="41" width="7" height="7">
+  <object type="Torch" x="335" y="40" width="7" height="7">
    <properties>
     <property name="rotation" value="0"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="343" y="58" width="6" height="5">
+  <object type="Torch" x="335" y="58" width="6" height="5">
    <properties>
     <property name="rotation" value="0"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="376" y="85" width="6" height="5">
+  <object type="Torch" x="378" y="91" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="360" y="85" width="6" height="5">
+  <object type="Torch" x="362" y="91" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="441" y="85" width="6" height="5">
+  <object type="Torch" x="441" y="91" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="425" y="85" width="6" height="5">
+  <object type="Torch" x="426" y="91" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
@@ -118,97 +118,97 @@
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="377" y="168" width="6" height="5">
+  <object type="Torch" x="377" y="171" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="425" y="168" width="6" height="5">
+  <object type="Torch" x="425" y="171" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="481" y="167" width="6" height="5">
+  <object type="Torch" x="480" y="170" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="526" y="155" width="6" height="5">
+  <object type="Torch" x="531" y="153" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="527" y="114" width="6" height="5">
+  <object type="Torch" x="531" y="114" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="489" y="101" width="6" height="5">
+  <object type="Torch" x="489" y="95" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="473" y="127" width="6" height="5">
+  <object type="Torch" x="473" y="131" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="449" y="140" width="6" height="5">
+  <object type="Torch" x="449" y="137" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="409" y="127" width="6" height="5">
+  <object type="Torch" x="410" y="131" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="393" y="127" width="6" height="5">
+  <object type="Torch" x="394" y="131" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="353" y="140" width="6" height="5">
+  <object type="Torch" x="353" y="136" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="329" y="127" width="6" height="5">
+  <object type="Torch" x="329" y="132" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="314" y="100" width="6" height="5">
+  <object type="Torch" x="313" y="94" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="276" y="114" width="6" height="5">
+  <object type="Torch" x="271" y="113" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="276" y="154" width="6" height="5">
+  <object type="Torch" x="272" y="153" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
    <ellipse/>
   </object>
-  <object type="Torch" x="321" y="168" width="6" height="5">
+  <object type="Torch" x="320" y="172" width="6" height="5">
    <properties>
     <property name="rotation" value="90"/>
    </properties>
@@ -223,7 +223,21 @@
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup name="Entities" width="100" height="100" visible="0">
-  <object name="Fool" type="Fool" x="400" y="56" width="8" height="8"/>
+ <objectgroup name="Entities" width="100" height="100">
+  <object name="Fool" type="Fool" x="400" y="56" width="8" height="8">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+  </object>
+  <object name="King" type="King" x="400" y="24" width="8" height="8">
+   <properties>
+    <property name="rotation" value="270"/>
+   </properties>
+  </object>
+  <object type="Guard" x="362" y="54" width="8" height="7">
+   <properties>
+    <property name="rotation" value="0"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
