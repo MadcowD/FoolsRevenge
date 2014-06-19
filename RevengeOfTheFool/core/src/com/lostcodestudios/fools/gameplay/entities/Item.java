@@ -69,8 +69,7 @@ public class Item extends Entity {
 
 	@Override
 	public void render(float deltaTime, GameWorld gameWorld) {
-		if (!(this instanceof Weapon))
-			sprite.render(gameWorld.spriteBatch, getPosition().cpy().scl(Config.PIXELS_PER_METER), getScale());
+		sprite.render(gameWorld.spriteBatch, getPosition().cpy().scl(Config.PIXELS_PER_METER), getScale());
 	}
 
 	@Override
@@ -81,9 +80,12 @@ public class Item extends Entity {
 	private float getScale() {
 		if (holder != null) return 4f; // half
 		
-		if (body != null) return 6f; // on ground
-		
-		return 8f; // in UI
+		return 6f; // on ground
+	}
+	
+	public void give(Human fool) {
+		// TODO give regular items to fool's inventory
+		this.holder = fool;
 	}
 
 }

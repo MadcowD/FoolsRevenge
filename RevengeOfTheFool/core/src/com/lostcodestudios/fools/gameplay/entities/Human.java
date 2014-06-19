@@ -6,7 +6,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.Config.AnimatedSpriteInfo;
@@ -25,7 +24,6 @@ public class Human extends Entity {
 	private ObjectMap<String, Object> updateScriptArgs = new ObjectMap<String, Object>();
 	private boolean runUpdateScript = false;
 	private GameWorld gameWorld;
-	private World world;
 	
 	public Body body;
 	
@@ -40,7 +38,6 @@ public class Human extends Entity {
 	public Human(GameWorld gameWorld, String animatedSpriteKey, Vector2 position) {
 		super(2);
 		this.gameWorld = gameWorld;
-		this.world = gameWorld.world;
 		AnimatedSpriteInfo info = Config.spriteInfo.get(animatedSpriteKey);
 
 		sprite = new AnimatedSprite(gameWorld.spriteSheet, info.frameX, info.frameY, info.frameWidth, info.frameHeight);
@@ -99,6 +96,17 @@ public class Human extends Entity {
 		}
 	}
 	
+	public boolean isDead() {
+		return this.health <= 0;
+	}
+	
+	public void heal(float amount) {
+		this.health += amount;
+		
+		if (this.health >= maxHealth) {
+			this.health = maxHealth;
+		}
+	}
 	
 	public void update(float deltaTime, GameWorld gameWorld) {
 		super.update(deltaTime, gameWorld);

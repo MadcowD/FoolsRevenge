@@ -2,9 +2,12 @@ package com.lostcodestudios.fools.gameplay;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -48,6 +51,9 @@ public class GameWorld {
 	private RayHandler rayHandler;
 	private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
 	public SpriteBatch spriteBatch = new SpriteBatch();
+	
+	public ShapeRenderer screenShapeRenderer = new ShapeRenderer();
+	public ShapeRenderer worldShapeRenderer = new ShapeRenderer();
 	
 	public EventFlagManager flags = new EventFlagManager();
 	public ScriptManager scripts = new ScriptManager(this);
@@ -122,6 +128,9 @@ public class GameWorld {
 		spriteBatch.dispose();
 		spriteSheet.dispose();
 		itemSheet.dispose();
+		
+		screenShapeRenderer.dispose();
+		worldShapeRenderer.dispose();
 	}
 	
 	public void pause() {
@@ -152,6 +161,9 @@ public class GameWorld {
 	}
 	
 	public void render(SpriteBatch spriteBatch, float delta) {
+		worldShapeRenderer.setProjectionMatrix(camera.combined);
+		
+		
 		if (!paused) {
 			update(delta);
 		}
@@ -172,6 +184,8 @@ public class GameWorld {
 		rayHandler.setCombinedMatrix(meterView);
 		rayHandler.updateAndRender();
 		
+		renderHUD((Human) specialEntities.get("Fool"), spriteBatch);
+		
 		dialog.render(spriteBatch, this.spriteBatch, delta);
 		
 		if (Config.debug) {
@@ -181,6 +195,59 @@ public class GameWorld {
 			
 			spriteBatch.begin();
 			TextManager.draw(spriteBatch, "debug", "Entities at cursor: " + n, 0, 50);
+			spriteBatch.end();
+		}
+	}
+	
+	private void renderHUD(Human fool, SpriteBatch spriteBatch) {
+		final float WEAPON_SLOT_X = 16;
+		final float WEAPON_SLOT_Y = 16;
+		final float WEAPON_SLOT_BORDER = 8;
+		final float WEAPON_SLOT_SIZE = 80;
+		final float HEALTH_BAR_X = 120;
+		final float HEALTH_BAR_Y = 36;
+		final float HEALTH_BAR_WIDTH = 256;
+		final float HEALTH_BAR_HEIGHT = 32;
+		final float HEALTH_BAR_BORDER = 8;
+		
+		screenShapeRenderer.begin(ShapeType.Filled);
+		screenShapeRenderer.setColor(Color.BLACK);
+		screenShapeRenderer.rect(WEAPON_SLOT_X, WEAPON_SLOT_Y, 
+				WEAPON_SLOT_SIZE + 2 * WEAPON_SLOT_BORDER, WEAPON_SLOT_BORDER);
+		screenShapeRenderer.rect(WEAPON_SLOT_X, WEAPON_SLOT_Y, 
+				WEAPON_SLOT_BORDER, WEAPON_SLOT_SIZE + 2 * WEAPON_SLOT_BORDER);
+		screenShapeRenderer.rect(WEAPON_SLOT_X, WEAPON_SLOT_Y + WEAPON_SLOT_SIZE + WEAPON_SLOT_BORDER,
+				WEAPON_SLOT_SIZE + 2 * WEAPON_SLOT_BORDER, WEAPON_SLOT_BORDER);
+		screenShapeRenderer.rect(WEAPON_SLOT_X + WEAPON_SLOT_SIZE + WEAPON_SLOT_BORDER,
+				WEAPON_SLOT_Y, WEAPON_SLOT_BORDER, WEAPON_SLOT_SIZE + 2 * WEAPON_SLOT_BORDER);
+		
+		screenShapeRenderer.setColor(Color.DARK_GRAY);
+		screenShapeRenderer.rect(WEAPON_SLOT_X + WEAPON_SLOT_BORDER,
+				WEAPON_SLOT_Y + WEAPON_SLOT_BORDER, WEAPON_SLOT_SIZE, WEAPON_SLOT_SIZE);
+		
+		screenShapeRenderer.setColor(Color.BLACK);
+		screenShapeRenderer.rect(HEALTH_BAR_X, HEALTH_BAR_Y,
+				HEALTH_BAR_WIDTH + 2 * HEALTH_BAR_BORDER, HEALTH_BAR_BORDER);
+		screenShapeRenderer.rect(HEALTH_BAR_X, HEALTH_BAR_Y, 
+				HEALTH_BAR_BORDER, HEALTH_BAR_HEIGHT + 2 * HEALTH_BAR_BORDER);
+		screenShapeRenderer.rect(HEALTH_BAR_X, 
+				HEALTH_BAR_Y + HEALTH_BAR_BORDER + HEALTH_BAR_HEIGHT, 
+				HEALTH_BAR_WIDTH + 2 * HEALTH_BAR_BORDER, HEALTH_BAR_BORDER);
+		screenShapeRenderer.rect(HEALTH_BAR_X + HEALTH_BAR_BORDER + HEALTH_BAR_WIDTH, 
+				HEALTH_BAR_Y, HEALTH_BAR_BORDER, HEALTH_BAR_HEIGHT + 2 * HEALTH_BAR_BORDER);
+		
+		screenShapeRenderer.setColor(Color.RED);
+		screenShapeRenderer.rect(HEALTH_BAR_X + HEALTH_BAR_BORDER, 
+				HEALTH_BAR_Y + HEALTH_BAR_BORDER, 
+				HEALTH_BAR_WIDTH * fool.healthFraction(), HEALTH_BAR_HEIGHT);
+		
+		screenShapeRenderer.end();
+		
+		if (fool.weapon != null) {
+			spriteBatch.begin();
+			fool.weapon.sprite.render(spriteBatch, 
+					new Vector2(WEAPON_SLOT_X + WEAPON_SLOT_BORDER + WEAPON_SLOT_SIZE / 2,
+							WEAPON_SLOT_Y + WEAPON_SLOT_BORDER + WEAPON_SLOT_SIZE / 2), 8f);
 			spriteBatch.end();
 		}
 	}

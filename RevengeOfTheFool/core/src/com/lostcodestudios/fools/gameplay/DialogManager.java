@@ -12,8 +12,8 @@ import com.lostcodestudios.fools.gameplay.entities.Entity;
 
 public class DialogManager {
 		//comment
-	private ShapeRenderer screenShapeRenderer = new ShapeRenderer();
-	private ShapeRenderer worldShapeRenderer = new ShapeRenderer();
+	private ShapeRenderer screenShapeRenderer;
+	private ShapeRenderer worldShapeRenderer;
 	
 	private Array<Dialog> dialogsToShow = new Array<Dialog>();
     private Array<VoiceBubble> voiceBubbles = new Array<VoiceBubble>();
@@ -22,17 +22,16 @@ public class DialogManager {
 
 	public DialogManager(GameWorld world) {
 		this.world = world;
+		
+		this.screenShapeRenderer = world.screenShapeRenderer;
+		this.worldShapeRenderer = world.worldShapeRenderer;
 	}
 	
 	public void dispose() {
-		screenShapeRenderer.dispose();
-		worldShapeRenderer.dispose();
 	}
 	
 	public void render(SpriteBatch spriteBatch, SpriteBatch worldSpriteBatch, float delta) {
 		//render voice bubbles
-		worldShapeRenderer.setProjectionMatrix(world.camera.combined);
-		
 		Iterator<VoiceBubble> it = voiceBubbles.iterator();
 		
 		while (it.hasNext()) {

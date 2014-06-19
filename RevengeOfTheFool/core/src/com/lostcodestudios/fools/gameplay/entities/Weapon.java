@@ -9,5 +9,26 @@ public class Weapon extends Item {
 	}
 	
 	public float meleeDamage;
+	
+	@Override
+	public void update(float deltaTime, GameWorld gameWorld) {
+		super.update(deltaTime, gameWorld);
+		
+		if (holder != null && ((Human) holder).isDead()) {
+			holder = null; // drop
+		}
+	}
 
+	@Override
+	public void render(float deltaTime, GameWorld gameWorld) {
+		if (holder == null)
+			super.render(deltaTime, gameWorld);
+	}
+	
+	@Override
+	public void give(Human fool) {
+		fool.weapon = this;
+		this.holder = fool;
+	}
+	
 }
