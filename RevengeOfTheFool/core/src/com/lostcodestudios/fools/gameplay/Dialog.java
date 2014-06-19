@@ -6,8 +6,11 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont.TextBounds;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.Vector2;
 import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.TextManager;
+import com.lostcodestudios.fools.gameplay.entities.Human;
+import com.lostcodestudios.fools.gameplay.entities.Item;
 
 public class Dialog {
 	
@@ -35,6 +38,8 @@ public class Dialog {
 	public boolean drawFullBackground;
 	public boolean drawBorder;
 	
+	public boolean drawInventory = false;
+	
 	public HAlignment alignment;
 	
 	public Dialog(String fontKey, String uiFontKey, String text, Color backgroundColor, Color borderColor, 
@@ -56,7 +61,7 @@ public class Dialog {
 		this.alignment = alignment;
 	}
 	
-	public void render(SpriteBatch spriteBatch, ShapeRenderer shapeRenderer) {
+	public void render(GameWorld world, SpriteBatch spriteBatch, ShapeRenderer shapeRenderer) {
 		
 		spriteBatch.begin();
 		
@@ -76,6 +81,11 @@ public class Dialog {
 			y = 0;
 			width = Config.SCREEN_WIDTH;
 			height = Config.SCREEN_HEIGHT;
+		} else if (drawInventory) {
+			width = DIALOG_WIDTH;
+			height = 400;
+			x = DIALOG_X;
+			y = DIALOG_Y - height;
 		} else {
 			width = DIALOG_WIDTH;
 			height = bounds.height + 2 * DIALOG_PADDING_Y + TextManager.getFont(uiFontKey).getLineHeight() * (3f/2);
@@ -103,9 +113,34 @@ public class Dialog {
 		TextManager.drawWrapped(spriteBatch, fontKey, text, 
 				DIALOG_X + DIALOG_PADDING_X, DIALOG_Y - DIALOG_PADDING_Y, DIALOG_WIDTH - 2 * DIALOG_PADDING_X, alignment);
 		
+		if (drawInventory) {
+			// TODO draw the inventory
+			
+			float itemX = x + DIALOG_PADDING_X + 32;
+			float itemY = DIALOG_Y - DIALOG_PADDING_Y - 96;
+			
+			for (Item item : ((Human)world.specialEntities.get("Fool")).inventory) {
+				item.sprite.render(spriteBatch, new Vector2(itemX, itemY), 8f);
+				
+				itemX += 64;
+				
+				if (itemX >= DIALOG_X + DIALOG_WIDTH - DIALOG_PADDING_X) {
+					itemX = x + DIALOG_PADDING_X + 32;
+					itemY += 64;
+				}
+			}
+			
+		}
+		
+		float acceptY = DIALOG_Y - DIALOG_PADDING_Y - textHeight - TextManager.getFont(uiFontKey).getLineHeight();
+		
+		if (drawInventory) {
+			acceptY -= 270;
+		}
+		
 		//And draw an accept message
 		TextManager.drawMultiline(spriteBatch, uiFontKey, Config.ACCEPT_TEXT, 
-				DIALOG_X + DIALOG_PADDING_X, DIALOG_Y - DIALOG_PADDING_Y - textHeight - TextManager.getFont(uiFontKey).getLineHeight(), 
+				DIALOG_X + DIALOG_PADDING_X, acceptY, 
 				DIALOG_WIDTH - 2 * DIALOG_PADDING_X, HAlignment.RIGHT);
 		
 		spriteBatch.end();

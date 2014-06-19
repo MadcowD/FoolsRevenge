@@ -112,6 +112,10 @@ public class Human extends Entity {
 		return this.health <= 0;
 	}
 	
+	public boolean foolCanPickpocket() {
+		return true; // TODO this should be conditional on AI state
+	}
+	
 	public void heal(float amount) {
 		this.health += amount;
 		

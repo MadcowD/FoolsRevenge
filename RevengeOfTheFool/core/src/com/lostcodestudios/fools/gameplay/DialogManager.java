@@ -58,7 +58,7 @@ public class DialogManager {
 		}
 		
 		if (dialogsToShow.size > 0) {
-			dialogsToShow.get(0).render(spriteBatch, screenShapeRenderer);
+			dialogsToShow.get(0).render(this.world, spriteBatch, screenShapeRenderer);
 		}
 	}
 	
@@ -86,6 +86,19 @@ public class DialogManager {
 				text, //"The King's rage shook the castle like thunder.", 
 				Color.BLACK, Color.BLACK, true, false, 
 				HAlignment.CENTER));
+	}
+	
+	public void showInventory() {
+		Dialog dialog = new Dialog("dialog-black", "ui-black", "Items", Color.GRAY, Config.DIALOG_BORDER_COLOR, false, true, HAlignment.CENTER);
+		
+		dialog.bgColor1 = Config.DIALOG_WINDOW_COLOR_1;
+        dialog.bgColor2 = Config.DIALOG_WINDOW_COLOR_2;
+        dialog.bgColor3 = Config.DIALOG_WINDOW_COLOR_3;
+        dialog.bgColor4 = Config.DIALOG_WINDOW_COLOR_4;
+
+        dialog.drawInventory = true;
+        
+		showDialog(dialog);
 	}
 	
 	public void showVoiceBubble(String text, Entity speaker, float time) {

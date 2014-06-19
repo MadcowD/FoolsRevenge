@@ -84,7 +84,8 @@ public class Item extends Entity {
 				
 				float distance = gameWorld.specialEntities.get("Fool").getPosition().sub(this.getPosition()).len();
 				
-				selected = body.getFixtureList().get(0).testPoint(gameWorld.worldCursorPosition()) && distance <= PICKPOCKET_DISTANCE;
+				selected = body.getFixtureList().get(0).testPoint(gameWorld.worldCursorPosition())
+						&& distance <= PICKPOCKET_DISTANCE && ((Human) holder).foolCanPickpocket();
 			}
 		}
 		

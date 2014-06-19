@@ -275,6 +275,12 @@ public class GameWorld {
 	private void update(float delta) {
 		if (input.wasKeyPressed(Keys.ESCAPE)) {
 			dialog.showDialogWindow("Paused");
+			return;
+		}
+		
+		if (input.wasKeyPressed(Keys.R)) {
+			dialog.showInventory();
+			return;
 		}
 		
 		scripts.update(delta);
