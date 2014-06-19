@@ -2,13 +2,13 @@ package com.lostcodestudios.fools.gameplay.entities;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.Config.AnimatedSpriteInfo;
@@ -21,6 +21,7 @@ public class Human extends Entity {
 	public static final float RADIUS = 0.25f;
 	
 	private static final float DEFAULT_HEALTH = 5f;
+	private static final float HEALTH_POTION_VALUE = 5f;
 	
 	private AnimatedSprite sprite;
 	private String updateScriptBody;
@@ -40,6 +41,10 @@ public class Human extends Entity {
 	public float knockbackTime = 0f; // humans don't control velocity while being knocked back
 	
 	public Weapon weapon;
+	
+	public Array<Item> inventory = new Array<Item>();
+	
+	public int healthPotions;
 	
 	public Human(GameWorld gameWorld, String animatedSpriteKey, Vector2 position) {
 		super(2);
@@ -112,6 +117,13 @@ public class Human extends Entity {
 		
 		if (this.health >= maxHealth) {
 			this.health = maxHealth;
+		}
+	}
+	
+	public void drinkHealthPotion() {
+		if (this.healthPotions > 0) {
+			heal(HEALTH_POTION_VALUE);
+			--this.healthPotions;
 		}
 	}
 	

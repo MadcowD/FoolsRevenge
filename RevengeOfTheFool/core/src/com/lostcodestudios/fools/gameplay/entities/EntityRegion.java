@@ -1,6 +1,5 @@
 package com.lostcodestudios.fools.gameplay.entities;
 
-import java.util.ArrayList;
 import java.util.Stack;
 
 import com.badlogic.gdx.math.Rectangle;
@@ -166,7 +165,7 @@ public class EntityRegion {
 	 */
 	public void rebalance(){
 		//Remove entities.
-		this.entities.removeAll(removed, false);
+		this.entities.removeAll(removed, true);
 		removed.clear();
 
 		//Add entities
@@ -178,7 +177,7 @@ public class EntityRegion {
 
 		while(changed.size() > 0){
 			Entity e = changed.pop();
-			this.entities.removeValue(e, false);
+			this.entities.removeValue(e, true);
 			change(e);
 		}
 
@@ -228,7 +227,7 @@ public class EntityRegion {
 	public boolean remove(Entity e){
 		balanced = false;
 		if(this.contains(e.getPosition())){
-			if(this.entities.contains(e, false))
+			if(this.entities.contains(e, true))
 				removed.add(e);
 			else if(this.subRegions != null)
 				for(EntityRegion sub : subRegions)
@@ -291,7 +290,7 @@ public class EntityRegion {
 	 * @return Whether or not the entity is contained within the region or any following sub-regions.
 	 */
 	public boolean contains(Entity e){
-		if(this.entities.contains(e, false))
+		if(this.entities.contains(e, true))
 			return true;
 
 		//Checks the sub regions.

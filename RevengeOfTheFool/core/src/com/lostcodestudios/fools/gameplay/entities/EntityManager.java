@@ -64,6 +64,22 @@ public class EntityManager {
 		});
 		
 		gameWorld.worldShapeRenderer.end();
+		
+		gameWorld.spriteBatch.begin();
+		
+		root.executeBy(cameraBounds, new EntityProcess(){
+			public void run(Entity e) {
+				if (e instanceof Item) {
+					Item i = (Item)e;
+					
+					if (i.selected) 
+						i.renderText(gameWorld);
+				}
+			}
+		});
+		
+		gameWorld.spriteBatch.end();
+		
 	}
 	
 	public Array<Entity> entitiesAtCursor(Rectangle cameraBounds) {

@@ -2,7 +2,6 @@ package com.lostcodestudios.fools.tests;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.badlogic.gdx.math.Rectangle;

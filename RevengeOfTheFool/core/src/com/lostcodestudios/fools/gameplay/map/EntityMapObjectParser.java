@@ -70,8 +70,14 @@ public class EntityMapObjectParser {
 				
 				world.entities.add(sword);
 				
-				Item key = new Item(world, e, "GoldKey");
+				Item key = new Item(world, e, "Gold Key");
 				world.entities.add(key);
+			}
+			
+			if (type.equals("Health Potion")) {
+				e = new Item(world, position, "Health Potion");
+				
+				world.entities.add(e);
 			}
 			
 			// TODO load other types of entities

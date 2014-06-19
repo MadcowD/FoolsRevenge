@@ -5,11 +5,9 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.gameplay.GameWorld;
-import com.lostcodestudios.fools.gameplay.entities.Entity;
 import com.lostcodestudios.fools.gameplay.entities.Human;
 
 public class Fool extends Script {
@@ -50,6 +48,11 @@ public class Fool extends Script {
 		velocity.scl(FOOL_SPEED);
 
 		e.setVelocity(velocity);
+		
+		// drink potions with Q
+		if (gameWorld.input.wasKeyPressed(Keys.Q)) {
+			e.drinkHealthPotion();
+		}
 		
 		// control the camera with the mouse
 		

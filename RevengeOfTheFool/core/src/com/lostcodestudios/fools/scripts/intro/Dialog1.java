@@ -2,7 +2,6 @@ package com.lostcodestudios.fools.scripts.intro;
 
 import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.gameplay.GameWorld;
-import com.lostcodestudios.fools.gameplay.entities.Human;
 import com.lostcodestudios.fools.scripts.Script;
 
 public class Dialog1 extends Script {

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.maps.MapProperties;
@@ -62,6 +63,8 @@ public class GameWorld {
 	public Texture spriteSheet;
 	public Texture itemSheet;
 	
+	private TextureRegion potionRegion;
+	
 	private float elapsedTime = 0f;
 	
 	private boolean paused;
@@ -105,6 +108,9 @@ public class GameWorld {
         
         spriteSheet = new Texture("characters.png");
         itemSheet = new Texture("items.png");
+        
+        Rectangle potionRect = Config.itemSpriteInfo.get("Health Potion");
+        potionRegion = new TextureRegion(itemSheet, (int)potionRect.x, (int)potionRect.y, (int)potionRect.width, (int)potionRect.height);
         
         // load entities from the tile map
         EntityMapObjectParser entityParser = new EntityMapObjectParser();
@@ -204,10 +210,12 @@ public class GameWorld {
 		final float WEAPON_SLOT_BORDER = 8;
 		final float WEAPON_SLOT_SIZE = 80;
 		final float HEALTH_BAR_X = 120;
-		final float HEALTH_BAR_Y = 36;
+		final float HEALTH_BAR_Y = 16;
 		final float HEALTH_BAR_WIDTH = 256;
 		final float HEALTH_BAR_HEIGHT = 32;
 		final float HEALTH_BAR_BORDER = 8;
+		final float POTIONS_X = 396;
+		final float POTIONS_Y = 16;
 		
 		screenShapeRenderer.begin(ShapeType.Filled);
 		screenShapeRenderer.setColor(Color.BLACK);
@@ -242,13 +250,19 @@ public class GameWorld {
 		
 		screenShapeRenderer.end();
 		
+		spriteBatch.begin();
+		
 		if (fool.weapon != null) {
-			spriteBatch.begin();
+
 			fool.weapon.sprite.render(spriteBatch, 
 					new Vector2(WEAPON_SLOT_X + WEAPON_SLOT_BORDER + WEAPON_SLOT_SIZE / 2,
 							WEAPON_SLOT_Y + WEAPON_SLOT_BORDER + WEAPON_SLOT_SIZE / 2), 8f);
-			spriteBatch.end();
 		}
+		
+		spriteBatch.draw(potionRegion, POTIONS_X, POTIONS_Y, 48f, 48f);
+		TextManager.draw(spriteBatch, "ui-white", "" + fool.healthPotions, POTIONS_X + 56, POTIONS_Y + 24);
+		
+		spriteBatch.end();
 	}
 
 	public Rectangle getCameraBounds() {

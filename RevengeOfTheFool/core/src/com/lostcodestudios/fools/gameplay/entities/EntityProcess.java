@@ -1,5 +1,4 @@
 package com.lostcodestudios.fools.gameplay.entities;
-import com.lostcodestudios.fools.gameplay.GameWorld;
 
 /**
  * An entity process functor which runs a command on entities.

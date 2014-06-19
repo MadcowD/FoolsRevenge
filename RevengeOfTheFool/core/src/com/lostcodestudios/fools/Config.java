@@ -62,9 +62,10 @@ public final class Config {
     public static ObjectMap<String, Rectangle> itemSpriteInfo = new ObjectMap<String, Rectangle>();
     
     public static void loadItemSpriteInfo() {
-    	itemSpriteInfo.put("GoldKey", new Rectangle(1, 1, 4, 8));
-    	itemSpriteInfo.put("SilverKey", new Rectangle(6, 1, 4, 8));
-    	itemSpriteInfo.put("BrassKey", new Rectangle(11, 1, 4, 8));
+    	itemSpriteInfo.put("Gold Key", new Rectangle(1, 1, 4, 8));
+    	itemSpriteInfo.put("Silver Key", new Rectangle(6, 1, 4, 8));
+    	itemSpriteInfo.put("Brass Key", new Rectangle(11, 1, 4, 8));
     	itemSpriteInfo.put("Sword", new Rectangle(16, 1, 8, 8));
+    	itemSpriteInfo.put("Health Potion", new Rectangle(1, 10, 6, 6));
     }
 }

@@ -7,7 +7,7 @@ import com.lostcodestudios.fools.gameplay.entities.Human;
 
 public class Guard extends Script {
 	
-	private static final float SPEED = 4f;
+	private static final float SPEED = 2f;
 	
 	static {
 		Script.Register(new Guard());
