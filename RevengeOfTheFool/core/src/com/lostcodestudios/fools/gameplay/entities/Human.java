@@ -1,5 +1,7 @@
 package com.lostcodestudios.fools.gameplay.entities;
 
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -153,6 +155,14 @@ public class Human extends Entity {
 		}
 		
 		sprite.render(gameWorld.spriteBatch, getPosition().cpy().scl(Config.PIXELS_PER_METER));
+		
+		// health bar
+		ShapeRenderer shapeRenderer = gameWorld.worldShapeRenderer;
+		shapeRenderer.begin(ShapeType.Filled);
+		
+		
+		
+		shapeRenderer.end();
 	}
 
 	
