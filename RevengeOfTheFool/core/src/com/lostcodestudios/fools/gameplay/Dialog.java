@@ -37,7 +37,6 @@ public class Dialog {
 	
 	public HAlignment alignment;
 	
-	//TODO delete the constructor and have DialogManager create them from a show() method
 	public Dialog(String fontKey, String uiFontKey, String text, Color backgroundColor, Color borderColor, 
 			boolean drawFullBackground, boolean drawBorder, HAlignment alignment) {
 		

@@ -1,5 +1,6 @@
 package com.lostcodestudios.fools.gameplay;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -195,12 +196,6 @@ public class GameWorld {
 		
 		if (Config.debug) {
 			debugRenderer.render(world, meterView);
-			
-			int n = entities.entitiesAtCursor(cameraBounds).size;
-			
-			spriteBatch.begin();
-			TextManager.draw(spriteBatch, "debug", "Entities at cursor: " + n, 0, 50);
-			spriteBatch.end();
 		}
 	}
 	
@@ -309,6 +304,14 @@ public class GameWorld {
 	
 	public void destroyBody(Body body) {
 		bodiesToDestroy.add(body);
+	}
+	
+	public Vector2 worldCursorPosition() {
+		Vector2 worldCursorPosition = new Vector2(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
+		worldCursorPosition.add(camera.position.x - camera.viewportWidth / 2, camera.position.y - camera.viewportHeight / 2);
+		worldCursorPosition.scl(1f / Config.PIXELS_PER_METER);
+		
+		return worldCursorPosition;
 	}
 	
 }

@@ -72,6 +72,20 @@ public class Item extends Entity {
 		
 		if (holder != null) {
 			body.setTransform(holder.getPosition(), 0f);
+			
+			// check if the item needs to drop, or if player can pick-pocket this item
+			if (!(this instanceof Weapon)) {
+				if (((Human)holder).isDead()) {
+					holder = null;
+					return;
+				}
+				
+				final float PICKPOCKET_DISTANCE = 3f;
+				
+				float distance = gameWorld.specialEntities.get("Fool").getPosition().sub(this.getPosition()).len();
+				
+				selected = body.getFixtureList().get(0).testPoint(gameWorld.worldCursorPosition()) && distance <= PICKPOCKET_DISTANCE;
+			}
 		}
 		
 		if (selected) {
