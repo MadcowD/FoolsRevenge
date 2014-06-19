@@ -1,5 +1,6 @@
 package com.lostcodestudios.fools.gameplay.entities;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
@@ -26,6 +27,8 @@ public class Human extends Entity {
 	private ObjectMap<String, Object> updateScriptArgs = new ObjectMap<String, Object>();
 	private boolean runUpdateScript = false;
 	private GameWorld gameWorld;
+	
+	public String tag = "";
 	public String group = "";
 	
 	public Body body;
@@ -155,14 +158,24 @@ public class Human extends Entity {
 		}
 		
 		sprite.render(gameWorld.spriteBatch, getPosition().cpy().scl(Config.PIXELS_PER_METER));
-		
-		// health bar
-		ShapeRenderer shapeRenderer = gameWorld.worldShapeRenderer;
-		shapeRenderer.begin(ShapeType.Filled);
-		
-		
-		
-		shapeRenderer.end();
+	}
+	
+	public void renderHealthBar(GameWorld gameWorld) {
+		if (!tag.equals("Fool")) {
+			final float OFFSET_Y = 48;
+			final float WIDTH = 48;
+			final float HEIGHT = 4;
+			
+			// health bar
+			ShapeRenderer shapeRenderer = gameWorld.worldShapeRenderer;
+			
+			shapeRenderer.setColor(Color.MAROON);
+			shapeRenderer.rect(getPosition().x * Config.PIXELS_PER_METER - WIDTH / 2, getPosition().y * Config.PIXELS_PER_METER + OFFSET_Y,
+					WIDTH, HEIGHT);
+			shapeRenderer.setColor(Color.RED);
+			shapeRenderer.rect(getPosition().x * Config.PIXELS_PER_METER - WIDTH / 2, getPosition().y * Config.PIXELS_PER_METER + OFFSET_Y,
+					WIDTH * healthFraction(), HEIGHT);
+		}
 	}
 
 	

@@ -44,6 +44,14 @@ public class EntityMapObjectParser {
 			if (type.equals("Fool")) {
 				e = new Human(world, "Fool", position, "com.lostcodestudios.fools.scripts.Fool", null);
 				((Human) e).group = "Fool";
+				((Human) e).tag = "Fool";
+				
+				Weapon sword = new Weapon(world, e, "Sword");
+				sword.meleeDamage = 2.5f;
+				
+				((Human) e).weapon = sword;
+				
+				world.entities.add(sword);
 			}
 			
 			if (type.equals("King")) {

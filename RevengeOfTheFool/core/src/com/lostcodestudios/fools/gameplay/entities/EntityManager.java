@@ -1,6 +1,7 @@
 package com.lostcodestudios.fools.gameplay.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -51,6 +52,18 @@ public class EntityManager {
 		});
 		
 		gameWorld.spriteBatch.end();
+		
+		gameWorld.worldShapeRenderer.begin(ShapeType.Filled);
+		
+		root.executeBy(cameraBounds, new EntityProcess(){
+			public void run(Entity e) {
+				if (e instanceof Human) {
+					((Human) e).renderHealthBar(gameWorld);
+				}
+			}
+		});
+		
+		gameWorld.worldShapeRenderer.end();
 	}
 	
 	public Array<Entity> entitiesAtCursor(Rectangle cameraBounds) {
