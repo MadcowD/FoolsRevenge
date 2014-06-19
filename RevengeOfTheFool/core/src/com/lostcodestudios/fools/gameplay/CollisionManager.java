@@ -49,27 +49,30 @@ public class CollisionManager implements ContactListener {
 			Human humanA = (Human) bodyA.getUserData();
 			Human humanB = (Human) bodyB.getUserData();
 			
-			float damageA = 0f;
-			float damageB = 0f;
+			if (!humanA.group.equals(humanB.group)) { // entities of same group don't hurt 
 			
-			if (humanA.weapon != null) {
-				damageA = humanA.weapon.meleeDamage;
+				float damageA = 0f;
+				float damageB = 0f;
+				
+				if (humanA.weapon != null) {
+					damageA = humanA.weapon.meleeDamage;
+				}
+				if (humanB.weapon != null) {
+					damageB = humanB.weapon.meleeDamage;
+				}
+				
+				humanA.damage(damageB, humanB);
+				humanB.damage(damageA, humanA);
+				
+				float knockbackA = Math.max(damageB - damageA, 0) * 2;
+				float knockbackB = Math.max(damageA - damageB, 0) * 2;
+				
+				humanA.body.setLinearVelocity(humanB.getVelocity().cpy().nor().scl(knockbackA));
+				humanB.body.setLinearVelocity(humanA.getVelocity().cpy().nor().scl(knockbackB));
+				
+				humanA.knockbackTime = KNOCKBACK_TIME;
+				humanB.knockbackTime = KNOCKBACK_TIME;
 			}
-			if (humanB.weapon != null) {
-				damageB = humanB.weapon.meleeDamage;
-			}
-			
-			humanA.damage(damageB);
-			humanB.damage(damageA);
-			
-			float knockbackA = Math.max(damageB - damageA, 0) * 2;
-			float knockbackB = Math.max(damageA - damageB, 0) * 2;
-			
-			humanA.body.setLinearVelocity(humanB.getVelocity().cpy().nor().scl(knockbackA));
-			humanB.body.setLinearVelocity(humanA.getVelocity().cpy().nor().scl(knockbackB));
-			
-			humanA.knockbackTime = KNOCKBACK_TIME;
-			humanB.knockbackTime = KNOCKBACK_TIME;
 		}
 		
 	}

@@ -24,6 +24,7 @@ public class Human extends Entity {
 	private ObjectMap<String, Object> updateScriptArgs = new ObjectMap<String, Object>();
 	private boolean runUpdateScript = false;
 	private GameWorld gameWorld;
+	public String group = "";
 	
 	public Body body;
 	
@@ -83,7 +84,7 @@ public class Human extends Entity {
 		return health / maxHealth;
 	}
 	
-	public void damage(float amount) {
+	public void damage(float amount, Human attacker) {
 		this.health -= amount;
 		
 		if (this.health <= 0) {
@@ -91,6 +92,7 @@ public class Human extends Entity {
 			this.delete();
 			
 			if (this.deathScript != null && !this.deathScript.isEmpty()) {
+				updateScriptArgs.put("killer", attacker);
 				gameWorld.scripts.runScript(deathScript, updateScriptArgs);
 			}
 		}

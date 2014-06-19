@@ -19,12 +19,16 @@ public class Guard extends Script {
 		
 		Human guard = (Human) args.get("e");
 		
-		Vector2 dir = fool.getPosition().cpy().sub(guard.getPosition().cpy());
-		dir.nor();
-		
-		dir.scl(SPEED);
-		
-		guard.setVelocity(dir);
+		if (!fool.isDead()) {
+			Vector2 dir = fool.getPosition().cpy().sub(guard.getPosition().cpy());
+			dir.nor();
+			
+			dir.scl(SPEED);
+			
+			guard.setVelocity(dir);
+		} else {
+			guard.setVelocity(new Vector2());
+		}
 	}
 
 }
