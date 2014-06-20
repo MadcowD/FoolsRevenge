@@ -10,6 +10,8 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.EllipseMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Ellipse;
 
 public class Box2DLightsMapObjectParser {
@@ -40,18 +42,6 @@ public class Box2DLightsMapObjectParser {
 			float x = unitScale * (ellipse.x + ellipse.width / 2);
 			float y = unitScale * (ellipse.y + ellipse.height / 2);
 			
-			//lights defined by preset
-			if (type.equals("Torch")) {
-				PointLight light = new PointLight(rayHandler, 180, 
-						new Color(255f / 255, 123f / 255, 0f / 255, 200f / 255), 5, x, y);
-				
-				light.setStaticLight(true);
-				light.setSoftnessLength(4);
-				
-				continue;
-			}
-			
-			
 			//lights fully defined from map
 			
 			//average the ellipse's dimensions to find a "radius"
@@ -74,6 +64,31 @@ public class Box2DLightsMapObjectParser {
 				
 				ConeLight light = new ConeLight(rayHandler, rays, color, distance, x, y, rotation, coneDegrees);
 				light.setXray(xray);
+			}
+		}
+	}
+	
+	public void load(RayHandler rayHandler, TiledMapTileLayer layer) {
+		int width = layer.getWidth();
+		int height = layer.getHeight();
+		
+		for (int x = 0; x < width; ++x) {
+			for (int y = 0; y < height; ++y) {
+				Cell cell = layer.getCell(x, y);
+				
+				if (cell != null) {
+				
+					MapProperties properties = cell.getTile().getProperties();
+					
+					if (properties.containsKey("torch")) {
+						PointLight light = new PointLight(rayHandler, 180, 
+								new Color(255f / 255, 123f / 255, 0f / 255, 200f / 255), 5, 0.5f + x, 0.5f + y);
+						
+						light.setStaticLight(true);
+						light.setSoftnessLength(4);
+					}
+					
+				}
 			}
 		}
 	}

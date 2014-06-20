@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Matrix4;
@@ -102,6 +103,7 @@ public class GameWorld {
 		Box2DLightsMapObjectParser lightObjectParser = new Box2DLightsMapObjectParser();
 		lightObjectParser.setUnitScale(1f / Config.SPRITE_SCALE);
 		lightObjectParser.load(rayHandler, tileMap.getLayers().get("Lights"));
+		lightObjectParser.load(rayHandler, (TiledMapTileLayer) tileMap.getLayers().get("Objects"));
 		
 		paused = false;
 		

@@ -17,15 +17,20 @@
  </tileset>
  <tileset firstgid="805" name="Tiles" tilewidth="8" tileheight="8" spacing="2" margin="1">
   <image source="tiles.png" width="128" height="128"/>
+  <tile id="8">
+   <properties>
+    <property name="torch" value=""/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="Floor" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1EsKgzAUhtFAV1Q77mPpLq10UAg1xtTWeJFz4B+JEz+8KQFHcD+ldC7ska30/PUe/1frcdOjO/9HLHM9lqbHNvSIpdbjqkd3/o9Y9Iil1ONSmB77yluwPz22kd+YoWG1e9X6/ntMrekxNz1+p0csvb+PHnV6xPJxb8aWrb1V7tUyPWLR4xh811j0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvvEE3PhetA==
+   eJzt1EsKwjAUhtGAK1LHPqbu2qWJAyFomobWppdwDvyj0kk/elMCRnA7pHQs7J6t9Pz9Hv9X63HVozv/RyxTPeamxzb0iKXW46JHd/6PWPSIpdTjXJge+8pbsD89tpHfmFPDaveq9f3P+LWkx9T0WE+PWHp/Hz3q9Ijl6948W7b0VrlX8/SIRY8x+K6x6AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArPFoGP3oEcuoPV7pjmZn
   </data>
  </layer>
  <layer name="Objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2FGOgjAQAFA2HmOPgLh+8ulROIpH8SgezbJdAlZADUSazXvJxIBAYscy7RRF/n52RbPfFcXSCM9hBWEsm0OIMoxnFaIcxKvHh5iTy9a/5T/Yx1w0S54R7r/IxzrkIy9z+fj+mj/uyMd62nxUC+dHJR+r8b7Ki/mRF/MjL/KRF/n4rGf9kGPcX1/LGKdQC07dZ530QOpYa36vrfp7ruH+yzHmRD/liUE/5DyMv17HOYm7fkid/OfrOP7FXKQ9Ff2Ue2u8j5byPuutsZ5dynq4Z37kZSwfdTz3UJfHYqx+z13XRroOkI/eRD6uI7W8rfEP5+Zi6vp0HSAfPe+rvKjneTE/8pLsvydr8Nh3c/vzd57X7d83GYDMvFOfn9XlqXXAq7HNCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJ90AxxsrBY=
+   eJzt2E2OgkAQBlAmHmM2s1cclyw9ikfxKBzFw3gQm2kN2vKjgUhn8l5SMSoQ7S9QUEWRv99VcdisimJqheMwg7CWh22odVjPMtT6rl59v42Z1Ev/l/9gE7M4TDlG2L+WxzzkkZehPL6/ht/fyGM+TR7lxPOjlMdsXK/y4vzIi/MjL/LIizw+a2wesovP16d1rH3oBfvba5XMQKrYa/62Ldt9TmH/ehczMU8ZcTcPOd7XddZxTOphHhLWvz5fjxNej1Vc/2Ko0pmKecqjOa5HU7metea4n53K/XDL+ZGXrjyq+NlTX+6qrv49tF1T6X2APFo9eZw6ennT458+G6q+7atk7eXRcr3Ki36eF+dHXpLn794e3PXd0PP5O8e7Pb8vsgCZeac/j/XlvvuAV2uZFQAAAOCTmhlJqJ+lfweRPPJShSzSeQvLOo9vwgeFPPZL/waiKs6HyYR+nhd5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAay5WPLcC
   </data>
  </layer>
  <objectgroup name="Physics" width="100" height="100">
@@ -46,174 +51,6 @@
   <properties>
    <property name="ambientColor" value="25, 25, 25, 62"/>
   </properties>
-  <object type="Torch" x="467" y="57" width="6" height="5">
-   <properties>
-    <property name="rotation" value="180"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="449" y="8" width="6" height="5">
-   <properties>
-    <property name="rotation" value="270"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="467" y="40" width="6" height="5">
-   <properties>
-    <property name="rotation" value="180"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="335" y="40" width="7" height="7">
-   <properties>
-    <property name="rotation" value="0"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="335" y="58" width="6" height="5">
-   <properties>
-    <property name="rotation" value="0"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="378" y="91" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="362" y="91" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="441" y="91" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="426" y="91" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="417" y="9" width="6" height="5">
-   <properties>
-    <property name="rotation" value="270"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="385" y="9" width="6" height="5">
-   <properties>
-    <property name="rotation" value="270"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="353" y="8" width="6" height="5">
-   <properties>
-    <property name="rotation" value="270"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="377" y="171" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="425" y="171" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="480" y="170" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="531" y="153" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="531" y="114" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="489" y="95" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="473" y="131" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="449" y="137" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="410" y="131" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="394" y="131" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="353" y="136" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="329" y="132" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="313" y="94" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="271" y="113" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="272" y="153" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object type="Torch" x="320" y="172" width="6" height="5">
-   <properties>
-    <property name="rotation" value="90"/>
-   </properties>
-   <ellipse/>
-  </object>
   <object type="Point" x="331" y="-10" width="143" height="138">
    <properties>
     <property name="color" value="100, 100, 100, 200"/>
