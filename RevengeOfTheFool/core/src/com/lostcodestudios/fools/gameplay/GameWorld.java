@@ -74,6 +74,8 @@ public class GameWorld {
 	
 	private Rectangle bounds;
 	
+	public boolean cutsceneMode = true;
+	
 	public ObjectMap<String, Entity> specialEntities = new ObjectMap<String, Entity>();
 	public GameWorld(InputManager input) {
 		this.input = input;
@@ -195,11 +197,15 @@ public class GameWorld {
 		rayHandler.setCombinedMatrix(meterView);
 		rayHandler.updateAndRender();
 		
-		renderHUD((Human) specialEntities.get("Fool"), spriteBatch);
+		if (!cutsceneMode) {
 		
+			renderHUD((Human) specialEntities.get("Fool"), spriteBatch);
+		
+		}
+			
 		dialog.render(spriteBatch, this.spriteBatch, delta);
 		
-		if (Config.debug) {
+		if (Config.debug && !paused) {
 			debugRenderer.render(world, meterView);
 		}
 	}

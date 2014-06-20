@@ -53,39 +53,45 @@ public class EntityManager {
 		
 		gameWorld.spriteBatch.end();
 		
-		gameWorld.worldShapeRenderer.begin(ShapeType.Filled);
+		if (!gameWorld.cutsceneMode) {
 		
-		root.executeBy(cameraBounds, new EntityProcess(){
-			public void run(Entity e) {
-				if (e instanceof Human) {
-					((Human) e).renderHealthBar(gameWorld);
-				}
-			}
-		});
-		
-		gameWorld.worldShapeRenderer.end();
-		
-		gameWorld.spriteBatch.begin();
-		
-		root.executeBy(cameraBounds, new EntityProcess(){
-			public void run(Entity e) {
-				if (e instanceof Item) {
-					Item i = (Item)e;
-					
-					if (i.selected) 
-						i.renderText(gameWorld);
-				} else if (e instanceof Door) {
-					Door d = (Door)e;
-					
-					if (d.selected) {
-						d.renderText(gameWorld);
+			// render health bars
+			
+			gameWorld.worldShapeRenderer.begin(ShapeType.Filled);
+			
+			root.executeBy(cameraBounds, new EntityProcess(){
+				public void run(Entity e) {
+					if (e instanceof Human) {
+						((Human) e).renderHealthBar(gameWorld);
 					}
 				}
-			}
-		});
+			});
+			
+			gameWorld.worldShapeRenderer.end();
+			
+			// render HUD texts
+			
+			gameWorld.spriteBatch.begin();
+			
+			root.executeBy(cameraBounds, new EntityProcess(){
+				public void run(Entity e) {
+					if (e instanceof Item) {
+						Item i = (Item)e;
+						
+						if (i.selected) 
+							i.renderText(gameWorld);
+					} else if (e instanceof Door) {
+						Door d = (Door)e;
+						
+						if (d.selected) {
+							d.renderText(gameWorld);
+						}
+					}
+				}
+			});
 		
-		gameWorld.spriteBatch.end();
-		
+			gameWorld.spriteBatch.end();
+		}
 	}
 	
 	//-----------------------------------

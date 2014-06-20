@@ -138,7 +138,10 @@ public class Human extends Entity {
 		
 		if (knockbackTime > 0) {
 			knockbackTime -= deltaTime;
-			if (knockbackTime < 0) knockbackTime = 0;
+			if (knockbackTime < 0) {
+				knockbackTime = 0;
+				setVelocity(new Vector2()); // stop being knocked back
+			}
 		}
 		
 		if (runUpdateScript) {
