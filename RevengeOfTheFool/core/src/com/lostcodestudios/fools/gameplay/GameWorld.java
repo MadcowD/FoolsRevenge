@@ -64,6 +64,7 @@ public class GameWorld {
 	public InputManager input;
 	public Texture spriteSheet;
 	public Texture itemSheet;
+	public Texture doorSpriteSheet;
 	
 	private TextureRegion potionRegion;
 	
@@ -111,6 +112,7 @@ public class GameWorld {
         
         spriteSheet = new Texture("characters.png");
         itemSheet = new Texture("items.png");
+        doorSpriteSheet = new Texture("doors.png");
         
         Rectangle potionRect = Config.itemSpriteInfo.get("Health Potion");
         potionRegion = new TextureRegion(itemSheet, (int)potionRect.x, (int)potionRect.y, (int)potionRect.width, (int)potionRect.height);
@@ -136,6 +138,7 @@ public class GameWorld {
 		spriteBatch.dispose();
 		spriteSheet.dispose();
 		itemSheet.dispose();
+		doorSpriteSheet.dispose();
 		
 		screenShapeRenderer.dispose();
 		worldShapeRenderer.dispose();

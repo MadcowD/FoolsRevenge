@@ -74,6 +74,12 @@ public class EntityManager {
 					
 					if (i.selected) 
 						i.renderText(gameWorld);
+				} else if (e instanceof Door) {
+					Door d = (Door)e;
+					
+					if (d.selected) {
+						d.renderText(gameWorld);
+					}
 				}
 			}
 		});

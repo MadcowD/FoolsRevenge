@@ -30,7 +30,7 @@
  </layer>
  <layer name="Objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2E2OgkAQBlAmHmM2s1cclyw9ikfxKBzFw3gQm2kN2vKjgUhn8l5SMSoQ7S9QUEWRv99VcdisimJqheMwg7CWh22odVjPMtT6rl59v42Z1Ev/l/9gE7M4TDlG2L+WxzzkkZehPL6/ht/fyGM+TR7lxPOjlMdsXK/y4vzIi/MjL/LIizw+a2wesovP16d1rH3oBfvba5XMQKrYa/62Ldt9TmH/ehczMU8ZcTcPOd7XddZxTOphHhLWvz5fjxNej1Vc/2Ko0pmKecqjOa5HU7metea4n53K/XDL+ZGXrjyq+NlTX+6qrv49tF1T6X2APFo9eZw6ennT458+G6q+7atk7eXRcr3Ki36eF+dHXpLn794e3PXd0PP5O8e7Pb8vsgCZeac/j/XlvvuAV2uZFQAAAOCTmhlJqJ+lfweRPPJShSzSeQvLOo9vwgeFPPZL/waiKs6HyYR+nhd5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAay5WPLcC
+   eJzt2M1twjAUAOBUHaOX3vkpxxwZJaMwChu0I7BEN+ihY9SpiwImBFAibJXvk55QgETGD+fFr6rK9/ZcNfPnqhob4TpMIMxlswwxC/O5CDE7iGuPlzEn29y/5T+Yx1w0Y64Rzt/KxzTkoyxD+Xh5Gj7ek4/ptPlYjFwfC/mYjPtVWayPslgfZZGPssjHfV3qh6zi/no3i7EOtWC9f62THkgda83vdxfdObtw/nYVc6KfcsFBP2RzGH+9jk0SR/2QOvnP13H+03PS6568p5/SmeJ+NJb7WWeK59mxPA93rI+y9OWjju+d1OW+6KvfQ99rI30OkI/OmXz01uW+Wnxr7W4jfQ6Qj477VVnU87JYH2VJ9t9na3DfZ0P781uut9+/Z5mAwtxSny/V5Wv250ORZwYAAAC4p7ZHEuI19ziI5KMsdchF2m8hr6/cA+BIyMc69xiI6tgfphDqeVnkAwAAAAAAAAAAAAAAAAAAAAAAAB7Pe4iP3IN4MJ9VtQ3R5B4HADCd79wDAAAgix+W+cAr
   </data>
  </layer>
  <objectgroup name="Physics" width="100" height="100">
@@ -77,5 +77,11 @@
    </properties>
   </object>
   <object type="Health Potion" x="426" y="53" width="10" height="9"/>
+  <object name="KingDoor" type="Door" x="390" y="89" width="26" height="8">
+   <properties>
+    <property name="doorType" value="Large Wood"/>
+    <property name="key" value="Gold Key"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

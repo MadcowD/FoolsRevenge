@@ -24,9 +24,7 @@ public class Revenge extends Game {
 		input = new InputManager();
 		Gdx.input.setInputProcessor(input);
 		
-		Config.loadFonts();
-		Config.loadSpriteInfo();
-		Config.loadItemSpriteInfo();
+		Config.loadAll();
 		
 		world = new GameWorld(input);
 	}

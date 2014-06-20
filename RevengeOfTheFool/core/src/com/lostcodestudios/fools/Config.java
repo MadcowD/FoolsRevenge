@@ -50,7 +50,7 @@ public final class Config {
 		TextManager.addFont("ui-black", "fonts/Oswald-Regular.ttf", 24, Color.BLACK);
 		TextManager.addFont("ui-white", "fonts/Oswald-Regular.ttf", 24, Color.WHITE);
 	}
-
+	
     public static ObjectMap<String, AnimatedSpriteInfo> spriteInfo = new ObjectMap<String, AnimatedSpriteInfo>();
 
     public static void loadSpriteInfo() {
@@ -68,4 +68,23 @@ public final class Config {
     	itemSpriteInfo.put("Sword", new Rectangle(16, 1, 8, 8));
     	itemSpriteInfo.put("Health Potion", new Rectangle(1, 10, 6, 6));
     }
+    
+    public static ObjectMap<String, Rectangle[]> doorSpriteInfo = new ObjectMap<String, Rectangle[]>();
+    
+    public static void loadDoorSpriteInfo() {
+    	doorSpriteInfo.put("Large Wood", 
+    			new Rectangle[] { new Rectangle(0, 0, 24, 13), new Rectangle(25, 0, 24, 13) });
+    	doorSpriteInfo.put("Average Wood",
+    			new Rectangle[] { new Rectangle(0, 16, 16, 8), new Rectangle(17, 0, 16, 8) });
+    }
+    
+	public static void loadAll() {
+		loadFonts();
+		loadSpriteInfo();
+		loadItemSpriteInfo();
+		loadDoorSpriteInfo();
+	}
+	
+	public static float INTERACT_DISTANCE = 3f;
+    
 }

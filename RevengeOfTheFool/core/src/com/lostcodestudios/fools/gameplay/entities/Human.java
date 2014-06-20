@@ -216,5 +216,15 @@ public class Human extends Entity {
 	public Vector2 getVelocity() {
 		return body.getLinearVelocity();
 	}
+	
+	public boolean hasItem(String name) {
+		for (Item item : inventory) {
+			if (item.name.equals(name)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 
 }

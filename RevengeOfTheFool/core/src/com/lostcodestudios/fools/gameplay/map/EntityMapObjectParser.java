@@ -7,7 +7,9 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.lostcodestudios.fools.gameplay.GameWorld;
+import com.lostcodestudios.fools.gameplay.entities.Door;
 import com.lostcodestudios.fools.gameplay.entities.Entity;
 import com.lostcodestudios.fools.gameplay.entities.Human;
 import com.lostcodestudios.fools.gameplay.entities.Item;
@@ -46,6 +48,7 @@ public class EntityMapObjectParser {
 				((Human) e).group = "Fool";
 				((Human) e).tag = "Fool";
 				
+				
 				Weapon sword = new Weapon(world, e, "Sword");
 				sword.meleeDamage = 2.5f;
 				
@@ -76,8 +79,16 @@ public class EntityMapObjectParser {
 			
 			if (type.equals("Health Potion")) {
 				e = new Item(world, position, "Health Potion");
+			}
+			
+			if (type.equals("Door")) {
+				String doorType = (String) entityProperties.get("doorType");
+				e = new Door(world, doorType, position);
 				
-				world.entities.add(e);
+				if (entityProperties.get("key") != null) {
+					String key = (String) entityProperties.get("key");
+					((Door)e).key = key;
+				}
 			}
 			
 			// TODO load other types of entities
