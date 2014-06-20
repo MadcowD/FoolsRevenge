@@ -34,6 +34,7 @@ import com.lostcodestudios.fools.gameplay.entities.Human;
 import com.lostcodestudios.fools.gameplay.map.Box2DLightsMapObjectParser;
 import com.lostcodestudios.fools.gameplay.map.Box2DMapObjectParser;
 import com.lostcodestudios.fools.gameplay.map.EntityMapObjectParser;
+import com.lostcodestudios.fools.gameplay.map.PointMapObjectParser;
 
 public class GameWorld {
 	
@@ -67,6 +68,9 @@ public class GameWorld {
 	public Texture doorSpriteSheet;
 	
 	private TextureRegion potionRegion;
+	
+	public ObjectMap<String, Rectangle> rooms = new ObjectMap<String, Rectangle>();
+	public ObjectMap<String, Vector2> points = new ObjectMap<String, Vector2>();
 	
 	private float elapsedTime = 0f;
 	
@@ -107,6 +111,11 @@ public class GameWorld {
 		lightObjectParser.setUnitScale(1f / Config.SPRITE_SCALE);
 		lightObjectParser.load(rayHandler, tileMap.getLayers().get("Lights"));
 		lightObjectParser.load(rayHandler, (TiledMapTileLayer) tileMap.getLayers().get("Objects"));
+		
+		// load points and rooms from the tile map
+		PointMapObjectParser pointParser = new PointMapObjectParser();
+		pointParser.unitScale = 1f / Config.SPRITE_SCALE;
+		pointParser.load(this, tileMap.getLayers().get("Points"));
 		
 		paused = false;
 		
@@ -207,6 +216,10 @@ public class GameWorld {
 		
 		if (Config.debug && !paused) {
 			debugRenderer.render(world, meterView);
+			
+			spriteBatch.begin();
+			TextManager.draw(spriteBatch, "debug", "Player is in King's room: " + rooms.get("KingRoom").contains(specialEntities.get("Fool").getPosition()), 0, 60);
+			spriteBatch.end();
 		}
 	}
 	
