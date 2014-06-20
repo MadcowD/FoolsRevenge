@@ -43,7 +43,7 @@ public class GameWorld {
 	
 	public OrthographicCamera camera;
 	
-	private TiledMap tileMap;
+	public TiledMap tileMap;
 	private OrthogonalTiledMapRenderer mapRenderer;
 	
 	public World world;

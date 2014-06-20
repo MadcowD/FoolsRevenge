@@ -2,6 +2,8 @@ package com.lostcodestudios.fools.gameplay.entities;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -147,6 +149,14 @@ public class Human extends Entity {
 		if (runUpdateScript) {
 			updateScriptArgs.put("deltaTime", deltaTime);
 			gameWorld.scripts.runScript(updateScriptBody, updateScriptArgs);
+		}
+		
+		MapProperties currentFloorProperties = ((TiledMapTileLayer)gameWorld.tileMap.getLayers().get("Floor")).getCell((int)getPosition().x, (int)getPosition().y).getTile().getProperties(); // lol
+		
+		if (currentFloorProperties.get("stairs") != null) {
+			// slow for stair tiles
+			
+			body.setLinearVelocity(body.getLinearVelocity().scl(0.6f));
 		}
 	}
 	
