@@ -47,14 +47,6 @@ public class EntityMapObjectParser {
 				e = new Human(world, "Fool", position, "com.lostcodestudios.fools.scripts.Fool", null);
 				((Human) e).group = "Fool";
 				((Human) e).tag = "Fool";
-				
-				
-				Weapon sword = new Weapon(world, e, "Sword");
-				sword.meleeDamage = 2.5f;
-				
-				((Human) e).weapon = sword;
-				
-				world.entities.add(sword);
 			}
 			
 			else if (type.equals("King")) {
@@ -67,9 +59,6 @@ public class EntityMapObjectParser {
 				((Human) e).group = "King";
 				
 				Weapon sword = new Weapon(world, e, "Sword");
-				sword.meleeDamage = 2.5f;
-				
-				((Human) e).weapon = sword;
 				
 				world.entities.add(sword);
 			}
@@ -87,6 +76,11 @@ public class EntityMapObjectParser {
 			else if (type.equals("Item")){
 				String itemType = (String)entityProperties.get("itemType");
 				e = new Item(world, position, itemType);
+			} 
+			
+			else if (type.equals("Weapon")) {
+				String weaponType = (String)entityProperties.get("weaponType");
+				e = new Weapon(world, position, weaponType);
 			}
 			
 			if (e instanceof Human) {

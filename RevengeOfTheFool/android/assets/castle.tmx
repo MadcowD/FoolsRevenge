@@ -98,5 +98,15 @@
     <property name="itemType" value="Gold Key"/>
    </properties>
   </object>
+  <object type="Weapon" x="440" y="37" width="12" height="11">
+   <properties>
+    <property name="weaponType" value="Sword"/>
+   </properties>
+  </object>
+  <object type="Weapon" x="434" y="22" width="12" height="11">
+   <properties>
+    <property name="weaponType" value="Sword"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

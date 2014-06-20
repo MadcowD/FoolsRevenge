@@ -84,8 +84,8 @@ public class Item extends Entity {
 				
 				selected = body.getFixtureList().size > 0 && body.getFixtureList().get(0).testPoint(gameWorld.worldCursorPosition())
 						&& distance <= Config.INTERACT_DISTANCE && ((Human) holder).foolCanPickpocket();
-			} else {
-				this.delete(); // delete weapons instead of dropping.
+			} else if (!((Human)this.holder).tag.equals("Fool")){
+				this.delete(); // delete NPC weapons since they'll never be dropped or lost and shouldn't be pickpocketed
 			}
 		}
 		
@@ -135,7 +135,7 @@ public class Item extends Entity {
 		selected = false;
 		
 		if (human.tag.equals("Fool")) {
-			this.delete();
+			this.delete(); // items the fool picks up can never be dropped
 		} else {
 			this.holder = human;
 		}
