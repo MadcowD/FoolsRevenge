@@ -73,14 +73,24 @@
   </object>
   <object type="Guard" x="362" y="54" width="8" height="7">
    <properties>
+    <property name="item" value="Gold Key"/>
     <property name="rotation" value="0"/>
    </properties>
   </object>
-  <object type="Health Potion" x="426" y="53" width="10" height="9"/>
+  <object type="Item" x="426" y="53" width="10" height="9">
+   <properties>
+    <property name="itemType" value="Health Potion"/>
+   </properties>
+  </object>
   <object name="KingDoor" type="Door" x="390" y="89" width="26" height="8">
    <properties>
     <property name="doorType" value="Large Wood"/>
     <property name="key" value="Gold Key"/>
+   </properties>
+  </object>
+  <object type="Item" x="445" y="55" width="12" height="10">
+   <properties>
+    <property name="itemType" value="Gold Key"/>
    </properties>
   </object>
  </objectgroup>

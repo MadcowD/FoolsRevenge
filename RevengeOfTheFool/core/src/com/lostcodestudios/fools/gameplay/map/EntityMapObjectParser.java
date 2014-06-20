@@ -57,12 +57,12 @@ public class EntityMapObjectParser {
 				world.entities.add(sword);
 			}
 			
-			if (type.equals("King")) {
+			else if (type.equals("King")) {
 				e = new Human(world, "King", position, "com.lostcodestudios.fools.scripts.King", null);
 				((Human) e).group = "King";
 			}
 			
-			if (type.equals("Guard")) {
+			else if (type.equals("Guard")) {
 				e = new Human(world, "Guard", position, "com.lostcodestudios.fools.scripts.Guard", null);
 				((Human) e).group = "King";
 				
@@ -72,16 +72,9 @@ public class EntityMapObjectParser {
 				((Human) e).weapon = sword;
 				
 				world.entities.add(sword);
-				
-				Item key = new Item(world, e, "Gold Key");
-				world.entities.add(key);
 			}
 			
-			if (type.equals("Health Potion")) {
-				e = new Item(world, position, "Health Potion");
-			}
-			
-			if (type.equals("Door")) {
+			else if (type.equals("Door")) {
 				String doorType = (String) entityProperties.get("doorType");
 				e = new Door(world, doorType, position);
 				
@@ -91,16 +84,26 @@ public class EntityMapObjectParser {
 				}
 			}
 			
-			// TODO load other types of entities
+			else if (type.equals("Item")){
+				String itemType = (String)entityProperties.get("itemType");
+				e = new Item(world, position, itemType);
+			}
 			
-			// rotate the body for a human
 			if (e instanceof Human) {
+				// rotate the body for a human
 				float radians = 0f;
 				String rotation = entityProperties.get("rotation", String.class);
 				if (rotation != null) {
 					radians = (float) Math.toRadians(Float.parseFloat(rotation));
 				}
 				((Human) e).body.setTransform(((Human) e).body.getPosition(), radians);
+				
+				// then add an item if it has one
+				String itemType = (String) entityProperties.get("item");
+				if (itemType != null && !itemType.isEmpty()) {
+					Item i = new Item(world, e, itemType);
+					world.entities.add(i);
+				}
 			}
 			
 			world.entities.add(e);

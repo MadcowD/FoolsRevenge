@@ -60,6 +60,12 @@ public class Door extends Entity {
 		shape.setAsBox(hwidth, hheight);
 		fixtureDef.shape = shape;
 		body.createFixture(fixtureDef);
+		
+		body.setUserData(this);
+	}
+	
+	public boolean isOpen() {
+		return open;
 	}
 	
 	@Override

@@ -56,7 +56,7 @@ public class Item extends Entity {
 	public Item(GameWorld gameWorld, Entity holder, String spriteKey) {
 		this(gameWorld, holder.getPosition(), spriteKey);
 		
-		this.holder = holder;
+		this.give((Human)holder);
 	}
 
 	@Override
@@ -82,10 +82,10 @@ public class Item extends Entity {
 				
 				float distance = gameWorld.specialEntities.get("Fool").getPosition().sub(this.getPosition()).len();
 				
-				selected = body.getFixtureList().get(0).testPoint(gameWorld.worldCursorPosition())
+				selected = body.getFixtureList().size > 0 && body.getFixtureList().get(0).testPoint(gameWorld.worldCursorPosition())
 						&& distance <= Config.INTERACT_DISTANCE && ((Human) holder).foolCanPickpocket();
 			} else {
-				this.delete();
+				this.delete(); // delete weapons instead of dropping.
 			}
 		}
 		
@@ -121,15 +121,25 @@ public class Item extends Entity {
 		return 6f; // on ground
 	}
 	
-	public void give(Human fool) {
+	public void give(Human human) {
+		if (holder != null) {
+			((Human)holder).inventory.removeValue(this, true);
+		}
+		
 		if (name.equals("Health Potion")) {
-			++fool.healthPotions;
+			++human.healthPotions;
 		} else {
-			fool.inventory.add(this);
+			human.inventory.add(this);
 		}
 		
 		selected = false;
-		this.delete();
+		
+		if (human.tag.equals("Fool")) {
+			this.delete();
+		} else {
+			this.holder = human;
+		}
+
 	}
 
 }

@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.ObjectMap;
+import com.lostcodestudios.fools.gameplay.entities.Door;
 import com.lostcodestudios.fools.gameplay.entities.Human;
 import com.lostcodestudios.fools.gameplay.entities.Item;
 import com.lostcodestudios.fools.gameplay.entities.Weapon;
@@ -97,8 +98,41 @@ public class CollisionManager implements ContactListener {
 				h = (Human) bodyA.getUserData();
 			}
 			
-			if (h.tag.equals("Fool") && !(i instanceof Weapon)) {
+			if (h.tag.equals("Fool") && (!(i instanceof Weapon) || i.holder == null)) {
 				i.selected = true;
+			} else {
+				if (!i.name.equals("Health Potion") && !(i instanceof Weapon)) {
+					if (h.inventory.size == 0) {
+						i.give(h); // NPCs automatically pick up items that are not weapons or potions
+					}
+				}
+			}
+		}
+		
+		if ((bodyA.getUserData() instanceof Human || bodyB.getUserData() instanceof Human)
+				&& (bodyA.getUserData() instanceof Door || bodyB.getUserData() instanceof Door)) {
+			// NPCs automatically open doors if they can
+			
+			Door d = null;
+			Human h = null;
+			
+			if (bodyA.getUserData() instanceof Door) {
+				d = (Door) bodyA.getUserData();
+				h = (Human) bodyB.getUserData();
+			}
+			
+			if (bodyB.getUserData() instanceof Door) {
+				d = (Door) bodyB.getUserData();
+				h = (Human) bodyA.getUserData();
+			}
+			
+			if (!d.isOpen()) {
+			
+				if (!h.tag.equals("Fool")) {
+					if (d.key.isEmpty() || h.hasItem(d.key)) {
+						d.toggleOpen();
+					}
+				}
 			}
 		}
 		
