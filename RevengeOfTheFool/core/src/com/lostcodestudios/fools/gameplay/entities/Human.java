@@ -25,6 +25,7 @@ public class Human extends Entity {
 	private static final float DEFAULT_HEALTH = 5f;
 	private static final float HEALTH_POTION_VALUE = 5f;
 	
+	private String spriteKey;
 	private AnimatedSprite sprite;
 	private String updateScriptBody;
 	private ObjectMap<String, Object> updateScriptArgs = new ObjectMap<String, Object>();
@@ -51,6 +52,8 @@ public class Human extends Entity {
 	public Human(GameWorld gameWorld, String animatedSpriteKey, Vector2 position) {
 		super(2);
 		this.gameWorld = gameWorld;
+		
+		this.spriteKey = animatedSpriteKey; // for the corpse... later :)
 		AnimatedSpriteInfo info = Config.spriteInfo.get(animatedSpriteKey);
 
 		sprite = new AnimatedSprite(gameWorld.spriteSheet, info.frameX, info.frameY, info.frameWidth, info.frameHeight);
@@ -100,7 +103,9 @@ public class Human extends Entity {
 		this.health -= amount;
 		
 		if (this.health <= 0) {
-			//TODO die
+			gameWorld.entities.add(new Corpse(gameWorld.spriteSheet, getPosition(), spriteKey)); // with a person on top!
+			gameWorld.entities.add(new Corpse(gameWorld.spriteSheet, getPosition(), "Blood")); // bloodstain
+			
 			this.delete();
 			
 			if (this.deathScript != null && !this.deathScript.isEmpty()) {

@@ -52,11 +52,17 @@ public final class Config {
 	}
 	
     public static ObjectMap<String, AnimatedSpriteInfo> spriteInfo = new ObjectMap<String, AnimatedSpriteInfo>();
+    public static ObjectMap<String, Rectangle> corpseSpriteInfo = new ObjectMap<String, Rectangle>();
 
     public static void loadSpriteInfo() {
         spriteInfo.put("Fool", new AnimatedSpriteInfo(1, 1, 9, 11));
         spriteInfo.put("King", new AnimatedSpriteInfo(31, 1, 7, 8));
         spriteInfo.put("Guard", new AnimatedSpriteInfo(55, 1, 8, 8));
+        
+        corpseSpriteInfo.put("Blood", new Rectangle(119, 1, 8, 8));
+        corpseSpriteInfo.put("Fool", new Rectangle(1, 49, 9, 6));
+        corpseSpriteInfo.put("King", new Rectangle(31, 37, 8, 5));
+        corpseSpriteInfo.put("Guard", new Rectangle(55, 37, 9, 7));
     }
     
     public static ObjectMap<String, Rectangle> itemSpriteInfo = new ObjectMap<String, Rectangle>();
