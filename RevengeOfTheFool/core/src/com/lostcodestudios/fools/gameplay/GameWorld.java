@@ -74,7 +74,7 @@ public class GameWorld {
 	
 	private Rectangle bounds;
 	
-	public boolean cutsceneMode = true;
+	public boolean cutsceneMode = false;
 	
 	public ObjectMap<String, Entity> specialEntities = new ObjectMap<String, Entity>();
 	public GameWorld(InputManager input) {

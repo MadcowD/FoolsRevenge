@@ -84,6 +84,8 @@ public class Item extends Entity {
 				
 				selected = body.getFixtureList().get(0).testPoint(gameWorld.worldCursorPosition())
 						&& distance <= Config.INTERACT_DISTANCE && ((Human) holder).foolCanPickpocket();
+			} else {
+				this.delete();
 			}
 		}
 		
