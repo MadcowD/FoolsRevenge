@@ -131,6 +131,7 @@ public class GameWorld {
         // load entities from the tile map
         EntityMapObjectParser entityParser = new EntityMapObjectParser();
         entityParser.setUnitScale(1f / Config.SPRITE_SCALE);
+        entityParser.loadPaths(tileMap.getLayers().get("Paths"));
         entityParser.load(this, tileMap.getLayers().get("Entities"));
         
         //TODO: MAKE A START SCRIPT

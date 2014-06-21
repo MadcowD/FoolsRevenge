@@ -156,6 +156,7 @@ public class Human extends Entity {
 			gameWorld.scripts.runScript(updateScriptBody, updateScriptArgs);
 		}
 		
+		//TODO: MAKES AN EXCEPTION IF NOT ON FLOOR>
 		MapProperties currentFloorProperties = ((TiledMapTileLayer)gameWorld.tileMap.getLayers().get("Floor")).getCell((int)getPosition().x, (int)getPosition().y).getTile().getProperties(); // lol
 		
 		if (currentFloorProperties.get("stairs") != null) {
