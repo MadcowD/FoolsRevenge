@@ -38,7 +38,7 @@
    eJzt2M1twjAUAOBUHaOX3vkpxxwZJaMwChu0I7BEN+ihY9SpiwImBFAibJXvk55QgETGD+fFr6rK9/ZcNfPnqhob4TpMIMxlswwxC/O5CDE7iGuPlzEn29y/5T+Yx1w0Y64Rzt/KxzTkoyxD+Xh5Gj7ek4/ptPlYjFwfC/mYjPtVWayPslgfZZGPssjHfV3qh6zi/no3i7EOtWC9f62THkgda83vdxfdObtw/nYVc6KfcsFBP2RzGH+9jk0SR/2QOvnP13H+03PS6568p5/SmeJ+NJb7WWeK59mxPA93rI+y9OWjju+d1OW+6KvfQ99rI30OkI/OmXz01uW+Wnxr7W4jfQ6Qj477VVnU87JYH2VJ9t9na3DfZ0P781uut9+/Z5mAwtxSny/V5Wv250ORZwYAAAC4p7ZHEuI19ziI5KMsdchF2m8hr6/cA+BIyMc69xiI6tgfphDqeVnkAwAAAAAAAAAAAAAAAAAAAAAAAB7Pe4iP3IN4MJ9VtQ3R5B4HADCd79wDAAAgix+W+cAr
   </data>
  </layer>
- <objectgroup name="Physics" width="100" height="100" visible="0">
+ <objectgroup name="Physics" width="100" height="100">
   <object name="kingwall3" type="object" x="328" y="-2" width="15" height="106"/>
   <object name="kingwall1" type="object" x="329" y="0" width="148" height="16"/>
   <object name="kingwall2" type="object" x="465" y="0" width="13" height="101"/>
@@ -52,7 +52,7 @@
   <object name="throneRoomChair1" type="object" x="386" y="32" width="5" height="8"/>
   <object name="throneRoomChair2" type="object" x="418" y="32" width="4" height="8"/>
  </objectgroup>
- <objectgroup name="Lights" width="100" height="100" visible="0">
+ <objectgroup name="Lights" width="100" height="100">
   <properties>
    <property name="ambientColor" value="25, 25, 25, 62"/>
   </properties>
@@ -65,7 +65,7 @@
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup name="Entities" width="100" height="100" visible="0">
+ <objectgroup name="Entities" width="100" height="100">
   <object name="Fool" type="Fool" x="400" y="56" width="8" height="8">
    <properties>
     <property name="rotation" value="90"/>
@@ -76,7 +76,7 @@
     <property name="rotation" value="270"/>
    </properties>
   </object>
-  <object type="Guard" x="362" y="54" width="8" height="7">
+  <object name="g1" type="Guard" x="360" y="24" width="8" height="7">
    <properties>
     <property name="item" value="Gold Key"/>
     <property name="rotation" value="0"/>
@@ -117,5 +117,14 @@
   <object name="Landing4" type="Point" x="513" y="109" width="12" height="13"/>
   <object name="Landing5" type="Point" x="510" y="145" width="14" height="14"/>
   <object name="Landing6" type="Point" x="398" y="150" width="13" height="12"/>
+ </objectgroup>
+ <objectgroup name="Paths" width="100" height="100">
+  <object name="gl1" type="Patrol" x="368" y="56">
+   <properties>
+    <property name="entity" value="g1"/>
+    <property name="pause" value="100"/>
+   </properties>
+   <polyline points="0,0 16,0 16,16 0,16 -16,16 -16,-24 8,-24 8,-8 48,-8 48,16 24,16 24,0 -8,-16 -8,0"/>
+  </object>
  </objectgroup>
 </map>

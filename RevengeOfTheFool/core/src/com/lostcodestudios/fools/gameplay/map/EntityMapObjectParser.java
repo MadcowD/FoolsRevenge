@@ -4,10 +4,14 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.math.Polyline;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.gameplay.GameWorld;
 import com.lostcodestudios.fools.gameplay.entities.Door;
 import com.lostcodestudios.fools.gameplay.entities.Entity;
@@ -23,7 +27,37 @@ public class EntityMapObjectParser {
 		this.unitScale = unitScale;
 	}
 	
+	/**
+	 * SPAGHETTTI!
+	 */
+	ObjectMap<String, ObjectMap<String, Object>> paths = new ObjectMap<String, ObjectMap<String, Object>>();
+	
+	/**
+	 * Parses default AI paths.
+	 * @param layer 
+	 */
+	public void loadPaths(MapLayer layer){
+		for(MapObject obj : layer.getObjects()){
+			if(obj instanceof PolylineMapObject){
+				String ent = (String)obj.getProperties().get("entity");
+				String type = (String) obj.getProperties().get("type");
+				PolylineMapObject pl = ((PolylineMapObject)obj);
+				if(!paths.containsKey(ent)){
+					ObjectMap<String, Object> entPaths = new ObjectMap<String, Object>();
+					Polyline pla = pl.getPolyline();
+					pla.setScale(unitScale, unitScale);
+					pla.setPosition(pla.getX()*unitScale, pla.getY()*unitScale);
+					entPaths.put(type, pl); 
+					paths.put(ent,entPaths);
+				}
+				else
+					paths.get(ent).put(type,pl);
+			}
+		}
+	}
+	
 	public void load(GameWorld world, MapLayer layer) {
+		
 		MapObjects entityObjects = layer.getObjects();
 		
 		for (MapObject entityObject : entityObjects) {
@@ -43,19 +77,26 @@ public class EntityMapObjectParser {
 			
 			Entity e = null;
 			
+			
+			ObjectMap<String, Object> args = new ObjectMap<String, Object>();
+			
+			if(name != null)
+				if(paths.containsKey(name))
+					args.put("paths", paths.get(name));
+			
 			if (type.equals("Fool")) {
-				e = new Human(world, "Fool", position, "com.lostcodestudios.fools.scripts.Fool", null);
+				e = new Human(world, "Fool", position, "com.lostcodestudios.fools.scripts.entities.Fool", args);
 				((Human) e).group = "Fool";
 				((Human) e).tag = "Fool";
 			}
 			
 			else if (type.equals("King")) {
-				e = new Human(world, "King", position, "com.lostcodestudios.fools.scripts.King", null);
+				e = new Human(world, "King", position, "com.lostcodestudios.fools.scripts.entities.King", args);
 				((Human) e).group = "King";
 			}
 			
 			else if (type.equals("Guard")) {
-				e = new Human(world, "Guard", position, "com.lostcodestudios.fools.scripts.Guard", null);
+				e = new Human(world, "Guard", position, "com.lostcodestudios.fools.scripts.entities.Guard", args);
 				((Human) e).group = "King";
 				
 				Weapon sword = new Weapon(world, e, "Sword");
