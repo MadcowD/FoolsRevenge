@@ -4,6 +4,7 @@ package com.lostcodestudios.fools.scripts.ai;
 import com.badlogic.gdx.utils.BinaryHeap;
 import com.badlogic.gdx.utils.BinaryHeap.Node;
 import com.badlogic.gdx.utils.IntArray;
+import com.lostcodestudios.fools.gameplay.GameWorld;
 
 /** @author Nathan Sweet */
 public class AStar {
@@ -107,8 +108,14 @@ public class AStar {
 		}
 	}
 
-	protected boolean isValid (int x, int y) {
+	public boolean isValid (int x, int y) {
 		return objectMap[(y)*width + x] == null;
+	}
+	
+	public static boolean  check(float x, float y){
+		y *= GameWorld.ASTARSIZE;
+		x*= GameWorld.ASTARSIZE;
+		return objectMap[((int)y)*GameWorld.ASTARWORLD + (int)x] == null;
 	}
 
 	public int getWidth () {

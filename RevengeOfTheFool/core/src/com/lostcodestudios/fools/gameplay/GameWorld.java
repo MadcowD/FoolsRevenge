@@ -47,9 +47,9 @@ public class GameWorld {
 	private static final int VELOCITY_ITERATIONS = 6;
 	private static final int POSITION_ITERATIONS = 2;
 	
-	public static int ASTARWORLD = 85;
-	public static float ASTARSIZE = 0.85f;
-	public static float ASTARRECIP = 1f/0.85f;
+	public static int ASTARWORLD = 100;
+	public static int ASTARSIZE = 1;
+	public static float ASTARRECIP = 1f/1f;
 	
 	
 	public OrthographicCamera camera;

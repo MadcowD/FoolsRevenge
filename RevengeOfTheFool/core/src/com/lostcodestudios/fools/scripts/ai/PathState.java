@@ -37,7 +37,7 @@ public class PathState extends State {
 				if(moving){
 					Human e = (Human)args.get("e");
 
-					parent.setState(new MovementState(e.getPosition().cpy(), target.cpy(), speed, this));
+					parent.setState(new MovementState(e.getPosition().cpy(), target.cpy(),  1f, speed, this));
 					moving = false;
 					elapsedLocationPause = 0;
 				}
