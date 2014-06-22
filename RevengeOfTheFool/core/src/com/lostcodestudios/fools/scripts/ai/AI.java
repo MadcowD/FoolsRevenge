@@ -10,8 +10,8 @@ public class AI extends Script{
 	 * @param inititalState The initial state of the AI script.
 	 * @param initialState 
 	 */
-	public AI(Script initialState){
-		this.currentState = initialState;
+	public AI(State initialState){
+		setState(initialState);
 	}
 	
 	
@@ -19,17 +19,13 @@ public class AI extends Script{
 	 * Runs the current AI State.
 	 */
 	public  void run(GameWorld world, ObjectMap<String, Object> args){
-		try{
-			currentState.run(world, args);
-		}
-		catch(NullPointerException e){
-			System.out.println("FAILED TO IINITIALIZE STATES PROPERLY. SET CURRENT STATE.");
-			}
-		}
-	
-	
-	public void setState(Script  newState){
-		this.currentState = newState;
+			currentState.run(world, args); 
 	}
-	protected Script currentState;
+	
+	
+	public void setState(State  newState){
+		this.currentState = newState;
+		this.currentState.parent = this;
+	}
+	protected State currentState;
 }

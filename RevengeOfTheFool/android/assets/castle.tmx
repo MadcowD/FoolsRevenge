@@ -52,7 +52,7 @@
   <object name="throneRoomChair1" type="object" x="386" y="32" width="5" height="8"/>
   <object name="throneRoomChair2" type="object" x="418" y="32" width="4" height="8"/>
  </objectgroup>
- <objectgroup name="Lights" width="100" height="100">
+ <objectgroup name="Lights" width="100" height="100" visible="0">
   <properties>
    <property name="ambientColor" value="25, 25, 25, 62"/>
   </properties>
@@ -109,7 +109,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Points" width="100" height="100">
+ <objectgroup name="Points" width="100" height="100" visible="0">
   <object name="KingRoom" type="Room" x="344" y="15" width="122" height="74"/>
   <object name="Landing1" type="Point" x="397" y="107" width="14" height="12"/>
   <object name="Landing2" type="Point" x="287" y="110" width="12" height="11"/>
@@ -119,12 +119,12 @@
   <object name="Landing6" type="Point" x="398" y="150" width="13" height="12"/>
  </objectgroup>
  <objectgroup name="Paths" width="100" height="100">
-  <object name="gl1" type="Patrol" x="368" y="56">
+  <object type="Patrol" x="360" y="56">
    <properties>
     <property name="entity" value="g1"/>
-    <property name="pause" value="100"/>
+    <property name="pause" value="50"/>
    </properties>
-   <polyline points="0,0 16,0 16,16 0,16 -16,16 -16,-24 8,-24 8,-8 48,-8 48,16 24,16 24,0 -8,-16 -8,0"/>
+   <polyline points="0,0 128,104"/>
   </object>
  </objectgroup>
 </map>

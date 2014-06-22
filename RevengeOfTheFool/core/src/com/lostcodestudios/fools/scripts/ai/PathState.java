@@ -5,18 +5,18 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.gameplay.GameWorld;
 import com.lostcodestudios.fools.gameplay.entities.Human;
-import com.lostcodestudios.fools.scripts.Script;
 
-public class PathState extends Script {
+public class PathState extends State {
 	protected String pathType;
 	private int elapsedLocationPause = 0;
-	boolean moving = false;
-	boolean loop;
-	int targetIndex = -2;
-	Vector2 target;
-	float speed;
+	private boolean moving = false;
+	private boolean loop;
+	private int targetIndex = -2;
+	private Vector2 target;
+	private float speed;
 
 	public PathState(String pathType, float speed, boolean loop){
+		super(null);
 		this.pathType = pathType;
 		this.loop = loop;
 		this.speed = speed;
@@ -36,18 +36,10 @@ public class PathState extends Script {
 
 				if(moving){
 					Human e = (Human)args.get("e");
-					Vector2 dir = target.cpy().sub(e.getPosition().cpy());
-					if(dir.len2() < 0.05){
-						moving = false;
-						e.setVelocity(new Vector2());
-						return;
-					}
-					dir.nor();
-					dir.scl(speed);
 
-					e.setVelocity(dir);
-					
-					
+					parent.setState(new MovementState(e.getPosition().cpy(), target.cpy(), speed, this));
+					moving = false;
+					elapsedLocationPause = 0;
 				}
 				else{
 					elapsedLocationPause++;

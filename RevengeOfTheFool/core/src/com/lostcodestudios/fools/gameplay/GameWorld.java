@@ -19,6 +19,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.QueryCallback;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
@@ -28,6 +30,7 @@ import box2dLight.RayHandler;
 import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.InputManager;
 import com.lostcodestudios.fools.TextManager;
+import com.lostcodestudios.fools.gameplay.entities.Door;
 import com.lostcodestudios.fools.gameplay.entities.Entity;
 import com.lostcodestudios.fools.gameplay.entities.EntityManager;
 import com.lostcodestudios.fools.gameplay.entities.Human;
@@ -35,12 +38,19 @@ import com.lostcodestudios.fools.gameplay.map.Box2DLightsMapObjectParser;
 import com.lostcodestudios.fools.gameplay.map.Box2DMapObjectParser;
 import com.lostcodestudios.fools.gameplay.map.EntityMapObjectParser;
 import com.lostcodestudios.fools.gameplay.map.PointMapObjectParser;
+import com.lostcodestudios.fools.scripts.ai.AStar;
+import com.lostcodestudios.fools.scripts.ai.MovementState;
 
 public class GameWorld {
 	
 	private static final float TIME_STEP = 1f / 60;
 	private static final int VELOCITY_ITERATIONS = 6;
 	private static final int POSITION_ITERATIONS = 2;
+	
+	public static int ASTARWORLD = 85;
+	public static float ASTARSIZE = 0.85f;
+	public static float ASTARRECIP = 1f/0.85f;
+	
 	
 	public OrthographicCamera camera;
 	
@@ -106,6 +116,33 @@ public class GameWorld {
 		mapObjectParser.setUnitScale(1f / Config.SPRITE_SCALE);
 		mapObjectParser.load(world, tileMap.getLayers().get("Physics")); //NOTE: this won't load circle objects!
 		
+		
+      //BUILD A*
+      AStar.objectMap = new Object[ASTARWORLD*ASTARWORLD];
+      for(int x = 0; x < ASTARWORLD; x++)
+         for(int y = 0; y < ASTARWORLD; y++)
+         {
+       	  //TODO: REMOVE DEPENDENCE ON 100.
+       	  world.QueryAABB(new QueryCallback(){
+
+					private int x;
+					private int y;
+
+					@Override
+					public boolean reportFixture (Fixture fixture) {
+						AStar.objectMap[y*ASTARWORLD + x] = new Object();
+						return  true;
+					}
+					
+					public QueryCallback yield(int x, int y){
+						this.x = x; this.y = y;
+						return this;
+					}
+       		  
+       	  }.yield(x,y), ASTARRECIP*x, ASTARRECIP*y, ASTARRECIP*x+ASTARRECIP, ASTARRECIP*y+ASTARRECIP);
+         }
+      
+		
 		//load lighting effects from the tile map
 		Box2DLightsMapObjectParser lightObjectParser = new Box2DLightsMapObjectParser();
 		lightObjectParser.setUnitScale(1f / Config.SPRITE_SCALE);
@@ -136,6 +173,9 @@ public class GameWorld {
         
         //TODO: MAKE A START SCRIPT
         scripts.runScript("com.lostcodestudios.fools.scripts.Start");
+        
+        
+
 	}
 	
 	public void dispose() {
@@ -219,6 +259,8 @@ public class GameWorld {
 			debugRenderer.render(world, meterView);
 			
 			spriteBatch.begin();
+			Vector2 positions = (specialEntities.get("Fool").getPosition());
+			TextManager.draw(spriteBatch, "debug", "object map HERE!: " + AStar.objectMap[(int)(positions.x*ASTARSIZE) + (int)(positions.y*ASTARSIZE)*ASTARWORLD] , 0, 70);
 			TextManager.draw(spriteBatch, "debug", "Player is in King's room: " + rooms.get("KingRoom").contains(specialEntities.get("Fool").getPosition()), 0, 60);
 			spriteBatch.end();
 		}

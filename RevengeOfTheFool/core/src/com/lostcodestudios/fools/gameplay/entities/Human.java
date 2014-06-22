@@ -71,6 +71,7 @@ public class Human extends Entity {
 		fixtureDef.shape = shape;
 		
 		body.createFixture(fixtureDef);
+		body.getFixtureList().get(0).setUserData(this);
 		body.setUserData(this);
 	}
 	
@@ -157,13 +158,13 @@ public class Human extends Entity {
 		}
 		
 		//TODO: MAKES AN EXCEPTION IF NOT ON FLOOR>
-		MapProperties currentFloorProperties = ((TiledMapTileLayer)gameWorld.tileMap.getLayers().get("Floor")).getCell((int)getPosition().x, (int)getPosition().y).getTile().getProperties(); // lol
+		//MapProperties currentFloorProperties = ((TiledMapTileLayer)gameWorld.tileMap.getLayers().get("Floor")).getCell((int)getPosition().x, (int)getPosition().y).getTile().getProperties(); // lol
 		
-		if (currentFloorProperties.get("stairs") != null) {
+		//if (currentFloorProperties.get("stairs") != null) {
 			// slow for stair tiles
 			
-			body.setLinearVelocity(body.getLinearVelocity().scl(0.6f));
-		}
+			//body.setLinearVelocity(body.getLinearVelocity().scl(0.6f));
+		//}
 	}
 	
 	@Override

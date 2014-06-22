@@ -60,6 +60,7 @@ public class Door extends Entity {
 		shape.setAsBox(hwidth, hheight);
 		fixtureDef.shape = shape;
 		body.createFixture(fixtureDef);
+		body.getFixtureList().get(0).setUserData(this);
 		
 		body.setUserData(this);
 	}
