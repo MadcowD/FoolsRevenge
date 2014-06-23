@@ -70,10 +70,10 @@ public class EntityRegion {
 				//Partition the rectangles
 				Rectangle supRect = root.getRegion();
 				Rectangle subRect = new Rectangle(
-						supRect.x+ (i%2)*(supRect.width/2f),
-						supRect.y+ (i/(int)2)*(supRect.height/2f),
-						supRect.width/2f,
-						supRect.height/2f);
+					supRect.x+ (i%2)*(supRect.width/2f),
+					supRect.y+ (i/(int)2)*(supRect.height/2f),
+					supRect.width/2f,
+					supRect.height/2f);
 
 				//Establish new rectangle.
 				regions[i] = new EntityRegion(height, depth, subRect, root);
@@ -98,16 +98,14 @@ public class EntityRegion {
 	 * @param gameWorld The game world.
 	 */
 	public void update(float deltaTime, GameWorld gameWorld){
-		if(!balanced)
-			this.rebalance();
 		for(Entity e : this.entities )
 			e.update(deltaTime, gameWorld);
-		
+
 		if(this.subRegions != null)
 			for(EntityRegion sub : this.subRegions)
 				sub.update(deltaTime, gameWorld);
 	}
-	
+
 	/**
 	 * Excutes an entity process on all entities.
 	 * @param p The process to execute.
@@ -164,24 +162,31 @@ public class EntityRegion {
 	 * Rebalances the entity tree.
 	 */
 	public void rebalance(){
-		//Remove entities.
-		this.entities.removeAll(removed, true);
-		removed.clear();
+		if(!this.balanced){
+			//Remove entities.
+			this.entities.removeAll(removed, true);
+			removed.clear();
 
-		//Add entities
-		while(added.size() > 0){
-			Entity toAdd = added.pop();
-			toAdd.setRegion(this);
-			this.entities.add(toAdd);
+			//Add entities
+			while(added.size() > 0){
+				Entity toAdd = added.pop();
+				toAdd.setRegion(this);
+				this.entities.add(toAdd);
+			}
+
+			while(changed.size() > 0){
+				Entity e = changed.pop();
+				this.entities.removeValue(e, true);
+				change(e);
+			}
+
+
+			this.balanced = true;
 		}
+		if(this.subRegions != null)
+			for(EntityRegion sub : this.subRegions)
+				sub.rebalance();
 
-		while(changed.size() > 0){
-			Entity e = changed.pop();
-			this.entities.removeValue(e, true);
-			change(e);
-		}
-
-		this.balanced = true;
 	}
 
 	/**
@@ -189,12 +194,14 @@ public class EntityRegion {
 	 * @param e The entity to rebalance.
 	 */
 	private void change(Entity e){
-		if(superRegion == null || this.contains(e.getPosition()))
+		if(superRegion == null || this.contains(e.getPosition())){
 			this.add(e);
+			System.out.println("Something fisshy");
+		}
 		else
 			superRegion.change(e);
 	}
-	
+
 	/**
 	 * Gives the entity as changed for a region.
 	 * @param e
@@ -208,15 +215,19 @@ public class EntityRegion {
 	 * Adds an entity to the given node at the entities correct depth.
 	 * @param e
 	 */
-	public void add(Entity e){
+	public boolean add(Entity e){
 		balanced = false;
 		if(this.contains(e.getPosition())){
-			if(this.depth == e.getDepth())
+			if(this.depth == e.getDepth()){
 				this.added.push(e);
+				return true;
+			}
 			else if(this.subRegions != null)
-				for(EntityRegion sub : subRegions)
-					sub.add(e);
+				for(EntityRegion sub : this.subRegions)
+					if(sub.add(e))
+						return true;
 		}
+		return false;
 	}
 
 	/**

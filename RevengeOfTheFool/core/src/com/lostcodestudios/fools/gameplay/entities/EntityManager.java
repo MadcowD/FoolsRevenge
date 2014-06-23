@@ -38,7 +38,11 @@ public class EntityManager {
 	
 	public void update(final float deltaTime){
 		if (!gameWorld.isPaused()) {
+			//root.rebalance();
 			root.update(deltaTime, gameWorld);
+			root.rebalance();
+			root.rebalance();
+
 		}
 	}
 	
