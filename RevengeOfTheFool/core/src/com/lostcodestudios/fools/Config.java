@@ -49,6 +49,11 @@ public final class Config {
 		
 		TextManager.addFont("ui-black", "fonts/Oswald-Regular.ttf", 24, Color.BLACK);
 		TextManager.addFont("ui-white", "fonts/Oswald-Regular.ttf", 24, Color.WHITE);
+		
+		TextManager.addFont("menu-title", "fonts/Philosopher-BoldItalic.ttf", 72, Color.RED);
+		TextManager.addFont("menu-entry", "fonts/Philosopher-Regular.ttf", 48, Color.WHITE);
+		TextManager.addFont("menu-entry-selected", "fonts/Philosopher-Italic.ttf", 48, Color.RED);
+		TextManager.addFont("menu-label", "fonts/Philosopher-Italic.ttf", 24, Color.WHITE);
 	}
 	
     public static ObjectMap<String, AnimatedSpriteInfo> spriteInfo = new ObjectMap<String, AnimatedSpriteInfo>();

@@ -171,11 +171,13 @@ public class GameWorld {
         entityParser.loadPaths(tileMap.getLayers().get("Paths"));
         entityParser.load(this, tileMap.getLayers().get("Entities"));
         
-        //TODO: MAKE A START SCRIPT
+	}
+	
+	public boolean started = false;
+	
+	public void start() {
+		//TODO: MAKE A START SCRIPT
         scripts.runScript("com.lostcodestudios.fools.scripts.Start");
-        
-        
-
 	}
 	
 	public void dispose() {
@@ -339,12 +341,7 @@ public class GameWorld {
 		return cameraBounds;
 	}
 
-	private void update(float delta) {
-		if (input.wasKeyPressed(Keys.ESCAPE)) {
-			dialog.showDialogWindow("Paused");
-			return;
-		}
-		
+	private void update(float delta) {		
 		if (input.wasKeyPressed(Keys.R)) {
 			dialog.showInventory();
 			return;

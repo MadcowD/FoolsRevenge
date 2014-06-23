@@ -5,14 +5,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.lostcodestudios.fools.gameplay.GameWorld;
+import com.lostcodestudios.fools.screens.MainMenuScreen;
 
 public class Revenge extends Game {	
-	private SpriteBatch batch;
+	public SpriteBatch batch;
 	
-	private GameWorld world;
-	
-	private InputManager input;
+	public InputManager input;
 	
 	@Override
 	public void create () {
@@ -26,7 +24,8 @@ public class Revenge extends Game {
 		
 		Config.loadAll();
 		
-		world = new GameWorld(input);
+		MainMenuScreen menu = new MainMenuScreen(this);
+		this.setScreen(menu);
 	}
 
 	@Override
@@ -34,7 +33,7 @@ public class Revenge extends Game {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		world.render(batch, Gdx.graphics.getDeltaTime());
+		super.render();
 		
 		if (input.wasKeyPressed(Keys.F1)) {
 			Config.debug = !Config.debug;
