@@ -27,7 +27,7 @@ public class EntityRegionTest {
 
 	@Test
 	public void testAdd() {
-		EntityRegion root = new EntityRegion(4, new Rectangle(0,0, 1024,1024));
+		fail("Not yet implemented"); // TODO
 	}
 
 	@Test

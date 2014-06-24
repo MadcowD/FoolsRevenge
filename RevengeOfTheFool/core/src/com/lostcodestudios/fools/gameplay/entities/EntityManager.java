@@ -1,13 +1,7 @@
 package com.lostcodestudios.fools.gameplay.entities;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.utils.Array;
-import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.gameplay.GameWorld;
 
 public class EntityManager {

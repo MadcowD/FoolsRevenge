@@ -30,7 +30,6 @@ import box2dLight.RayHandler;
 import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.InputManager;
 import com.lostcodestudios.fools.TextManager;
-import com.lostcodestudios.fools.gameplay.entities.Door;
 import com.lostcodestudios.fools.gameplay.entities.Entity;
 import com.lostcodestudios.fools.gameplay.entities.EntityManager;
 import com.lostcodestudios.fools.gameplay.entities.Human;
@@ -39,7 +38,6 @@ import com.lostcodestudios.fools.gameplay.map.Box2DMapObjectParser;
 import com.lostcodestudios.fools.gameplay.map.EntityMapObjectParser;
 import com.lostcodestudios.fools.gameplay.map.PointMapObjectParser;
 import com.lostcodestudios.fools.scripts.ai.AStar;
-import com.lostcodestudios.fools.scripts.ai.MovementState;
 
 public class GameWorld {
 	

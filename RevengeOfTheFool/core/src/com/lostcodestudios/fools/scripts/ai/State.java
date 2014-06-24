@@ -3,8 +3,6 @@
  */
 package com.lostcodestudios.fools.scripts.ai;
 
-import com.badlogic.gdx.utils.ObjectMap;
-import com.lostcodestudios.fools.gameplay.GameWorld;
 import com.lostcodestudios.fools.gameplay.entities.Entity;
 import com.lostcodestudios.fools.scripts.Script;
 

@@ -17,7 +17,6 @@ public class Fool extends Script {
 	
 	private static final float MAX_CAMERA_SPEED_MOUSE = 512f;
 	private static final float MAX_SCROLL_CENTER_DISTANCE = 180f;
-	private static final float CAMERA_MOVE_SCROLL_SPEED = 1024f;
 	
 	private static final float CAMERA_BOUNDS_WIDTH = Config.SCREEN_WIDTH / 6;
 	private static final float CAMERA_BOUNDS_HEIGHT = Config.SCREEN_HEIGHT / 4;
@@ -68,17 +67,13 @@ public class Fool extends Script {
 			
 			Vector2 cameraMovement = new Vector2();
 			
-	//		if (velocity.len() == 0) {
-				Vector2 centerScreen = new Vector2(Config.SCREEN_WIDTH / 2, Config.SCREEN_HEIGHT / 2);
-				Vector2 mousePos = new Vector2(Gdx.input.getX(), Config.SCREEN_HEIGHT - Gdx.input.getY());
-				Vector2 mouseCenterOffset = mousePos.cpy().sub(centerScreen);
-				
-				float cameraSpeed = (mouseCenterOffset.len() / MAX_SCROLL_CENTER_DISTANCE) * MAX_CAMERA_SPEED_MOUSE;
-				
-				cameraMovement = mouseCenterOffset.cpy().nor().scl(cameraSpeed * delta);
-	//		} else {
-	//			cameraMovement = velocity.cpy().nor().scl(CAMERA_MOVE_SCROLL_SPEED * delta); 
-	//		}
+			Vector2 centerScreen = new Vector2(Config.SCREEN_WIDTH / 2, Config.SCREEN_HEIGHT / 2);
+			Vector2 mousePos = new Vector2(Gdx.input.getX(), Config.SCREEN_HEIGHT - Gdx.input.getY());
+			Vector2 mouseCenterOffset = mousePos.cpy().sub(centerScreen);
+			
+			float cameraSpeed = (mouseCenterOffset.len() / MAX_SCROLL_CENTER_DISTANCE) * MAX_CAMERA_SPEED_MOUSE;
+			
+			cameraMovement = mouseCenterOffset.cpy().nor().scl(cameraSpeed * delta);
 			
 			camera.translate(cameraMovement);
 			
