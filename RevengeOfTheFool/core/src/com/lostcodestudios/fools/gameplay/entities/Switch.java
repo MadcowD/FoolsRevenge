@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.TextManager;
 import com.lostcodestudios.fools.gameplay.GameWorld;
@@ -78,13 +79,15 @@ public class Switch extends Entity {
 		
 		if (selected) {
 			if (gameWorld.input.wasKeyPressed(Config.ACCEPT_KEY)) {
-				trigger();
+				trigger(gameWorld.specialEntities.get("Fool")); // the player did it
 			}
 		}
 	}
 	
-	public void trigger() {
-		gameWorld.scripts.runScript(triggerScript);
+	public void trigger(Entity e) {
+		ObjectMap<String, Object> args = new ObjectMap<String, Object>();
+		args.put("e", e);
+		gameWorld.scripts.runScript(triggerScript, args);
 		pulled = !pulled;
 	}
 

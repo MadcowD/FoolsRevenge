@@ -125,7 +125,7 @@ public class CollisionManager implements ContactListener {
 				if (h.tag.equals("Fool")) {
 					s.selected = true;
 				} else {
-					s.trigger();
+					s.trigger(h);
 				}
 			}
 			
