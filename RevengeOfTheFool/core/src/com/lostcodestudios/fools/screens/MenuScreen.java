@@ -45,6 +45,10 @@ public class MenuScreen implements Screen {
 		entries.add(entry);
 	}
 	
+	protected MenuEntry getEntry(int index) {
+		return entries.get(index);
+	}
+	
 	/**
 	 * Adds a collection of MenuEntries to the MenuScreen in a vertical left-aligned list
 	 * @param listEntries

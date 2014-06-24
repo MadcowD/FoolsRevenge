@@ -40,8 +40,7 @@ public class MainMenuScreen extends MenuScreen {
 
 			@Override
 			public void invoke(Revenge revenge, MenuScreen menu, MenuEntry entry) {
-				revenge.getScreen().dispose();
-				// TODO create an options menu
+				revenge.setScreen(new OptionsMenuScreen(revenge, menu));
 			}
 			
 		});

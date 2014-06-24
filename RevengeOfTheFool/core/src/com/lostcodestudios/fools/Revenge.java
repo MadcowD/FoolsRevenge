@@ -24,6 +24,10 @@ public class Revenge extends Game {
 		
 		Config.loadAll();
 		
+		SoundManager.init();
+		
+		//TODO load sounds and music to the manager
+		
 		MainMenuScreen menu = new MainMenuScreen(this);
 		this.setScreen(menu);
 	}
