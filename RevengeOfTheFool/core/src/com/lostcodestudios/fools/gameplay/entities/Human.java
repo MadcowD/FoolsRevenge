@@ -18,8 +18,8 @@ import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.Config.AnimatedSpriteInfo;
 import com.lostcodestudios.fools.gameplay.GameWorld;
-import com.lostcodestudios.fools.gameplay.graphics.AnimatedSprite;
-import com.lostcodestudios.fools.gameplay.graphics.AnimatedSprite.Direction;
+import com.lostcodestudios.fools.gameplay.graphics.HumanSprite;
+import com.lostcodestudios.fools.gameplay.graphics.HumanSprite.Direction;
 
 public class Human extends Entity {
 
@@ -33,7 +33,7 @@ public class Human extends Entity {
 	private static final float VIEW_RANGE = 10f;
 	
 	private String spriteKey;
-	private AnimatedSprite sprite;
+	private HumanSprite sprite;
 	private String updateScriptBody;
 	private ObjectMap<String, Object> updateScriptArgs = new ObjectMap<String, Object>();
 	private boolean runUpdateScript = false;
@@ -63,7 +63,7 @@ public class Human extends Entity {
 		this.spriteKey = animatedSpriteKey; // for the corpse... later :)
 		AnimatedSpriteInfo info = Config.spriteInfo.get(animatedSpriteKey);
 
-		sprite = new AnimatedSprite(gameWorld.spriteSheet, info.frameX, info.frameY, info.frameWidth, info.frameHeight);
+		sprite = new HumanSprite(gameWorld.spriteSheet, info.frameX, info.frameY, info.frameWidth, info.frameHeight);
 		
 		// create the main human body
 		

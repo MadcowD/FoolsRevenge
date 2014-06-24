@@ -15,7 +15,7 @@ public class Dialog1 extends Script {
 		world.dialog.showDialogFull("The King's rage shook the castle like thunder.");
 		world.dialog.showDialogFull("His booming voice sent tremors down the Fool's spine.");
 		
-		world.scripts.delayScript("com.lostcodestudios.fools.scripts.intro.Dialog2", 1.5f);
+		world.scripts.delayScript("intro.Dialog2", 1.5f);
 	}
 
 }

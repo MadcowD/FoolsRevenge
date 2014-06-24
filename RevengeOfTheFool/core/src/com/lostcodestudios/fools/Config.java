@@ -91,6 +91,9 @@ public final class Config {
     			new Rectangle[] { new Rectangle(0, 16, 16, 8), new Rectangle(17, 0, 16, 8) });
     }
     
+    public static final Rectangle switchSpriteFrame1 = new Rectangle(0, 29, 8, 8);
+    public static final Rectangle switchSpriteFrame2 = new Rectangle(8, 29, 8, 8);
+    
 	public static void loadAll() {
 		loadFonts();
 		loadSpriteInfo();

@@ -108,6 +108,11 @@
     <property name="weaponType" value="Sword"/>
    </properties>
   </object>
+  <object type="Switch" x="366" y="50" width="9" height="8">
+   <properties>
+    <property name="triggerScript" value="Switch"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Points" width="100" height="100" visible="0">
   <object name="KingRoom" type="Room" x="344" y="15" width="122" height="74"/>

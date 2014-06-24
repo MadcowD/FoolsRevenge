@@ -175,7 +175,7 @@ public class GameWorld {
 	
 	public void start() {
 		//TODO: MAKE A START SCRIPT
-        scripts.runScript("com.lostcodestudios.fools.scripts.Start");
+        scripts.runScript("Start");
 	}
 	
 	public void dispose() {

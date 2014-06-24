@@ -84,6 +84,12 @@ public class EntityManager {
 						if (d.selected) {
 							d.renderText(gameWorld);
 						}
+					} else if (e instanceof Switch) {
+						Switch s = (Switch)e;
+						
+						if (s.selected) {
+							s.renderText(gameWorld);
+						}
 					}
 				}
 			});

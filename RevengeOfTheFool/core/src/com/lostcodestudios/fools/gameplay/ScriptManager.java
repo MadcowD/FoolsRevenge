@@ -39,16 +39,19 @@ public class ScriptManager {
 	
 	/**
 	 * Runs a given script (given by class name)
-	 * @param name The class name of the script to run.
+	 * NOTE: class name is now relative to the package "com.lostcodestudios.fools.scripts"
+	 * @param name The class name of the script to run, relative to the package "com.lostcodestudios.fools.scripts"
 	 * @param args The arguments to pass to the script.
 	 */
 	public void runScript(String name, ObjectMap<String, Object> args) {
-		if(Scripts.containsKey(name))
-			Scripts.get(name).run(world, args);
+		String fullName = "com.lostcodestudios.fools.scripts." + name;
+		
+		if(Scripts.containsKey(fullName))
+			Scripts.get(fullName).run(world, args);
 		else{
 			
 			try {
-				Class.forName(name);
+				Class.forName(fullName);
 			} catch (ClassNotFoundException e) {
 				throw new NoSuchElementException();
 			}

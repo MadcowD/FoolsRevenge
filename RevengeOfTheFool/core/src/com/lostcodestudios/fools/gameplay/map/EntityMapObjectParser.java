@@ -15,6 +15,7 @@ import com.lostcodestudios.fools.gameplay.entities.Door;
 import com.lostcodestudios.fools.gameplay.entities.Entity;
 import com.lostcodestudios.fools.gameplay.entities.Human;
 import com.lostcodestudios.fools.gameplay.entities.Item;
+import com.lostcodestudios.fools.gameplay.entities.Switch;
 import com.lostcodestudios.fools.gameplay.entities.Weapon;
 
 public class EntityMapObjectParser {
@@ -83,17 +84,17 @@ public class EntityMapObjectParser {
 					args.put("paths", paths.get(name));
 			
 			if (type.equals("Fool")) {
-				e = new Human(world, "Fool", position, "com.lostcodestudios.fools.scripts.entities.Fool", args);
+				e = new Human(world, "Fool", position, "entities.Fool", args);
 				((Human) e).group = "Fool";
 			}
 			
 			else if (type.equals("King")) {
-				e = new Human(world, "King", position, "com.lostcodestudios.fools.scripts.entities.King", args);
+				e = new Human(world, "King", position, "entities.King", args);
 				((Human) e).group = "King";
 			}
 			
 			else if (type.equals("Guard")) {
-				e = new Human(world, "Guard", position, "com.lostcodestudios.fools.scripts.entities.Guard", args);
+				e = new Human(world, "Guard", position, "entities.Guard", args);
 				((Human) e).group = "King";
 				
 				Weapon sword = new Weapon(world, e, "Sword");
@@ -119,6 +120,11 @@ public class EntityMapObjectParser {
 			else if (type.equals("Weapon")) {
 				String weaponType = (String)entityProperties.get("weaponType");
 				e = new Weapon(world, position, weaponType);
+			}
+			
+			else if (type.equals("Switch")) {
+				String script = (String)entityProperties.get("triggerScript");
+				e = new Switch(world, position, script);
 			}
 			
 			if (e instanceof Human) {

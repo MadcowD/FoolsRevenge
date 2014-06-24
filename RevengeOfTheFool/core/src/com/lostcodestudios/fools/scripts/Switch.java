@@ -2,19 +2,18 @@ package com.lostcodestudios.fools.scripts;
 
 import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.gameplay.GameWorld;
+import com.lostcodestudios.fools.gameplay.entities.Door;
 
-public class Start extends Script {
-	
-	static{
-		Script.Register(new Start());
+public class Switch extends Script {
+
+	static {
+		Script.Register(new Switch());
 	}
 	
 	@Override
 	public void run(GameWorld world, ObjectMap<String, Object> args) {
-		world.camera.position.set(50f * 64f, 94f * 64f, 0f);
-		world.camera.update();
-		
-		world.scripts.runScript("intro.Dialog1");
+		Door d = (Door)world.specialEntities.get("KingDoor");
+		d.toggleOpen();
 	}
-	
+
 }

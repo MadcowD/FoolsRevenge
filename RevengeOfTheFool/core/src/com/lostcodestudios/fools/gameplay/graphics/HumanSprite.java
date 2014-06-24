@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.gameplay.entities.Human;
 
-public class AnimatedSprite {
+public class HumanSprite {
 	
 	private static final float FRAME_SPACING = 1;
 	
@@ -39,7 +39,7 @@ public class AnimatedSprite {
 	 * @param frameWidth The width of each of the sprite's frames.
 	 * @param frameHeight The height of each of the sprite's frames.
 	 */
-	public AnimatedSprite(Texture sheetTexture, int x, int y, int frameWidth, int frameHeight) {
+	public HumanSprite(Texture sheetTexture, int x, int y, int frameWidth, int frameHeight) {
 		// set rendering values
 		
 		this.origin = new Vector2(frameWidth * Config.SPRITE_SCALE / 2, Human.RADIUS * Config.PIXELS_PER_METER);

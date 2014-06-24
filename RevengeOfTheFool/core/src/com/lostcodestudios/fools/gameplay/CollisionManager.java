@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.gameplay.entities.Door;
 import com.lostcodestudios.fools.gameplay.entities.Human;
 import com.lostcodestudios.fools.gameplay.entities.Item;
+import com.lostcodestudios.fools.gameplay.entities.Switch;
 import com.lostcodestudios.fools.gameplay.entities.Weapon;
 
 public class CollisionManager implements ContactListener {
@@ -76,7 +77,7 @@ public class CollisionManager implements ContactListener {
 			
 			if ((bodyA.getUserData() instanceof Human || bodyB.getUserData() instanceof Human) 
 					&& (bodyA.getUserData() instanceof Item || bodyB.getUserData() instanceof Item)) {
-				// item not selected anymore
+				// item selected now
 				
 				Item i = null;
 				Human h = null;
@@ -101,6 +102,34 @@ public class CollisionManager implements ContactListener {
 					}
 				}
 			}
+			
+			// human -> switch
+			
+			if ((bodyA.getUserData() instanceof Human || bodyB.getUserData() instanceof Human) 
+					&& (bodyA.getUserData() instanceof Switch || bodyB.getUserData() instanceof Switch)) {
+				// switch selected or triggered
+				
+				Switch s = null;
+				Human h = null;
+				
+				if (bodyA.getUserData() instanceof Switch) {
+					s = (Switch) bodyA.getUserData();
+					h = (Human) bodyB.getUserData();
+				}
+				
+				if (bodyB.getUserData() instanceof Switch) {
+					s = (Switch) bodyB.getUserData();
+					h = (Human) bodyA.getUserData();
+				}
+				
+				if (h.tag.equals("Fool")) {
+					s.selected = true;
+				} else {
+					s.trigger();
+				}
+			}
+			
+			// human sees human
 			
 			if (bodyA.getUserData() instanceof Human && bodyB.getUserData() instanceof Human) {
 				Human viewer = null;
@@ -212,6 +241,30 @@ public class CollisionManager implements ContactListener {
 			
 			if (h.tag.equals("Fool")) {
 				i.selected = false;
+			}
+		}
+		
+		// human -> switch
+		
+		if ((bodyA.getUserData() instanceof Human || bodyB.getUserData() instanceof Human) 
+				&& (bodyA.getUserData() instanceof Switch || bodyB.getUserData() instanceof Switch)) {
+			// switch selected or triggered
+			
+			Switch s = null;
+			Human h = null;
+			
+			if (bodyA.getUserData() instanceof Switch) {
+				s = (Switch) bodyA.getUserData();
+				h = (Human) bodyB.getUserData();
+			}
+			
+			if (bodyB.getUserData() instanceof Switch) {
+				s = (Switch) bodyB.getUserData();
+				h = (Human) bodyA.getUserData();
+			}
+			
+			if (h.tag.equals("Fool")) {
+				s.selected = false;
 			}
 		}
 	}
