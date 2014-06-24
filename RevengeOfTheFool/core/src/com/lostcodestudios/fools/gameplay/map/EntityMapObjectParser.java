@@ -87,7 +87,6 @@ public class EntityMapObjectParser {
 			if (type.equals("Fool")) {
 				e = new Human(world, "Fool", position, "com.lostcodestudios.fools.scripts.entities.Fool", args);
 				((Human) e).group = "Fool";
-				((Human) e).tag = "Fool";
 			}
 			
 			else if (type.equals("King")) {
@@ -145,6 +144,10 @@ public class EntityMapObjectParser {
 			
 			if (name != null && !name.isEmpty()) {
 				world.specialEntities.put(name, e); // save the special ones for later
+				
+				if (e instanceof Human) {
+					((Human)e).tag = name;
+				}
 			}
 		}
 	}

@@ -5,6 +5,7 @@ package com.lostcodestudios.fools.scripts.ai;
 
 import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.gameplay.GameWorld;
+import com.lostcodestudios.fools.gameplay.entities.Entity;
 import com.lostcodestudios.fools.scripts.Script;
 
 /**
@@ -27,7 +28,7 @@ public abstract class State extends Script {
 	/**
 	 * Ends the state
 	 */
-	public final void end(){
+	public final void end() {
 		onEnd();
 		parent.setState(nextState);
 	}
@@ -35,7 +36,8 @@ public abstract class State extends Script {
 	/**
 	 * Called when the state has ended.
 	 */
-	protected void onEnd(){
-	}
+	protected void onEnd() { }
 
+	public void onSight(Entity e) { }
+	
 }

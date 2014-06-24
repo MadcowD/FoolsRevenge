@@ -4,12 +4,15 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.Config;
@@ -24,6 +27,10 @@ public class Human extends Entity {
 	
 	private static final float DEFAULT_HEALTH = 5f;
 	private static final float HEALTH_POTION_VALUE = 5f;
+	
+	private static final int VIEW_VERTICES = 5;
+	private static final float VIEW_FOV = 0.4f;
+	private static final float VIEW_RANGE = 10f;
 	
 	private String spriteKey;
 	private AnimatedSprite sprite;
@@ -58,6 +65,8 @@ public class Human extends Entity {
 
 		sprite = new AnimatedSprite(gameWorld.spriteSheet, info.frameX, info.frameY, info.frameWidth, info.frameHeight);
 		
+		// create the main human body
+		
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.DynamicBody;
 		bodyDef.position.set(position);
@@ -70,8 +79,15 @@ public class Human extends Entity {
 		shape.setRadius(RADIUS);
 		fixtureDef.shape = shape;
 		
-		body.createFixture(fixtureDef);
-		body.getFixtureList().get(0).setUserData(this);
+		Fixture bf = body.createFixture(fixtureDef);
+		bf.setUserData(this);
+		
+		shape.dispose();
+		
+		// create the view sensor fixture
+		
+		createView(body);
+		
 		body.setUserData(this);
 	}
 	
@@ -85,6 +101,39 @@ public class Human extends Entity {
 		this.updateScriptArgs.put("e", this);
 		
 		runUpdateScript = true;
+	}
+	
+	private void createView(Body body) {
+		PolygonShape viewShape = new PolygonShape();
+		
+		Vector2[] verts = new Vector2[VIEW_VERTICES];
+		verts[0] = new Vector2(0, 0);
+
+		float radians = (float) (2f * Math.PI * VIEW_FOV);
+
+		float start = radians / 2;
+
+		for (int i = 1; i < VIEW_VERTICES; ++i) {
+			float angle = start - ((float) i / (VIEW_VERTICES))
+					* radians;
+
+			verts[i] = new Vector2(VIEW_RANGE * (float) Math.cos(angle),
+					VIEW_RANGE * (float) Math.sin(angle));
+		}
+
+		viewShape.set(verts);
+
+		FixtureDef fd = new FixtureDef();
+		fd.shape = viewShape;
+		fd.isSensor = true;
+
+		Fixture fixture = body.createFixture(fd); // Create the new fixture
+		
+		if (fixture.isSensor()) {
+			System.out.println("Yeee");
+		}
+		
+		fixture.setUserData(this); // Set the new fixture's user data
 	}
 	
 	public void setHealth(float health) {
@@ -157,14 +206,18 @@ public class Human extends Entity {
 			gameWorld.scripts.runScript(updateScriptBody, updateScriptArgs);
 		}
 		
-		//TODO: MAKES AN EXCEPTION IF NOT ON FLOOR>
-		//MapProperties currentFloorProperties = ((TiledMapTileLayer)gameWorld.tileMap.getLayers().get("Floor")).getCell((int)getPosition().x, (int)getPosition().y).getTile().getProperties(); // lol
+		// slow for stair tiles
+		TiledMapTileLayer floorLayer = (TiledMapTileLayer) gameWorld.tileMap.getLayers().get("Floor");
 		
-		//if (currentFloorProperties.get("stairs") != null) {
-			// slow for stair tiles
+		Cell currentFloorCell = floorLayer.getCell((int)getPosition().x, (int)getPosition().y);
+		
+		if (currentFloorCell != null) {
+			MapProperties currentFloorProperties = currentFloorCell.getTile().getProperties();
 			
-			//body.setLinearVelocity(body.getLinearVelocity().scl(0.6f));
-		//}
+			if (currentFloorProperties.get("stairs") != null) {
+				body.setLinearVelocity(body.getLinearVelocity().scl(Config.STAIR_SPEED));
+			}
+		}
 	}
 	
 	@Override

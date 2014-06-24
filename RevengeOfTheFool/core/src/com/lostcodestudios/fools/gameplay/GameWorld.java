@@ -61,7 +61,7 @@ public class GameWorld {
 	private CollisionManager collisionManager;
 	private Array<Body> bodiesToDestroy = new Array<Body>();
 	
-	private RayHandler rayHandler;
+	public RayHandler rayHandler;
 	private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
 	public SpriteBatch spriteBatch = new SpriteBatch();
 	
@@ -350,6 +350,7 @@ public class GameWorld {
 		scripts.update(delta);
 		
 		updatePhysics(delta);
+		collisionManager.update(delta); // this handles view sightings OUTSIDE of the dangerous ContactListener event context
 		
 		entities.update(delta);
 	}

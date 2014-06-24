@@ -26,6 +26,8 @@ public final class Config {
 	public static final float SPRITE_SCALE = 8f;
 	public static final float PIXELS_PER_METER = 64f;
 	
+	public static final float STAIR_SPEED = 0.6f;
+	
 	public static final int ACCEPT_KEY = Keys.E;
 	public static final String ACCEPT_TEXT = "[E]";
 	

@@ -2,30 +2,35 @@ package com.lostcodestudios.fools.scripts.ai;
 
 import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.gameplay.GameWorld;
+import com.lostcodestudios.fools.gameplay.entities.Entity;
 import com.lostcodestudios.fools.scripts.Script;
 
-public class AI extends Script{
+public class AI extends Script {
+	
+	protected State currentState;
+	
 	/**
-	 * Intiitalizes the AI with a current state.
-	 * @param inititalState The initial state of the AI script.
-	 * @param initialState 
+	 * Initializes the AI with an initial state.
+	 * @param initialState The initial state of the AI script.
 	 */
-	public AI(State initialState){
+	public AI(State initialState) {
 		setState(initialState);
 	}
-	
 	
 	/**
 	 * Runs the current AI State.
 	 */
-	public  void run(GameWorld world, ObjectMap<String, Object> args){
-			currentState.run(world, args); 
+	public void run(GameWorld world, ObjectMap<String, Object> args){
+		currentState.run(world, args); 
 	}
 	
-	
-	public void setState(State  newState){
+	public void setState(State newState) {
 		this.currentState = newState;
 		this.currentState.parent = this;
 	}
-	protected State currentState;
+	
+	public void onSight(Entity e) {
+		currentState.onSight(e);
+	}
+
 }
