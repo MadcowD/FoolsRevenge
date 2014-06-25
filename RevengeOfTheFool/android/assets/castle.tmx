@@ -17,12 +17,7 @@
  </tileset>
  <tileset firstgid="805" name="Tiles" tilewidth="8" tileheight="8" spacing="2" margin="1">
   <image source="tiles.png" width="128" height="128"/>
-  <tile id="8">
-   <properties>
-    <property name="torch" value=""/>
-   </properties>
-  </tile>
-  <tile id="13">
+  <tile id="25">
    <properties>
     <property name="stairs" value=""/>
    </properties>
@@ -30,15 +25,15 @@
  </tileset>
  <layer name="Floor" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1EEOgjAQQNEmnkhdK269lUdXdw2UAiJlQt5LZtUQkv50UgKOoDuldC7MI5vS+fc7/q/W465Hc95HLGM9pkaPbegRS63HTY/mvI9Y9Iil1ONaGD32lbdgf3psI98xlxlT21ef89fU5P9j6JceY6PHenrE0vp+9KjTI5al+6a/c5bsuv6+Y0iPWPQ4Bvcaix4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwBrPGUM7esRy1B5voNRsZw==
+   eJztmt9t3DAMxg10rqbPbTNNJwg6iVbIQ546RGcI0O7RXBtfZYmiSImSafv7AOKgfyTl30l0DlkWCILOoK8fluUjYY+RUeO3dZC9OB5fwGO6cD58qcSjZuAxRuDhS+DhS+DhS+DhSxSPT4SBx76KWUD7CzzGKL5jHgTG3Vdv4081i+NBuVp4lAw8+gUevjT7+YAHL/DwJe19k945mrsuve+gXODhS+BxDuG58npWWq8seWhzt8h/tI6Qo5WOsNcj5Gil2XtNz6XkrILHPvHA47g8Wupkay0dFau0r5my5GGt2ecTPHhdjcdbrBCbtO9qPIj9s9YRX7Q2nSfhMepOH1GPlPsKFR/seOxXm58mhjbvPdTCg5gTesbjWODRd37efYSe8TSXxrUhaZP+W3zP1Ij7qtbmYqW+f9PzMn/gsWkHTZuLBR768Zk8CvEzf+CxaQdNm4slqV/gwfeBh5088qitteQheb/UvoNa+qrtobQvTZuLNbOeW6jkszUWePTpajys76tn49/arsAjsWztyPMBHlu/kvoGHnzf4PuKmpf5A49NO2jaXKy96zl4bP1ejQfxPlG8t5n7O/OpaTO5ubyvuPwteGjmoJ7fv8Pi76xybhaPy8kBj2ztXjwsdEQetbXgofO5Rz2nfEn6JL5H85BYaX2pL43Btblcr8bDYv1MHtJ6TvmS9El8X51HWs/Tcyvps+bxItmAQL1+SvuS3nfv8wPhpuQ3M+O8m+z2HL8Z2EtnHjPPh6Ws7pdVljysBR7goRV4bMYD154h8NiMB649Q9J6zo1NrOdBmseZ6nnp/Xkh+lMr8fhesQKPe9xlyXiweZyRR4OvqTy4PKhx8JCxaOFRy6OHR/o5UyfmQfVX11GfMzWCB2fr839d/tf/knXeV+S+pPsQTjWXNQ+uvr4SRr07UO8Rq39hLPDgY7A8NH4Sn+DRFqP5fJTOC3h0xfhbV34SttaJFh5cPNRzNkaVh8TH6PerOM5eZwQ86PXCqeY6Ko8R95UHcTwMaurdNPWD86+ILdqrNzE8ihbPq/39F1uJR2qramPSPLm9elNvjtQznmVagQd4aNWT45FY3AQe4KFVrSbW7IfQuGcr9RFba76QjAc0T+DhS+DhS+DhS+DhS+DhS+DhS2flofkt1av9+mdPN9s7l147qj5HFp+LuB+aJ/DwJfDwpfj/dGMecT80T+DhS+DhS+DhS+DhS2fl8QcewTaB
   </data>
  </layer>
  <layer name="Objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2M1twjAUAOBUHaOX3vkpxxwZJaMwChu0I7BEN+ihY9SpiwImBFAibJXvk55QgETGD+fFr6rK9/ZcNfPnqhob4TpMIMxlswwxC/O5CDE7iGuPlzEn29y/5T+Yx1w0Y64Rzt/KxzTkoyxD+Xh5Gj7ek4/ptPlYjFwfC/mYjPtVWayPslgfZZGPssjHfV3qh6zi/no3i7EOtWC9f62THkgda83vdxfdObtw/nYVc6KfcsFBP2RzGH+9jk0SR/2QOvnP13H+03PS6568p5/SmeJ+NJb7WWeK59mxPA93rI+y9OWjju+d1OW+6KvfQ99rI30OkI/OmXz01uW+Wnxr7W4jfQ6Qj477VVnU87JYH2VJ9t9na3DfZ0P781uut9+/Z5mAwtxSny/V5Wv250ORZwYAAAC4p7ZHEuI19ziI5KMsdchF2m8hr6/cA+BIyMc69xiI6tgfphDqeVnkAwAAAAAAAAAAAAAAAAAAAAAAAB7Pe4iP3IN4MJ9VtQ3R5B4HADCd79wDAAAgix+W+cAr
+   eJzt20FugkAAQFGaHqMbNwS21gt4FI/So3CUHqVH6ZBpA5kCFhjwq/8lszBRjPwCzhSLgu/9tbgcX4ti7QjbUQZhX16qMMqwP5eOKjZpbv1ZHsExtris2UZ4fWOPPOzBMtXj7WX68S975OPxwWIPFnuw2IPFHiz22Ne19ZBTnF9/lgOjTtZA6tjuz/PC65tTbOJ6yhW99ZCPuaNO/ubruP9nb8f1lE6O89Fans869mCxB8tQj7Hrcq6Rfg+wR2ekx6Lr8tLvAfboeL5isQeLPbaz5N6Dqfn33OtyHa8Ps7fzn/n7Pc7r18y1F16Xz/33D48Pe713eQfzesK5Z0/hs37Zg8MeLPZgsQeLPVhoPYbmEs/WY+68Zav5ShXnce3xUPRHulb3bNL90R9bzlfaNYYwDlts+1FtuS5jj/n27tH+HyldU1InV4+h/TzUw2NmWq4e7feI9HuTPeazB4s9WOzBYg8We7DYg8UeLPZgsQeLPVjswWIPFnuw2IPFHiz2YNmyRx3v92+S59ljwpY9xt7PHuPswWIPljU9yuT3XD+/KTtPjerJ7028JtfxoTzscTtD9/rb43bswWIPFnuw2IPFHiz2YLEHiz1Y7MFiDxZ7sNiDxR4s9mCxB4s9WOzBYg8We7DYg8UeLPZgsQeLPVjswWIPFnuw2IPFHiz2YLEHiz1Y7MFiDxZ7sNiDxR4s9mCxB4s9WJb0+AbIZdzU
   </data>
  </layer>
- <objectgroup name="Physics" width="100" height="100">
+ <objectgroup name="Physics" width="100" height="100" visible="0">
   <object name="kingwall3" type="object" x="328" y="-2" width="15" height="106"/>
   <object name="kingwall1" type="object" x="329" y="0" width="148" height="16"/>
   <object name="kingwall2" type="object" x="465" y="0" width="13" height="101"/>
@@ -65,7 +60,7 @@
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup name="Entities" width="100" height="100">
+ <objectgroup name="Entities" width="100" height="100" visible="0">
   <object name="Fool" type="Fool" x="400" y="56" width="8" height="8">
    <properties>
     <property name="rotation" value="90"/>
@@ -123,7 +118,7 @@
   <object name="Landing5" type="Point" x="510" y="145" width="14" height="14"/>
   <object name="Landing6" type="Point" x="398" y="150" width="13" height="12"/>
  </objectgroup>
- <objectgroup name="Paths" width="100" height="100">
+ <objectgroup name="Paths" width="100" height="100" visible="0">
   <object type="Patrol" x="360" y="56">
    <properties>
     <property name="entity" value="g1"/>
