@@ -65,6 +65,70 @@
   <object name="16" type="object" x="40" y="392" width="16" height="32"/>
   <object name="18" type="object" x="40" y="440" width="16" height="32"/>
   <object name="20" type="object" x="40" y="488" width="16" height="32"/>
+  <object name="29" type="object" x="160" y="568" width="16" height="96"/>
+  <object name="30" type="object" x="160" y="648" width="216" height="16"/>
+  <object name="31" type="object" x="360" y="648" width="16" height="80"/>
+  <object name="32" type="object" x="0" y="712" width="392" height="16"/>
+  <object name="33" type="object" x="416" y="712" width="384" height="16"/>
+  <object name="34" type="object" x="432" y="648" width="16" height="80"/>
+  <object name="35" type="object" x="432" y="648" width="224" height="16"/>
+  <object name="36" type="object" x="640" y="272" width="16" height="392"/>
+  <object name="37" type="object" x="640" y="272" width="120" height="16"/>
+  <object name="38" type="object" x="744" y="0" width="16" height="288"/>
+  <object name="39" type="object" x="712" y="0" width="16" height="256"/>
+  <object name="40" type="object" x="640" y="240" width="88" height="16"/>
+  <object name="41" type="object" x="640" y="168" width="16" height="88"/>
+  <object name="a1" type="object" x="416" y="240" width="192" height="16"/>
+  <object name="a2" type="object" x="512" y="240" width="16" height="48"/>
+  <object name="a3" type="object" x="592" y="216" width="16" height="48"/>
+  <object name="a4" type="object" x="424" y="216" width="184" height="16"/>
+  <object name="a5" type="object" x="424" y="216" width="16" height="40"/>
+  <object name="a8" type="object" x="592" y="280" width="16" height="80"/>
+  <object name="a9" type="object" x="592" y="376" width="16" height="88"/>
+  <object name="a10" type="object" x="560" y="392" width="48" height="16"/>
+  <object name="a11" type="object" x="472" y="448" width="136" height="16"/>
+  <object name="a12" type="object" x="472" y="392" width="16" height="80"/>
+  <object name="a13" type="object" x="416" y="392" width="128" height="16"/>
+  <object name="a14" type="object" x="424" y="320" width="16" height="88"/>
+  <object name="a15" type="object" x="416" y="320" width="112" height="16"/>
+  <object name="a16" type="object" x="512" y="304" width="16" height="104"/>
+  <object name="b5" type="object" x="536" y="584" width="16" height="24"/>
+  <object name="b4" type="object" x="536" y="592" width="72" height="16"/>
+  <object name="b3" type="object" x="592" y="496" width="16" height="112"/>
+  <object name="b2" type="object" x="536" y="496" width="72" height="16"/>
+  <object name="b1" type="object" x="536" y="496" width="16" height="24"/>
+  <object name="b7" type="object" x="536" y="536" width="16" height="32"/>
+  <object name="b6" type="object" x="536" y="544" width="72" height="16"/>
+  <object name="b8" type="object" x="472" y="488" width="16" height="64"/>
+  <object name="b9" type="object" x="472" y="496" width="48" height="16"/>
+  <object name="b10" type="object" x="504" y="496" width="16" height="120"/>
+  <object name="b11" type="object" x="480" y="600" width="40" height="16"/>
+  <object name="b15" type="object" x="424" y="600" width="40" height="16"/>
+  <object name="b14" type="object" x="424" y="536" width="16" height="80"/>
+  <object name="b12" type="object" x="424" y="560" width="96" height="16"/>
+  <object name="b13" type="object" x="416" y="536" width="72" height="16"/>
+  <object name="b16" type="object" x="288" y="600" width="96" height="16"/>
+  <object name="b17" type="object" x="368" y="536" width="16" height="80"/>
+  <object name="b18" type="object" x="320" y="536" width="72" height="16"/>
+  <object name="b19" type="object" x="320" y="488" width="16" height="64"/>
+  <object name="b20" type="object" x="264" y="496" width="72" height="16"/>
+  <object name="b21" type="object" x="208" y="496" width="40" height="16"/>
+  <object name="b22" type="object" x="208" y="496" width="16" height="120"/>
+  <object name="b23" type="object" x="208" y="600" width="64" height="16"/>
+  <object name="c11" type="object" x="208" y="216" width="176" height="16"/>
+  <object name="c10" type="object" x="368" y="216" width="16" height="40"/>
+  <object name="c9" type="object" x="232" y="240" width="160" height="16"/>
+  <object name="c8" type="object" x="232" y="240" width="16" height="96"/>
+  <object name="c7" type="object" x="232" y="320" width="160" height="16"/>
+  <object name="c6" type="object" x="368" y="320" width="16" height="88"/>
+  <object name="c5" type="object" x="320" y="392" width="72" height="16"/>
+  <object name="c4" type="object" x="320" y="392" width="16" height="80"/>
+  <object name="c3" type="object" x="256" y="448" width="80" height="16"/>
+  <object x="280" y="345" width="15" height="118"/>
+  <object name="c1" type="object" x="208" y="384" width="16" height="80"/>
+  <object name="c2" type="object" x="208" y="448" width="32" height="16"/>
+  <object x="210" y="344" width="86" height="16"/>
+  <object name="c12" type="object" x="208" y="216" width="16" height="152"/>
  </objectgroup>
  <objectgroup name="Lights" width="100" height="100" visible="0">
   <properties>
