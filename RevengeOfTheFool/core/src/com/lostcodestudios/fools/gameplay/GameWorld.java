@@ -244,6 +244,8 @@ public class GameWorld {
 		rayHandler.setCombinedMatrix(meterView);
 		rayHandler.updateAndRender();
 		
+		entities.renderHUD(delta, cameraBounds);
+		
 		if (!cutsceneMode) {
 		
 			renderHUD((Human) specialEntities.get("Fool"), spriteBatch);

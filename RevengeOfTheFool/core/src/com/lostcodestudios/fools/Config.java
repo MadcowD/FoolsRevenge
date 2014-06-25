@@ -85,10 +85,17 @@ public final class Config {
     public static ObjectMap<String, Rectangle[]> doorSpriteInfo = new ObjectMap<String, Rectangle[]>();
     
     public static void loadDoorSpriteInfo() {
-    	doorSpriteInfo.put("Large Wood", 
+    	doorSpriteInfo.put("Large Wood Horizontal", 
     			new Rectangle[] { new Rectangle(0, 0, 24, 13), new Rectangle(25, 0, 24, 13) });
-    	doorSpriteInfo.put("Average Wood",
+    	
+    	doorSpriteInfo.put("Large Wood Vertical", 
+    			new Rectangle[] { new Rectangle(51, 0, 12, 25), new Rectangle(64, 0, 12, 25) });
+    	
+    	doorSpriteInfo.put("Average Wood Horizontal",
     			new Rectangle[] { new Rectangle(0, 16, 16, 8), new Rectangle(17, 0, 16, 8) });
+    	
+    	doorSpriteInfo.put("Average Wood Vertical",
+    			new Rectangle[] { new Rectangle(78, 0, 8, 15), new Rectangle(87, 0, 8, 15) });
     }
     
     public static final Rectangle switchSpriteFrame1 = new Rectangle(0, 29, 8, 8);

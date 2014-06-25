@@ -224,14 +224,20 @@ public class Box2DMapObjectParser {
 	 */
 	public World load(World world, MapLayer layer) {
 		for (MapObject object : layer.getObjects()) {
+			
 			if (!ignoreMapUnitScale)
+				
 				unitScale = (Float) getProperty(layer.getProperties(),
 						aliases.unitScale, unitScale, Float.class);
+			
 			if (object.getProperties().get("type", String.class)
 					.equals(aliases.object)) {
+				
 				createBody(world, object);
 				createFixture(object);
+				
 			}
+			
 		}
 
 		for (MapObject object : layer.getObjects()) {

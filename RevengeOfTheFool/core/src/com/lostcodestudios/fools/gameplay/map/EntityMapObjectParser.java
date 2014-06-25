@@ -104,6 +104,21 @@ public class EntityMapObjectParser {
 			
 			else if (type.equals("Door")) {
 				String doorType = (String) entityProperties.get("doorType");
+				
+				float width = rectObj.getRectangle().width;
+				float height = rectObj.getRectangle().height;
+				
+				float size = 0f;
+				if (width > height) {
+					size = width / unitScale;
+				} else {
+					size = height / unitScale;
+				}
+				
+				doorType = (size == 2f ? "Average " : "Large ") + doorType;
+				
+				doorType += (width > height ? " Horizontal" : " Vertical");
+				
 				e = new Door(world, doorType, position);
 				
 				if (entityProperties.get("key") != null) {

@@ -33,7 +33,7 @@
    eJztnd2RozAMx7m5Mu6FFwZeszRAKZSSUlJKSkkp54xh12skI8vGyET/Gc1sEmwL/xJZ/ki2aeTr628z3/42TaqZek6RaXvujK2Pzd8P89zjHG/S9b6f3t5Tw7XeMnmc5f/VeLj3w9GZfaA8tlIe+RTi8e9P+PEq5ZFP+vmQJeUhS8pDlpSHLCkPWVIeZbW3HjLa+fWzA2zw1kAGe++b60z5x2j7ofh6Sm08nPWQe6wN3n0Ntv+j6zlyPaVGHqnxKFVH9pHyiJfy+JHykCWIBzYu5zI/D1AeP0J4sMZlbh6gPH6k8UqWlIcsKY/jxDl7EJp/x47Lgx0fouuhzN+58/ozeaTMtZnj8uS2bx63pdruiPP6s3mcHXtKitK3yqOclIcsKQ9ZqpXHEesffm51ZFtYe7XyePuQM+/q7TnQFvIhd1uh9mrmgfUfR6auV4hHzrZCdV6BR4540tvPALhfu75mrptyWR/gsTePHO1na3bLSOKRM54g+7UN1XprM+U6iAe1PddPiTxyxxOuqL4M9rP4yNWm8oB1hi/KA1eqL5yxsFceqKhx6N3v2PzDjNfPW6R9KY8kYT6XjD0cKQ9Zqo0HFod8KY8yovpydR7c/VnfqOepQ7nOp/PIcbZqnVdD83Nnzk2q59N55FBn1xM37ey9xvXrijwoa3yUsXWp75I8zLzkfstooz3fAfq9t25HjR1LfUV5vM+t+GdZ1vI5eZi62n4bU1+B59D+XPr0Bd0fZR4cE9NK8wiVz83D9wd6L0R8rsl9AZRVHkh8gdr9ZB6D3Wt5QeVr5EGZB5/Eg3RtqfEciVeb9wLkD3IdeH+UvkbamKE8LNd+rXutW5ffbmi/9oDxvPXanvw+hfoK6vvcPDqbR6B5Wcx+7d7erFuXX0/K+ZIYOflVMEc6kwd3POL4EFu2ULwi5VfKQ9Z4rjyUR4pq5UHNr5RH3fnVXl4J5alLnrmpj6MOqJ9qhfPdw/MrN38M5ZW+LXnmpj6OOsKaZsig9bdC8Sp7fsVVznOBOetaVet4flUpD1mqNb/iinoep3Rdq2rNr/xzH0CO9YTsoPwq5AeaY3G/rxajkutX7pkPIMe6Q3ZQfuXW3QKvY3leC9VZY34FlacoZ/zzffAfh/IvzP9ax/MaeMSUdZ9XHjzVygPKr5AYVoRH6GxpzHlRf80DiFdo/lWSByW/Qnzc9H3onBKHBzbWc8+L+t+rBMZzEku3TObzcK2pb3JtTOARuJbFg9M21S+EB8ixVH4FaYlh8951knlQzs/773kJ+RUkP4a5Y4n7+2u9jW2/Yp1//d79cEXgAb7PKe95pM7TeKwxbLT9/es32NbfX3vPGc3rLyTWgX5Lj1eca0vwWBXKhTvL4kUtUwMPCflVSJ/Gw8mvJt9K5Vch5eaB3WvMmp7XPzPmW4/MUdz5CTSed/j+4Oa3Utb7KskDGq+X/phieITuNWb/FisHtPU9bofWLlP3C0vygOYmrn0B8z7q+stVVJIHR9j31a4qLG5LkfKQJeUhSzf7/Yvv3OYo29sHX9YRdvO0RHtieY0UmTH+eTvYRsJnsEPWD44wKK/5JFFiovQ4ciUpD1lSHrKkPGRJecjSlXkYn6sz9/9NIedLpvX/QRWYg+S2e82W+nvh0kylUqlUKpVKpVKpVJ+p/8FMLvA=
   </data>
  </layer>
- <objectgroup name="Physics" width="100" height="100">
+ <objectgroup name="Physics" width="100" height="100" visible="0">
   <object name="3" type="object" x="336" y="16" width="8" height="72"/>
   <object name="1" type="object" x="344" y="8" width="120" height="8"/>
   <object name="2" type="object" x="464" y="16" width="8" height="72"/>
@@ -124,10 +124,10 @@
   <object name="c5" type="object" x="320" y="392" width="72" height="16"/>
   <object name="c4" type="object" x="320" y="392" width="16" height="80"/>
   <object name="c3" type="object" x="256" y="448" width="80" height="16"/>
-  <object x="280" y="345" width="15" height="118"/>
+  <object name="c13" type="object" x="280" y="344" width="16" height="120"/>
   <object name="c1" type="object" x="208" y="384" width="16" height="80"/>
   <object name="c2" type="object" x="208" y="448" width="32" height="16"/>
-  <object x="210" y="344" width="86" height="16"/>
+  <object name="c14" type="object" x="208" y="344" width="88" height="16"/>
   <object name="c12" type="object" x="208" y="216" width="16" height="152"/>
  </objectgroup>
  <objectgroup name="Lights" width="100" height="100" visible="0">
@@ -143,7 +143,7 @@
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup name="Entities" width="100" height="100" visible="0">
+ <objectgroup name="Entities" width="100" height="100">
   <object name="Fool" type="Fool" x="400" y="56" width="8" height="8">
    <properties>
     <property name="rotation" value="90"/>
@@ -165,9 +165,9 @@
     <property name="itemType" value="Health Potion"/>
    </properties>
   </object>
-  <object name="KingDoor" type="Door" x="390" y="89" width="26" height="8">
+  <object name="KingDoor" type="Door" x="392" y="92" width="24" height="8">
    <properties>
-    <property name="doorType" value="Large Wood"/>
+    <property name="doorType" value="Wood"/>
     <property name="key" value="Gold Key"/>
    </properties>
   </object>
@@ -189,6 +189,11 @@
   <object type="Switch" x="366" y="50" width="9" height="8">
    <properties>
     <property name="triggerScript" value="Switch"/>
+   </properties>
+  </object>
+  <object type="Door" x="596" y="264" width="8" height="16">
+   <properties>
+    <property name="doorType" value="Wood"/>
    </properties>
   </object>
  </objectgroup>

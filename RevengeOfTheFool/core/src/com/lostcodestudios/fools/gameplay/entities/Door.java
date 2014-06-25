@@ -37,7 +37,7 @@ public class Door extends Entity {
 		closedRegion = new TextureRegion(gameWorld.doorSpriteSheet, (int)closedFrame.x, (int)closedFrame.y, (int)closedFrame.width, (int)closedFrame.height);
 		openRegion = new TextureRegion(gameWorld.doorSpriteSheet, (int)openFrame.x, (int)openFrame.y, (int)openFrame.width, (int)openFrame.height);
 		
-		origin = new Vector2((float)closedRegion.getRegionWidth() * Config.SPRITE_SCALE / 2, (float)closedRegion.getRegionHeight() * Config.SPRITE_SCALE - 16f);
+		origin = new Vector2((float)closedRegion.getRegionWidth() * Config.SPRITE_SCALE / 2, (float)closedRegion.getRegionHeight() * Config.SPRITE_SCALE / 2);
 		
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.position.set(position);

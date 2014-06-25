@@ -50,9 +50,11 @@ public class EntityManager {
 		});
 		
 		gameWorld.spriteBatch.end();
-		
+	}
+	
+	public void renderHUD(final float deltaTime, Rectangle cameraBounds) {
 		if (!gameWorld.cutsceneMode) {
-		
+			
 			// render health bars
 			
 			gameWorld.worldShapeRenderer.begin(ShapeType.Filled);
