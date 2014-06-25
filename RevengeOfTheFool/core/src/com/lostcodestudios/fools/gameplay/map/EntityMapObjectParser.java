@@ -110,9 +110,9 @@ public class EntityMapObjectParser {
 				
 				float size = 0f;
 				if (width > height) {
-					size = width / unitScale;
+					size = width * unitScale;
 				} else {
-					size = height / unitScale;
+					size = height * unitScale;
 				}
 				
 				doorType = (size == 2f ? "Average " : "Large ") + doorType;

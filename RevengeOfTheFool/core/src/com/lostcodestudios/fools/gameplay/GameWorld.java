@@ -335,6 +335,13 @@ public class GameWorld {
 		cameraBounds.width /= Config.PIXELS_PER_METER;
 		cameraBounds.height /= Config.PIXELS_PER_METER;
 		
+		// add margins for the entity world
+		final float MARGIN = 3; // 3 meters should be enough
+		cameraBounds.x -= MARGIN;
+		cameraBounds.width += MARGIN * 2;
+		cameraBounds.y -= MARGIN;
+		cameraBounds.height += MARGIN * 2;
+		
 		return cameraBounds;
 	}
 

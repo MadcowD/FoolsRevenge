@@ -196,6 +196,121 @@
     <property name="doorType" value="Wood"/>
    </properties>
   </object>
+  <object type="Door" x="596" y="360" width="8" height="16">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="540" y="520" width="8" height="16">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="540" y="568" width="8" height="16">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="644" y="256" width="8" height="16">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="516" y="288" width="8" height="16">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="476" y="472" width="8" height="16">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="324" y="472" width="8" height="16">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="212" y="368" width="8" height="16">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="164" y="552" width="8" height="16">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="44" y="520" width="8" height="16">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="44" y="472" width="8" height="16">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="44" y="424" width="8" height="16">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="44" y="376" width="8" height="16">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="392" y="244" width="24" height="8">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="392" y="324" width="24" height="8">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="392" y="396" width="24" height="8">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="392" y="540" width="24" height="8">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="464" y="604" width="16" height="8">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="272" y="604" width="16" height="8">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="248" y="500" width="16" height="8">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="240" y="452" width="16" height="8">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="544" y="396" width="16" height="8">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object type="Door" x="80" y="572" width="16" height="8">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Rooms" width="100" height="100" visible="0">
   <object name="KingRoom" type="Room" x="344" y="15" width="122" height="74"/>

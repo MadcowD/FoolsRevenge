@@ -92,10 +92,10 @@ public final class Config {
     			new Rectangle[] { new Rectangle(51, 0, 12, 25), new Rectangle(64, 0, 12, 25) });
     	
     	doorSpriteInfo.put("Average Wood Horizontal",
-    			new Rectangle[] { new Rectangle(0, 16, 16, 8), new Rectangle(17, 0, 16, 8) });
+    			new Rectangle[] { new Rectangle(0, 16, 16, 8), new Rectangle(17, 16, 16, 8) });
     	
     	doorSpriteInfo.put("Average Wood Vertical",
-    			new Rectangle[] { new Rectangle(78, 0, 8, 15), new Rectangle(87, 0, 8, 15) });
+    			new Rectangle[] { new Rectangle(78, 0, 8, 17), new Rectangle(87, 0, 8, 17) });
     }
     
     public static final Rectangle switchSpriteFrame1 = new Rectangle(0, 29, 8, 8);
