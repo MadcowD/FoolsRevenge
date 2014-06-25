@@ -34,7 +34,7 @@ import com.lostcodestudios.fools.gameplay.entities.Human;
 import com.lostcodestudios.fools.gameplay.map.Box2DLightsMapObjectParser;
 import com.lostcodestudios.fools.gameplay.map.Box2DMapObjectParser;
 import com.lostcodestudios.fools.gameplay.map.EntityMapObjectParser;
-import com.lostcodestudios.fools.gameplay.map.PointMapObjectParser;
+import com.lostcodestudios.fools.gameplay.map.RoomMapObjectParser;
 import com.lostcodestudios.fools.scripts.ai.AStar;
 
 public class GameWorld {
@@ -76,7 +76,6 @@ public class GameWorld {
 	private TextureRegion potionRegion;
 	
 	public ObjectMap<String, Rectangle> rooms = new ObjectMap<String, Rectangle>();
-	public ObjectMap<String, Vector2> points = new ObjectMap<String, Vector2>();
 	
 	private float elapsedTime = 0f;
 	
@@ -146,9 +145,9 @@ public class GameWorld {
 		lightObjectParser.load(rayHandler, (TiledMapTileLayer) tileMap.getLayers().get("Objects"));
 		
 		// load points and rooms from the tile map
-		PointMapObjectParser pointParser = new PointMapObjectParser();
-		pointParser.unitScale = 1f / Config.SPRITE_SCALE;
-		pointParser.load(this, tileMap.getLayers().get("Points"));
+		RoomMapObjectParser roomParser = new RoomMapObjectParser();
+		roomParser.unitScale = 1f / Config.SPRITE_SCALE;
+		roomParser.load(this, tileMap.getLayers().get("Rooms"));
 		
 		paused = false;
 		

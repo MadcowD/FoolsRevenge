@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.lostcodestudios.fools.gameplay.GameWorld;
 
-public class PointMapObjectParser {
+public class RoomMapObjectParser {
 
 	public float unitScale = 1f;
 	
@@ -37,11 +37,7 @@ public class PointMapObjectParser {
 			
 			Vector2 position = new Vector2(x, y);
 			
-			if (type.equals("Room")) {
-				world.rooms.put(name, rect);
-			} else if (type.equals("Point")) {
-				world.points.put(name, position);
-			}
+			world.rooms.put(name, rect);
 		}
 		
 	}
