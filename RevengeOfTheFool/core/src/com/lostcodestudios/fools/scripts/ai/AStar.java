@@ -11,7 +11,7 @@ public class AStar {
 	private final int width, height;
 	private final BinaryHeap<PathNode> open;
 	private final PathNode[] nodes;
-	public static Object[] objectMap;
+	public static boolean[] objectMap;
 	int runID;
 	private final IntArray path = new IntArray();
 	private int targetX, targetY;
@@ -109,13 +109,13 @@ public class AStar {
 	}
 
 	public boolean isValid (int x, int y) {
-		return objectMap[(y)*width + x] == null;
+		return objectMap[(y)*width + x];
 	}
 	
 	public static boolean  check(float x, float y){
 		y *= GameWorld.ASTARSIZE;
 		x *= GameWorld.ASTARSIZE;
-		return objectMap[((int)y)*GameWorld.ASTARWORLD + (int)x] == null;
+		return objectMap[((int)y)*GameWorld.ASTARWORLD + (int)x];
 	}
 
 	public int getWidth () {

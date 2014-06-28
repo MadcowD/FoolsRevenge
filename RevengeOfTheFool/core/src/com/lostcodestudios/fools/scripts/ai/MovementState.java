@@ -59,25 +59,25 @@ public class MovementState extends State{
 		
 		
 		//Perform steering.
-		final Vector2 steering = new Vector2();
-		for(double theta = 0; theta <2*Math.PI; theta+=0.02222*Math.PI)
-			world.world.rayCast(new RayCastCallback(){
-				@Override
-				public float reportRayFixture (Fixture fixture, Vector2 point, Vector2 normal, float fraction) {
-					if(!AStar.check(point.x, point.y))
-						steering.add(new Vector2().sub(point.sub(e.getPosition().cpy())));
-					return 0;
-				}
-				
-			},
-			e.getPosition().cpy(), 
-				// CASTS THE VECTOR RADIALLY OUTWARDS
-				new Vector2((float)Math.cos(theta),(float)Math.sin(theta))
-					.scl(radius)
-					.add(e.getPosition().cpy()));
-		
-		steering.nor();
-		dir.add(steering.scl(0.9f));
+//		final Vector2 steering = new Vector2();
+//		for(double theta = 0; theta <2*Math.PI; theta+=0.02222*Math.PI)
+//			world.world.rayCast(new RayCastCallback(){
+//				@Override
+//				public float reportRayFixture (Fixture fixture, Vector2 point, Vector2 normal, float fraction) {
+//					if(!AStar.check(point.x, point.y))
+//						steering.add(new Vector2().sub(point.sub(e.getPosition().cpy())));
+//					return 0;
+//				}
+//				
+//			},
+//			e.getPosition().cpy(), 
+//				// CASTS THE VECTOR RADIALLY OUTWARDS
+//				new Vector2((float)Math.cos(theta),(float)Math.sin(theta))
+//					.scl(radius)
+//					.add(e.getPosition().cpy()));
+//		
+//		steering.nor();
+//		dir.add(steering.scl(0.9f));
 
 		dir.nor();
 		dir.scl(speed);
