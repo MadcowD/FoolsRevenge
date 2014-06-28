@@ -14,10 +14,6 @@ public class Guard extends AI {
 		// TODO Auto-generated constructor stub
 	}
 	
-	static {
-		Script.Register(new Guard());
-	}
-	
 	
 	//-------------------------
 	//STATES

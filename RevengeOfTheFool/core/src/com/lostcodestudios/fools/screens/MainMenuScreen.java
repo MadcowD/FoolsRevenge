@@ -40,7 +40,7 @@ public class MainMenuScreen extends MenuScreen {
 
 			@Override
 			public void invoke(Revenge revenge, MenuScreen menu, MenuEntry entry) {
-				revenge.setScreen(new OptionsMenuScreen(revenge, menu));
+				//revenge.setScreen(new OptionsMenuScreen(revenge, menu));
 			}
 			
 		});
