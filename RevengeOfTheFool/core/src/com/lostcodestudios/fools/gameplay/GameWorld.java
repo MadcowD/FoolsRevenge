@@ -122,7 +122,7 @@ public class GameWorld {
 		if(Gdx.files.internal("fag1.starz").exists()){
 			String book = Gdx.files.internal("fag1.starz").readString();
 			for(int i = 0; i < ASTARWORLD*ASTARWORLD; i++)
-				if(book.charAt(i) == '1')
+				if(book.charAt(i*2) == '1')
 					AStar.objectMap[i] = true;
 
 
