@@ -109,7 +109,7 @@
    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
   </data>
  </layer>
- <objectgroup name="Physics" width="100" height="100" visible="0">
+ <objectgroup name="Physics" width="100" height="100">
   <object name="3" type="object" x="336" y="16" width="8" height="72"/>
   <object name="1" type="object" x="344" y="8" width="120" height="8"/>
   <object name="2" type="object" x="464" y="16" width="8" height="72"/>
@@ -422,12 +422,12 @@
     <property name="doorType" value="Wood"/>
    </properties>
   </object>
-  <object name="g3" type="Guard" x="291" y="155" width="8" height="6">
+  <object name="g3" type="Guard" x="286" y="110" width="8" height="6">
    <properties>
     <property name="rotation" value="0"/>
    </properties>
   </object>
-  <object name="g2" type="Guard" x="513" y="152" width="8" height="6">
+  <object name="g2" type="Guard" x="514" y="110" width="8" height="6">
    <properties>
     <property name="rotation" value="0"/>
    </properties>
@@ -453,20 +453,20 @@
   <object name="Kitchen" x="524" y="251" width="74" height="143"/>
   <object name="Pantry" x="484" y="405" width="112" height="48"/>
  </objectgroup>
- <objectgroup name="Paths" width="100" height="100">
+ <objectgroup name="Paths" width="100" height="100" visible="0">
   <object type="Patrol" x="517" y="148">
    <properties>
     <property name="entity" value="g2"/>
     <property name="pause" value="50"/>
    </properties>
-   <polyline points="0,0 1,-35 -225,-32 -223,9"/>
+   <polyline points="3,4 3,-36 -229,-36 -229,4"/>
   </object>
   <object type="Patrol" x="298" y="158">
    <properties>
     <property name="entity" value="g3"/>
     <property name="pause" value="50"/>
    </properties>
-   <polyline points="0,0 213,-2 216,-41 -3,-40"/>
+   <polyline points="-10,-6 222,-6 222,-46 -10,-46"/>
   </object>
  </objectgroup>
 </map>
