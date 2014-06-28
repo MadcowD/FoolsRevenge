@@ -162,7 +162,7 @@
   <object name="t16" type="object" x="336" y="488" width="8" height="8"/>
   <object name="t17" type="object" x="336" y="464" width="8" height="8"/>
  </objectgroup>
- <objectgroup name="Lights" width="100" height="100" visible="0">
+ <objectgroup name="Lights" width="100" height="100">
   <properties>
    <property name="ambientColor" value="25, 25, 25, 62"/>
   </properties>
@@ -361,6 +361,21 @@
     <property name="rotation" value="0"/>
    </properties>
   </object>
+  <object type="Item" x="438" y="50" width="12" height="10">
+   <properties>
+    <property name="itemType" value="Gold Key"/>
+   </properties>
+  </object>
+  <object name="gp1" type="Guard" x="377" y="194" width="8" height="6">
+   <properties>
+    <property name="rotation" value="0"/>
+   </properties>
+  </object>
+  <object name="gb2" type="Guard" x="449" y="197" width="8" height="6">
+   <properties>
+    <property name="rotation" value="0"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Rooms" width="100" height="100">
   <object name="KingRoom" type="Room" x="344" y="15" width="122" height="74"/>
@@ -370,7 +385,7 @@
   <object name="Kitchen" x="524" y="251" width="74" height="143"/>
   <object name="Pantry" x="484" y="405" width="112" height="48"/>
  </objectgroup>
- <objectgroup name="Paths" width="100" height="100" visible="0">
+ <objectgroup name="Paths" width="100" height="100">
   <object type="Patrol" x="517" y="148">
    <properties>
     <property name="entity" value="g2"/>
@@ -384,6 +399,20 @@
     <property name="pause" value="50"/>
    </properties>
    <polyline points="-10,-6 222,-6 222,-46 -10,-46"/>
+  </object>
+  <object type="Patrol" x="625" y="201">
+   <properties>
+    <property name="entity" value="gb2"/>
+    <property name="pause" value="50"/>
+   </properties>
+   <polyline points="0,0 -1,431 -433,431 -433,-1"/>
+  </object>
+  <object type="Patrol" x="192" y="200">
+   <properties>
+    <property name="entity" value="gb2"/>
+    <property name="pause" value="50"/>
+   </properties>
+   <polyline points="0,0 432,0 432,432 0,432"/>
   </object>
  </objectgroup>
 </map>

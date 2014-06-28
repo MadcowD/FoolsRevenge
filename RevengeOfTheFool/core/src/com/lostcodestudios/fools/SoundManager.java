@@ -11,8 +11,8 @@ public final class SoundManager {
 	
 	private static final String SOUND_PREFS_KEY = "TheFoolsRevenge_SOUNDPREFS";
 	
-	private static final float HEARING_RADIUS = 20; // hear faintly from 20 tiles away
-	
+	private static final float HEARING_RADIUS = 20f; // hear faintly from 20 tiles away
+	private static final float HEARING_COEFFICIENT = 1/(float)Math.sqrt(HEARING_RADIUS);
 	private static ObjectMap<String, Sound> sounds = new ObjectMap<String, Sound>();
 	private static ObjectMap<String, Music> music = new ObjectMap<String, Music>();
 	
@@ -73,7 +73,7 @@ public final class SoundManager {
 		
 		float dist = soundPos.cpy().sub(playerPos).len();
 		
-		float vol = Math.max(HEARING_RADIUS - dist, 0) / HEARING_RADIUS;
+		float vol = 1/(dist*HEARING_COEFFICIENT + 1);
 		
 		float xOffset = soundPos.x - playerPos.x;
 		float panning = Math.min(Math.max(xOffset / HEARING_RADIUS, -1), 1);

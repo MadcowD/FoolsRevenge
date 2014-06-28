@@ -1,5 +1,10 @@
 package com.lostcodestudios.fools.gameplay;
 
+import java.io.File;
+import java.io.IOException;
+
+import box2dLight.RayHandler;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
@@ -24,7 +29,6 @@ import com.badlogic.gdx.physics.box2d.QueryCallback;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
-import box2dLight.RayHandler;
 import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.InputManager;
 import com.lostcodestudios.fools.TextManager;
@@ -42,8 +46,8 @@ public class GameWorld {
 	private static final float TIME_STEP = 1f / 60;
 	private static final int VELOCITY_ITERATIONS = 6;
 	private static final int POSITION_ITERATIONS = 2;
-	
-	
+
+
 	public static final int ASTARTHRESH = 6;
 	public static int ASTARWORLD = 800;
 	public static int ASTARSIZE = 8;
@@ -113,40 +117,55 @@ public class GameWorld {
 		mapObjectParser.setUnitScale(1f / Config.SPRITE_SCALE);
 		mapObjectParser.load(world, tileMap.getLayers().get("Physics")); //NOTE: this won't load circle objects!
 
-
-		//BUILD A*
 		AStar.objectMap = new boolean[ASTARWORLD*ASTARWORLD];
-		float increase = 1f;
-		for(float x = -increase; x < 100+increase; x+=increase)
-			for(float y = -increase; y < 100+increase; y+=increase)
-			{
-				System.out.println("x,y = " + x +"," + y );
-				world.QueryAABB(new QueryCallback(){
+		//BUILD A*
+		if(Gdx.files.internal("fag1.starz").exists()){
+			String book = Gdx.files.internal("fag1.starz").readString();
+			for(int i = 0; i < ASTARWORLD*ASTARWORLD; i++)
+				if(book.charAt(i) == '1')
+					AStar.objectMap[i] = true;
 
-					private float x;
-					private float y;
-					private float increase;
 
-					@Override
-					public boolean reportFixture (Fixture fixture) {
-						for(int xx = (int)(x*ASTARSIZE -ASTARTHRESH); xx < (int)((x+increase)*ASTARSIZE + ASTARTHRESH); xx++)
-							for(int yy = (int)(y*ASTARSIZE-ASTARTHRESH); yy < (int)((y+increase)*ASTARSIZE+ASTARTHRESH); yy++){
-								int xfixed = xx < 0 ? 0 : (xx > ASTARWORLD-1 ? ASTARWORLD-2 : xx);
-								int yfixed = yy < 0 ? 0 : (yy > ASTARWORLD-1 ? ASTARWORLD-2 : yy);
-								System.out.println(xfixed +" " +yfixed);
-								AStar.objectMap[yfixed*ASTARWORLD + xfixed] = true;
-							}
-						
-						return  false;
-					}
+		}
+		else{
+			float increase = 1f;
+			for(float x = -increase; x < 100+increase; x+=increase)
+				for(float y = -increase; y < 100+increase; y+=increase)
+				{
+					world.QueryAABB(new QueryCallback(){
 
-					public QueryCallback yield(float x, float y, float increase){
-						this.x = x; this.y = y; this.increase = increase;
-						return this;
-					}
+						private float x;
+						private float y;
+						private float increase;
 
-				}.yield(x,y, increase ), x+0.4f, y+0.4f, x+0.6f, y+0.6f);
-			}
+						@Override
+						public boolean reportFixture (Fixture fixture) {
+							for(int xx = (int)(x*ASTARSIZE -ASTARTHRESH); xx < (int)((x+increase)*ASTARSIZE + ASTARTHRESH); xx++)
+								for(int yy = (int)(y*ASTARSIZE-ASTARTHRESH); yy < (int)((y+increase)*ASTARSIZE+ASTARTHRESH); yy++){
+									int xfixed = xx < 0 ? 0 : (xx > ASTARWORLD-1 ? ASTARWORLD-2 : xx);
+									int yfixed = yy < 0 ? 0 : (yy > ASTARWORLD-1 ? ASTARWORLD-2 : yy);
+								
+									AStar.objectMap[yfixed*ASTARWORLD + xfixed] = true;
+								}
+
+							return  false;
+						}
+
+						public QueryCallback yield(float x, float y, float increase){
+							this.x = x; this.y = y; this.increase = increase;
+							return this;
+						}
+
+					}.yield(x,y, increase ), x+0.4f, y+0.4f, x+0.6f, y+0.6f);
+				}
+
+			//WRITE TO THE FILE
+
+					for(int i = 0; i< ASTARWORLD*ASTARWORLD; i++)
+						System.out.println(AStar.objectMap[i] ? "1" : "0");
+
+			
+		}
 
 
 
