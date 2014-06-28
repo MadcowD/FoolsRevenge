@@ -98,7 +98,9 @@ public class Item extends Entity {
 
 	@Override
 	public void render(float deltaTime, GameWorld gameWorld) {
-		sprite.render(gameWorld.spriteBatch, getPosition().cpy().scl(Config.PIXELS_PER_METER), getScale());
+		Vector2 pos = getPosition().cpy().scl(Config.PIXELS_PER_METER);
+		
+		sprite.render(gameWorld.spriteBatch, pos, getScale());
 	}
 	
 	public void renderText(GameWorld gameWorld) {

@@ -27,6 +27,7 @@ public class ItemSprite {
 	public void render(SpriteBatch spriteBatch, Vector2 position, float scale) {
 		float originX = origin.x * scale;
 		float originY = origin.y * scale;
+		
 		spriteBatch.draw(textureRegion, position.x - originX, position.y - originY, originX, originY, width * scale, height * scale, 1f, 1f, 0f);
 	}
 	

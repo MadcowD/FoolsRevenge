@@ -40,7 +40,7 @@ public class MainMenuScreen extends MenuScreen {
 
 			@Override
 			public void invoke(Revenge revenge, MenuScreen menu, MenuEntry entry) {
-				//revenge.setScreen(new OptionsMenuScreen(revenge, menu));
+				revenge.setScreen(new OptionsMenuScreen(revenge, menu));
 			}
 			
 		});
@@ -62,7 +62,7 @@ public class MainMenuScreen extends MenuScreen {
 				Gdx.app.exit();
 			}
 			
-		}, new Vector2(1150, 56));
+		}, new Vector2(600, 56));
 		
 		addList(entries, new Vector2(400, 400));
 	}
