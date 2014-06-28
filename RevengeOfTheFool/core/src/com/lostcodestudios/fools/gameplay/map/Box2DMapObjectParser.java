@@ -230,12 +230,18 @@ public class Box2DMapObjectParser {
 				unitScale = (Float) getProperty(layer.getProperties(),
 						aliases.unitScale, unitScale, Float.class);
 			
+			try {
+			
 			if (object.getProperties().get("type", String.class)
 					.equals(aliases.object)) {
 				
 				createBody(world, object);
 				createFixture(object);
 				
+			}
+			}
+			catch (Exception e) {
+				System.out.println("Error");
 			}
 			
 		}
