@@ -15,7 +15,7 @@ public class Guard extends AI {
 	}
 	
 	static {
-		Script.Register(new Guard());
+		//Script.Register(new Guard());
 	}
 	
 	

@@ -24,7 +24,7 @@ public class Revenge extends Game {
 		
 		Config.loadAll();
 		
-		SoundManager.init();
+		//SoundManager.init();
 		
 		//TODO load sounds and music to the manager
 		

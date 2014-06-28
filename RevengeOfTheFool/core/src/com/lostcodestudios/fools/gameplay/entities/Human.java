@@ -20,6 +20,7 @@ import com.lostcodestudios.fools.Config.AnimatedSpriteInfo;
 import com.lostcodestudios.fools.gameplay.GameWorld;
 import com.lostcodestudios.fools.gameplay.graphics.HumanSprite;
 import com.lostcodestudios.fools.gameplay.graphics.HumanSprite.Direction;
+import com.lostcodestudios.fools.scripts.Script;
 
 public class Human extends Entity {
 
@@ -55,6 +56,8 @@ public class Human extends Entity {
 	public Array<Item> inventory = new Array<Item>();
 	
 	public int healthPotions;
+
+	public Script updateScript;
 	
 	public Human(GameWorld gameWorld, String animatedSpriteKey, Vector2 position) {
 		super(2);
@@ -95,6 +98,20 @@ public class Human extends Entity {
 		this(gameWorld, animatedSpriteKey, position);
 		
 		this.updateScriptBody = updateScriptPath;
+		if(updateScriptArgs != null)
+			this.updateScriptArgs.putAll(updateScriptArgs);
+		
+		this.updateScriptArgs.put("e", this);
+		
+		runUpdateScript = true;
+	}
+	
+	public Human(GameWorld gameWorld, String animatedSpriteKey, Vector2 position, Script updateScript, ObjectMap<String, Object> args )
+	{
+		this(gameWorld, animatedSpriteKey, position);
+	
+		this.updateScriptBody = "INSTANCE";
+		this.updateScript = updateScript;
 		if(updateScriptArgs != null)
 			this.updateScriptArgs.putAll(updateScriptArgs);
 		
@@ -201,9 +218,13 @@ public class Human extends Entity {
 			}
 		}
 		
+		//RUN THE UPDATE SCRIPT. CHOOSE BETWEEN INSTANCE OR OTHERWISE
 		if (runUpdateScript) {
 			updateScriptArgs.put("deltaTime", deltaTime);
-			gameWorld.scripts.runScript(updateScriptBody, updateScriptArgs);
+			if(updateScriptBody.equalsIgnoreCase("INSTANCE"))
+				this.updateScript.run(gameWorld, this.updateScriptArgs);
+			else
+				gameWorld.scripts.runScript(updateScriptBody, updateScriptArgs);
 		}
 		
 		// slow for stair tiles
