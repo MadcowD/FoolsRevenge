@@ -44,7 +44,7 @@ public class GameWorld {
 	private static final int POSITION_ITERATIONS = 2;
 	
 	
-	public static final int ASTARTHRESH = 4;
+	public static final int ASTARTHRESH = 6;
 	public static int ASTARWORLD = 800;
 	public static int ASTARSIZE = 8;
 	public static float ASTARRECIP = 1f/8f;
