@@ -27,7 +27,7 @@ public class PathState extends State {
 	 */
 	@Override
 	public void run (GameWorld world, ObjectMap<String, Object> args) {
-		if(args.containsKey("paths")){
+ 		if(args.containsKey("paths")){
 
 			@SuppressWarnings("unchecked")
 			ObjectMap<String, Object> paths = (ObjectMap<String, Object>)args.get("paths");

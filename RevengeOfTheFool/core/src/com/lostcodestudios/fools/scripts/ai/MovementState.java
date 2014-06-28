@@ -90,16 +90,16 @@ public class MovementState extends State{
 		IntArray calculated = pathFinder.getPath((int)(GameWorld.ASTARSIZE*initial.x), (int)(GameWorld.ASTARSIZE*initial.y), (int)(GameWorld.ASTARSIZE*target.x), (int)(GameWorld.ASTARSIZE*target.y));
 		
 		//PROCESS THE LIST AND REMOVE USELESS SHIT SUCH AS STRAIGHAWAYS
-		Vector2 lastSlope = new Vector2();
-		for(int i = 0; i < calculated.size-2; i+=2){
-			Vector2 slope = new Vector2(calculated.get(i+2)-calculated.get(i), calculated.get(i+3) -calculated.get(i+1));
-			if(slope.equals(lastSlope)){
-				calculated.removeIndex(i);
-				calculated.removeIndex(i);
-				i-=2;
-			}
-			lastSlope = slope;	
-		}
+//		Vector2 lastSlope = new Vector2();
+//		for(int i = 0; i < calculated.size-2; i+=2){
+//			Vector2 slope = new Vector2(calculated.get(i+2)-calculated.get(i), calculated.get(i+3) -calculated.get(i+1));
+//			if(slope.equals(lastSlope)){
+//				calculated.removeIndex(i);
+//				calculated.removeIndex(i);
+//				i-=2;
+//			}
+//			lastSlope = slope;	
+//		}
 		return calculated;
 	}
 

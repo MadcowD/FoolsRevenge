@@ -109,13 +109,13 @@ public class AStar {
 	}
 
 	public boolean isValid (int x, int y) {
-		return objectMap[(y)*width + x];
+		return objectMap[(y)*width + x] == false;
 	}
 	
 	public static boolean  check(float x, float y){
 		y *= GameWorld.ASTARSIZE;
 		x *= GameWorld.ASTARSIZE;
-		return objectMap[((int)y)*GameWorld.ASTARWORLD + (int)x];
+		return objectMap[((int)y)*GameWorld.ASTARWORLD + (int)x] == false;
 	}
 
 	public int getWidth () {

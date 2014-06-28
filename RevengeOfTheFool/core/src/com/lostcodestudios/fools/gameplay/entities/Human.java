@@ -112,8 +112,8 @@ public class Human extends Entity {
 	
 		this.updateScriptBody = "INSTANCE";
 		this.updateScript = updateScript;
-		if(updateScriptArgs != null)
-			this.updateScriptArgs.putAll(updateScriptArgs);
+		if(args != null)
+			this.updateScriptArgs.putAll(args);
 		
 		this.updateScriptArgs.put("e", this);
 		

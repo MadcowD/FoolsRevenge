@@ -7,7 +7,7 @@ import com.lostcodestudios.fools.scripts.ai.PathState;
 
 public class Guard extends AI {
 	
-	private static final float SPEED = 2f;
+	private static final float SPEED = 3f;
 	
 	public Guard () {
 		super(new PathState("Patrol", SPEED, true));
