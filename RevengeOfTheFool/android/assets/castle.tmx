@@ -194,12 +194,6 @@
     <property name="rotation" value="270"/>
    </properties>
   </object>
-  <object name="g1" type="Guard" x="360" y="24" width="8" height="7">
-   <properties>
-    <property name="item" value="Gold Key"/>
-    <property name="rotation" value="0"/>
-   </properties>
-  </object>
   <object type="Item" x="426" y="53" width="10" height="9">
    <properties>
     <property name="itemType" value="Health Potion"/>
@@ -341,8 +335,18 @@
     <property name="doorType" value="Wood"/>
    </properties>
   </object>
+  <object name="g3" type="Guard" x="291" y="155" width="8" height="6">
+   <properties>
+    <property name="rotation" value="0"/>
+   </properties>
+  </object>
+  <object name="g2" type="Guard" x="513" y="152" width="8" height="6">
+   <properties>
+    <property name="rotation" value="0"/>
+   </properties>
+  </object>
  </objectgroup>
- <objectgroup name="Rooms" width="100" height="100" visible="0">
+ <objectgroup name="Rooms" width="100" height="100">
   <object name="KingRoom" type="Room" x="344" y="15" width="122" height="74"/>
   <object name="Courtyard" x="330" y="405" width="149" height="137"/>
   <object name="Chapel" x="219" y="353" width="64" height="95"/>
@@ -350,13 +354,20 @@
   <object name="Kitchen" x="524" y="251" width="74" height="143"/>
   <object name="Pantry" x="484" y="405" width="112" height="48"/>
  </objectgroup>
- <objectgroup name="Paths" width="100" height="100" visible="0">
-  <object type="Patrol" x="360" y="56">
+ <objectgroup name="Paths" width="100" height="100">
+  <object type="Patrol" x="517" y="148">
    <properties>
-    <property name="entity" value="g1"/>
+    <property name="entity" value="g2"/>
     <property name="pause" value="50"/>
    </properties>
-   <polyline points="0,0 128,104"/>
+   <polyline points="0,0 1,-35 -225,-32 -223,9"/>
+  </object>
+  <object type="Patrol" x="298" y="158">
+   <properties>
+    <property name="entity" value="g3"/>
+    <property name="pause" value="50"/>
+   </properties>
+   <polyline points="0,0 213,-2 216,-41 -3,-40"/>
   </object>
  </objectgroup>
 </map>
