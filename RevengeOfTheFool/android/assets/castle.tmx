@@ -22,9 +22,80 @@
     <property name="torch" value=""/>
    </properties>
   </tile>
+  <tile id="24">
+   <properties>
+    <property name="floorType" value="stone"/>
+   </properties>
+  </tile>
   <tile id="25">
    <properties>
+    <property name="floorType" value="stone"/>
     <property name="stairs" value=""/>
+   </properties>
+  </tile>
+  <tile id="26">
+   <properties>
+    <property name="floorType" value="stone"/>
+   </properties>
+  </tile>
+  <tile id="27">
+   <properties>
+    <property name="floorType" value="stone"/>
+   </properties>
+  </tile>
+  <tile id="28">
+   <properties>
+    <property name="floorType" value="grass"/>
+   </properties>
+  </tile>
+  <tile id="36">
+   <properties>
+    <property name="floorType" value="carpet"/>
+   </properties>
+  </tile>
+  <tile id="37">
+   <properties>
+    <property name="floorType" value="carpet"/>
+   </properties>
+  </tile>
+  <tile id="38">
+   <properties>
+    <property name="floorType" value="carpet"/>
+   </properties>
+  </tile>
+  <tile id="39">
+   <properties>
+    <property name="floorType" value="carpet"/>
+   </properties>
+  </tile>
+  <tile id="84">
+   <properties>
+    <property name="floortype" value="carpet"/>
+   </properties>
+  </tile>
+  <tile id="85">
+   <properties>
+    <property name="floorType" value="stone"/>
+   </properties>
+  </tile>
+  <tile id="86">
+   <properties>
+    <property name="floorType" value="carpet"/>
+   </properties>
+  </tile>
+  <tile id="87">
+   <properties>
+    <property name="floorType" value="carpet"/>
+   </properties>
+  </tile>
+  <tile id="88">
+   <properties>
+    <property name="floorType" value="carpet"/>
+   </properties>
+  </tile>
+  <tile id="89">
+   <properties>
+    <property name="floorType" value="carpet"/>
    </properties>
   </tile>
  </tileset>
@@ -361,23 +432,20 @@
     <property name="rotation" value="0"/>
    </properties>
   </object>
-  <object type="Item" x="438" y="50" width="12" height="10">
+  <object name="s1" type="SpecialGuard" x="383" y="44" width="8" height="8">
    <properties>
-    <property name="itemType" value="Gold Key"/>
+    <property name="item" value="Gold Key"/>
+    <property name="rotation" value="270"/>
    </properties>
   </object>
-  <object name="gp1" type="Guard" x="377" y="194" width="8" height="6">
+  <object name="s2" type="SpecialGuard" x="416" y="44" width="8" height="8">
    <properties>
-    <property name="rotation" value="0"/>
-   </properties>
-  </object>
-  <object name="gb2" type="Guard" x="449" y="197" width="8" height="6">
-   <properties>
-    <property name="rotation" value="0"/>
+    <property name="item" value="Gold Key"/>
+    <property name="rotation" value="270"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Rooms" width="100" height="100">
+ <objectgroup name="Rooms" width="100" height="100" visible="0">
   <object name="KingRoom" type="Room" x="344" y="15" width="122" height="74"/>
   <object name="Courtyard" x="330" y="405" width="149" height="137"/>
   <object name="Chapel" x="219" y="353" width="64" height="95"/>

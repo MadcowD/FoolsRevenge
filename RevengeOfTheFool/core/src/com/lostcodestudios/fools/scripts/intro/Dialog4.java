@@ -4,19 +4,17 @@ import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.gameplay.GameWorld;
 import com.lostcodestudios.fools.scripts.Script;
 
-public class Dialog2 extends Script {
-
-	static {
-		Script.Register(new Dialog2());
-	}
+public class Dialog4 extends Script {
 	
+	static {
+		Script.Register(new Dialog4());
+	}
+
 	@Override
 	public void run(GameWorld world, ObjectMap<String, Object> args) {
-		world.dialog.showVoiceBubble("GUARDS! Take this traitorous Fool to the dungeon!", world.specialEntities.get("King"), 4f);
-		
-		world.flags.setFlag(1, 0, 1);
-		
-		world.scripts.delayScript("intro.Dialog3", 3f);
+		world.dialog.showDialogWindow("The Fool cackled as he was dragged limply to the door.");
 	}
-
+	
+	
+	
 }

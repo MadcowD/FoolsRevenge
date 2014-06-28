@@ -87,7 +87,7 @@ public class Switch extends Entity {
 	public void trigger(Entity e) {
 		ObjectMap<String, Object> args = new ObjectMap<String, Object>();
 		args.put("e", e);
-		//gameWorld.scripts.runScript(triggerScript, args);
+		gameWorld.scripts.runScript(triggerScript, args);
 		pulled = !pulled;
 	}
 

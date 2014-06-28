@@ -18,6 +18,7 @@ import com.lostcodestudios.fools.gameplay.entities.Item;
 import com.lostcodestudios.fools.gameplay.entities.Switch;
 import com.lostcodestudios.fools.gameplay.entities.Weapon;
 import com.lostcodestudios.fools.scripts.entities.Guard;
+import com.lostcodestudios.fools.scripts.entities.SpecialGuard;
 
 public class EntityMapObjectParser {
 
@@ -96,6 +97,15 @@ public class EntityMapObjectParser {
 			
 			else if (type.equals("Guard")) {
 				e = new Human(world, "Guard", position, new Guard(), args);
+				((Human) e).group = "King";
+				
+				Weapon sword = new Weapon(world, e, "Sword");
+				
+				world.entities.add(sword);
+			}
+			
+			else if (type.equals("SpecialGuard")) {
+				e = new Human(world, "Guard", position, new SpecialGuard(), args);
 				((Human) e).group = "King";
 				
 				Weapon sword = new Weapon(world, e, "Sword");

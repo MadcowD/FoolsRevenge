@@ -5,16 +5,18 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.Config;
+import com.lostcodestudios.fools.SoundManager;
 import com.lostcodestudios.fools.gameplay.entities.Human;
 
 public class HumanSprite {
 	
 	private static final float FRAME_SPACING = 1;
 	
-	private static final float BASE_FRAME_TIME = 3f; // movement animations will speed up when entities move faster, so this isn't the real frame time
+	private static final float BASE_FRAME_TIME = 1f; // movement animations will speed up when entities move faster, so this isn't the real frame time
 	
 	public enum Direction {
 		Right,
@@ -85,11 +87,17 @@ public class HumanSprite {
 		this.direction = direction;
 	}
 	
+	private int lastFrame = 0;
+	private int currentFrame = 0;
+	
 	public void update(float delta) {
+		Animation currentAnimation = walkingAnimations.get(direction);
+		lastFrame = currentAnimation.getKeyFrameIndex(elapsedAnimation);
 		elapsedAnimation += delta * movementSpeed; // animate faster when moving faster
+		currentFrame = currentAnimation.getKeyFrameIndex(elapsedAnimation);
 	}
 	
-	public void render(SpriteBatch spriteBatch, Vector2 position) {
+	public void render(SpriteBatch spriteBatch, Vector2 position, Vector2 foolPos, TiledMap map) {
 		position.sub(origin);
 		
 		if (movementSpeed > 0) {
@@ -102,6 +110,14 @@ public class HumanSprite {
 			TextureRegion currentSprite = standingSprites.get(direction);
 			
 			spriteBatch.draw(currentSprite, position.x, position.y, origin.x, origin.y, width, height, 1f, 1f, 0f);
+		}
+		
+		if (lastFrame != currentFrame) {
+			// when the frame changes, play a footstep
+			SoundManager.playFootstep(position.cpy().scl(1f / Config.PIXELS_PER_METER), foolPos, map);
+			
+			lastFrame = 0;
+			currentFrame = 0; // don't repeat if paused
 		}
 	}
 	

@@ -14,6 +14,8 @@ public class Revenge extends Game {
 	
 	@Override
 	public void create () {
+		Random.init(10000);
+		
 		Gdx.graphics.setDisplayMode(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT, false);
 		Gdx.graphics.setTitle("The Fool's Revenge");
 		

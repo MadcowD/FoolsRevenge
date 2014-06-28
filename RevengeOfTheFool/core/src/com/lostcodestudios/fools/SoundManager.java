@@ -4,7 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 
 public final class SoundManager {
@@ -14,6 +17,9 @@ public final class SoundManager {
 	private static final float HEARING_RADIUS = 20f; // hear faintly from 20 tiles away
 	private static final float HEARING_COEFFICIENT = 1/(float)Math.sqrt(HEARING_RADIUS);
 	private static ObjectMap<String, Sound> sounds = new ObjectMap<String, Sound>();
+	
+	private static ObjectMap<String, Array<Sound>> soundGroups = new ObjectMap<String, Array<Sound>>();
+	
 	private static ObjectMap<String, Music> music = new ObjectMap<String, Music>();
 	
 	private static float soundVolume;
@@ -60,6 +66,20 @@ public final class SoundManager {
 		sounds.put(key, Gdx.audio.newSound(Gdx.files.internal(path)));
 	}
 	
+	public static void loadGroupSound(String key, String path) {
+		Array<Sound> group = null;
+		if (soundGroups.containsKey(key)) {
+			group = soundGroups.get(key);
+		}
+		
+		else {
+			group = new Array<Sound>();
+			soundGroups.put(key, group);
+		}
+		
+		group.add(Gdx.audio.newSound(Gdx.files.internal(path)));
+	}
+	
 	public static void loadMusic(String key, String path) {
 		music.put(key, Gdx.audio.newMusic(Gdx.files.internal(path)));
 	}
@@ -79,6 +99,22 @@ public final class SoundManager {
 		float panning = Math.min(Math.max(xOffset / HEARING_RADIUS, -1), 1);
 		
 		sounds.get(key).play(soundVolume * vol, 1, panning);
+	}
+	
+	public static void playSoundGroup(String key) {
+		Array<Sound> group = soundGroups.get(key);
+		
+		int n = (int) (group.size * Random.random());
+		
+		group.get(n).play();
+	}
+	
+	public static void playFootstep(Vector2 position, Vector2 playerPos, TiledMap map) {
+		TiledMapTileLayer floorLayer = (TiledMapTileLayer) map.getLayers().get("Floor");
+		
+		String floorType = (String)floorLayer.getCell((int)position.x, (int)position.y).getTile().getProperties().get("floorType");
+		
+		playSoundGroup("snd_step_" + floorType);
 	}
 	
 	public static void playMusic(String key) {

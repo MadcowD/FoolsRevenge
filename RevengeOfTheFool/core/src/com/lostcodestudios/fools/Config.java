@@ -102,6 +102,7 @@ public final class Config {
     public static final Rectangle switchSpriteFrame2 = new Rectangle(8, 29, 8, 8);
     
 	public static void loadAll() {
+		loadSounds();
 		loadFonts();
 		loadSpriteInfo();
 		loadItemSpriteInfo();
@@ -110,4 +111,10 @@ public final class Config {
 	
 	public static float INTERACT_DISTANCE = 3f;
     
+	public static void loadSounds() {
+		SoundManager.loadGroupSound("snd_step_stone", "sounds/snd_walkingconcrete1.wav");
+		SoundManager.loadGroupSound("snd_step_stone", "sounds/snd_walkingconcrete2.wav");
+		SoundManager.loadGroupSound("snd_step_stone", "sounds/snd_walkingconcrete3.wav");
+	}
+	
 }

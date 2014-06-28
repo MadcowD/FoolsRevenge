@@ -1,1 +1,15 @@
 -FLAGS-
+[0, 0]: 1 = Fool has escaped
+[0, 1]: value = # rebels freed
+[0, 2]: 1 = King has died
+[0, 3]: 1 = Fool has picked up the crown
+[0, 4]: value = # guards killed
+[1, 0]: value = current state of the cutscene
+	{
+		0 - guards have not moved
+		1 - guards move to the player's side
+		2 - guards DRAG the player to the door
+		3 - guards SHOVE the player to the ground (technically ending the cutscene)
+		4 - guards follow a path to the prison and KILL the player if he tries to escape
+		5 - cutscene is over completely
+	}
