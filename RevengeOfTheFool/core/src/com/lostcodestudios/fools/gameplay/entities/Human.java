@@ -55,7 +55,7 @@ public class Human extends Entity {
 	
 	public Array<Item> inventory = new Array<Item>();
 	
-	public int healthPotions;
+	public int healthPotions = 3;
 
 	public Script updateScript;
 	
@@ -267,7 +267,8 @@ public class Human extends Entity {
 			sprite.setMovementSpeed(0); // don't walk while being knocked back
 		}
 		
-		sprite.render(gameWorld.spriteBatch, getPosition().cpy().scl(Config.PIXELS_PER_METER));
+		sprite.render(gameWorld.spriteBatch, getPosition().cpy().scl(Config.PIXELS_PER_METER),
+				gameWorld.specialEntities.get("Fool").getPosition(), gameWorld.tileMap);
 	}
 	
 	public void renderHealthBar(GameWorld gameWorld) {

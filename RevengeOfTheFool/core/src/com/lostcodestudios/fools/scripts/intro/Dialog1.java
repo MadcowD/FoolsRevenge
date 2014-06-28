@@ -13,9 +13,9 @@ public class Dialog1 extends Script {
 	@Override
 	public void run(GameWorld world, ObjectMap<String, Object> args) {
 		world.dialog.showDialogFull("The King's rage shook the castle like thunder.");
-		world.dialog.showDialogFull("His booming voice sent tremors down the Fool's spine.");
+		world.cutsceneMode = true;
 		
-		world.scripts.delayScript("intro.Dialog2", 1.5f);
+		world.scripts.delayScript("intro.Dialog2", 0.5f);
 	}
 
 }

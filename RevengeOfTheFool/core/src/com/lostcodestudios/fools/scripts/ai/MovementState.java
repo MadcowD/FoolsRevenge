@@ -1,8 +1,6 @@
 package com.lostcodestudios.fools.scripts.ai;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.utils.IntArray;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.gameplay.GameWorld;
@@ -49,6 +47,10 @@ public class MovementState extends State{
 		
 		Vector2 nextPos = new Vector2(path.get(pathIndex)*GameWorld.ASTARRECIP, path.get(pathIndex+1)*GameWorld.ASTARRECIP);
 		Vector2 dir = nextPos.cpy().sub(e.getPosition().cpy());
+		if(e.tag.equals("s1"))
+			System.out.println("NIGGA IM HERE: " + e.getPosition() + " \nNIGGA I GOIN HERE " + nextPos);
+		
+		
 		
 		//STOP IF REALLY CLOSE LOL.
 		if(pathIndex == 1 && dir.len2() < 0.005 || dir.len2() < 0.5){
@@ -84,7 +86,7 @@ public class MovementState extends State{
 
 		e.setVelocity(dir);
 	}
-	
+
 	public IntArray calculatePath(Vector2 initial){
 		AStar pathFinder = new AStar(mapWidth, mapHeight);
 		IntArray calculated = pathFinder.getPath((int)(GameWorld.ASTARSIZE*initial.x), (int)(GameWorld.ASTARSIZE*initial.y), (int)(GameWorld.ASTARSIZE*target.x), (int)(GameWorld.ASTARSIZE*target.y));
