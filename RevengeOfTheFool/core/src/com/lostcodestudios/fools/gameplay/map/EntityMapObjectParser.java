@@ -79,7 +79,7 @@ public class EntityMapObjectParser {
 			
 			
 			ObjectMap<String, Object> args = new ObjectMap<String, Object>();
-			
+
 			if(name != null)
 				if(paths.containsKey(name))
 					args.put("paths", paths.get(name));
