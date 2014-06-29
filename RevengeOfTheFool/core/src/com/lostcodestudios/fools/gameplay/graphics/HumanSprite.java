@@ -5,11 +5,11 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.Config;
 import com.lostcodestudios.fools.SoundManager;
+import com.lostcodestudios.fools.gameplay.GameWorld;
 import com.lostcodestudios.fools.gameplay.entities.Human;
 
 public class HumanSprite {
@@ -97,8 +97,7 @@ public class HumanSprite {
 		currentFrame = currentAnimation.getKeyFrameIndex(elapsedAnimation);
 	}
 	
-	public void render(SpriteBatch spriteBatch, Vector2 position, Vector2 bodyPos, Vector2 foolPos, TiledMap map) {
-		position.sub(origin);
+	public void render(SpriteBatch spriteBatch, Vector2 position, Vector2 bodyPos, Vector2 foolPos, GameWorld world) {		position.sub(origin);
 		
 		if (movementSpeed > 0) {
 			Animation currentAnimation = walkingAnimations.get(direction);
@@ -114,8 +113,7 @@ public class HumanSprite {
 		
 		if (lastFrame != currentFrame) {
 			// when the frame changes, play a footstep
-			SoundManager.playFootstep(bodyPos, foolPos, map);
-			
+			SoundManager.playFootstep(bodyPos, foolPos, map);			
 			lastFrame = 0;
 			currentFrame = 0; // don't repeat if paused
 		}

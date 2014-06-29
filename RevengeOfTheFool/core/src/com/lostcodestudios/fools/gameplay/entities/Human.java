@@ -267,8 +267,10 @@ public class Human extends Entity {
 			sprite.setMovementSpeed(0); // don't walk while being knocked back
 		}
 		
+
 		sprite.render(gameWorld.spriteBatch, getPosition().cpy().scl(Config.PIXELS_PER_METER), getPosition().cpy(),
-				gameWorld.specialEntities.get("Fool").getPosition(), gameWorld.tileMap);
+
+				gameWorld.specialEntities.get("Fool").getPosition(), gameWorld);
 	}
 	
 	public void renderHealthBar(GameWorld gameWorld) {
