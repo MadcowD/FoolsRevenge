@@ -27,12 +27,9 @@ public class Door extends Entity {
 	
 	public String key = "";
 	
-	private String spriteKey;
-	
 	public Door(GameWorld gameWorld, String spriteKey, Vector2 position) {
 		super(2);
 		
-		this.spriteKey = spriteKey;
 		Rectangle[] frames = Config.doorSpriteInfo.get(spriteKey);
 		
 		Rectangle closedFrame = frames[0];

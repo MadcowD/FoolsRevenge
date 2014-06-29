@@ -4,11 +4,14 @@ package com.lostcodestudios.fools.gameplay;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.ObjectMap.Entry;
 import com.lostcodestudios.fools.scripts.Script;
 
 public class ScriptManager {
+	
+	private Array<String> deathScriptsToRun = new Array<String>();
 	
 	private class ScriptDelayInfo {
 		public float delay;
@@ -57,6 +60,36 @@ public class ScriptManager {
 			}
 			
 			runScript(name, args);
+		}
+	}
+	
+	public void runDeathScript(String name) {
+		deathScriptsToRun.add(name);
+	}
+	
+	public void runDeathScripts() {
+		if (deathScriptsToRun.size > 0) {
+			// first run the King's script so the others know the King died
+			Iterator<String> it = deathScriptsToRun.iterator();
+			
+			while (it.hasNext()) {
+				String script = it.next();
+				
+				if (script.equals("death.King")) {
+					runScript(script);
+					it.remove();
+				}
+			}
+			
+			// run the rest of them
+			it = deathScriptsToRun.iterator();
+			
+			while (it.hasNext()) {
+				String script = it.next();
+				
+				runScript(script);
+				it.remove();
+			}
 		}
 	}
 	

@@ -26,7 +26,7 @@ public class HumanSprite {
 	}
 	
 	private float movementSpeed = 0f;
-	private Direction direction = Direction.Down;
+	public Direction direction = Direction.Down;
 	private ObjectMap<Direction, TextureRegion> standingSprites = new ObjectMap<Direction, TextureRegion>();
 	private ObjectMap<Direction, Animation> walkingAnimations = new ObjectMap<Direction, Animation>();
 	private float elapsedAnimation = 0f;
@@ -97,7 +97,8 @@ public class HumanSprite {
 		currentFrame = currentAnimation.getKeyFrameIndex(elapsedAnimation);
 	}
 	
-	public void render(SpriteBatch spriteBatch, Vector2 position, Vector2 bodyPos, Vector2 foolPos, GameWorld world) {		position.sub(origin);
+	public void render(SpriteBatch spriteBatch, Vector2 position, Vector2 bodyPos, Vector2 foolPos, GameWorld world) {		
+		position.sub(origin);
 		
 		if (movementSpeed > 0) {
 			Animation currentAnimation = walkingAnimations.get(direction);

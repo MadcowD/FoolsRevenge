@@ -41,6 +41,8 @@ public class SpecialGuard extends AI {
 
 	@Override
 	public void run(final GameWorld world, ObjectMap<String, Object> args) {
+		if (!world.cutsceneMode)return; 
+		
 		final Human e = (Human) args.get("e");
 		final Human fool = (Human) world.specialEntities.get("Fool"); 
 		
@@ -70,6 +72,8 @@ public class SpecialGuard extends AI {
 						@Override
 						public void run(GameWorld world,
 								ObjectMap<String, Object> args) {
+							if (!world.cutsceneMode)return;
+							
 							// TODO Auto-generated method stub
 							fool.body.setLinearVelocity(new Vector2(0, -0.6f));
 							super.run(world, args);

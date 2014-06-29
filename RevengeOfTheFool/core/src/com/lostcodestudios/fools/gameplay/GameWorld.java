@@ -54,7 +54,8 @@ public class GameWorld {
 	public static int ASTARSIZE = 8;
 	public static float ASTARRECIP = 1f/8f;
 
-
+	public boolean gameOver = false;
+	
 	public OrthographicCamera camera;
 
 	public TiledMap tileMap;
@@ -285,8 +286,13 @@ public class GameWorld {
 
 		if (!paused) {
 			update(delta);
+			
+			if (gameOver) {
+				// update ended the game. STOP BEFORE RENDERING STUFF
+				return;
+			}
 		}
-
+		
 		//NOTE: the passed spriteBatch must not use the camera's view. It keeps its own, with pure screen coordinates
 
 		Matrix4 meterView = camera.combined.cpy().scl(Config.PIXELS_PER_METER);
@@ -424,11 +430,17 @@ public class GameWorld {
 		}
 
 		scripts.update(delta);
-
+		scripts.runDeathScripts();
+		
 		updatePhysics(delta);
 		collisionManager.update(delta); // this handles view sightings OUTSIDE of the dangerous ContactListener event context
 
 		entities.update(delta);
+		
+		// TODO DEBUG CODE
+		if (input.wasKeyPressed(Keys.SPACE)){
+			scripts.runScript("SkipScene");
+		}
 	}
 
 	public void updatePhysics(float delta) {

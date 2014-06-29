@@ -24,6 +24,15 @@ public class GameplayScreen implements Screen {
 	
 	@Override
 	public void render(float delta) {
+		if (world.gameOver && !world.isPaused()) {
+			// return to the main menu
+			this.dispose();
+			
+			revenge.setScreen(new MainMenuScreen(revenge));
+			
+			return;
+		}
+		
 		world.render(spriteBatch, delta);
 		
 		if (input.wasKeyPressed(Keys.ESCAPE)) {

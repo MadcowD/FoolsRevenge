@@ -232,6 +232,12 @@
   <object name="t15" type="object" x="344" y="504" width="8" height="8"/>
   <object name="t16" type="object" x="336" y="488" width="8" height="8"/>
   <object name="t17" type="object" x="336" y="464" width="8" height="8"/>
+  <object name="exit" type="object" x="368" y="728" width="72" height="16">
+   <properties>
+    <property name="eventScript" value="End"/>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Lights" width="100" height="100">
   <properties>
