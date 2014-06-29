@@ -113,7 +113,7 @@ public class HumanSprite {
 		
 		if (lastFrame != currentFrame) {
 			// when the frame changes, play a footstep
-			SoundManager.playFootstep(bodyPos, foolPos, map);			
+			SoundManager.playFootstep(bodyPos, foolPos, world);			
 			lastFrame = 0;
 			currentFrame = 0; // don't repeat if paused
 		}
