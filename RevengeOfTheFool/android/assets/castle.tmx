@@ -289,7 +289,6 @@
   <object name="KingDoor" type="Door" x="392" y="92" width="24" height="8">
    <properties>
     <property name="doorType" value="Wood"/>
-    <property name="key" value="Gold Key"/>
    </properties>
   </object>
   <object type="Item" x="667" y="50" width="12" height="10">
@@ -360,21 +359,25 @@
   <object type="Door" x="44" y="520" width="8" height="16">
    <properties>
     <property name="doorType" value="Wood"/>
+    <property name="key" value="Gold Key"/>
    </properties>
   </object>
   <object type="Door" x="44" y="472" width="8" height="16">
    <properties>
     <property name="doorType" value="Wood"/>
+    <property name="key" value="Gold Key"/>
    </properties>
   </object>
   <object type="Door" x="44" y="424" width="8" height="16">
    <properties>
     <property name="doorType" value="Wood"/>
+    <property name="key" value="Gold Key"/>
    </properties>
   </object>
   <object type="Door" x="44" y="376" width="8" height="16">
    <properties>
     <property name="doorType" value="Wood"/>
+    <property name="key" value="Gold Key"/>
    </properties>
   </object>
   <object type="Door" x="392" y="244" width="24" height="8">
@@ -446,6 +449,11 @@
   </object>
   <object name="g4" type="Guard" x="398" y="190" width="10" height="6"/>
   <object name="g5" type="Guard" x="399" y="205" width="9" height="7"/>
+  <object type="Door" x="392" y="716" width="24" height="8">
+   <properties>
+    <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Rooms" width="100" height="100">
   <object name="KingRoom" type="Room" x="344" y="15" width="122" height="74"/>

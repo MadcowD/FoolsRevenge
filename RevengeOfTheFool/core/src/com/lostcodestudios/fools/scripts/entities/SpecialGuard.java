@@ -87,9 +87,9 @@ public class SpecialGuard extends AI {
 							
 							fool.body.setLinearVelocity(new Vector2());
 							
-							((Door)world.specialEntities.get("KingDoor")).toggleOpen();
-							
 							if (e.tag.equals("s1")) {
+								((Door)world.specialEntities.get("KingDoor")).toggleOpen(world); // close the door
+								
 								world.dialog.showVoiceBubble("I'm not dragging this Fool another step.", e, 3f);
 								
 								world.scripts.delayScript("intro.Dialog5", 3f);

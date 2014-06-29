@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.lostcodestudios.fools.Config;
+import com.lostcodestudios.fools.SoundManager;
 import com.lostcodestudios.fools.TextManager;
 import com.lostcodestudios.fools.gameplay.GameWorld;
 
@@ -26,9 +27,12 @@ public class Door extends Entity {
 	
 	public String key = "";
 	
+	private String spriteKey;
+	
 	public Door(GameWorld gameWorld, String spriteKey, Vector2 position) {
 		super(2);
 		
+		this.spriteKey = spriteKey;
 		Rectangle[] frames = Config.doorSpriteInfo.get(spriteKey);
 		
 		Rectangle closedFrame = frames[0];
@@ -81,7 +85,7 @@ public class Door extends Entity {
 				&& distance <= Config.INTERACT_DISTANCE;
 		
 		if (selected && gameWorld.input.wasKeyPressed(Config.ACCEPT_KEY) && (this.open || (!key.isEmpty() && fool.hasItem(key)) || key.isEmpty())) {
-			this.toggleOpen();
+			this.toggleOpen(gameWorld);
 		}
 	}
 
@@ -127,14 +131,18 @@ public class Door extends Entity {
 		return body.getPosition();
 	}
 	
-	public void toggleOpen() {
+	public void toggleOpen(GameWorld world) {
 		this.open = !this.open;
+		
+		Human fool = (Human) world.specialEntities.get("Fool");
 		
 		if (this.open) {
 			body.getFixtureList().get(0).setSensor(true);
 		} else {
 			body.getFixtureList().get(0).setSensor(false);
 		}
+		
+		SoundManager.playSound("snd_door", getPosition(), fool.getPosition());
 	}
 
 }

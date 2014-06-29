@@ -20,8 +20,9 @@ public class Dialog6 extends Script {
 		
 		world.dialog.showDialogWindow("The guards shoved the Fool forward, onto his knees.");
 		
-		world.cutsceneMode = false;
-		world.flags.setFlag(5,5, 1);
+		world.dialog.showVoiceBubble("Don't get any ideas, Fool.", world.specialEntities.get("s2"), 3f);
+		
+		world.scripts.delayScript("intro.Dialog7", 3.5f);
 	}
 
 }

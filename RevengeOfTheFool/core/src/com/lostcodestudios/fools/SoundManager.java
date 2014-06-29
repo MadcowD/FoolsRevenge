@@ -7,7 +7,6 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.gameplay.GameWorld;
@@ -103,6 +102,14 @@ public final class SoundManager {
 		sounds.get(key).play(soundVolume * vol, 1, panning);
 	}
 
+	public static void playSoundGroup(String key) {
+		Array<Sound> group = soundGroups.get(key);
+
+		int n = (int) (group.size * Random.random());
+		
+		group.get(n).play(soundVolume);
+	}
+	
 	public static void playSoundGroup(String key, Vector2 position, Vector2 playerPos) {
 		Array<Sound> group = soundGroups.get(key);
 

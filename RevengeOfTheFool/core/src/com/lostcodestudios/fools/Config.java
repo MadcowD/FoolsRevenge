@@ -138,6 +138,34 @@ public final class Config {
 		SoundManager.loadGroupSound("snd_step_carpet", "sounds/snd_walkingcarpet1.wav");
 		SoundManager.loadGroupSound("snd_step_carpet", "sounds/snd_walkingcarpet2.wav");
 		SoundManager.loadGroupSound("snd_step_carpet", "sounds/snd_walkingcarpet3.wav");
+		
+		// OTHER SOUNDS
+		
+		SoundManager.loadSound("snd_door", "sounds/snd_wood_door_close.wav");
+		SoundManager.loadSound("snd_potion", "sounds/snd_potion.wav");
+		
+		// sword damage sounds
+		
+		SoundManager.loadGroupSound("snd_sword_damage", "sounds/snd_sword_damage0.wav");
+		SoundManager.loadGroupSound("snd_sword_damage", "sounds/snd_sword_damage1.wav");
+		SoundManager.loadGroupSound("snd_sword_damage", "sounds/snd_sword_damage2.wav");
+		
+		// sword clash sounds
+		
+		SoundManager.loadGroupSound("snd_sword_clash", "sounds/snd_sword0.wav");
+		SoundManager.loadGroupSound("snd_sword_clash", "sounds/snd_sword1.wav");
+		SoundManager.loadGroupSound("snd_sword_clash", "sounds/snd_sword2.wav");
+		SoundManager.loadGroupSound("snd_sword_clash", "sounds/snd_sword3.wav");
+		SoundManager.loadGroupSound("snd_sword_clash", "sounds/snd_sword4.wav");
+		
+		// death sounds
+		
+		SoundManager.loadGroupSound("snd_death", "sounds/snd_death0.wav");
+		SoundManager.loadGroupSound("snd_death", "sounds/snd_death1.wav");
+		SoundManager.loadGroupSound("snd_death", "sounds/snd_death2.wav");
+		
+		// LOAD MUSIC
+		SoundManager.loadMusic("music", "music/Layer 1.mp3");
 	}
 	
 }

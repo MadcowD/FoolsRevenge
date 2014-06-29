@@ -16,6 +16,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.Config;
+import com.lostcodestudios.fools.SoundManager;
 import com.lostcodestudios.fools.Config.AnimatedSpriteInfo;
 import com.lostcodestudios.fools.gameplay.GameWorld;
 import com.lostcodestudios.fools.gameplay.graphics.HumanSprite;
@@ -202,6 +203,8 @@ public class Human extends Entity {
 		if (this.healthPotions > 0) {
 			heal(HEALTH_POTION_VALUE);
 			--this.healthPotions;
+			
+			SoundManager.playSound("snd_potion");
 		}
 	}
 	

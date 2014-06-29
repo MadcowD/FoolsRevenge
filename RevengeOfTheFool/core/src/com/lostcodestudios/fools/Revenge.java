@@ -28,6 +28,8 @@ public class Revenge extends Game {
 		
 		SoundManager.init();
 		
+		SoundManager.playMusic("music");
+		
 		MainMenuScreen menu = new MainMenuScreen(this);
 		this.setScreen(menu);
 	}

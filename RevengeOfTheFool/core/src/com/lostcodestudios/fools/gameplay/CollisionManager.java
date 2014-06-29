@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.RayCastCallback;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ObjectMap;
+import com.lostcodestudios.fools.SoundManager;
 import com.lostcodestudios.fools.gameplay.entities.Door;
 import com.lostcodestudios.fools.gameplay.entities.Human;
 import com.lostcodestudios.fools.gameplay.entities.Item;
@@ -143,11 +144,7 @@ public class CollisionManager implements ContactListener {
 					viewed = (Human) bodyA.getUserData();
 				}
 				
-				if (world.rayHandler.pointAtLight(viewed.body.getPosition().x, viewed.body.getPosition().y)) {
-					// the seen entity is in light, so do a ray cast to check line of sight
-					
-					spottingsToCheck.add(new Spotting(viewer, viewed)); // store the two entities to make this check later, outside of the contact event
-				}
+				spottingsToCheck.add(new Spotting(viewer, viewed)); // store the two entities to make this check later, outside of the contact event
 				
 			}
 			
@@ -174,6 +171,21 @@ public class CollisionManager implements ContactListener {
 					
 					humanA.damage(damageB, humanB);
 					humanB.damage(damageA, humanA);
+					
+					// play the appropriate sound effects
+					// positioning and panning don't matter because the player will be involved in ALL collisions
+					if (humanA.isDead() || humanB.isDead()) {
+						// play a death sound
+						SoundManager.playSoundGroup("snd_death");
+					} else if (damageA == 0 ^ damageB == 0) {
+						// play a hurt sound
+						SoundManager.playSoundGroup("snd_sword_damage");
+					} else if (damageA > 0 && damageB > 0) {
+						// play a clash sound
+						SoundManager.playSoundGroup("snd_sword_clash");
+					} else {
+						// play no sound... this should be rare
+					}
 					
 					Vector2 dirA = bodyA.getPosition().cpy().sub(bodyB.getPosition());
 					Vector2 dirB = bodyB.getPosition().cpy().sub(bodyA.getPosition());
@@ -205,7 +217,7 @@ public class CollisionManager implements ContactListener {
 				}
 				
 				if (d.key.isEmpty() || h.hasItem(d.key)) {
-					d.toggleOpen();
+					d.toggleOpen(world);
 				}
 			}
 		}
