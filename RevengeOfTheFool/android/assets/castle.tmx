@@ -70,7 +70,7 @@
   </tile>
   <tile id="84">
    <properties>
-    <property name="floortype" value="carpet"/>
+    <property name="floorType" value="carpet"/>
    </properties>
   </tile>
   <tile id="85">

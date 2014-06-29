@@ -112,11 +112,32 @@ public final class Config {
 	public static float INTERACT_DISTANCE = 3f;
     
 	public static void loadSounds() {
-		SoundManager.loadGroupSound("snd_step_stone", "sounds/snd_walkingconcrete1.wav");
-		SoundManager.loadGroupSound("snd_step_stone", "sounds/snd_walkingconcrete2.wav");
-		SoundManager.loadGroupSound("snd_step_stone", "sounds/snd_walkingconcrete3.wav");
-		SoundManager.loadGroupSound("snd_step_grass", "sounds/snd_walkingdirt1.wav");
-		SoundManager.loadGroupSound("snd_step_carpet", "sounds/snd_walkingrug1.wav");
+		// WALKING SOUNDS
+		
+		// stone
+		SoundManager.loadGroupSound("snd_step_stone", "sounds/snd_walking_stone0.wav");
+		SoundManager.loadGroupSound("snd_step_stone", "sounds/snd_walking_stone1.wav");
+		SoundManager.loadGroupSound("snd_step_stone", "sounds/snd_walking_stone2.wav");
+		SoundManager.loadGroupSound("snd_step_stone", "sounds/snd_walking_stone3.wav");
+		SoundManager.loadGroupSound("snd_step_stone", "sounds/snd_walking_stone4.wav");
+		SoundManager.loadGroupSound("snd_step_stone", "sounds/snd_walking_stone5.wav");
+		SoundManager.loadGroupSound("snd_step_stone", "sounds/snd_walking_stone6.wav");
+		
+		// grass
+		SoundManager.loadGroupSound("snd_step_grass", "sounds/snd_walking_grass0.wav");
+		SoundManager.loadGroupSound("snd_step_grass", "sounds/snd_walking_grass1.wav");
+		SoundManager.loadGroupSound("snd_step_grass", "sounds/snd_walking_grass2.wav");
+		SoundManager.loadGroupSound("snd_step_grass", "sounds/snd_walking_grass3.wav");
+		SoundManager.loadGroupSound("snd_step_grass", "sounds/snd_walking_grass4.wav");
+		SoundManager.loadGroupSound("snd_step_grass", "sounds/snd_walking_grass5.wav");
+		SoundManager.loadGroupSound("snd_step_grass", "sounds/snd_walking_grass6.wav");
+		SoundManager.loadGroupSound("snd_step_grass", "sounds/snd_walking_grass7.wav");
+		
+		// carpet
+		SoundManager.loadGroupSound("snd_step_carpet", "sounds/snd_walkingcarpet0.wav");
+		SoundManager.loadGroupSound("snd_step_carpet", "sounds/snd_walkingcarpet1.wav");
+		SoundManager.loadGroupSound("snd_step_carpet", "sounds/snd_walkingcarpet2.wav");
+		SoundManager.loadGroupSound("snd_step_carpet", "sounds/snd_walkingcarpet3.wav");
 	}
 	
 }
