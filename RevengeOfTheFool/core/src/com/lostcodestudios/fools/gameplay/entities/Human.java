@@ -268,7 +268,7 @@ public class Human extends Entity {
 		}
 		
 		sprite.render(gameWorld.spriteBatch, getPosition().cpy().scl(Config.PIXELS_PER_METER),
-				gameWorld.specialEntities.get("Fool").getPosition(), gameWorld.tileMap);
+				gameWorld.specialEntities.get("Fool").getPosition(), gameWorld);
 	}
 	
 	public void renderHealthBar(GameWorld gameWorld) {
