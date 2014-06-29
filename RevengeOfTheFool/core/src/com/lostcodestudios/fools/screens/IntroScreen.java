@@ -16,12 +16,9 @@ public class IntroScreen extends MenuScreen {
 		OrderedMap<String, EntryCallback> entries = new OrderedMap<String, EntryCallback>();
 		
 		entries.put("The Fool's Revenge is a stealth game with a gameplay-driven narrative.", null);
-		entries.put("Your actions in the game will influence the outcome of the story.", null);
-		entries.put("There are two ways to end the story: dying, or finding a way to exit the map.", null);
-		entries.put("Because of this, you will have to start from the beginning each time you die.", null);
-		entries.put("You can stop playing once you think you've found all the possibilities.", null);
+		entries.put("You will have to start from the beginning each time you die, so be careful.", null);
 		
-		addList(entries, new Vector2(50, 500));
+		addList(entries, new Vector2(150, 500));
 		entries.clear();
 		
 		entries.put("Controls: ", null);
@@ -30,9 +27,9 @@ public class IntroScreen extends MenuScreen {
 		entries.put("Drink Potions: Q", null);
 		entries.put("Interact/Take Items: E", null);
 		entries.put("Inventory: R", null);
-		entries.put("Run into enemies to fight them.", null);
+		entries.put("Run into enemies to fight them. You'll need a weapon first!", null);
 		
-		addList(entries, new Vector2(900, 500));
+		addList(entries, new Vector2(240, 400));
 		
 		addEntry("Back", new EntryCallback() {
 
