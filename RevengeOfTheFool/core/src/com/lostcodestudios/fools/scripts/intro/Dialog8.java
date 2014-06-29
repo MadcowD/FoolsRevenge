@@ -14,7 +14,8 @@ public class Dialog8 extends Script {
 	public void run(GameWorld world, ObjectMap<String, Object> args) {
 		world.dialog.showDialogWindow("The Fool found his feet.");
 		world.cutsceneMode = false;
-		world.flags.setFlag(5, 5, 1);
+		
+		world.flags.setFlag(1, 0, 4);
 	}
 
 }

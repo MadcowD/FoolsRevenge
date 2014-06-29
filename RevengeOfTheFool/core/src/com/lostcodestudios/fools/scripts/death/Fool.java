@@ -13,6 +13,8 @@ public class Fool extends Script {
 	@Override
 	public void run(GameWorld world, ObjectMap<String, Object> args) {
 		
+		world.flags.setFlag(0, 1, 1);
+		
 		world.dialog.showDialogWindow("The Fool collapsed from his wounds and lay watching his blood trickle forth.");
 		
 		if (world.flags.getFlag(0, 2) == 1) {

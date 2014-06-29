@@ -13,7 +13,7 @@ public class End extends Script {
 	public void run(GameWorld world, ObjectMap<String, Object> args) {
 		// TODO handle the ending with dialogs
 		
-		if (world.flags.getFlag(5, 6) == 1) {
+		if (world.flags.getFlag(1, 1) == 1) {
 			// the Fool died
 			
 			// no ending text here

@@ -8,6 +8,7 @@ import com.lostcodestudios.fools.gameplay.entities.Door;
 import com.lostcodestudios.fools.gameplay.entities.Entity;
 import com.lostcodestudios.fools.gameplay.entities.Human;
 import com.lostcodestudios.fools.scripts.ai.AI;
+import com.lostcodestudios.fools.scripts.ai.ChaseState;
 import com.lostcodestudios.fools.scripts.ai.MovementState;
 import com.lostcodestudios.fools.scripts.ai.NullState;
 import com.lostcodestudios.fools.scripts.ai.State;
@@ -41,7 +42,6 @@ public class SpecialGuard extends AI {
 
 	@Override
 	public void run(final GameWorld world, ObjectMap<String, Object> args) {
-		if (!world.cutsceneMode)return; 
 		
 		final Human e = (Human) args.get("e");
 		final Human fool = (Human) world.specialEntities.get("Fool"); 
@@ -108,6 +108,73 @@ public class SpecialGuard extends AI {
 					break;
 					
 				case 4:
+					
+					target = new Vector2(36, 99-18);
+					target.y += Integer.parseInt(e.tag.replace("s","")) == 1 ? -1 : 1;
+					
+					parent.setState(new MovementState(e.getPosition(), target, 0, 3.5f, new MovementState(e.getPosition(), new Vector2(8, 99-59 - Integer.parseInt(e.tag.replace("s", "")) == 1 ? -1 : 1), 0, 3.5f, this)
+					{
+						@Override
+						public void run(GameWorld world,
+								ObjectMap<String, Object> args) {
+							
+							//check if Fool tried to escape
+							final float ESCAPE_DISTANCE_2 = 6f * 6f;
+							
+							float dist2 = world.specialEntities.get("Fool").getPosition().cpy().sub(e.getPosition()).len2();
+							
+							if (dist2 > ESCAPE_DISTANCE_2) {
+								world.flags.setFlag(0, 0, 1);
+							}
+							
+							if (world.flags.getFlag(0, 0) == 1) {
+								world.dialog.showVoiceBubble("Hey!", e, 3.2f);
+								parent.setState(new ChaseState(e.getPosition(), world.specialEntities.get("Fool"), 0f, 5f, this)); // chase after the fool
+							}
+
+							super.run(world, args);
+
+						}
+						@Override
+						protected void onEnd() {
+							
+							super.onEnd();
+							world.flags.setFlag(1, 0, 5);
+							
+							// wait for Fool to enter jail
+							
+						}
+					})
+					{
+						@Override
+						public void run(GameWorld world,
+								ObjectMap<String, Object> args) {
+							
+							//check if Fool tried to escape
+							final float ESCAPE_DISTANCE_2 = 6f * 6f;
+							
+							float dist2 = world.specialEntities.get("Fool").getPosition().cpy().sub(e.getPosition()).len2();
+							
+							if (dist2 > ESCAPE_DISTANCE_2) {
+								world.flags.setFlag(0, 0, 1);
+							}
+							
+							if (world.flags.getFlag(0, 0) == 1) {
+								world.dialog.showVoiceBubble("Hey!", e, 3.2f);
+								parent.setState(new ChaseState(e.getPosition(), world.specialEntities.get("Fool"), 0f, 5f, this)); // chase after the fool
+							}
+
+							super.run(world, args);
+
+						}
+						@Override
+						protected void onEnd() {
+							
+							super.onEnd();
+							
+						}
+					});
+					
 					break;
 			}
 		}

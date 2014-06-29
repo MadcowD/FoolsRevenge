@@ -1,7 +1,6 @@
 -FLAGS-
 	
 not implemented yet:
-[0, 0]: 1 = Fool has escaped // WORLD PATROL
 [1, 0]: value = current state of the cutscene
 	{
 		0 - guards have not moved
@@ -11,8 +10,12 @@ not implemented yet:
 		4 - guards follow a path to the prison and KILL the player if he tries to escape
 		5 - cutscene is over completely
 	}
+
 	
 implemented:
+[0, 0]: 1 = Fool has escaped // WORLD PATROL
+[0, 1]: 1 = Fool has died
 [0, 2]: 1 = King has died
 [0, 3]: 1 = Fool has picked up the crown
 [0, 4]: value = # guards killed
+[0, 5]: # = keys taken from special guards

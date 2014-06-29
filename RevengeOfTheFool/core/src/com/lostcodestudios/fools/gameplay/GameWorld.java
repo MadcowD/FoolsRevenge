@@ -80,7 +80,6 @@ public class GameWorld {
 	public Texture spriteSheet;
 	public Texture itemSheet;
 	public Texture doorSpriteSheet;
-	public Texture space;
 
 	private TextureRegion potionRegion;
 
@@ -210,7 +209,6 @@ public class GameWorld {
 		spriteSheet = new Texture("characters.png");
 		itemSheet = new Texture("items.png");
 		doorSpriteSheet = new Texture("doors.png");
-		space = new Texture("space.gif");
 		
 
 		Rectangle potionRect = Config.itemSpriteInfo.get("Health Potion");
@@ -279,11 +277,6 @@ public class GameWorld {
 	public void render(SpriteBatch spriteBatch, float delta) {
 		worldShapeRenderer.setProjectionMatrix(camera.combined);
 		
-		spriteBatch.begin();
-		spriteBatch.draw(space,0,0,100*8,100*8);
-		spriteBatch.end();
-
-
 		if (!paused) {
 			update(delta);
 			
@@ -325,7 +318,7 @@ public class GameWorld {
 			spriteBatch.begin();
 			Vector2 positions = (specialEntities.get("Fool").getPosition());
 			TextManager.draw(spriteBatch, "debug", "object map HERE!: " + AStar.objectMap[(int)(positions.x*ASTARSIZE) + (int)(positions.y*ASTARSIZE)*ASTARWORLD] , 0, 70);
-			TextManager.draw(spriteBatch, "debug", "Player is in King's room: " + rooms.get("KingRoom").contains(specialEntities.get("Fool").getPosition()), 0, 60);
+			//TextManager.draw(spriteBatch, "debug", "Player is in King's room: " + rooms.get("KingRoom").contains(specialEntities.get("Fool").getPosition()), 0, 60);
 			spriteBatch.end();
 		}
 		

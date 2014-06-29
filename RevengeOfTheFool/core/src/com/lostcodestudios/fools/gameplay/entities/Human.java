@@ -22,6 +22,8 @@ import com.lostcodestudios.fools.gameplay.GameWorld;
 import com.lostcodestudios.fools.gameplay.graphics.HumanSprite;
 import com.lostcodestudios.fools.gameplay.graphics.HumanSprite.Direction;
 import com.lostcodestudios.fools.scripts.Script;
+import com.lostcodestudios.fools.scripts.ai.AI;
+import com.lostcodestudios.fools.scripts.ai.ChaseState;
 
 public class Human extends Entity {
 
@@ -169,7 +171,11 @@ public class Human extends Entity {
 	public void damage(float amount, Human attacker) {
 		this.health -= amount;
 		
+		gameWorld.flags.setFlag(0, 0, 1); // combat occurred.
+		
 		if (this.health <= 0) {
+			this.health = 0;
+			
 			gameWorld.entities.add(new Corpse(gameWorld.spriteSheet, getPosition(), spriteKey)); // with a person on top!
 			gameWorld.entities.add(new Corpse(gameWorld.spriteSheet, getPosition(), "Blood")); // bloodstain
 			
@@ -190,7 +196,7 @@ public class Human extends Entity {
 	}
 	
 	public boolean foolCanPickpocket() {
-		return true; // TODO this should be conditional on AI state
+		return !(((AI) updateScript).getState() instanceof ChaseState); // can't pickpocket when hostile
 	}
 	
 	public void heal(float amount) {

@@ -29,6 +29,10 @@ public class AI extends Script {
 		this.currentState.parent = this;
 	}
 	
+	public State getState() {
+		return this.currentState;
+	}
+	
 	public void onSight(Entity e) {
 		currentState.onSight(e);
 	}

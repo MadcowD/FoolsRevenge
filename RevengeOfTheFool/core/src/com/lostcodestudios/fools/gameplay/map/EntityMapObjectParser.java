@@ -119,6 +119,10 @@ public class EntityMapObjectParser {
 				Weapon sword = new Weapon(world, e, "Sword");
 				
 				world.entities.add(sword);
+				
+				Item i = new Item(world, e, "Gold Key");
+				i.takeScript = "items.Key";
+				world.entities.add(i);
 			}
 			
 			else if (type.equals("Door")) {
