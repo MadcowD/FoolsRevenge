@@ -8,10 +8,10 @@ import com.lostcodestudios.fools.gameplay.entities.Human;
 
 public class MovementState extends State{
 
-	private Vector2 target;
+	public Vector2 target;
 	private Integer mapWidth;
 	private Integer mapHeight;
-	private IntArray path;
+	public IntArray path;
 	private float speed;
 	int pathIndex = 0;
 	private float radius;
