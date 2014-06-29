@@ -21,6 +21,7 @@ public class Dialog6 extends Script {
 		world.dialog.showDialogWindow("The guards shoved the Fool forward, onto his knees.");
 		
 		world.cutsceneMode = false;
+		world.flags.setFlag(5,5, 1);
 	}
 
 }

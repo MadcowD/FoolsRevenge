@@ -444,8 +444,10 @@
     <property name="rotation" value="270"/>
    </properties>
   </object>
+  <object name="g4" type="Guard" x="421" y="190" width="10" height="6"/>
+  <object name="g5" type="Guard" x="381" y="190" width="9" height="7"/>
  </objectgroup>
- <objectgroup name="Rooms" width="100" height="100" visible="0">
+ <objectgroup name="Rooms" width="100" height="100">
   <object name="KingRoom" type="Room" x="344" y="15" width="122" height="74"/>
   <object name="Courtyard" x="330" y="405" width="149" height="137"/>
   <object name="Chapel" x="219" y="353" width="64" height="95"/>
@@ -470,14 +472,14 @@
   </object>
   <object type="Patrol" x="625" y="201">
    <properties>
-    <property name="entity" value="gb2"/>
+    <property name="entity" value="g4"/>
     <property name="pause" value="50"/>
    </properties>
    <polyline points="0,0 -1,431 -433,431 -433,-1"/>
   </object>
   <object type="Patrol" x="192" y="200">
    <properties>
-    <property name="entity" value="gb2"/>
+    <property name="entity" value="g5"/>
     <property name="pause" value="50"/>
    </properties>
    <polyline points="0,0 432,0 432,432 0,432"/>
