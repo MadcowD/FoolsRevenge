@@ -22,7 +22,8 @@ public class King extends Script {
 		
 		world.entities.add(crown);
 		
-		world.dialog.showDialogWindow("Unarmed, the King fell quite easily. The Fool bore a wide grin as he pulled his sword from the old man's stomach.");
+		world.dialog.showDialogWindow("Unarmed, the King fell quite easily. The Fool bore a wide grin as he pulled his knife from the old man's stomach.");
+		world.dialog.showDialogWindow("With guards all over the castle, the Fool knew he had to escape through the front gate.");
 		
 		world.flags.setFlag(0, 2, 1);
 	}

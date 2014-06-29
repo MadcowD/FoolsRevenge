@@ -2,6 +2,7 @@ package com.lostcodestudios.fools.scripts.ai;
 
 import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.gameplay.GameWorld;
+import com.lostcodestudios.fools.gameplay.entities.Entity;
 
 public class PatrolState extends PathState{
 
@@ -15,5 +16,13 @@ public class PatrolState extends PathState{
 			super.run(world, args);
 		}
 	}
+
+	@Override
+	public void onSight(Entity self, Entity e) {
+		super.onSight(self, e);
+		
+		//saw the player! give chase
+		parent.setState(new ChaseState(self.getPosition(), e, 0, 5f, this));
+	}	
 
 }

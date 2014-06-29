@@ -24,10 +24,10 @@ public class IntroScreen extends MenuScreen {
 		entries.put("Controls: ", null);
 		entries.put("Move: WASD", null);
 		entries.put("Look Around: Mouse", null);
-		entries.put("Drink Potions: Q", null);
+		entries.put("Drink Health Potions: Q", null);
 		entries.put("Interact/Take Items: E", null);
 		entries.put("Inventory: R", null);
-		entries.put("Run into enemies to fight them. You'll need a weapon first!", null);
+		entries.put("Run into enemies to fight them. Attack from behind to backstab.", null);
 		
 		addList(entries, new Vector2(240, 400));
 		

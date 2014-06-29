@@ -25,5 +25,13 @@ public class ChaseState extends MovementState {
 		// TODO Auto-generated method stub
 		super.run(world, args);
 	}
+	
+	@Override
+	public void sightLost(Entity self, Entity e) {
+		super.sightLost(self, e);
+		
+		// lost sight. Go to next state
+		parent.setState(nextState);
+	}
 
 }

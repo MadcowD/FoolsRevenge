@@ -33,12 +33,12 @@ public class AI extends Script {
 		return this.currentState;
 	}
 	
-	public void onSight(Entity e) {
-		currentState.onSight(e);
+	public void onSight(Entity self, Entity e) {
+		currentState.onSight(self, e);
 	}
 	
-	public void sightLost(Entity e) {
-		currentState.sightLost(e);
+	public void sightLost(Entity self, Entity e) {
+		currentState.sightLost(self, e);
 	}
 
 }

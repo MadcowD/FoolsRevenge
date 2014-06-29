@@ -36,8 +36,8 @@ public abstract class State extends Script {
 	 */
 	protected void onEnd() { }
 
-	public void onSight(Entity e) { }
+	public void onSight(Entity self, Entity e) { }
 	
-	public void sightLost(Entity e) { }
+	public void sightLost(Entity self, Entity e) { }
 	
 }
