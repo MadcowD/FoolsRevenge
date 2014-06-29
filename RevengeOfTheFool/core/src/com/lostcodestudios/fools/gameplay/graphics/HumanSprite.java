@@ -97,7 +97,7 @@ public class HumanSprite {
 		currentFrame = currentAnimation.getKeyFrameIndex(elapsedAnimation);
 	}
 	
-	public void render(SpriteBatch spriteBatch, Vector2 position, Vector2 foolPos, TiledMap map) {
+	public void render(SpriteBatch spriteBatch, Vector2 position, Vector2 bodyPos, Vector2 foolPos, TiledMap map) {
 		position.sub(origin);
 		
 		if (movementSpeed > 0) {
@@ -114,7 +114,7 @@ public class HumanSprite {
 		
 		if (lastFrame != currentFrame) {
 			// when the frame changes, play a footstep
-			SoundManager.playFootstep(position.cpy().scl(1f / Config.PIXELS_PER_METER), foolPos, map);
+			SoundManager.playFootstep(bodyPos, foolPos, map);
 			
 			lastFrame = 0;
 			currentFrame = 0; // don't repeat if paused
