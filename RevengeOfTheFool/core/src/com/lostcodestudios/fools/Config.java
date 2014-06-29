@@ -98,6 +98,9 @@ public final class Config {
     	
     	doorSpriteInfo.put("Average Wood Vertical",
     			new Rectangle[] { new Rectangle(78, 0, 8, 17), new Rectangle(87, 0, 8, 17) });
+    	
+    	doorSpriteInfo.put("Average Metal Vertical",
+    			new Rectangle[] { new Rectangle(30, 34, 8, 16), new Rectangle(41, 34, 8, 16) });
     }
     
     public static final Rectangle switchSpriteFrame1 = new Rectangle(0, 29, 8, 8);
@@ -167,7 +170,7 @@ public final class Config {
 		SoundManager.loadGroupSound("snd_death", "sounds/snd_death2.wav");
 		
 		// LOAD MUSIC
-		SoundManager.loadMusic("music", "music/Layer 1.mp3");
+		SoundManager.loadMusic("music", "music/theme.mp3");
 	}
 	
 }
