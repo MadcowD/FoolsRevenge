@@ -1,5 +1,9 @@
 package com.lostcodestudios.fools.gameplay;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
 import box2dLight.RayHandler;
 
 import com.badlogic.gdx.Gdx;
@@ -76,6 +80,7 @@ public class GameWorld {
 	public Texture spriteSheet;
 	public Texture itemSheet;
 	public Texture doorSpriteSheet;
+	public Texture space;
 
 	private TextureRegion potionRegion;
 
@@ -119,9 +124,13 @@ public class GameWorld {
 		//BUILD A*
 		if(Gdx.files.internal("fag1.starz").exists()){
 			String book = Gdx.files.internal("fag1.starz").readString();
-			for(int i = 0; i < ASTARWORLD*ASTARWORLD; i++)
-				if(book.charAt(i*2) == '1')
+			for(int i = 0; i < ASTARWORLD*ASTARWORLD; i++){
+				if(book.charAt(i) == '1')
 					AStar.objectMap[i] = true;
+				else
+					AStar.objectMap[i] = false;
+			}
+			
 
 
 		}
@@ -159,8 +168,24 @@ public class GameWorld {
 
 			//WRITE TO THE FILE
 
-					for(int i = 0; i< ASTARWORLD*ASTARWORLD; i++)
-						System.out.println(AStar.objectMap[i] ? "1" : "0");
+
+			
+			PrintWriter writer;
+			try {
+				writer = new PrintWriter("C:\\temp\\fag1.starz", "UTF-8");
+				for(int i = 0; i< ASTARWORLD*ASTARWORLD; i++)
+					writer.print(AStar.objectMap[i] ? "1" : "0");
+				writer.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+
+
 
 			
 		}
@@ -185,6 +210,8 @@ public class GameWorld {
 		spriteSheet = new Texture("characters.png");
 		itemSheet = new Texture("items.png");
 		doorSpriteSheet = new Texture("doors.png");
+		space = new Texture("space.gif");
+		
 
 		Rectangle potionRect = Config.itemSpriteInfo.get("Health Potion");
 		potionRegion = new TextureRegion(itemSheet, (int)potionRect.x, (int)potionRect.y, (int)potionRect.width, (int)potionRect.height);
@@ -251,6 +278,10 @@ public class GameWorld {
 
 	public void render(SpriteBatch spriteBatch, float delta) {
 		worldShapeRenderer.setProjectionMatrix(camera.combined);
+		
+		spriteBatch.begin();
+		spriteBatch.draw(space,0,0,100*8,100*8);
+		spriteBatch.end();
 
 
 		if (!paused) {

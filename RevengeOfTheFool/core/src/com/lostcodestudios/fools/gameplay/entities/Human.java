@@ -148,7 +148,6 @@ public class Human extends Entity {
 		Fixture fixture = body.createFixture(fd); // Create the new fixture
 		
 		if (fixture.isSensor()) {
-			System.out.println("Yeee");
 		}
 		
 		fixture.setUserData(this); // Set the new fixture's user data

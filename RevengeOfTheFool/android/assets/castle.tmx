@@ -484,12 +484,12 @@
    </properties>
    <polyline points="-10,-6 222,-6 222,-46 -10,-46"/>
   </object>
-  <object name="asdasd" type="Patrol" x="429" y="196">
+  <object name="asdasd" type="Patrol" x="416" y="200">
    <properties>
     <property name="entity" value="g4"/>
     <property name="pause" value="10"/>
    </properties>
-   <polyline points="0,0 194,1"/>
+   <polyline points="0,0 152,328"/>
   </object>
  </objectgroup>
 </map>

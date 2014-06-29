@@ -196,7 +196,6 @@ public class EntityRegion {
 	private void change(Entity e){
 		if(superRegion == null || this.contains(e.getPosition())){
 			this.add(e);
-			System.out.println("Something fisshy");
 		}
 		else
 			superRegion.change(e);
