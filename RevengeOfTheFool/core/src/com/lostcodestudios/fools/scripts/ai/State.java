@@ -38,4 +38,6 @@ public abstract class State extends Script {
 
 	public void onSight(Entity e) { }
 	
+	public void sightLost(Entity e) { }
+	
 }

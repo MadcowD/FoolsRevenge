@@ -36,5 +36,9 @@ public class AI extends Script {
 	public void onSight(Entity e) {
 		currentState.onSight(e);
 	}
+	
+	public void sightLost(Entity e) {
+		currentState.sightLost(e);
+	}
 
 }

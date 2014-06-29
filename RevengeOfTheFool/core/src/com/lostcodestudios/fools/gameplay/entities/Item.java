@@ -145,6 +145,7 @@ public class Item extends Entity {
 		}
 
 		if (!takeScript.isEmpty()) {
+			gameWorld.input.beginNewFrame();
 			gameWorld.scripts.runScript(takeScript);
 		}
 		
