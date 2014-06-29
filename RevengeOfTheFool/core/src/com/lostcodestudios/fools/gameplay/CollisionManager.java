@@ -370,7 +370,7 @@ public class CollisionManager implements ContactListener {
 					if (!spottings.contains(entry, true)) {
 						spottings.add(entry);
 
-						ai.onSight(viewed); // a new spotting!
+						ai.onSight(viewer, viewed); // a new spotting!
 					} else {
 						// an old spotting
 					}
@@ -387,7 +387,7 @@ public class CollisionManager implements ContactListener {
 					if (spottings.contains(entry, true)) {
 						spottings.removeValue(entry, true);
 
-						ai.sightLost(viewed); // a spotting lost!
+						ai.sightLost(viewer, viewed); // a spotting lost!
 					}
 					
 

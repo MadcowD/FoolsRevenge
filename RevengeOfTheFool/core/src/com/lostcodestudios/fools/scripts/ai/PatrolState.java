@@ -6,6 +6,8 @@ import com.lostcodestudios.fools.gameplay.entities.Entity;
 
 public class PatrolState extends PathState{
 
+	private boolean running = false;
+	
 	public PatrolState(float speed, boolean loop) {
 		super("Patrol", speed, loop, null);
 	}
@@ -13,6 +15,7 @@ public class PatrolState extends PathState{
 	@Override
 	public void run(GameWorld world, ObjectMap<String, Object> args) {
 		if(world.flags.getFlag(0, 0) == 1) {
+			running = true;
 			super.run(world, args);
 		}
 	}
@@ -21,8 +24,10 @@ public class PatrolState extends PathState{
 	public void onSight(Entity self, Entity e) {
 		super.onSight(self, e);
 		
-		//saw the player! give chase
-		parent.setState(new ChaseState(self.getPosition(), e, 0, 5f, this));
+		if(running) {
+			//saw the player! give chase
+			parent.setState(new ChaseState(self.getPosition(), e, 0, 5f, this));
+		}
 	}	
 
 }
