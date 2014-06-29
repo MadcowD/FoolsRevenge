@@ -118,6 +118,7 @@ public class SpecialGuard extends AI {
 						public void run(GameWorld world,
 								ObjectMap<String, Object> args) {
 							
+							super.run(world, args);
 							//check if Fool tried to escape
 							final float ESCAPE_DISTANCE_2 = 6f * 6f;
 							
@@ -132,7 +133,7 @@ public class SpecialGuard extends AI {
 								parent.setState(new ChaseState(e.getPosition(), world.specialEntities.get("Fool"), 0f, 5f, this)); // chase after the fool
 							}
 
-							super.run(world, args);
+						
 
 						}
 						@Override

@@ -47,7 +47,7 @@ public class GameWorld {
 	private static final float TIME_STEP = 1f / 60;
 	private static final int VELOCITY_ITERATIONS = 6;
 	private static final int POSITION_ITERATIONS = 2;
-
+	public static World worldSingleton;
 
 	public static final int ASTARTHRESH = 6;
 	public static int ASTARWORLD = 800;
@@ -219,6 +219,7 @@ public class GameWorld {
 		entityParser.setUnitScale(1f / Config.SPRITE_SCALE);
 		entityParser.loadPaths(tileMap.getLayers().get("Paths"));
 		entityParser.load(this, tileMap.getLayers().get("Entities"));
+		worldSingleton = world;
 
 	}
 
