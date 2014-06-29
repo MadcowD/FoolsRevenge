@@ -22,8 +22,9 @@ public class Weapon extends Item {
 	private void initWeapon(String spriteKey) {
 		if (spriteKey.equals("Sword")) {
 			meleeDamage = 2.5f;
+		} else if (spriteKey.equals("Dagger")) {
+			meleeDamage = 1f;
 		}
-		
 		// TODO initialize different types of weapons here
 	}
 	

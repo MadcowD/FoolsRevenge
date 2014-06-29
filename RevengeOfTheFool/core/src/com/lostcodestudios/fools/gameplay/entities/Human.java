@@ -177,10 +177,13 @@ public class Human extends Entity {
 			this.delete();
 			
 			if (this.deathScript != null && !this.deathScript.isEmpty()) {
-				updateScriptArgs.put("killer", attacker);
-				gameWorld.scripts.runScript(deathScript, updateScriptArgs);
+				gameWorld.scripts.runDeathScript(deathScript);
 			}
 		}
+	}
+	
+	public Direction getDirection() {
+		return sprite.direction;
 	}
 	
 	public boolean isDead() {
@@ -299,6 +302,7 @@ public class Human extends Entity {
 	public void delete()
 	{
 		super.delete();
+		
 		gameWorld.destroyBody(body);
 	};
 	

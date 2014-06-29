@@ -79,7 +79,9 @@ public final class Config {
     	itemSpriteInfo.put("Silver Key", new Rectangle(6, 1, 4, 8));
     	itemSpriteInfo.put("Brass Key", new Rectangle(11, 1, 4, 8));
     	itemSpriteInfo.put("Sword", new Rectangle(16, 1, 8, 8));
+    	itemSpriteInfo.put("Dagger", new Rectangle(25, 1, 5, 5));
     	itemSpriteInfo.put("Health Potion", new Rectangle(1, 10, 6, 6));
+    	itemSpriteInfo.put("Crown", new Rectangle(8, 10, 5, 2));
     }
     
     public static ObjectMap<String, Rectangle[]> doorSpriteInfo = new ObjectMap<String, Rectangle[]>();

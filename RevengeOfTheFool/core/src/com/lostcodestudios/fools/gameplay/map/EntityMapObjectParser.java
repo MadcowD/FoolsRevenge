@@ -88,11 +88,19 @@ public class EntityMapObjectParser {
 			if (type.equals("Fool")) {
 				e = new Human(world, "Fool", position, "entities.Fool", args);
 				((Human) e).group = "Fool";
+				((Human) e).setDeathScript("death.Fool");
+				
+				Weapon dagger = new Weapon(world, e, "Dagger");
+				
+				((Human) e).weapon = dagger;
+				
+				world.entities.add(dagger);
 			}
 			
 			else if (type.equals("King")) {
 				e = new Human(world, "King", position, "entities.King", args);
 				((Human) e).group = "King";
+				((Human) e).setDeathScript("death.King");
 			}
 			
 			else if (type.equals("Guard")) {

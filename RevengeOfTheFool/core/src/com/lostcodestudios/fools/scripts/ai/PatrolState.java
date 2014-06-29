@@ -11,7 +11,7 @@ public class PatrolState extends PathState{
 	
 	@Override
 	public void run(GameWorld world, ObjectMap<String, Object> args) {
-		if(world.flags.getFlag(5, 5) == 1)
+		if(world.flags.getFlag(0, 0) == 1)
 		// TODO Auto-generated method stub
 			super.run(world, args);
 	}

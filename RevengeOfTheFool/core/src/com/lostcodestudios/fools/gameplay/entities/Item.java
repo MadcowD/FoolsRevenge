@@ -27,6 +27,8 @@ public class Item extends Entity {
 	
 	public boolean selected = false;
 	
+	public String takeScript = "";
+	
 	public Item(GameWorld gameWorld, Vector2 position, String spriteKey) {
 		super(2);
 		
@@ -142,6 +144,10 @@ public class Item extends Entity {
 			this.holder = human;
 		}
 
+		if (!takeScript.isEmpty()) {
+			gameWorld.scripts.runScript(takeScript);
+		}
+		
 	}
 
 }
