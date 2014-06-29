@@ -6,7 +6,7 @@ import com.lostcodestudios.fools.gameplay.GameWorld;
 public class PatrolState extends PathState{
 
 	public PatrolState(float speed, boolean loop) {
-		super("Patrol", speed, loop);
+		super("Patrol", speed, loop, null);
 	}
 	
 	@Override

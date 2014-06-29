@@ -335,5 +335,9 @@ public class Human extends Entity {
 		
 		return false;
 	}
+	
+	public void setUpdateScript(Script script) {
+		this.updateScript = script;
+	}
 
 }

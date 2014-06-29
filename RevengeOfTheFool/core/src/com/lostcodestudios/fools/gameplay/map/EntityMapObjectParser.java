@@ -113,7 +113,7 @@ public class EntityMapObjectParser {
 			}
 			
 			else if (type.equals("SpecialGuard")) {
-				e = new Human(world, "Guard", position, new SpecialGuard(position), args);
+				e = new Human(world, "Guard", position, new SpecialGuard(), args);
 				((Human) e).group = "King";
 				
 				Weapon sword = new Weapon(world, e, "Sword");

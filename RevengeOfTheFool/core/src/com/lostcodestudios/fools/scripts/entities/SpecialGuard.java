@@ -11,6 +11,7 @@ import com.lostcodestudios.fools.scripts.ai.AI;
 import com.lostcodestudios.fools.scripts.ai.ChaseState;
 import com.lostcodestudios.fools.scripts.ai.MovementState;
 import com.lostcodestudios.fools.scripts.ai.NullState;
+import com.lostcodestudios.fools.scripts.ai.PathState;
 import com.lostcodestudios.fools.scripts.ai.State;
 
 public class SpecialGuard extends AI {
@@ -18,10 +19,10 @@ public class SpecialGuard extends AI {
 	public State overState(Human e) {
 		 int finalOffset = Integer.parseInt(e.tag.replace("s", "")) == 1 ? -1 : 1;
 		
-		 return new MovementState(e.getPosition(), new Vector2(58 - finalOffset, 100-72), 0f, 3.5f, new NullState());
+		 return new MovementState(e.getPosition(), new Vector2(58 - finalOffset, 99-73), 0f, 3.5f, new NullState());
 	}
 	
-	public SpecialGuard(Vector2 position) {
+	public SpecialGuard() {
 		
 		super(new CutsceneState(new NullState()));
 	}
@@ -126,6 +127,37 @@ public class SpecialGuard extends AI {
 				case 4:
 					
 					// path to the dungeon
+					parent.setState(new PathState("DungeonPath", 3.5f, false, this) {
+
+						@Override
+						protected void onEnd() {
+							world.flags.setFlag(1,0,5);
+							
+							Door door = (Door)world.specialEntities.get("CellDoor");
+							
+							if (!door.isOpen()) {
+								door.toggleOpen(world);
+							}
+							
+							super.onEnd();
+						}
+						
+					});
+					
+					break;
+					
+				case 5:
+					if (world.flags.getFlag(1, 1) == 1) {
+						Door door = (Door)world.specialEntities.get("CellDoor");
+						
+						if (door.isOpen()) {
+							door.toggleOpen(world);
+						}
+						
+						Guard guard = new Guard();
+						guard.setState(((SpecialGuard)parent).overState(e));
+						((Human)world.specialEntities.get(e.tag)).setUpdateScript(guard); // become a normal guard now
+					}
 					
 					break;
 			}

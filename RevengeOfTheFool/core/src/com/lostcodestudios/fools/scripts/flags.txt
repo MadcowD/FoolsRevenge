@@ -8,9 +8,10 @@ not implemented yet:
 		2 - guards DRAG the player to the door
 		3 - guards SHOVE the player to the ground (technically ending the cutscene)
 		4 - guards follow a path to the prison and KILL the player if he tries to escape
-		5 - cutscene is over completely
+		5 - waiting for Fool to enter the cell
+		6 - cutscene over
 	}
-
+[1, 1]: Fool has entered prison.
 	
 implemented:
 [0, 0]: 1 = Fool has escaped // WORLD PATROL
