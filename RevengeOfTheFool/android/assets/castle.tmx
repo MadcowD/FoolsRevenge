@@ -233,7 +233,7 @@
   <object name="t16" type="object" x="336" y="488" width="8" height="8"/>
   <object name="t17" type="object" x="336" y="464" width="8" height="8"/>
  </objectgroup>
- <objectgroup name="Lights" width="100" height="100" visible="0">
+ <objectgroup name="Lights" width="100" height="100">
   <properties>
    <property name="ambientColor" value="25, 25, 25, 62"/>
   </properties>
@@ -447,7 +447,7 @@
   <object name="g4" type="Guard" x="398" y="190" width="10" height="6"/>
   <object name="g5" type="Guard" x="399" y="205" width="9" height="7"/>
  </objectgroup>
- <objectgroup name="Rooms" width="100" height="100" visible="0">
+ <objectgroup name="Rooms" width="100" height="100">
   <object name="KingRoom" type="Room" x="344" y="15" width="122" height="74"/>
   <object name="Courtyard" x="330" y="405" width="149" height="137"/>
   <object name="Chapel" x="219" y="353" width="64" height="95"/>
@@ -469,6 +469,13 @@
     <property name="pause" value="50"/>
    </properties>
    <polyline points="-10,-6 222,-6 222,-46 -10,-46"/>
+  </object>
+  <object name="asdasd" type="Patrol" x="429" y="196">
+   <properties>
+    <property name="entity" value="g4"/>
+    <property name="pause" value="10"/>
+   </properties>
+   <polyline points="0,0 194,1"/>
   </object>
  </objectgroup>
 </map>
