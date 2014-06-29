@@ -19,6 +19,8 @@ public class Dialog6 extends Script {
 		fool.body.setLinearVelocity(new Vector2());
 		
 		world.dialog.showDialogWindow("The guards shoved the Fool forward, onto his knees.");
+		
+		world.cutsceneMode = false;
 	}
 
 }

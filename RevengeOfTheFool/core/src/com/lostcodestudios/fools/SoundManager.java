@@ -28,8 +28,8 @@ public final class SoundManager {
 	public static void init() {
 		Preferences prefs = Gdx.app.getPreferences(SOUND_PREFS_KEY);
 		
-		soundVolume = prefs.getFloat("soundVolume", 1f);
-		musicVolume = prefs.getFloat("musicVolume", 1f);
+		setSoundVolume(prefs.getFloat("soundVolume", 1f));
+		setMusicVolume(prefs.getFloat("musicVolume", 1f));
 	}
 	
 	public static float getSoundVolume() {

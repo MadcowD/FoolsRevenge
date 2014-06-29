@@ -28,6 +28,7 @@ public class DialogManager {
 	}
 	
 	public void dispose() {
+		
 	}
 	
 	public void render(SpriteBatch spriteBatch, SpriteBatch worldSpriteBatch, float delta) {

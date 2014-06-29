@@ -11,7 +11,7 @@ public class Start extends Script {
 	
 	@Override
 	public void run(GameWorld world, ObjectMap<String, Object> args) {
-		world.camera.position.set(50f * 64f, 94f * 64f, 0f);
+		world.camera.position.set(50.5f * 64f, 94f * 64f, 0f);
 		world.camera.update();
 		
 		world.scripts.runScript("intro.Dialog1");

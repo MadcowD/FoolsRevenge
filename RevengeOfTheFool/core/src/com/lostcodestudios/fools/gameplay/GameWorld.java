@@ -294,6 +294,19 @@ public class GameWorld {
 			TextManager.draw(spriteBatch, "debug", "Player is in King's room: " + rooms.get("KingRoom").contains(specialEntities.get("Fool").getPosition()), 0, 60);
 			spriteBatch.end();
 		}
+		
+		if (cutsceneMode) {
+			final float BAR_HEIGHT = 72;
+			
+			screenShapeRenderer.begin(ShapeType.Filled);
+			
+			screenShapeRenderer.setColor(new Color(0f, 0f, 0f, 1f));
+			
+			screenShapeRenderer.rect(0, 0, Gdx.graphics.getWidth(), BAR_HEIGHT);
+			screenShapeRenderer.rect(0, Gdx.graphics.getHeight() - BAR_HEIGHT, Gdx.graphics.getWidth(), BAR_HEIGHT);
+			
+			screenShapeRenderer.end();
+		}
 	}
 
 	private void renderHUD(Human fool, SpriteBatch spriteBatch) {
