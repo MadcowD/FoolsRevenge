@@ -115,6 +115,8 @@ public final class Config {
 		SoundManager.loadGroupSound("snd_step_stone", "sounds/snd_walkingconcrete1.wav");
 		SoundManager.loadGroupSound("snd_step_stone", "sounds/snd_walkingconcrete2.wav");
 		SoundManager.loadGroupSound("snd_step_stone", "sounds/snd_walkingconcrete3.wav");
+		SoundManager.loadGroupSound("snd_step_grass", "sounds/snd_walkingdirt1.wav");
+		SoundManager.loadGroupSound("snd_step_carpet", "sounds/snd_walkingrug1.wav");
 	}
 	
 }
