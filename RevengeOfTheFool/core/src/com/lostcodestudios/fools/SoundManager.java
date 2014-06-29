@@ -15,7 +15,7 @@ public final class SoundManager {
 
 	private static final String SOUND_PREFS_KEY = "TheFoolsRevenge_SOUNDPREFS";
 
-	private static final float HEARING_RADIUS = 20f; // hear faintly from 20 tiles away
+	private static final float HEARING_RADIUS = 30f; // hear faintly from 20 tiles away
 	private static final float HEARING_COEFFICIENT = 1f/(float)Math.sqrt(HEARING_RADIUS);
 	private static ObjectMap<String, Sound> sounds = new ObjectMap<String, Sound>();
 

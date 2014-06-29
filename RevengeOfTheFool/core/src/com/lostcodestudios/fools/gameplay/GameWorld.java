@@ -1,7 +1,8 @@
 package com.lostcodestudios.fools.gameplay;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 import box2dLight.RayHandler;
 
@@ -121,9 +122,13 @@ public class GameWorld {
 		//BUILD A*
 		if(Gdx.files.internal("fag1.starz").exists()){
 			String book = Gdx.files.internal("fag1.starz").readString();
-			for(int i = 0; i < ASTARWORLD*ASTARWORLD; i++)
-				if(book.charAt(i*2) == '1')
+			for(int i = 0; i < ASTARWORLD*ASTARWORLD; i++){
+				if(book.charAt(i) == '1')
 					AStar.objectMap[i] = true;
+				else
+					AStar.objectMap[i] = false;
+			}
+			
 
 
 		}
@@ -161,8 +166,24 @@ public class GameWorld {
 
 			//WRITE TO THE FILE
 
-					for(int i = 0; i< ASTARWORLD*ASTARWORLD; i++)
-						System.out.println(AStar.objectMap[i] ? "1" : "0");
+
+			
+			PrintWriter writer;
+			try {
+				writer = new PrintWriter("C:\\temp\\fag1.starz", "UTF-8");
+				for(int i = 0; i< ASTARWORLD*ASTARWORLD; i++)
+					writer.print(AStar.objectMap[i] ? "1" : "0");
+				writer.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+
+
 
 			
 		}
