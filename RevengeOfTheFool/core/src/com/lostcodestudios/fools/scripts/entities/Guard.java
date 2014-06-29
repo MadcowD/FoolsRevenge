@@ -1,6 +1,7 @@
 package com.lostcodestudios.fools.scripts.entities;
 
 
+import com.lostcodestudios.fools.gameplay.entities.Entity;
 import com.lostcodestudios.fools.scripts.ai.AI;
 import com.lostcodestudios.fools.scripts.ai.PatrolState;
 
@@ -17,7 +18,11 @@ static {
 		//Script.Register(new Guard());
 	}
 	
-	
+	@Override
+	public void onSight (Entity e) {
+		// TODO Auto-generated method stub
+		super.onSight(e);
+	}
 	//-------------------------
 	//STATES
 	//-------------------------
