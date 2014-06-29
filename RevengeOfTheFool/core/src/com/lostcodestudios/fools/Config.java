@@ -169,6 +169,10 @@ public final class Config {
 		SoundManager.loadGroupSound("snd_death", "sounds/snd_death1.wav");
 		SoundManager.loadGroupSound("snd_death", "sounds/snd_death2.wav");
 		
+		// METAL DOOR SOUND
+		
+		SoundManager.loadSound("snd_metal_door", "sounds/snd_metal_door.wav");
+		
 		// LOAD MUSIC
 		SoundManager.loadMusic("music", "music/theme.mp3");
 	}

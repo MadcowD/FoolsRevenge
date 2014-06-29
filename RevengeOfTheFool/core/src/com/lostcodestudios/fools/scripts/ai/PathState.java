@@ -15,8 +15,8 @@ public class PathState extends State {
 	private Vector2 target;
 	private float speed;
 
-	public PathState(String pathType, float speed, boolean loop){
-		super(null);
+	public PathState(String pathType, float speed, boolean loop, State nextState){
+		super(nextState);
 		this.pathType = pathType;
 		this.loop = loop;
 		this.speed = speed;
@@ -55,6 +55,10 @@ public class PathState extends State {
 						}
 						else if(loop)
 							targetIndex = -2;
+						else {
+							parent.setState(nextState);
+							end();
+						}
 					}
 				}
 			}

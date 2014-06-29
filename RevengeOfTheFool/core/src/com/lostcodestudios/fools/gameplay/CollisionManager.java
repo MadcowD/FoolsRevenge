@@ -19,7 +19,8 @@ import com.lostcodestudios.fools.gameplay.entities.Human;
 import com.lostcodestudios.fools.gameplay.entities.Item;
 import com.lostcodestudios.fools.gameplay.entities.Switch;
 import com.lostcodestudios.fools.gameplay.entities.Weapon;
-import com.lostcodestudios.fools.gameplay.graphics.HumanSprite.Direction;
+import com.lostcodestudios.fools.scripts.Script;
+import com.lostcodestudios.fools.scripts.ai.AI;
 
 
 public class CollisionManager implements ContactListener {
@@ -42,6 +43,7 @@ public class CollisionManager implements ContactListener {
 	// this is not a map because an entity could THEORETICALLY see two other entities at once, in which case both spottings would need to be stored,
 	// but a traditional map would overwrite the first one
 	private Array<Spotting> spottingsToCheck = new Array<Spotting>();
+	private Array<Spotting> spottings = new Array<Spotting>();
 	
 	public CollisionManager(GameWorld world, World physicsWorld) {
 		this.world = world;
@@ -359,12 +361,42 @@ public class CollisionManager implements ContactListener {
 			
 			if (!sightBlocked) {
 				// line of sight has been established!
-				// TODO call AI.onSight() somehow...
-				System.out.println("A human was spotted!");
+				
+				Script updateScript = viewer.getUpdateScript();
+				
+				if (updateScript instanceof AI) {
+					AI ai = (AI)updateScript;
+					
+					if (!spottings.contains(entry, true)) {
+						spottings.add(entry);
+
+						ai.onSight(viewer, viewed); // a new spotting!
+					} else {
+						// an old spotting
+					}
+					
+
+
+				}
+			} else {
+				Script updateScript = viewer.getUpdateScript();
+				
+				if (updateScript instanceof AI) {
+					AI ai = (AI)updateScript;
+					
+					if (spottings.contains(entry, true)) {
+						spottings.removeValue(entry, true);
+
+						ai.sightLost(viewer, viewed); // a spotting lost!
+					}
+					
+
+
+				}
+				
+				it.remove(); // sight over or nonexistent, don't check anymore
 			}
 		}
-		
-		spottingsToCheck.clear();
 	}
 
 }

@@ -238,8 +238,14 @@
     <property name="isSensor" value="true"/>
    </properties>
   </object>
+  <object name="CellEntrance" type="object" x="32" y="464" width="8" height="32">
+   <properties>
+    <property name="eventScript" value="events.CellEntrance"/>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
- <objectgroup name="Lights" width="100" height="100">
+ <objectgroup name="Lights" width="100" height="100" visible="0">
   <properties>
    <property name="ambientColor" value="25, 25, 25, 62"/>
   </properties>
@@ -368,7 +374,7 @@
     <property name="key" value="Gold Key"/>
    </properties>
   </object>
-  <object type="Door" x="44" y="472" width="8" height="16">
+  <object name="CellDoor" type="Door" x="44" y="472" width="8" height="16">
    <properties>
     <property name="doorType" value="Metal"/>
     <property name="key" value="Gold Key"/>
@@ -451,7 +457,7 @@
     <property name="rotation" value="270"/>
    </properties>
   </object>
-  <object name="g4" type="Guard" x="398" y="190" width="10" height="6"/>
+  <object name="g4" type="Guard" x="424" y="194" width="10" height="6"/>
   <object name="g5" type="Guard" x="399" y="205" width="9" height="7"/>
   <object type="Door" x="392" y="716" width="24" height="8">
    <properties>
@@ -459,7 +465,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Rooms" width="100" height="100">
+ <objectgroup name="Rooms" width="100" height="100" visible="0">
   <object name="Courtyard" x="330" y="405" width="149" height="137"/>
   <object name="Chapel" x="219" y="353" width="64" height="95"/>
   <object name="Great Hall" x="244" y="250" width="271" height="75"/>
@@ -487,6 +493,20 @@
     <property name="pause" value="10"/>
    </properties>
    <polyline points="0,0 -397,236"/>
+  </object>
+  <object type="DungeonPath" x="396" y="108">
+   <properties>
+    <property name="entity" value="s1"/>
+    <property name="pause" value="0"/>
+   </properties>
+   <polyline points="0,0 0,9 -101,8 -102,46 8,47 7,91 -203,91 -205,450 -247,451 -248,272 -286,272 -289,449 -326,447 -324,365"/>
+  </object>
+  <object type="DungeonPath" x="412" y="106">
+   <properties>
+    <property name="entity" value="s2"/>
+    <property name="pause" value="0"/>
+   </properties>
+   <polyline points="0,0 0,11 -118,10 -118,49 -8,49 -10,94 -220,92 -221,453 -264,452 -264,273 -303,273 -307,450 -343,449 -342,380"/>
   </object>
  </objectgroup>
 </map>

@@ -335,5 +335,13 @@ public class Human extends Entity {
 		
 		return false;
 	}
+	
+	public Script getUpdateScript() {
+		return updateScript;
+	}
+	
+	public void setUpdateScript(Script script) {
+		this.updateScript = script;
+	}
 
 }
