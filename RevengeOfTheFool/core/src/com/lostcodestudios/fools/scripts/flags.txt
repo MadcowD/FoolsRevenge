@@ -13,3 +13,4 @@
 		4 - guards follow a path to the prison and KILL the player if he tries to escape
 		5 - cutscene is over completely
 	}
+[5,5]: 1 = WORLD PATROL

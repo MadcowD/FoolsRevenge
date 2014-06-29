@@ -47,9 +47,6 @@ public class MovementState extends State{
 		
 		Vector2 nextPos = new Vector2(path.get(pathIndex)*GameWorld.ASTARRECIP, path.get(pathIndex+1)*GameWorld.ASTARRECIP);
 		Vector2 dir = nextPos.cpy().sub(e.getPosition().cpy());
-		if(e.tag.equals("s1"))
-			System.out.println("NIGGA IM HERE: " + e.getPosition() + " \nNIGGA I GOIN HERE " + nextPos);
-		
 		
 		
 		//STOP IF REALLY CLOSE LOL.

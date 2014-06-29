@@ -15,7 +15,7 @@ public final class SoundManager {
 	private static final String SOUND_PREFS_KEY = "TheFoolsRevenge_SOUNDPREFS";
 	
 	private static final float HEARING_RADIUS = 20f; // hear faintly from 20 tiles away
-	private static final float HEARING_COEFFICIENT = 1/(float)Math.sqrt(HEARING_RADIUS);
+	private static final float HEARING_COEFFICIENT = 1f/(float)Math.sqrt(HEARING_RADIUS);
 	private static ObjectMap<String, Sound> sounds = new ObjectMap<String, Sound>();
 	
 	private static ObjectMap<String, Array<Sound>> soundGroups = new ObjectMap<String, Array<Sound>>();
@@ -91,7 +91,7 @@ public final class SoundManager {
 	public static void playSound(String key, Vector2 soundPos, Vector2 playerPos) {
 		// handle panning and sound volume
 		
-		float dist = soundPos.cpy().sub(playerPos).len();
+		float dist = soundPos.cpy().sub(playerPos).len2();
 		
 		float vol = 1/(dist*HEARING_COEFFICIENT + 1);
 		
@@ -101,12 +101,21 @@ public final class SoundManager {
 		sounds.get(key).play(soundVolume * vol, 1, panning);
 	}
 	
-	public static void playSoundGroup(String key) {
+	public static void playSoundGroup(String key, Vector2 position, Vector2 playerPos) {
 		Array<Sound> group = soundGroups.get(key);
 		
 		int n = (int) (group.size * Random.random());
 		
-		group.get(n).play();
+		float dist = position.cpy().sub(playerPos).len2();
+		
+		float vol = 1f/((dist*HEARING_COEFFICIENT + 1f));
+		
+		float xOffset = position.x - playerPos.x;
+		float panning = Math.min(Math.max(xOffset / HEARING_RADIUS, -1), 1);
+		
+		group.get(n).play(soundVolume * vol, 1, panning);
+		System.out.println(soundVolume * vol);
+		
 	}
 	
 	public static void playFootstep(Vector2 position, Vector2 playerPos, TiledMap map) {
@@ -114,7 +123,7 @@ public final class SoundManager {
 		
 		String floorType = (String)floorLayer.getCell((int)position.x, (int)position.y).getTile().getProperties().get("floorType");
 		
-		playSoundGroup("snd_step_" + floorType);
+		playSoundGroup("snd_step_" + floorType, position, playerPos);
 	}
 	
 	public static void playMusic(String key) {
