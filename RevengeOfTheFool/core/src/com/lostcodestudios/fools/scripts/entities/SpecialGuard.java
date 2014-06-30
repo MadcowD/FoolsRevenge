@@ -43,6 +43,8 @@ public class SpecialGuard extends AI {
 		}
 		
 		if (world.flags.getFlag(0, 0) == 1) {
+			world.flags.setFlag(0, 0, 2);
+			
 			world.dialog.showVoiceBubble("Hey!", e, 3.2f);
 			this.setState(new ChaseState(e.getPosition(), (Human) world.specialEntities.get("Fool"), 6.7f, overState((Human)e))); // chase after the fool
 		}
