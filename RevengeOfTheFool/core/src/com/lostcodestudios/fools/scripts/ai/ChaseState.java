@@ -8,56 +8,46 @@ import com.lostcodestudios.fools.gameplay.GameWorld;
 import com.lostcodestudios.fools.gameplay.entities.Entity;
 import com.lostcodestudios.fools.gameplay.entities.Human;
 
-public class ChaseState extends MovementState {
+public class ChaseState extends State{
 
-	private Entity tEnt;
+	private Human tEnt;
 	int lostSight = 0;
+	private float speed;
 
-	public ChaseState(Vector2 initial, Entity target, float radius,
+	public ChaseState(Vector2 initial, Human target, 
 		float speed, State nextState) {
-		super(initial, target.getPosition(), radius, speed, nextState);
+		super(nextState);
+		this.speed = speed;
+		//super(initial, target.getPosition(), radius, speed, nextState);
 
 		this.tEnt = target;
 	}
 
 	@Override
 	public void run(GameWorld world, final ObjectMap<String, Object> args) {
-		if(tEnt.getPosition().dst2(this.target) > 10){
-			initialize(((Human)args.get("e")).getPosition(), tEnt.getPosition(), 1, this.speed);
-			if(astar){
-				this.path.removeIndex(path.size-1);
-				this.path.removeIndex(path.size-1);
-				this.path.removeIndex(path.size-1);
-				this.path.removeIndex(path.size-1);
-				this.path.removeIndex(path.size-1);
-				this.path.removeIndex(path.size-1);
-			}
 
-			
-
-				
-
-
-			}
+		Human e = (Human)args.get("e");
+		Vector2 dir = tEnt.getPosition().cpy().add(tEnt.body.getLinearVelocity().cpy().nor().scl(0.2f)).sub(e.getPosition().cpy());
+		if(dir.len2()<0.1){
+			e.setVelocity(new Vector2());
+			this.end();
+		}
+		else
+			e.setVelocity(dir.nor().scl(speed));
 		
 		
-		
+
+
 		// TODO Auto-generated method stub
-		super.run(world, args);
-		
-
-		
-
-
-
+		//super.run(world, args);
 	}
-	
+
 	@Override
 	public void sightLost(Entity self, Entity e) {
 		super.sightLost(self, e);
-		
+
 		// lost sight. Go to next state
-		parent.setState(nextState);
+		this.end();
 	}
 
 }

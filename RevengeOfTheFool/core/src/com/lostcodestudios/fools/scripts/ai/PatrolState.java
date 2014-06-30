@@ -3,6 +3,7 @@ package com.lostcodestudios.fools.scripts.ai;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.lostcodestudios.fools.gameplay.GameWorld;
 import com.lostcodestudios.fools.gameplay.entities.Entity;
+import com.lostcodestudios.fools.gameplay.entities.Human;
 
 public class PatrolState extends PathState{
 
@@ -26,7 +27,7 @@ public class PatrolState extends PathState{
 		
 		if(running) {
 			//saw the player! give chase
-			parent.setState(new ChaseState(self.getPosition(), e, 0, 5f, this));
+			parent.setState(new ChaseState(self.getPosition(), (Human) e,  6.7f, this));
 		}
 	}	
 

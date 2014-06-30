@@ -123,7 +123,6 @@ public final class SoundManager {
 		float panning = Math.min(Math.max(xOffset / HEARING_RADIUS, -1), 1);
 
 		group.get(n).play(soundVolume * vol, 1, panning);
-		System.out.println(soundVolume * vol);
 
 	}
 
