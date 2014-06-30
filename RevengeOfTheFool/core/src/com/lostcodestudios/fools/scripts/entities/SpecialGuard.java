@@ -34,7 +34,7 @@ public class SpecialGuard extends AI {
 		Entity e = (Entity)args.get("e");
 		
 		//check if Fool tried to escape
-		final float ESCAPE_DISTANCE_2 = 6f * 6f;
+		final float ESCAPE_DISTANCE_2 = 7f * 7f;
 		
 		float dist2 = world.specialEntities.get("Fool").getPosition().cpy().sub(e.getPosition()).len2();
 		
