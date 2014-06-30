@@ -207,7 +207,7 @@ public class GameWorld {
 
 		entities = new EntityManager(this, 3);
 
-		spriteSheet = new Texture("characters.png");
+		spriteSheet = new Texture("Characters.png");
 		itemSheet = new Texture("items.png");
 		doorSpriteSheet = new Texture("doors.png");
 		

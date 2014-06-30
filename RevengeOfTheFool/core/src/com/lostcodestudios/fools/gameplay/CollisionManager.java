@@ -72,9 +72,12 @@ public class CollisionManager implements ContactListener {
 				String eventScript = (bodyA.getUserData() instanceof String ? (String) bodyA.getUserData() : (String) bodyB.getUserData());
 				Human e = (bodyA.getUserData() instanceof Human ? (Human) bodyA.getUserData() : (Human) bodyB.getUserData());
 				
-				ObjectMap<String, Object> args = new ObjectMap<String, Object>();
-				args.put("e", e);
-				world.scripts.runScript(eventScript, args);
+				if (e.tag.equals("Fool")) {
+				
+					ObjectMap<String, Object> args = new ObjectMap<String, Object>();
+					args.put("e", e);
+					world.scripts.runScript(eventScript, args);
+				}
 				
 			}
 			
