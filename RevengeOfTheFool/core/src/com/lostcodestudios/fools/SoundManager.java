@@ -57,9 +57,7 @@ public final class SoundManager {
 		prefs.flush();
 
 		for (Music song : music.values()) {
-			float fraction = song.getVolume() / musicVolume;
-
-			song.setVolume(volume * fraction); // update the volume of all music currently playing, but preserve its ratio to the old volume
+			song.setVolume(volume); // update the volume of all music currently playing, but preserve its ratio to the old volume
 		}
 	}
 
