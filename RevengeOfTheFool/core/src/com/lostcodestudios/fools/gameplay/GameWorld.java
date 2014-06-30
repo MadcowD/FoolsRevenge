@@ -431,11 +431,6 @@ public class GameWorld {
 		collisionManager.update(delta); // this handles view sightings OUTSIDE of the dangerous ContactListener event context
 
 		entities.update(delta);
-		
-		// TODO DEBUG CODE
-		if (input.wasKeyPressed(Keys.SPACE)){
-			scripts.runScript("SkipScene");
-		}
 	}
 
 	public void updatePhysics(float delta) {

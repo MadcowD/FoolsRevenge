@@ -40,11 +40,7 @@ public class Revenge extends Game {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		super.render();
-		
-		if (input.wasKeyPressed(Keys.F1)) {
-			Config.debug = !Config.debug;
-		}
-		
+	
 		input.beginNewFrame();
 		
 		if (Config.debug) {
