@@ -335,7 +335,68 @@ public class CollisionManager implements ContactListener {
 	
 	private static boolean sightBlocked = false;
 	public void update(float delta) {
-		
+		Iterator<Spotting> it = spottingsToCheck.iterator();
+
+		while (it.hasNext()) {
+			Spotting entry = it.next();
+
+			final Human viewer = entry.viewer;
+			final Human viewed = entry.viewed;
+
+			sightBlocked = false;
+			world.world.rayCast(new RayCastCallback() {
+
+				@Override
+				public float reportRayFixture(Fixture fixture, Vector2 point, Vector2 normal, float fraction) {
+
+					if (fixture.isSensor() || fixture.getUserData() == viewed) {
+						return 1; // it's a non-physical obstacle,  continue looking for view obstacles
+					}
+
+					CollisionManager.sightBlocked = true;
+					return 0; // it's a physical obstacle, so line of sight is broken
+				}
+
+			}, viewer.body.getPosition(), viewed.body.getPosition());
+
+			if (!sightBlocked) {
+				// line of sight has been established!
+
+				Script updateScript = viewer.getUpdateScript();
+
+				if (updateScript instanceof AI) {
+					AI ai = (AI)updateScript;
+
+					if (!spottings.contains(entry, true)) {
+						spottings.add(entry);
+
+						ai.onSight(viewer, viewed); // a new spotting!
+					} else {
+						// an old spotting
+					}
+
+
+
+				}
+			} else {
+				Script updateScript = viewer.getUpdateScript();
+
+				if (updateScript instanceof AI) {
+					AI ai = (AI)updateScript;
+
+					if (spottings.contains(entry, true)) {
+						spottings.removeValue(entry, true);
+
+						ai.sightLost(viewer, viewed); // a spotting lost!
+					}
+
+
+
+				}
+
+				it.remove(); // sight over or nonexistent, don't check anymore
+			}
+		}
 	}
 
 }
