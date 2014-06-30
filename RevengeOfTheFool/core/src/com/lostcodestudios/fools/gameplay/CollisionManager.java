@@ -370,12 +370,12 @@ public class CollisionManager implements ContactListener {
 					if (!spottings.contains(entry, true)) {
 						spottings.add(entry);
 
-						ai.onSight(viewer, viewed); // a new spotting!
+						
 					} else {
 						// an old spotting
 					}
 
-
+					ai.onSight(viewer, viewed); // a spotting continues!
 
 				}
 			} else {
