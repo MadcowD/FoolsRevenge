@@ -1,6 +1,16 @@
 -FLAGS-
 	
 not implemented yet:
+
+	
+implemented:
+[0, 0]: 1 = Fool has escaped // WORLD PATROL
+[0, 1]: 1 = Fool has died
+[0, 2]: 1 = King has died
+[0, 3]: 1 = Fool has picked up the crown
+[0, 4]: value = # guards killed
+[0, 5]: # = keys taken from special guards
+
 [1, 0]: value = current state of the cutscene
 	{
 		0 - guards have not moved
@@ -12,11 +22,10 @@ not implemented yet:
 		6 - cutscene over
 	}
 [1, 1]: Fool has entered prison.
-	
-implemented:
-[0, 0]: 1 = Fool has escaped // WORLD PATROL
-[0, 1]: 1 = Fool has died
-[0, 2]: 1 = King has died
-[0, 3]: 1 = Fool has picked up the crown
-[0, 4]: value = # guards killed
-[0, 5]: # = keys taken from special guards
+
+[2, 0]: Courtyard dialog
+[2, 1]: Library dialog
+[2, 2]: Chapel dialog
+[2, 3]: Pantry dialog
+[2, 4]: Kitchen dialog
+[2, 5]: Great Hall dialog

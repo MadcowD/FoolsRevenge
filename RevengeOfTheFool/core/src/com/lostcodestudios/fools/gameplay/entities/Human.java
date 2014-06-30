@@ -92,7 +92,9 @@ public class Human extends Entity {
 		
 		// create the view sensor fixture
 		
-		createView(body);
+		if (!animatedSpriteKey.equals("Fool")) {
+			createView(body);
+		}
 		
 		body.setUserData(this);
 	}

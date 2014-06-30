@@ -118,7 +118,8 @@ public class GameWorld {
 		Box2DMapObjectParser mapObjectParser = new Box2DMapObjectParser();
 		mapObjectParser.setUnitScale(1f / Config.SPRITE_SCALE);
 		mapObjectParser.load(world, tileMap.getLayers().get("Physics")); //NOTE: this won't load circle objects!
-
+		mapObjectParser.load(world, tileMap.getLayers().get("Events"));
+		
 		AStar.objectMap = new boolean[ASTARWORLD*ASTARWORLD];
 		//BUILD A*
 		if(Gdx.files.internal("fag1.starz").exists()){
