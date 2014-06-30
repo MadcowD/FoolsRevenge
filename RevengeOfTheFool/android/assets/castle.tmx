@@ -114,7 +114,7 @@
    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
   </data>
  </layer>
- <objectgroup name="Physics" width="100" height="100">
+ <objectgroup name="Physics" width="100" height="100" visible="0">
   <object name="3" type="object" x="336" y="16" width="8" height="72"/>
   <object name="1" type="object" x="344" y="8" width="120" height="8"/>
   <object name="2" type="object" x="464" y="16" width="8" height="72"/>
@@ -304,7 +304,7 @@
    <ellipse/>
   </object>
  </objectgroup>
- <objectgroup name="Entities" width="100" height="100" visible="0">
+ <objectgroup name="Entities" width="100" height="100">
   <object name="Fool" type="Fool" x="400" y="64" width="8" height="8">
    <properties>
     <property name="rotation" value="90"/>
@@ -498,7 +498,7 @@
    <polyline points="0,0 0,11 -118,10 -118,49 -8,49 -10,94 -220,92 -221,453 -264,452 -264,273 -303,273 -307,450 -343,449 -342,380"/>
   </object>
  </objectgroup>
- <objectgroup name="Events" width="100" height="100">
+ <objectgroup name="Events" width="100" height="100" visible="0">
   <object name="court2" type="object" x="384" y="408" width="40" height="8">
    <properties>
     <property name="eventScript" value="events.Courtyard"/>
