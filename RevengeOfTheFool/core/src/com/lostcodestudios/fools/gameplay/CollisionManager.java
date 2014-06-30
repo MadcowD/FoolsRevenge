@@ -19,6 +19,9 @@ import com.lostcodestudios.fools.gameplay.entities.Human;
 import com.lostcodestudios.fools.gameplay.entities.Item;
 import com.lostcodestudios.fools.gameplay.entities.Switch;
 import com.lostcodestudios.fools.gameplay.entities.Weapon;
+import com.lostcodestudios.fools.scripts.Script;
+import com.lostcodestudios.fools.scripts.ai.AI;
+
 
 public class CollisionManager implements ContactListener {
 
@@ -40,6 +43,7 @@ public class CollisionManager implements ContactListener {
 	// this is not a map because an entity could THEORETICALLY see two other entities at once, in which case both spottings would need to be stored,
 	// but a traditional map would overwrite the first one
 	private Array<Spotting> spottingsToCheck = new Array<Spotting>();
+	private Array<Spotting> spottings = new Array<Spotting>();
 	
 	public CollisionManager(GameWorld world, World physicsWorld) {
 		this.world = world;
@@ -95,12 +99,6 @@ public class CollisionManager implements ContactListener {
 				
 				if (h.tag.equals("Fool") && (!(i instanceof Weapon) || i.holder == null)) {
 					i.selected = true;
-				} else {
-					if (!i.name.equals("Health Potion") && !(i instanceof Weapon)) {
-						if (h.inventory.size == 0) {
-							i.give(h); // NPCs automatically pick up items that are not weapons or potions
-						}
-					}
 				}
 			}
 			
@@ -169,8 +167,52 @@ public class CollisionManager implements ContactListener {
 						damageB = humanB.weapon.meleeDamage;
 					}
 					
-					humanA.damage(damageB, humanB);
-					humanB.damage(damageA, humanA);
+					// check for a backstab
+					
+					final float BACKSTAB_ROTATION_DIFF = (float) (Math.PI / 4);
+					
+					if (Math.abs(bodyA.getAngle() - bodyB.getAngle()) < BACKSTAB_ROTATION_DIFF) {
+						Human backstabber = null;
+						Human backstabbee = null;
+						
+						switch (humanA.getDirection()) {
+							case Down:
+								
+								backstabber = humanA.getPosition().y > humanB.getPosition().y ? humanA : humanB;
+								backstabbee = humanA.getPosition().y > humanB.getPosition().y ? humanB : humanA;
+								
+								break;
+								
+							case Up:
+								
+								backstabber = humanA.getPosition().y < humanB.getPosition().y ? humanA : humanB;
+								backstabbee = humanA.getPosition().y < humanB.getPosition().y ? humanB : humanA;
+								
+								break;
+								
+							case Left:
+								
+								backstabber = humanA.getPosition().x > humanB.getPosition().y ? humanA : humanB;
+								backstabbee = humanA.getPosition().x > humanB.getPosition().y ? humanB : humanA;
+								
+								break;
+								
+							case Right:
+								
+								backstabber = humanA.getPosition().x < humanB.getPosition().y ? humanA : humanB;
+								backstabbee = humanA.getPosition().x < humanB.getPosition().y ? humanB : humanA;
+								
+								break;
+						}
+						
+						backstabbee.damage(100, backstabber);
+					} else {
+						
+						// damage normally
+						humanA.damage(damageB, humanB);
+						humanB.damage(damageA, humanA);
+						
+					}
 					
 					// play the appropriate sound effects
 					// positioning and panning don't matter because the player will be involved in ALL collisions
@@ -319,12 +361,42 @@ public class CollisionManager implements ContactListener {
 			
 			if (!sightBlocked) {
 				// line of sight has been established!
-				// TODO call AI.onSight() somehow...
-				System.out.println("A human was spotted!");
+				
+				Script updateScript = viewer.getUpdateScript();
+				
+				if (updateScript instanceof AI) {
+					AI ai = (AI)updateScript;
+					
+					if (!spottings.contains(entry, true)) {
+						spottings.add(entry);
+
+						ai.onSight(viewer, viewed); // a new spotting!
+					} else {
+						// an old spotting
+					}
+					
+
+
+				}
+			} else {
+				Script updateScript = viewer.getUpdateScript();
+				
+				if (updateScript instanceof AI) {
+					AI ai = (AI)updateScript;
+					
+					if (spottings.contains(entry, true)) {
+						spottings.removeValue(entry, true);
+
+						ai.sightLost(viewer, viewed); // a spotting lost!
+					}
+					
+
+
+				}
+				
+				it.remove(); // sight over or nonexistent, don't check anymore
 			}
 		}
-		
-		spottingsToCheck.clear();
 	}
 
 }
