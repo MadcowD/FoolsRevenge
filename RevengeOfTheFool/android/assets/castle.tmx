@@ -434,12 +434,12 @@
     <property name="doorType" value="Wood"/>
    </properties>
   </object>
-  <object name="g3" type="Guard" x="286" y="110" width="8" height="6">
+  <object name="g3" type="Guard" x="286" y="110" width="11" height="10">
    <properties>
     <property name="rotation" value="0"/>
    </properties>
   </object>
-  <object name="g2" type="Guard" x="514" y="110" width="8" height="6">
+  <object name="g2" type="Guard" x="511" y="111" width="10" height="9">
    <properties>
     <property name="rotation" value="0"/>
    </properties>
@@ -454,10 +454,33 @@
     <property name="rotation" value="270"/>
    </properties>
   </object>
-  <object name="g5" type="Guard" x="399" y="205" width="9" height="7"/>
+  <object name="g4" type="Guard" x="622" y="188" width="12" height="12"/>
   <object type="Door" x="392" y="716" width="24" height="8">
    <properties>
     <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object name="g5" type="Guard" x="612" y="200" width="12" height="12"/>
+  <object name="g7" type="Guard" x="612" y="618" width="10" height="9"/>
+  <object name="g6" type="Guard" x="624" y="630" width="10" height="10"/>
+  <object name="g8" type="Guard" x="182" y="630" width="12" height="9">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+  </object>
+  <object name="g9" type="Guard" x="197" y="619" width="11" height="8">
+   <properties>
+    <property name="rotation" value="0"/>
+   </properties>
+  </object>
+  <object name="g10" type="Guard" x="181" y="203" width="8" height="8">
+   <properties>
+    <property name="rotation" value="270"/>
+   </properties>
+  </object>
+  <object name="g11" type="Guard" x="181" y="188" width="9" height="8">
+   <properties>
+    <property name="rotation" value="0"/>
    </properties>
   </object>
  </objectgroup>
@@ -468,21 +491,7 @@
   <object name="Kitchen" x="524" y="251" width="74" height="143"/>
   <object name="Pantry" x="484" y="405" width="112" height="48"/>
  </objectgroup>
- <objectgroup name="Paths" width="100" height="100" visible="0">
-  <object type="Patrol" x="517" y="148">
-   <properties>
-    <property name="entity" value="g2"/>
-    <property name="pause" value="50"/>
-   </properties>
-   <polyline points="3,4 3,-36 -229,-36 -229,4"/>
-  </object>
-  <object type="Patrol" x="298" y="158">
-   <properties>
-    <property name="entity" value="g3"/>
-    <property name="pause" value="50"/>
-   </properties>
-   <polyline points="-10,-6 222,-6 222,-46 -10,-46"/>
-  </object>
+ <objectgroup name="Paths" width="100" height="100">
   <object type="DungeonPath" x="396" y="108">
    <properties>
     <property name="entity" value="s1"/>
@@ -496,6 +505,76 @@
     <property name="pause" value="0"/>
    </properties>
    <polyline points="0,0 0,11 -118,10 -118,49 -8,49 -10,94 -220,92 -221,453 -264,452 -264,273 -303,273 -307,450 -343,449 -342,380"/>
+  </object>
+  <object type="Patrol" x="628" y="194">
+   <properties>
+    <property name="entity" value="g4"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 0,441 -441,441 -441,2 2,2"/>
+  </object>
+  <object type="Patrol" x="615" y="202">
+   <properties>
+    <property name="entity" value="g5"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 -418,0 -415,418 0,419 0,0"/>
+  </object>
+  <object type="Patrol" x="630" y="636">
+   <properties>
+    <property name="entity" value="g6"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 -441,0 -443,-443 -1,-440 0,-1"/>
+  </object>
+  <object type="Patrol" x="188" y="632">
+   <properties>
+    <property name="entity" value="g8"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 -3,-443 439,-442 440,1 -1,1"/>
+  </object>
+  <object type="Patrol" x="189" y="187">
+   <properties>
+    <property name="entity" value="g11"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 443,4 444,445 3,446 0,1"/>
+  </object>
+  <object type="Patrol" x="199" y="207">
+   <properties>
+    <property name="entity" value="g10"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 3,415 418,415 418,-2 0,0"/>
+  </object>
+  <object type="Patrol" x="199" y="621">
+   <properties>
+    <property name="entity" value="g9"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 414,0 415,-417 -2,-416 -1,0"/>
+  </object>
+  <object type="Patrol" x="615" y="623">
+   <properties>
+    <property name="entity" value="g7"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 1,-418 -414,-414 -413,-1 -1,-1"/>
+  </object>
+  <object type="Patrol" x="292" y="114">
+   <properties>
+    <property name="entity" value="g3"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 226,1 226,42 1,41 0,1"/>
+  </object>
+  <object type="Patrol" x="517" y="115">
+   <properties>
+    <property name="entity" value="g2"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 0,42 -225,41 -226,0 1,0"/>
   </object>
  </objectgroup>
  <objectgroup name="Events" width="100" height="100" visible="0">
