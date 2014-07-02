@@ -42,7 +42,7 @@ public class SpecialGuard extends AI {
 			world.flags.setFlag(0, 0, 1);
 		}
 		
-		if (world.flags.getFlag(0, 0) > 0 && world.flags.getFlag(0, 0) < 3) {
+		if (world.flags.getFlag(0, 0) > 0 && world.flags.getFlag(0, 0) < 3 && world.flags.getFlag(1, 1) != 1) {
 			world.flags.incFlag(0, 0);
 			
 			world.dialog.showVoiceBubble("Hey!", e, 3.2f);

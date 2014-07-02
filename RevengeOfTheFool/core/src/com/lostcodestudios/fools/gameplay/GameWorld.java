@@ -207,7 +207,7 @@ public class GameWorld {
 
 		entities = new EntityManager(this, 3);
 
-		spriteSheet = new Texture("characters.png");
+		spriteSheet = new Texture("Characters.png");
 		itemSheet = new Texture("items.png");
 		doorSpriteSheet = new Texture("doors.png");
 		
@@ -431,11 +431,6 @@ public class GameWorld {
 		collisionManager.update(delta); // this handles view sightings OUTSIDE of the dangerous ContactListener event context
 
 		entities.update(delta);
-		
-		// TODO DEBUG CODE
-		if (input.wasKeyPressed(Keys.SPACE)){
-			scripts.runScript("SkipScene");
-		}
 	}
 
 	public void updatePhysics(float delta) {

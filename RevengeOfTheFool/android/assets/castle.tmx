@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="8" tileheight="8">
- <tileset firstgid="1" name="Environment" tilewidth="8" tileheight="8">
-  <image source="lofi_environment.png" width="128" height="128"/>
- </tileset>
- <tileset firstgid="257" name="Dungeon Features" tilewidth="8" tileheight="8">
-  <image source="lofi_dungeon_features.png" width="96" height="72"/>
- </tileset>
- <tileset firstgid="365" name="Objects" tilewidth="8" tileheight="8">
-  <image source="lofi_obj.png" width="128" height="128"/>
- </tileset>
- <tileset firstgid="621" name="Object Pack A" tilewidth="8" tileheight="8">
-  <image source="lofi_obj_packA.png" width="64" height="112"/>
- </tileset>
- <tileset firstgid="733" name="Object Pack B" tilewidth="8" tileheight="8">
-  <image source="lofi_obj_packB.png" width="72" height="64"/>
- </tileset>
- <tileset firstgid="805" name="Tiles" tilewidth="8" tileheight="8" spacing="2" margin="1">
+ <tileset firstgid="1" name="Tiles" tilewidth="8" tileheight="8" spacing="2" margin="1">
   <image source="tiles.png" width="128" height="128"/>
   <tile id="1">
    <properties>
@@ -106,15 +91,15 @@
  </tileset>
  <layer name="Floor" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJztmdtOxCAURZvwXd5e1R8yxuinzKeqmRDpSLm1wIauleyXdpwDZ6UHrcsCADPwYpblzpNXJ777vz8HxxPy8YyP5vB8aLHlIxZ81AEfWuBDC3xogQ8tfD4ePMFHX1wX0B981MGdMfcJCc2rn/tfsbj14D8lPraCj/3gQ4vW/cFHGHxokTtvbmdOzqy7nXfwH3xogY85oK9a4CNOyXvYETMKvfuEjzW9+4SPNb37hI81rdbdukf4yKuDDz/40KJXj2qDjzhv5i+1mdmH28desXyacHL2pchsPj495xQ+8FHKbD5y9qXIKD7eEp4LfODjaEbxYcFHfxf4qIOvv7ngo06tUvBRp05pLXzUqYMPP/jQYmvdH2Y7R9Sp5aP1+5JH85fQNd+afOvz3Qu5wMcat/e+WM7qY6teLWr7sOAjjdR5dW+Wi03oWisft7X2ctv/UK3W5/kZfcS+Bx9Xnsx23Dqhz22tLSWxfR2N+rw6s4/QeY4PfPxyZh+ha/iY6zy3pDhwOdLHHmb1kbufs/moPa9KY+k9r2LrO5ra5/mswYdWWvgIXWNetfHho+Z57n4mhZrnec46Zvbxbq5J4Ww+Wv09aB2kxtLSR2gu9fBR832Jso+UcwIfV87sI3Stl48Qe/ujOK98lPxPPbbuEXyk1hrBR+x5z/UR8xSqlQo+tH2ozqs9jOhD6Tw/GgUfpT3Gh4aPku8chZF9lOxLndx15/x+G6qzVav0XqzeKOSu+8izOPf7U86P2DOmzp49jpRR6N0nfKzp3Sd8rOndJ3y0hz5pgQ8t8KEFPrTAhxb40AIfWuBDEzxoMZOPJ7NcRo/ro/daCD7Ugg+t4EMr+NAKPrSCD63gQysz+fgGCXT+Sg==
+   eJztmVtO2DAQRbONUvgt3RBCFZvpUlhqQTSSE5zxIxn72jlHuj8JythzlDGEZQGAGXj+yI9IfgeJ3X/usdgbYPn4teCjNbwfWhz5SAUfPuBDC3xogQ8t8KFFzMfPSPDRl9AF9AcfPoQz5iEj1rz6uP83lbAefKfGx1HwcR58aNG6P/iwwYcWpfNmP3NKZt1+3sF38KEFPuaAvmqBjzQ132FHzCj07hM+tvTuEz629O4TPra0WnfrHuGjrA4+4uBDi1498gYfaV6CeDOzjxeBrLwlUrIvRWbz8RbZEz7wUctsPkr2pcgoPj6T826U7EsRfGgxio8VfPR3gQ8fYv0tBR8+tWrBh0+d2lr48KmDjzj40OJo3X+MXFHHy0fr7yWPQaxrsTXF1he7Z7nAx5bHRFbu6uOonhfePlbwkUfuvHpYlvc11rVWPva1zrLvv1Wr9Xl+Rx+p5+DjiycjYR3r547WlpPUvq5GfV7d2Yd1nuMDH5/c2Yd1DR9znecrOQ5CrvRxhll9lO7nbj6851VtVnrPq9T6rsb7PJ81XuBD14d1jXnVxkcMz/N8Sdzb43mel6xjZh+v/5PD3Xy0+nvwtTArLX1Yc6mHD8/vJco+cs4JfHxxZx/WtV4+LM72R3Fexaj5n3rs2mg+cmuN4CP1vpf6SHmyauWCD20fqvPqDCP6UDrPr0bBR22P8aHho+aZozCyj5p9qVO67pLfb606R7Vq76XqjULpuq88i0ufn3N+pN4xdc7scaSMQu8+4WNL7z7hY0vvPuGjPfRJC3xogQ8t8KEFPrTAhxb40AIfmuBBi5l8PC3L++gJffReC8GHWvChFXxoBR9awYdW8KEVfGhlJh//AN6DtLc=
   </data>
  </layer>
  <layer name="Objects" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <objectgroup name="Physics" width="100" height="100" visible="0">
+ <objectgroup name="Physics" width="100" height="100">
   <object name="3" type="object" x="336" y="16" width="8" height="72"/>
   <object name="1" type="object" x="344" y="8" width="120" height="8"/>
   <object name="2" type="object" x="464" y="16" width="8" height="72"/>
@@ -434,12 +419,12 @@
     <property name="doorType" value="Wood"/>
    </properties>
   </object>
-  <object name="g3" type="Guard" x="286" y="110" width="8" height="6">
+  <object name="g3" type="Guard" x="286" y="110" width="11" height="10">
    <properties>
     <property name="rotation" value="0"/>
    </properties>
   </object>
-  <object name="g2" type="Guard" x="514" y="110" width="8" height="6">
+  <object name="g2" type="Guard" x="511" y="111" width="10" height="9">
    <properties>
     <property name="rotation" value="0"/>
    </properties>
@@ -454,10 +439,33 @@
     <property name="rotation" value="270"/>
    </properties>
   </object>
-  <object name="g5" type="Guard" x="399" y="205" width="9" height="7"/>
+  <object name="g4" type="Guard" x="622" y="188" width="12" height="12"/>
   <object type="Door" x="392" y="716" width="24" height="8">
    <properties>
     <property name="doorType" value="Wood"/>
+   </properties>
+  </object>
+  <object name="g5" type="Guard" x="612" y="200" width="12" height="12"/>
+  <object name="g7" type="Guard" x="612" y="618" width="10" height="9"/>
+  <object name="g6" type="Guard" x="624" y="630" width="10" height="10"/>
+  <object name="g8" type="Guard" x="182" y="630" width="12" height="9">
+   <properties>
+    <property name="rotation" value="90"/>
+   </properties>
+  </object>
+  <object name="g9" type="Guard" x="197" y="619" width="11" height="8">
+   <properties>
+    <property name="rotation" value="0"/>
+   </properties>
+  </object>
+  <object name="g10" type="Guard" x="181" y="203" width="8" height="8">
+   <properties>
+    <property name="rotation" value="270"/>
+   </properties>
+  </object>
+  <object name="g11" type="Guard" x="181" y="188" width="9" height="8">
+   <properties>
+    <property name="rotation" value="0"/>
    </properties>
   </object>
  </objectgroup>
@@ -468,21 +476,7 @@
   <object name="Kitchen" x="524" y="251" width="74" height="143"/>
   <object name="Pantry" x="484" y="405" width="112" height="48"/>
  </objectgroup>
- <objectgroup name="Paths" width="100" height="100" visible="0">
-  <object type="Patrol" x="517" y="148">
-   <properties>
-    <property name="entity" value="g2"/>
-    <property name="pause" value="50"/>
-   </properties>
-   <polyline points="3,4 3,-36 -229,-36 -229,4"/>
-  </object>
-  <object type="Patrol" x="298" y="158">
-   <properties>
-    <property name="entity" value="g3"/>
-    <property name="pause" value="50"/>
-   </properties>
-   <polyline points="-10,-6 222,-6 222,-46 -10,-46"/>
-  </object>
+ <objectgroup name="Paths" width="100" height="100">
   <object type="DungeonPath" x="396" y="108">
    <properties>
     <property name="entity" value="s1"/>
@@ -496,6 +490,76 @@
     <property name="pause" value="0"/>
    </properties>
    <polyline points="0,0 0,11 -118,10 -118,49 -8,49 -10,94 -220,92 -221,453 -264,452 -264,273 -303,273 -307,450 -343,449 -342,380"/>
+  </object>
+  <object type="Patrol" x="628" y="194">
+   <properties>
+    <property name="entity" value="g4"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 0,441 -441,441 -441,2 2,2"/>
+  </object>
+  <object type="Patrol" x="615" y="202">
+   <properties>
+    <property name="entity" value="g5"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 -418,0 -415,418 0,419 0,0"/>
+  </object>
+  <object type="Patrol" x="630" y="636">
+   <properties>
+    <property name="entity" value="g6"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 -441,0 -443,-443 -1,-440 0,-1"/>
+  </object>
+  <object type="Patrol" x="188" y="632">
+   <properties>
+    <property name="entity" value="g8"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 -3,-443 439,-442 440,1 -1,1"/>
+  </object>
+  <object type="Patrol" x="189" y="187">
+   <properties>
+    <property name="entity" value="g11"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 443,4 444,445 3,446 0,1"/>
+  </object>
+  <object type="Patrol" x="199" y="207">
+   <properties>
+    <property name="entity" value="g10"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 3,415 418,415 418,-2 0,0"/>
+  </object>
+  <object type="Patrol" x="199" y="621">
+   <properties>
+    <property name="entity" value="g9"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 414,0 415,-417 -2,-416 -1,0"/>
+  </object>
+  <object type="Patrol" x="615" y="623">
+   <properties>
+    <property name="entity" value="g7"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 1,-418 -414,-414 -413,-1 -1,-1"/>
+  </object>
+  <object type="Patrol" x="292" y="114">
+   <properties>
+    <property name="entity" value="g3"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 226,1 226,42 1,41 0,1"/>
+  </object>
+  <object type="Patrol" x="517" y="115">
+   <properties>
+    <property name="entity" value="g2"/>
+    <property name="pause" value="6"/>
+   </properties>
+   <polyline points="0,0 0,42 -225,41 -226,0 1,0"/>
   </object>
  </objectgroup>
  <objectgroup name="Events" width="100" height="100" visible="0">
