@@ -10,6 +10,8 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		
         // writing a comment for fun
+        // this time writing another comment for fun
+        // one last comment, hopefully!
 
 		config.width = Config.SCREEN_WIDTH;
 		config.height = Config.SCREEN_HEIGHT;
